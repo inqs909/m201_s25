@@ -1,0 +1,214 @@
+---
+title: "Installing R and Rstudio"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: true 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+
+editor: source
+---
+
+# Statistics
+
+## Traditional Statistics
+
+Traditional Statistics methods can conducted using either linear or logistic regression.
+
+Visit [Here](https://lindeloev.github.io/tests-as-linear/) for more information.
+
+## What is Statistics? 
+
+It is the study of variation and randomness!
+
+
+## What's the goal of Statistics?
+
+::: {.fragment style="font-size: 2em; color: red;"}
+**INFERENCE**
+:::
+
+::: fragment
+Use our sample data to understand the larger population.
+:::
+
+::: fragment
+The data will tell us how the population generally behaves.
+:::
+
+::: fragment
+The data will guide us in the differences in units.
+:::
+
+::: fragment
+Data will tell us if there is a signal or just noise.
+:::
+
+## Final Thoughts
+
+::: fragment
+When conducting a study, literature review and study design are as equally important as statistics.
+:::
+
+::: fragment
+If you don't see variability in the data, something is wrong.
+:::
+
+::: fragment
+Focus on consistency in the methodology, not consistency in data.
+:::
+
+::: fragment
+Understand that you can be wrong, and that is okay.
+:::
+
+::: fragment
+Don't let data influence the methodology during a study/experiment.
+:::
+
+
+
+## Statistics Mantra
+
+::: columns
+::: {.column width="50%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/GeorgeEPBox.jpg/400px-GeorgeEPBox.jpg){fig-alt="An image of George Box" fig-align="center" width="333"}
+:::
+
+::: {.column width="50%"}
+**All models are wrong,**
+
+**some are useful!**
+:::
+:::
+
+
+# Final Survey
+
+## Final Survey
+
+[Survery](https://forms.gle/iTJsCfXPjBKpmfdR9)
+
+![](img/frame (1).png)
+
+# Installation
+
+## Installing R
+
+<https://cloud.r-project.org/>
+
+## Installing RStudio
+
+<https://posit.co/download/rstudio-desktop/>
+
+## Installing RTools (Windows)
+
+<https://cran.r-project.org/bin/windows/Rtools/>
+
+# R Packages
+
+## Tidyverse
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+```
+
+
+## csucistats
+
+```{r}
+#| eval: false
+install.packages('csucistats', 
+                 repos = c('https://inqs909.r-universe.dev', 
+                           'https://cloud.r-project.org'))
+```
+
+
+
+
+## Other Packages
+
+```{r}
+#| eval: false
+install.packages(c("ggthemes", "statmod", "car", "ggpubr", "lmtest", "rms", "palmerpenguins"))
+csucistats::install_plots()
+csucistats::install_themes()
+```
+
+
+## Load Packages
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(csucistats)
+library(ggthemes)
+library(waffle)
+library(ggmosaic)
+library(ggtricks)
+library(ggtext)
+library(ggpubr)
+library(ThemePark)
+library(car)
+library(lmtest)
+library(rms)
+library(palmerpenguins)
+```
+
+# RStudio Layout
+
+## RStudio Layout
+
+-   Scripts
+
+-   Console
+
+-   Environment
+
+-   Files
+
+-   Everything else
+
+# Loading Data
+
+## Downloading Data Data
+
+```{r}
+#| echo: true
+#| eval: false
+u1 <- "https://www.inqs.info/p/plotathon/owenWilsonWows.csv"
+u2 <- "https://www.inqs.info/p/plotathon/owenWilsonWows.xlsx"
+
+download.file(u1,
+              file.path(getwd(), basename(u1)))
+download.file(u2,
+              file.path(getwd(), basename(u2)))
+
+```
+
+## Loading Data
+

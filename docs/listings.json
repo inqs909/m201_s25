@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/ec.html",
-    "items": [
-      "/ec/ec_2.html",
-      "/ec/ec_3.html",
-      "/ec/ec_4.html"
-    ]
-  },
-  {
     "listing": "/lectures.html",
     "items": [
       "/lectures/3.html",
@@ -25,6 +17,14 @@
       "/lectures/2.html",
       "/lectures/9.html",
       "/lectures/template.html"
+    ]
+  },
+  {
+    "listing": "/ec.html",
+    "items": [
+      "/ec/ec_2.html",
+      "/ec/ec_3.html",
+      "/ec/ec_4.html"
     ]
   }
 ]
