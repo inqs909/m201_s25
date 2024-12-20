@@ -1,0 +1,248 @@
+---
+title: "Research Study"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+
+editor: source
+---
+
+# Study Design
+
+## Research Question
+
+A research question is designed to create new knowledge of certain phenomenons observed in the world.
+
+::: fragment
+This is designed by conducting a research projects that systematically answers the question.
+:::
+
+::: fragment
+The study design is the procedure in which data is collected to answer the question, while reducing any potential bias while conducting the study.
+:::
+
+## Case Study: Epidemiological Model in Politics
+
+[An Epidemiological Math Model Approach to a Political System with Three Parties](https://scholarship.claremont.edu/cgi/viewcontent.cgi?article=1046&context=codee)
+
+::: columns
+::: {.column width="50%"}
+![](https://math.csuci.edu/about/img/faculty/selenne-banuelos.jpg){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+[![](https://math.csuci.edu/about/img/faculty/cynthia-flores.jpg){fig-align="center"}](https://cynthia.cikeys.com/)
+:::
+:::
+
+## Study Design
+
+This is the procedure designed to answer a research question.
+
+::: fragment
+Entails procedures to collect data that answers a research question.
+:::
+
+::: fragment
+Dictates how the data will be analyzed.
+:::
+
+::: fragment
+Determines how the data is quanitified and what is the experimental unit.
+:::
+
+
+# Sampling
+
+## Sampling
+
+Sampling is the process of selecting units from a population interest to collect data from.
+
+![Image Provided by Simply Psychology.](https://www.simplypsychology.org/wp-content/uploads/Sample-Target-Population-1024x546.jpeg){fig-align="center"}
+
+## Sampling
+
+When Sampling you want to maintain these properties:
+
+-   Representative sample
+
+-   Large enough sample size
+
+## Sampling Example
+
+We want to answer the question, are people happy?
+
+
+## Random Sampling
+
+When sampling, we strive for random sampling
+
+-   Each unit in the population of interest must have an equal probability of being selected for the study.
+
+-   This ensures a representative population
+
+## Independent Sampling
+
+In addition to random sampling, we strive to make sure each unit is independent from each other.
+
+-   The probability of UNIT A being sampled will not affect the probability of UNIT B to be sampled.
+
+## Sampling Variation
+
+-   Random samples may vary from the population of interest.
+
+-   Due to randomness, samples many not look the or biased.
+
+-   However, this is to be expected as because the sample will not be biased in one way or another.
+
+-   Samples are then considered unbiased as long as experimental units were collected randomly.
+
+# Data Distribution
+
+## Data
+
+The measurement collected from an experimental unit.
+
+## Data Distribution
+
+When thinking about data, we know an attribute is allowed to vary. With this variation, some numbers are more likely to be observed than others.
+
+## Forest from the trees
+
+![Imamge Provided by Fine Art America.](https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/seeing-the-forest-through-the-tree-jill-reger.jpg){fig-align="center" width="694"}
+
+## Sample
+
+::: incremental
+When inspecting data:
+
+-   Do not focus on one individual data point.
+
+-   See how data points interact with each other
+
+-   See what is common
+
+-   See what is rare
+:::
+
+## Data Generation Process (DGP)
+
+The data generation process is understanding how variation from the population is transferred to the data collected.
+
+::: fragment
+A population has a mechanism to produce data, understanding this mechanism is essential understanding the data.
+:::
+
+## DGP
+
+A populations DGP can be defined with the following characteristics:
+
+-   The potential outcomes that can be observed when measuring
+
+-   Each potential outcome will have a probability of being observed
+
+    -   The probability must be between 0 and 1
+
+-   Sum of all the probabilities of each outcome will add up to 1
+
+## Flipping a Coin
+
+Flipping a coin results in either heads or tail. The probability for heads is 50%
+
+::: fragment
+The DGP of flipping a coin is the process of selecting an outcome, given the probability of both options are 50%.
+:::
+
+## Rolling a die
+
+::: columns
+::: {.column width="50%"}
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTjs3jKF-jqTMR35Zuaf6IZb26EbTq0Vu8tg&usqp=CAU){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+:::
+:::
+
+## Measuring Body Temperature
+
+::: columns
+::: {.column width="50%"}
+![Image Provided by Thermofisher Scientific.](https://www.thermofisher.com/TFS-Assets/CMD/product-images/gc-ms-reacti-therm-thermometer-2000x2000.jpg-650.jpg){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+:::
+:::
+
+## Inference
+
+How do we use DGP and sampling to understand the world?
+
+::: fragment
+We can use a sample to understand the DGP.
+:::
+
+::: fragment
+We can use the DGP to understand the sample.
+:::
+
+## Example
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(ThemePark)
+library(patchwork)
+g1 <- seq(0, 1, length.out = 1000) |> 
+  dbeta(shape1 = 2, shape2 = 5) |> 
+  tibble(x = seq(0, 1, length.out = 1000), y = _) |>
+  ggplot(aes(x, y)) + geom_line() + 
+  ggtitle("DGP") + ylab("Density") +
+  theme_barbie(plot.title = element_text(size = 48),
+               axis.title.x = element_text(size = 36),
+               axis.title.y = element_text(size = 36),
+               axis.text.x = element_text(size = 24),
+               axis.text.y = element_text(size = 24)) 
+
+g2 <- rbeta(100, shape1 = 2, shape2 = 5) |> 
+  tibble(y = _) |>
+  ggplot(aes(y)) + 
+    geom_histogram(aes(y = ..density..), col = "gray70", fill = "gray") +
+    geom_density(col = "red", lwd = 1) +
+    ggtitle("Sample") + ylab("Density") +
+    theme_barbie(plot.title = element_text(size = 48),
+                 axis.title.x = element_text(size = 36),
+                 axis.title.y = element_text(size = 36),
+                 axis.text.x = element_text(size = 24),
+                 axis.text.y = element_text(size = 24)) 
+
+g1 + g2 
+```
+

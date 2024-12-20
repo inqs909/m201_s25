@@ -1,0 +1,327 @@
+---
+title: "Inference"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false
+    code-fold: true
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    error: true
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+webr: 
+  show-startup-message: true
+  packages: ['ggplot2']
+  
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - webr
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+#| cache: true
+
+set.seed(29)
+# penguins_nona <- penguins |> drop_na() |> 
+#   filter(species != "Chinstrap") |> 
+#   slice_sample(n=8) |>
+#   select(species, bill_length_mm)
+# tuesdata <- tidytuesdayR::tt_load('2020-07-07')
+
+# coffee_ratings <- tuesdata$coffee_ratings
+# coffee_aroma <- coffee_ratings |> filter(aroma > 5.5)
+res <- lm(mpg ~ qsec, data = mtcars)
+# Or read in the data manually
+
+#coffee_ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-07/coffee_ratings.csv')
+
+b1_sim_1000 <- do(1000) * b1(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+b1_sim_10000 <- do(10000) * b1(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+b1_sim_100000 <- do(100000) * b1(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+b1_sim_1000000 <- do(1000000) * b1(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+
+```
+
+```{r}
+#| include: false
+#| label: load_libraries
+
+
+library(ggformula)
+library(mosaic)
+library(coursekata)
+
+```
+
+```{webr-r}
+#| context: setup
+webr::shim_install()
+install.packages('coursekata', 
+                 repos = c('https://coursekata.r-universe.dev', 
+                           'https://repo.r-wasm.org'))
+library(coursekata)
+```
+
+# Inference
+
+## Motivating Example
+
+```{r}
+
+mtcars |> ggplot(aes(x=qsec, y = mpg)) +
+  geom_point() + theme_bw() +
+  theme(axis.title = element_text(size = 36))
+
+```
+
+## Adding a Line
+
+```{r}
+mtcars |> ggplot(aes(x=qsec, y = mpg)) +
+  geom_point() + theme_bw() +
+  theme(axis.title = element_text(size = 36)) + 
+  geom_smooth(method = "lm", se = F)
+
+```
+
+## Linear Model
+
+```{r}
+#| echo: true
+res <- mtcars %>% lm(mpg ~ qsec, data = .)
+res
+```
+
+## Is there a linear relationship or due to random chance?
+
+## Inference
+
+The process to determine if an estimate of a parameter is valuable or just due to random chance.
+
+## Randomness of Data
+
+```{r}
+#| echo: true
+mtcars %>% gf_point(shuffle(mpg) ~ qsec) %>%
+  gf_theme(theme_bw()) %>%
+  gf_labs(x = "Quarter Mile Time", y = "MPG") %>%
+  gf_theme(axis.title = element_text(size = 24))
+```
+
+## Shuffled vs Empirical
+
+```{webr-r}
+mtcars %>% gf_point(shuffle(mpg) ~ qsec) %>%
+  gf_point(mpg ~ qsec,
+             color = "purple", fill = "red") %>%
+  gf_theme(theme_bw()) %>%
+  gf_labs(x = "Quarter Mile Time", y = "MPG") %>%
+  gf_theme(axis.title = element_text(size = 24))
+```
+
+## Obtaining b1
+
+```{r}
+#| echo: true
+b1(shuffle(mpg) ~ qsec, data = mtcars)
+b1(shuffle(mpg) ~ qsec, data = mtcars)
+b1(shuffle(mpg) ~ qsec, data = mtcars)
+b1(shuffle(mpg) ~ qsec, data = mtcars)
+b1(shuffle(mpg) ~ qsec, data = mtcars)
+b1(shuffle(mpg) ~ qsec, data = mtcars)
+```
+
+## Repeat it 10,000
+
+```{r}
+#| echo: true
+b1_sim <- do(10000) * b1(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+b1_sim
+```
+
+## Distribution of $b_1$
+
+The distribution of $b_1$ shows all the possible values that $b_1$ can take with their respective probabilities.
+
+## Distribution of $b_1$
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim)
+```
+
+## Portioning the middle 95% the Distribution
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~middle(b1, .95))
+```
+
+## Portioning the lower 5% the Distribution
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~lower(b1, .05))
+```
+
+## Portioning the upper 5% the Distribution
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~upper(b1, .95))
+```
+
+## Middle 95%
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~middle(b1, .95))
+```
+
+## Where is our observed value?
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~middle(b1, .95)) %>%
+  gf_vline(xintercept = b1(res))
+```
+
+# P-Value
+
+## P-Value
+
+The p-value tells you what is the probability of observing your $b_1$ or something more extreme.
+
+## Visually
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~ b1 > b1(res)) %>%
+  gf_vline(xintercept = b1(res))
+```
+
+## 2-Sided P-Value
+
+Due to randomness, there is a possibility of observing the same magnitude of $b_1$, but in the opposite direction; therefore, we must look at both sides.
+
+## Visually 2-Sided P-Value
+
+```{r}
+#| echo: true
+gf_histogram(~b1, data = b1_sim, fill = ~ abs(b1) > b1(res)) %>%
+  gf_vline(xintercept = c(-1,1) * b1(res))
+```
+
+## Computing the p-value
+
+We will count how many simulated $b_1$'s are more extreme and divided by the number of simulations plus one.
+
+## Counting How Many are more extreme
+
+```{r}
+#| echo: true
+tally(~ b1 > b1(res), data = b1_sim)
+tally(~ b1 < - b1(res), data = b1_sim)
+```
+
+OR
+
+```{r}
+#| echo: true
+tally(~ abs(b1) > b1(res), data = b1_sim)
+```
+
+## Computing the p-value
+
+```{r}
+tally(~ abs(b1) > b1(res), data = b1_sim)[1] / 10001
+```
+
+# Compute Mathematically
+
+## Mathematical Model
+
+$$
+T= \frac{b_1}{SE(b_1)} \sim t(n-1)
+$$
+
+## P-Value
+
+$$
+\mathrm{p} = Pr(t \ge |T|)
+$$
+
+## P-Value
+
+$$
+p = 1- \int_{-T}^T\frac{\Gamma(n/2)}{\sqrt{\pi(n-1)}\Gamma(\frac{n-1}{2})} \left(1 + \frac{x^2}{n-1}\right)^{-n/2}dx
+$$
+
+## Let's have R do it!
+
+```{r}
+mtcars %>% lm(mpg ~ qsec, data = .) %>% summary()
+```
+
+## Mathematical compared to Increasing Simulated Number
+
+$$
+P= 0.0171
+$$
+
+```{r}
+print("Sim: 10000")
+tally(~ abs(b1) > b1(res), data = b1_sim_10000)[1] / 10001
+```
+
+## Mathematical compared to Increasing Simulated Number
+
+$$
+P= 0.0171
+$$
+
+```{r}
+print("Sim: 1000")
+tally(~ abs(b1) > b1(res), data = b1_sim_1000)[1] / 1001
+print("Sim: 10000")
+tally(~ abs(b1) > b1(res), data = b1_sim_10000)[1] / 10001
+print("Sim: 100000")
+tally(~ abs(b1) > b1(res), data = b1_sim_100000)[1] / 100001
+print("Sim: 1000000")
+tally(~ abs(b1) > b1(res), data = b1_sim_1000000)[1] / 1000001
+```
+
+## Answer Survey
+
+![](img/frame%20(6).png){fig-align="center"}

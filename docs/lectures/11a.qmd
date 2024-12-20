@@ -1,0 +1,229 @@
+---
+title: "Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+library(taylor)
+library(DT)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+tuesdata <- tidytuesdayR::tt_load('2020-07-07')
+tuesdata <- tidytuesdayR::tt_load(2020, week = 28)
+
+coffee_ratings <- tuesdata$coffee_ratings
+
+# Or read in the data manually
+
+coffee_ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-07/coffee_ratings.csv')
+
+```
+
+# Announcements
+
+## Scorpio Season is Here!!
+
+The first 6 reading assignments and quizzes are open for retakes until October 31!
+
+::: fragment
+**This is your last chance!!**
+:::
+
+::: fragment
+**No more new chances will be coming for remaining of semester.**
+:::
+
+::: fragment
+**Other Assignment are still due.**
+:::
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+# Group Models
+
+## Group Models
+
+The independent variables are used to indicate groups.
+
+## Danceability Model
+
+$$
+\hat Y_i = 0.6185 - 0.0455 X - 0.1095 Z 
+$$
+
+$$
+Z = \left\{\begin{array}{cc}
+1 & Speak\ Now\\
+0 & Other
+\end{array}
+\right.
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Midnights\\
+0 & Other
+\end{array}
+\right.
+$$
+
+# Linear Relationship
+
+## Scatter Plot
+
+```{r}
+x <- rnorm(1000)
+y <- x * 4 + 4 + rnorm(1000, sd = 4)
+data.frame(x=x,y=y) |> ggplot(aes(x=x, y=y)) +
+  geom_point(size = 0.5)
+```
+
+## Positive Linear Relationship
+
+## Scatter Plot
+
+```{r}
+y <- - x * 4 + 4 + rnorm(1000, sd = 4)
+data.frame(x=x,y=y) |> ggplot(aes(x=x, y=y)) +
+  geom_point(size = 0.5)
+```
+
+## Negative Linear Relationship
+
+# Modelling Linear Relationship
+
+## Modelling Linear Relationship
+
+## Regression Models
+
+$$
+\hat Y _i = b_0 + b_1 X_i
+$$
+
+$X_i$ is a continuous variable, not groups
+
+## Interpreting Intercept
+
+## Interpreting Slope
+
+# Motivating Example: Coffee
+
+## Motivating Example: Coffee
+
+```{r}
+coffee_aroma <- coffee_ratings |> filter(aroma > 5.5)
+coffee_aroma |> ggplot(aes(x=aroma, y = flavor)) +
+  geom_point() + theme_bw() +
+  theme(axis.title = element_text(size = 36))
+
+```
+
+## Fitting a Linear Model in R
+
+Use the `lm()` function
+
+```{r}
+#| echo: true
+#| eval: false
+lm(Y ~ X, data = data_set)
+```
+
+## Fitting a Linear Model
+
+```{r}
+coffee_aroma <- coffee_ratings |> filter(aroma > 5.5)
+coffee_aroma |> ggplot(aes(x=aroma, y = flavor)) +
+  geom_point() + theme_bw() +
+  theme(axis.title = element_text(size = 36))
+
+```
+
+## Fitting a Linear Model in R
+
+```{r}
+#| echo: true
+
+lm(flavor ~ aroma, data = coffee_aroma)
+
+```
+
+## Fitting a Linear Model
+
+$$
+\hat Y = 1.1372 + 0.8435 X
+$$
+
+$$
+X = \mathrm{AROMA\ Score}
+$$
+
+$$
+\hat Y = \mathrm{Predicted\ Flavor\ Score}
+$$
+
+## Interpreting Intercept
+
+$$
+\hat Y = 1.1372 + 0.8435 X
+$$
+
+## Interpreting Slope
+
+$$
+\hat Y = 1.1372 + 0.8435 X
+$$
+
+## Predicting Value for given X
+
+$$
+\hat Y = 1.1372 + 0.8435 X
+$$
+
+# EPE Session
+
+## Study Habits for the Exam

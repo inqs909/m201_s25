@@ -1,0 +1,242 @@
+---
+title: "Data Visualization"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(mosaic)
+library(ggformula)
+library(ThemePark)
+```
+
+# Data Visualization
+
+## Histogram
+
+A histogram is a graphical representation of the distribution or frequency of data points in a dataset. It provides a visual way to understand the shape, central tendency, and spread of a dataset by dividing the data into intervals or bins and showing how many data points fall into each bin.
+
+## Histogram R Code
+
+```{r}
+#| eval: false
+#| echo: true
+
+gf_histogram(~bill_length_mm, data = penguins)
+```
+
+## Histogram
+
+```{r}
+penguins |> gf_histogram(~bill_length_mm, data = _) |> 
+  gf_labs(title = "Histogram of Bill Length", x = "Bill Length (mm)") +
+  theme_barbie()
+```
+
+## Box Plot
+
+A box plot, also known as a box-and-whisker plot, is a graphical representation of the distribution and key statistical characteristics of a dataset. It provides a visual summary of the data's central tendency, spread, and potential outliers.
+
+## Box Plot
+
+![](https://miro.medium.com/max/9000/1*2c21SkzJMf3frPXPAR_gZA.png){fig-align="center"}
+
+## Box Plot R Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+gf_boxplot(~bill_length_mm, data = penguins)
+
+```
+
+## Box Plot
+
+```{r}
+penguins |> ggplot(aes(bill_length_mm)) +
+  geom_boxplot() +
+  ggtitle("Box Plot of Bill Length") +
+  theme_futurama()
+```
+
+# Summarizing Categorical Variables
+
+## Categorical Variables
+
+```{r}
+penguins |> resample(20) |> select(species) |> as.vector()
+```
+
+## Frequency Tables
+
+A frequency table is a statistical tool used to organize and summarize a set of data by counting the number of times each unique value or category appears within the dataset. It provides a simple and clear way to represent the distribution of data, particularly for categorical or discrete variables.
+
+## Relative Frequency
+
+Relative frequency is a statistical concept used to describe the proportion or percentage of times a particular event or outcome occurs relative to the total number of observations or occurrences in a dataset or sample.
+
+## Proportional Tables
+
+A proportion table is a type of statistical table used to display the relative frequencies or proportions of different categories within a dataset. It provides a way to represent the distribution of data in terms of percentages or proportions, making it easier to compare and understand the relative sizes of different categories.
+
+## Pie Charts
+
+A pie chart is a circular graphical representation used to display data in a way that illustrates the relative proportions or percentages of different categories or components within a whole. Pie charts are particularly useful for showing the composition of a dataset when you want to emphasize the parts of a whole and how they relate to each other.
+
+## Pie Charts R Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+penguins |> ggplot(aes(x="", fill = species)) + 
+  geom_bar() + 
+  coord_polar("y")
+
+```
+
+## Pie Charts in R
+
+```{r}
+penguins |> ggplot(aes(x="", fill = species)) + 
+  geom_bar() + 
+  coord_polar("y") +
+  xlab("") + ylab("") +
+  theme_barbie(legend.text = element_text(size = 36),
+               legend.title = element_text(size = 36),
+               axis.text.x = element_blank())
+```
+
+## Bar Charts
+
+A bar chart, also known as a bar graph, is a graphical representation used to display categorical data in a way that visually represents the values or frequencies of different categories by using rectangular bars. Bar charts are particularly effective for comparing and showing the relationships between distinct categories or groups.
+
+## Bar Charts R Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+gf_bar(~species, data = penguins)
+
+```
+
+## Bar Charts R Code
+
+```{r}
+penguins |> gf_bar(~species) + theme_zelda()
+  
+```
+
+# Explaining Variation
+
+## Explaining Variation
+
+::: fragment
+This is the process where we try to reduce the variation with the use of other variables.
+:::
+
+::: fragment
+Can be thought of as getting it less wrong when taking an educated guess.
+:::
+
+## Explaining Variation
+
+```{r}
+age <- c(rnorm(48, 18.5, 0.5), rnorm(18, 28, 4))
+class <- c(rep('LD', 48), rep('UD', 18))
+age |> tibble() |> 
+  ggplot(aes(age)) +
+    geom_density() +
+    ggtitle("Age DGP of Dr. QS' Students") +
+    theme_hufflepuff(axis.text.x = element_text(size = 24),
+                     axis.title.x = element_text(size = 26),
+                     plot.title = element_text(size = 30))
+```
+
+## Explaining Variation with One Variable
+
+## Explaining Variation with One Variable
+
+```{r}
+tibble(age, class) |> 
+  ggplot(aes(age, fill = class)) +
+    geom_density() +
+    ggtitle("Age DGP of Dr. QS' Students") +
+    theme_zelda(axis.text.x = element_text(size = 34),
+                axis.title.x = element_text(size = 36),
+                plot.title = element_text(size = 48),
+                legend.text = element_text(size = 30),
+                legend.title = element_text(size = 32))
+```
+
+## Outcome Variables
+
+These are variables we want to study.
+
+::: fragment
+Also known as outcome of interest.
+:::
+
+::: fragment
+Also known as dependent variable.
+:::
+
+## Explanatory Variables
+
+These are variable that explain the outcome of interest.
+
+::: fragment
+Also known as predictor variable.
+:::
+
+::: fragment
+Also known as independent variable.
+:::
+
+## Study Habits
+
+::: fragment
+The first exam will be on September 25.
+:::
+
+::: fragment
+What are some study strategies that you can implement in this course?
+:::

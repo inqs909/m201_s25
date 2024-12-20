@@ -1,0 +1,12 @@
+---
+title: "Extra Credit"
+editor: source
+listing:
+  contents: ec
+  type: default
+---
+
+Extra Credit is designed to expand on different topics that related to Probability and Statistics, but are not necessarily required for the course. Additionally, these opportunities provide students relief when unexpected situations occur during the semester. While it is not required, I encourage everyone to attempt each opportunity.
+
+
+Below is more information on each assignment.

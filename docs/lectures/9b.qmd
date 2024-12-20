@@ -1,0 +1,251 @@
+---
+title: "Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+```
+
+# Announcements
+
+## Scorpio Season Incoming!!
+
+```{=html}
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fredsnightmares/video/6886212024867491077" data-video-id="6886212024867491077" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@fredsnightmares" href="https://www.tiktok.com/@fredsnightmares?refer=embed">@fredsnightmares</a> <p></p> <a target="_blank" title="♬ Viva La Swing aka #SandoTwist by @Abiud_Sando" href="https://www.tiktok.com/music/Viva-La-Swing-aka-SandoTwist-by-AbiudSando-6823159626767305477?refer=embed">♬ Viva La Swing aka #SandoTwist by @Abiud_Sando</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+```
+## Scorpio Season Incoming!!
+
+The first 6 reading assignments and quizzes are open for retakes until October 31!
+
+::: fragment
+**This is your last chance!!**
+:::
+
+::: fragment
+**No more new chances will be coming for remaining of semester.**
+:::
+
+::: fragment
+**Other Assignment are still due.**
+:::
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+# Empty Model
+
+## Motivation: Penguins
+
+::: columns
+::: {.column width="50%"}
+```{r}
+penguins_nona |> select(bill_length_mm)
+```
+:::
+
+::: {.column width="50%"}
+$$
+\hat Y = 44.5
+$$
+:::
+:::
+
+## Quantifying Error
+
+::: columns
+::: {.column width="50%"}
+```{r}
+penguins_nona |> select(bill_length_mm)
+```
+:::
+
+::: {.column width="50%"}
+$$
+\hat Y  = 44.5
+$$
+
+$$
+\sum^8_{i=1}(Y_i-\hat Y_i)^2
+$$
+:::
+:::
+
+## SSE
+
+```{r}
+penguins_nona |> mutate(se = (bill_length_mm - mean(bill_length_mm))^2) |> 
+  summarise(sse = sum(se))
+```
+
+# Linear Model
+
+## Linear Model
+
+$$
+Y = b_0 + b_1 X + \varepsilon
+$$
+
+## Calculate Means per Species
+
+```{r}
+penguins_nona
+```
+
+::: fragement
+```{r}
+penguins_nona |> group_by(species) |> 
+  summarise(mean = mean(bill_length_mm))
+```
+:::
+
+## Construct Model
+
+```{r}
+penguins_nona |> group_by(species) |> 
+  summarise(mean = mean(bill_length_mm))
+```
+
+$$
+\hat Y = 40.65 + 7.625 X
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Adelie\\
+0 & Gentoo
+\end{array}
+\right.
+$$
+
+## Compute SSE
+
+::: columns
+::: {.column width="50%"}
+```{r}
+penguins_nona
+```
+:::
+
+::: {.column width="50%"}
+$$
+\hat Y = 40.65 + 7.625 X
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Adelie\\
+0 & Gentoo
+\end{array}
+\right.
+$$
+
+$$
+SSE = \sum^8_{i=1}(Y_i-\hat Y_i)^2
+$$
+:::
+:::
+
+## SSE
+
+```{r}
+penguins_nona |> lm(bill_length_mm ~ species, data = _) |> resid() |> (\(x) sum(x^2))()
+
+```
+
+## How much was the error reduced by incorporating X?
+
+::: columns
+::: {.column width="50%"}
+### Empty Model
+
+SSE = 145.498
+:::
+
+::: {.column width="50%"}
+### Linear Model
+
+SSE = 29.2175
+:::
+:::
+
+## Percent of the Error Reduction
+
+::: columns
+::: {.column width="50%"}
+### Empty Model
+
+SSE = 145.498
+:::
+
+::: {.column width="50%"}
+### Linear Model
+
+SSE = 29.2175
+:::
+:::
+
+## Percent of variation explained compared to the empty model
+
+::: columns
+::: {.column width="50%"}
+### Empty Model
+
+SSE = 145.498
+:::
+
+::: {.column width="50%"}
+### Linear Model
+
+SSE = 29.2175
+:::
+:::
+
+# EPE Session
+
+## Motivation

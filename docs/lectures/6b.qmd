@@ -1,0 +1,77 @@
+---
+title: "A Simple Model"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| eval: true
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+library(mosaic)
+library(patchwork)
+```
+
+# Announcements
+
+## Solito: A Memoir
+
+![](https://ww2.kqed.org/app/uploads/sites/43/2022/09/Zamora_Author-Photo_credit_Gerardo-del-Valle-COLLAGE-1020x765.jpg){fig-align="center"}
+
+
+## Junior Math Seminar
+
+-   Statistics: A Math? A Science? An Art? Or Something Else?
+
+-   Location: Sierra 2411
+
+-   Day and Time: Wednesday Sept 27 4:30-5:30 PM
+
+-   OH Cancelled Today
+
+## Thursday's Office Hours Cancelled
+
+## Exam
+
+::: incremental
+
+-   Test Evaluation
+
+-   Test Correction
+
+:::

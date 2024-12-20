@@ -1,0 +1,300 @@
+---
+title: "Research Design"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| eval: true
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+library(mosaic)
+library(patchwork)
+```
+
+# Announcements
+
+## Solito: A Memoir
+
+![](https://ww2.kqed.org/app/uploads/sites/43/2022/09/Zamora_Author-Photo_credit_Gerardo-del-Valle-COLLAGE-1020x765.jpg){fig-align="center"}
+
+## First Exam
+
+-   September 25
+
+-   30 Questions
+
+-   Mixed of Multiple Choice, True or False, and Free Response
+
+-   Get 1 sheet of notes, front and back
+
+-   In-person
+
+## Junior Math Seminar
+
+-   Statistics: A Math? A Science? An Art? Or Something Else?
+
+-   Location: Sierra 2411
+
+-   Day and Time: Wednesday Sept 27 4:30-5:30 PM
+
+-   OH Cancelled that day
+
+## Complete Survey
+
+![](img/frame_3.png){fig-align="center"}
+
+<https://forms.gle/tYgmpJFk6fzz36r18>
+
+# Research Design
+
+## What is the purpose of research?
+
+The purpose of research is to systematically investigate, gather information, analyze data, and draw conclusions to advance knowledge, solve problems, or answer questions.
+
+## Experimental Studies
+
+Experimental studies are research designs in which the researcher deliberately manipulates one or more independent variables to observe their effects on an outcome of interest. These studies are commonly used in scientific and social science research to establish cause-and-effect relationships between variables.
+
+## Examples of Experimental Studies
+
+-   Randomized-Control Trials
+
+    -   Placebo-Drug Studies
+
+## Observational Studies
+
+Observational studies are research designs in which researchers observe and collect data on individuals or groups without intervening or manipulating any variables. These studies aim to understand and describe the relationships between variables or to analyze the natural occurrence of events or phenomena. Unlike experimental studies, observational studies do not involve the manipulation of independent variables, and they are often used when it is not ethical or practical to conduct experiments.
+
+## Examples of Observational Studies
+
+-   Cross-Sectional Studies
+
+-   Longitudinal Studies
+
+-   Case-Control Studies
+
+-   Cohort Studies
+
+# Randomization
+
+## Randomness
+
+::: fragment
+Randomness refers to the lack of predictability or pattern in a sequence of events or outcomes.
+:::
+
+::: fragment
+Randomness is often associated with chance and uncertainty.
+:::
+
+## Random Sampling
+
+## Palmer Penguins
+
+-   333 Penguins Measured
+
+-   Collected information on:
+
+    -   Flipper Length
+
+    -   Beak Length
+
+    -   Species
+
+    -   Island
+
+    -   Body Mass
+
+-   \~20 million penguins in Antartica
+
+## Flipper Length
+
+```{r}
+s0 <- penguins |> drop_na() |> 
+  ggplot(aes(species, flipper_length_mm)) + geom_jitter() +
+  geom_boxplot(fill = "pink") + 
+  theme_barbie() + xlab("") +
+  theme(axis.text.x = element_text(size = 48))
+plot(s0)
+```
+
+## Is there a signal?
+
+::: fragment
+Are we seeing differences in penguin species?
+:::
+
+::: fragment
+Or is it due to random chance?
+:::
+
+::: fragment
+How can we know?
+:::
+
+::: fragment
+How about we simulate random samples and conduct a permutation test?
+:::
+
+## Permutation Test (Shuffling)
+
+A permutation test, also known as a randomization or re-randomization test, is a statistical method used to assess the significance of an observed statistical result by comparing it to a large number of randomly generated permutations or rearrangements of the data.
+
+## Permutation Test
+
+-   We will shuffle the outcome of interest, while maintaining the species location.
+
+    -   This generates a simulated data set.
+
+-   We will create a large number of simulated data sets to get an idea of the distribution.
+
+-   We will then compare the true data with the simulated data sets to see if they overlap.
+
+## Shuffling Penguins
+
+-   While maintaining the structure of the data, we will shuffle the flipper length and plot them.
+
+-   We will repeat the process multiple times
+
+-   Compare the simulated data with the actual data
+
+## Shuffling
+
+```{r}
+s1 <- penguins |> drop_na() |> 
+  ggplot(aes(species, shuffle(flipper_length_mm))) + geom_jitter() +
+  geom_boxplot(fill = "pink") +
+  theme_barbie() + theme(axis.text.x = element_text(size = 48))
+plot(s1)
+```
+
+## Side by Side
+
+```{r}
+s0 <- s0 + ggtitle("Actual Data") + ylab("") + xlab("") +
+  theme(plot.title = element_text(size = 60),
+        axis.text.x = element_text(size = 48))
+s1 <- s1 + ggtitle("Shuffled Data") + ylab("") + xlab("") +
+  theme(plot.title = element_text(size = 60),
+        axis.text.x = element_text(size = 48))
+s0 + s1
+
+```
+
+## Shuffling 9 Plots
+
+```{r}
+res <- vector("list", 9)
+for(i in 1:9){
+  res[[i]] <- penguins |> drop_na() |> 
+  ggplot(aes(species, shuffle(flipper_length_mm))) + geom_jitter(size = 0.5) +
+  geom_boxplot(fill = "pink", alpha = 0.5) +
+  theme_barbie() + ylab("") + xlab("")
+}
+
+(res[[1]] +  res[[2]] + res[[3]]) / (res[[4]] + res[[5]] + res[[6]]) / (res[[7]] + res[[8]] + res[[9]])
+```
+
+## Overlay Points
+
+```{r}
+df_shuffle <- data.frame()
+for (i in 1:250){
+  ys <- penguins |> drop_na() |> 
+    select(flipper_length_mm) |> 
+    as.vector() |> 
+    unlist() |> 
+    as.numeric() |> 
+    shuffle()
+  wk_df <- data.frame(flipper_length_mm = ys, 
+                      species =  penguins |> drop_na() |> select(species),
+                      id = i)
+  df_shuffle <- rbind.data.frame(df_shuffle, wk_df)
+  #print(i)
+}
+
+df_shuffle |> ggplot(aes(species, flipper_length_mm)) + 
+  geom_jitter(size = 0.00001, alpha = 0.1) + 
+  # geom_boxplot(alpha = 0.8, col = "pink", fill = "pink") +
+  # geom_jitter(aes(species, flipper_length_mm),
+  #             penguins |> drop_na(), 
+  #             col = "blue", size = 2) +
+  # geom_boxplot(aes(species, flipper_length_mm),
+  #             penguins |> drop_na(), 
+  #             col = "blue", fill= "blue", alpha = 0.8) +
+  theme_barbie() + xlab("") +
+  theme(axis.text.x = element_text(size = 48))
+```
+
+## Overlay Boxplots
+
+```{r}
+
+df_shuffle |> ggplot(aes(species, flipper_length_mm)) + 
+  geom_jitter(size = 0.00001, alpha = 0.1) + 
+  geom_boxplot(alpha = 0.8, fill = "pink") +
+  # geom_jitter(aes(species, flipper_length_mm),
+  #             penguins |> drop_na(), 
+  #             col = "blue", size = 2) +
+  # geom_boxplot(aes(species, flipper_length_mm),
+  #             penguins |> drop_na(), 
+  #             col = "blue", fill= "blue", alpha = 0.8) +
+  theme_barbie() + xlab("") +
+  theme(axis.text.x = element_text(size = 48))
+```
+
+## How does the data fit?
+
+```{r}
+df_shuffle |> ggplot(aes(species, flipper_length_mm)) + 
+  geom_jitter(size = 0.00001, alpha = 0.1) + 
+  geom_boxplot(alpha = 0.8, fill = "pink") +
+  geom_jitter(aes(species, flipper_length_mm),
+              penguins |> drop_na(), 
+              col = "blue", size = 2) +
+  geom_boxplot(aes(species, flipper_length_mm),
+              penguins |> drop_na(), 
+              col = "red", fill= "blue", alpha = 0.5) +
+  theme_barbie() + xlab("") +
+  theme(axis.text.x = element_text(size = 48))
+```
+
+# EPE-Session
+
+## Time Management

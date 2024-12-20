@@ -1,0 +1,300 @@
+---
+title: "Data Generating Process"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+# Announcements
+
+## Quiz
+
+::: {.fragment .incremental}
+1.  What is a boolean value?
+    1.  TRUE or FALSE
+:::
+
+::: {.fragment .incremental}
+2.  Who is your EPE?
+    1.  Sec 01: Devin
+    2.  Sec 02: Amanda
+:::
+
+## Week 3
+
+::: incremental
+-   Read Chapter 3
+
+    -   Finish reading the chapter by Sunday Night (7/10)
+
+-   Quiz 2
+
+    -   Available from Thursday 12 AM to Friday 11:59 PM
+:::
+
+# Data Distribution
+
+## Data Distribution
+
+When thinking about data, we know an attribute is allowed to vary. With this variation, some numbers are more likely to be observed than others.
+
+## Forest from the trees
+
+![](https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/seeing-the-forest-through-the-tree-jill-reger.jpg){fig-align="center" width="694"}
+
+## Data
+
+::: incremental
+When inspecting data:
+
+-   Do not focus on one individual data point.
+
+-   See how data points interact with each other
+
+-   See what is common
+
+-   See what is rare
+:::
+
+# Data Generation Process (DGP)
+
+## DGP
+
+The data generation process is understanding how variation from the population is transferred to the data collected.
+
+::: fragment
+A population has a mechanism to produce data, understanding this mechanism is essential understanding the data.
+:::
+
+## DGP
+
+A populations DGP can be defined with the following characteristics:
+
+-   The potential outcomes that can be observed when measuring
+
+-   Each potential outcome will have a probability of being observed
+
+    -   The probability must be between 0 and 1
+
+-   Sum of all the probabilities of each outcome will add up to 1
+
+## Flipping a Coin
+
+Flipping a coin results in either heads or tail. The probability for heads is 50%
+
+::: fragment
+The DGP of flipping a coin is the process of selecting an outcome, given the probability of both options are 50%.
+:::
+
+## Rolling a die
+
+::: columns
+::: {.column width="50%"}
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTjs3jKF-jqTMR35Zuaf6IZb26EbTq0Vu8tg&usqp=CAU){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+:::
+:::
+
+## Measuring Body Temperature
+
+::: columns
+::: {.column width="50%"}
+![](https://www.thermofisher.com/TFS-Assets/CMD/product-images/gc-ms-reacti-therm-thermometer-2000x2000.jpg-650.jpg){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+:::
+:::
+
+# Sampling and DGP
+
+## Inference
+
+How do we use DGP and sampling to understand the world?
+
+::: fragment
+We can use a sample to understand the DGP.
+:::
+
+::: fragment
+We can use the DGP to understand the sample.
+:::
+
+## Example
+
+```{r}
+library(tidyverse)
+library(ThemePark)
+library(patchwork)
+g1 <- seq(0, 1, length.out = 1000) |> 
+  dbeta(shape1 = 2, shape2 = 5) |> 
+  tibble(x = seq(0, 1, length.out = 1000), y = _) |>
+  ggplot(aes(x, y)) + geom_line() + 
+  ggtitle("DGP") + ylab("Density") +
+  theme_barbie(plot.title = element_text(size = 48),
+               axis.title.x = element_text(size = 36),
+               axis.title.y = element_text(size = 36),
+               axis.text.x = element_text(size = 24),
+               axis.text.y = element_text(size = 24)) 
+
+g2 <- rbeta(100, shape1 = 2, shape2 = 5) |> 
+  tibble(y = _) |>
+  ggplot(aes(y)) + 
+    geom_histogram(aes(y = ..density..), col = "gray70", fill = "gray") +
+    geom_density(col = "red", lwd = 1) +
+    ggtitle("Sample") + ylab("Density") +
+    theme_barbie(plot.title = element_text(size = 48),
+                 axis.title.x = element_text(size = 36),
+                 axis.title.y = element_text(size = 36),
+                 axis.text.x = element_text(size = 24),
+                 axis.text.y = element_text(size = 24)) 
+
+g1 + g2 
+```
+
+# Visualizing Data Distributions
+
+## Data
+
+```{r}
+set.seed(6)
+working_1 <- rnorm(8, 10, 2) |> round(1)
+working_1
+```
+
+## Visualizing Data
+
+Why should we visualize data?
+
+## Introduction to Histograms
+
+```{r}
+working_1
+```
+
+## Visualizing Data
+
+```{r}
+library(tidyverse)
+working_1
+working_1 |> hist(xlab = "", main = "")
+```
+
+## Histograms
+
+::: incremental
+-   X-Axis: the values from the sample
+
+    -   These are binned to capture a range of numbers
+
+-   Y-Axis: the frequency of the data
+
+-   Displays which values are the most common
+:::
+
+## Shape
+
+Shape is how we describe the histogram:
+
+::: incremental
+-   Left Skewed
+
+-   Right Skewed
+
+-   Unimodal
+
+-   Bimodal
+
+-   Narrow
+
+-   Wide
+:::
+
+## Left Skewed
+
+```{r}
+(rchisq(100, 3) * -1) |> hist(xlab = "", main = "")
+```
+
+## Right Skewed
+
+```{r}
+rchisq(100, 3) |> hist(xlab = "", main = "")
+```
+
+## Unimodal
+
+```{r}
+rnorm(1000) |> hist(xlab = "", main = "")
+
+```
+
+## Narrow
+
+```{r}
+rnorm(10000) |> hist(main = "", xlab = "") 
+```
+
+## Wide
+
+```{r}
+rnorm(1000, sd = 1000) |> hist(main = "", xlab = "") 
+```
+
+## Bimodal
+
+```{r}
+c(rnorm(1000, 10), rnorm(1000,15)) |> hist(xlab = "", main = "")
+```
+
+## Center
+
+```{r}
+rnorm(1000) |> hist(main = "", xlab = "")
+```
+
+## Spread
+
+```{r}
+rnorm(100, sd = 4) |> hist(main = "", xlab = "")
+```
+
+## Weird
+
+```{r}
+c(rnorm(100), rnorm(30, mean = 5)) |> hist(main = "", xlab = "")
+```

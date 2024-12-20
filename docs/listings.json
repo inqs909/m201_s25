@@ -1,0 +1,30 @@
+[
+  {
+    "listing": "/ec.html",
+    "items": [
+      "/ec/ec_2.html",
+      "/ec/ec_3.html",
+      "/ec/ec_4.html"
+    ]
+  },
+  {
+    "listing": "/lectures.html",
+    "items": [
+      "/lectures/3.html",
+      "/lectures/11.html",
+      "/lectures/12.html",
+      "/lectures/13.html",
+      "/lectures/5.html",
+      "/lectures/7.html",
+      "/lectures/10.html",
+      "/lectures/6.html",
+      "/lectures/1.html",
+      "/lectures/2/2.html",
+      "/lectures/4.html",
+      "/lectures/8.html",
+      "/lectures/2.html",
+      "/lectures/9.html",
+      "/lectures/template.html"
+    ]
+  }
+]

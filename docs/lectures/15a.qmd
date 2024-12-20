@@ -1,0 +1,348 @@
+---
+title: "Confidence Intervals"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false
+    code-fold: true
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    error: true
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - webr
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+#| cache: true
+library(coursekata)
+library(openintro)
+res <- lm(weight ~ mage, data = births14)
+set.seed(1234
+         )
+test <- expression(b1(shuffle(weight) ~ mage, data = births14))
+
+b1_sim_1000 <- tibble(b1 = replicate(1000, eval(test)))
+
+b1_boot_1000 <- do(1000) * b1(weight ~ mage, 
+                             data = resample(births14))
+b1_boot_10000 <- do(10000) * b1(weight ~ mage, 
+                               data = resample(births14))
+b1_boot_100000 <- do(100000) * b1(weight ~ mage, 
+                                data = resample(births14))
+
+```
+
+```{r}
+#| include: false
+#| label: load_libraries
+
+library(ggformula)
+library(mosaic)
+library(coursekata)
+library(openintro)
+
+options(digits = 3)
+res <- lm(weight ~ mage, data = births14)
+
+
+theming <- list(theme_bw(), 
+  labs(x = "Mother's Age", y = "Infant's Weight"),
+  theme(axis.title = element_text(size = 32),
+        axis.text = element_text(size = 26)))
+b1_sim_1000 <- do(1000) * b1(shuffle(weight) ~ mage, 
+                             data = births14)
+sigs <- summary(res)$coefficients[2,2]
+b1_sim_1000_1 <- tibble(b1 = rnorm(1000, .01, sd = sigs))
+b1_sim_1000_2 <- tibble(b1 = rnorm(1000, 0.001, sd = sigs))
+b1_sim_1000_3 <- tibble(b1 = rnorm(1000, 0.02, sd = sigs))
+b1_sim_1000_4 <- tibble(b1 = rnorm(1000, 0.03, sd = sigs))
+
+themes <- list(theme_bw(),
+               theme(axis.title = element_text(size = 32),
+        axis.text = element_text(size = 26)))
+```
+
+# Inference
+
+## Motivating Example
+
+```{r}
+births14 |> ggplot(aes(mage, weight)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = F) +
+  theming
+
+```
+
+## Linear Model
+
+```{r}
+res
+```
+
+## Randomization Test
+
+What are we asking when we shuffle the data?
+
+## $\beta_1=0$ vs $\beta_1 \ne 0$
+
+```{r}
+b1_sim_1000 |> ggplot(aes(b1)) + 
+  geom_histogram(aes(fill = middle(b1, 0.95))) +
+  geom_vline(xintercept = b1(res)) + 
+  themes
+```
+
+## Conclusion
+
+```{r}
+#| echo: true
+tally(~ abs(b1) > abs(b1(res)), b1_sim_1000)[1] / 1001
+```
+
+## What about different values of $\beta$?
+
+## What if $\beta_1=0.01$?
+
+```{r}
+b1_sim_1000_1 |> ggplot(aes(b1)) + 
+  geom_histogram(aes(fill = middle(b1, 0.95))) +
+  geom_vline(xintercept = b1(res)) +
+  themes
+```
+
+## What if $\beta_1 = 0.001$?
+
+```{r}
+b1_sim_1000_2 |> ggplot(aes(b1)) + 
+  geom_histogram(aes(fill = middle(b1, 0.95))) +
+  geom_vline(xintercept = b1(res)) + 
+  themes
+```
+
+## What if $\beta_1 = 0.02$?
+
+```{r}
+b1_sim_1000_3 |> ggplot(aes(b1)) + 
+  geom_histogram(aes(fill = middle(b1, 0.95))) +
+  geom_vline(xintercept = b1(res)) +
+  themes
+```
+
+## What if $\beta_1 = 0.03$?
+
+```{r}
+b1_sim_1000_4 |> ggplot(aes(b1)) + 
+  geom_histogram(aes(fill = middle(b1, 0.95))) +
+  geom_vline(xintercept = b1(res)) +
+  themes
+```
+
+# Confidence Intervals
+
+## Confidence Intervals
+
+These are a collection of $\beta_1$ values that will fail to reject the Null Hypothesis.
+
+::: fragment
+The $\beta_1$ values that are not different from our current estimate $b_1$
+:::
+
+## Confidence Intervals
+
+```{r}
+b1_sim_1000_4 |> ggplot(aes(b1)) + 
+  geom_density() +
+  geom_vline(xintercept = b1(res)) +
+  geom_density(data = b1_sim_1000_1) +
+  geom_density(data = b1_sim_1000_2) +
+  geom_density(data = b1_sim_1000_3) +
+  themes
+  
+```
+
+## Confidence Intervals
+
+```{r}
+b1_sim_1000_4 |> ggplot(aes(b1)) + 
+  geom_density() +
+  geom_vline(xintercept = b1(res)) +
+  geom_density(data = b1_sim_1000_1) +
+  geom_density(data = b1_sim_1000_2) +
+  geom_density(data = b1_sim_1000_3) +
+  geom_density(data = b1_boot_1000, fill = "green", alpha = .2) +
+  themes
+```
+
+## How to construct the DGP centered around $b_1$?
+
+::: fragment
+Bootstrapping Techniques
+:::
+
+::: fragment
+Mathematical Models
+:::
+
+# Bootstrapping Techniques
+
+## Bootstrapping Techniques
+
+Bootstrapping is a technique to determine which $\beta_1$ values, or any other statistic, will **not** be significantly different than $b_1$.
+
+::: fragment
+Bootstrapping will simulate several fake data sets from the DGP of the data. Afterwards, each data set will produce a statistic to construct the sampling distribution.
+:::
+
+## Bootstrap Theory
+
+::: fragment
+The data set was generated from a distribution called $f$.
+:::
+
+::: fragment
+$f$ is unknown, we will sample from $\hat f$ generated from the data.
+:::
+
+::: fragment
+When $n \rightarrow \infty$, then $\hat f\rightarrow f$
+:::
+
+::: fragment
+So long as $n$ is sufficiently large, the DGP of a statistic will be generated.
+:::
+
+## Bootstrapping Algorithm
+
+1.  Resample the data set using the `resample()` function
+2.  Fit a linear model using the resampled data and `lm()` function
+3.  Store the estimates from the linear model
+4.  Repeat steps 1-3, until you a high number of simulations
+5.  Compute the confidence interval or standard errors from the bootstrap estimates
+
+## Bootstrapping in R
+
+The `resample()` will create a new data set by sampling the old data set with replacement.
+
+```{r}
+#| echo: true
+boot1 <- lm(weight ~ mage, data = resample(births14))
+b1(boot1)
+```
+
+Use the `do()` function to repeat this process a high number of times.
+
+```{r}
+#| echo: true
+boot_samples <- do(1000) * b1(lm(weight ~ mage, 
+                              data = resample(births14)))
+boot_samples %>% head()
+
+```
+
+## Bootstrap Distribution
+
+```{r}
+b1_boot_1000 |> ggplot(aes(b1)) +
+  geom_histogram() + geom_vline(xintercept = b1(res)) + themes
+```
+
+## 95% Confidence Interval
+
+```{r}
+b1_boot_1000 |> ggplot(aes(b1)) +
+  geom_histogram(aes(fill = middle(b1))) + geom_vline(xintercept = b1(res)) +
+  themes
+```
+
+## 95% Confidence Interval
+
+```{r}
+#| echo: true
+b1_boot_1000 %>% confint()
+```
+
+# Mathematical Models
+
+## Mathematical Model
+
+$$
+T= \frac{b_1 - \beta_1}{SE(b_1)} \sim t(n-1)
+$$
+
+## Confidence Interval
+
+$$
+ Pr(a<T<b) = 1- \alpha
+$$
+
+-   $\alpha = 0.05$
+
+## Confidence Interval
+
+$$
+Pr\left(t_{a/2,n-1} < \frac{b_1-\beta_1}{SE(b_1)} < t_{1-a/2,n-1}\right) = 1 - \alpha
+$$
+
+## Computing Interval
+
+$$
+b_1 - t_{a/2,n-1} SE(b_1) < \beta_1 < b_1 + t_{a/2,n-1} SE(b_1)
+$$
+
+OR
+
+$$
+b_1 \pm t_{a/2,n-1} SE(b_1)
+$$
+
+## 95% Confidence Interval
+
+```{r}
+#| echo: true
+res %>% confint()
+```
+
+## Bootstrap vs Mathematical Models
+
+```{r}
+print("Mathematical Model")
+res |> confint() |> _[2,]
+```
+
+```{r}
+print("Bootstrap: 1000")
+b1_boot_1000 |> confint() |> select(lower, upper)
+print("Bootstrap: 10000")
+b1_boot_10000 |> confint() |> select(lower, upper)
+print("Bootstrap: 100000")
+b1_boot_100000 |> confint() |> select(lower, upper)
+```

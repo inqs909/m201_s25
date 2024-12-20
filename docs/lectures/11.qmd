@@ -1,0 +1,274 @@
+---
+title: "Hypothesis Testing"
+format:
+  revealjs:
+    width: 1200
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    code-fold: true
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+editor: source
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(csucistats)
+library(openintro)
+library(patchwork)
+theme_set(theme_bw() + 
+            theme(
+              axis.text.x = element_text(size = 24),
+              axis.title = element_text(size = 30),
+              plot.title = element_text(size = 48),
+              strip.text = element_text(size = 20),
+              legend.title = element_blank(),
+              legend.text = element_text(size = 24)))
+
+```
+
+
+
+# Motivation
+
+## Motivation
+
+The `ncbirths` data set provides information on whether different predictors. The outcome of interest will be `premie` ("full term" or "premie"). 
+
+## Motivation 1
+
+Model the relationship between the outcome `premie` and `habit` ("smoker" and  "nonsmoker").
+
+
+## Motivation 2
+
+Model the relationship between the outcome `premie` and `visits` ("smoker" and  "nonsmoker").
+
+
+
+## Logistic Model 1
+
+Use a logistic regression to model the outcome `premie` and `habit`.
+
+```{r}
+#| code-fold: true
+#| eval: false
+
+glm(premie ~ habit, data = ncbirths, family = binomial())
+
+```
+
+## Odds Ratio 1
+
+```{r}
+#| code-fold: true
+#| eval: false
+b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))
+```
+
+## Odds Ratio 1
+
+```{r}
+#| code-fold: true
+b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))
+```
+The odds of a mother who smokes having a premature infant is 0.98 times lower than the odds of a mother who does not smoke.
+
+
+## Logistic Model 2
+
+Use a logistic regression to model the outcome `premie` and `visits`.
+
+```{r}
+#| code-fold: true
+#| eval: false
+
+glm(premie ~ visits, data = ncbirths, family = binomial())
+
+```
+
+## Odds Ratio 2
+
+```{r}
+#| code-fold: true
+#| eval: false
+b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))
+```
+
+## Odds Ratio 2
+
+```{r}
+#| code-fold: true
+b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))
+```
+
+As the number of hospital visits increases by 1, the odds of having a premature infant decreases by a factor 0.89.
+
+
+## Real or Random
+
+::: fragment
+Does smoking have a protective effect on having a premature infant?
+:::
+
+::: fragment
+Does the number of hospital visits have a protective effect?
+:::
+
+::: fragment
+What is real and what is random?
+:::
+
+
+# Hypothesis Testing
+
+## Hypothesis Tests
+
+Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the **Null** and **Alternative** Hypothesis.
+
+## Null Hypothesis $H_0$
+
+The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.
+
+## Alternative Hypothesis $H_a$
+
+The alternative hypothesis contradicts the null hypothesis.
+
+## Example of Null and Alternative Hypothesis
+
+We want to see if $\beta$ is different from $\beta^*$
+
+| Null Hypothesis    | Alternative Hypothesis |
+|--------------------|------------------------|
+| $H_0: \beta=\beta^*$   | $H_a: \beta\ne\beta^*$     |
+| $H_0: \beta\le\beta^*$ | $H_a: \beta>\beta^*$       |
+| $H_0: \beta\ge\beta^*$ | $H_0: \beta<\beta^*$       |
+
+## One-Side vs Two-Side Hypothesis Tests
+
+Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis ($H_a:\beta\ne\beta^*$) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.
+
+| Null Hypothesis    | Alternative Hypothesis | Side |
+|--------------------|------------------------|------------------------|
+| $H_0: \beta=\beta^*$   | $H_a: \beta\ne\beta^*$     | 2-Sided |
+| $H_0: \beta\le\beta^*$ | $H_a: \beta>\beta^*$       | 1-Sided |
+| $H_0: \beta\ge\beta^*$ | $H_0: \beta<\beta^*$       | 1-Sided |
+
+## Decision Making
+
+Hypothesis Testing will force you to make a decision: Reject $H_0$ **OR** Fail to Reject $H_0$
+
+::: fragment
+Reject $H_0$: The effect seen is not due to random chance, there is a process making contributing to the effect. 
+:::
+
+::: fragment
+Fail to Reject $H_0$: The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process.
+:::
+
+
+
+## Decision Making: P-Value
+
+The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true. 
+
+
+::: fragment
+**If $p < \alpha$, then you reject $H_0$; otherwise, you will fail to reject $H_0$.**
+:::
+
+## Decision Making: Confidence Interval Approach
+
+The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is $\beta\ne\beta^*$. The bootstrapping approach will result in a lower and upper bound denoted as: $(LB, UB)$. 
+
+
+::: fragment
+**If $\beta^*$ is in $(LB, UB)$, then you fail to reject $H_0$. If $\beta^*$ is not in $(LB,UB)$, then you reject $H_0$.**
+:::
+
+## Significance Level $\alpha$
+
+The significance level $\alpha$ is the probability you will reject the null hypothesis given that it was true. 
+
+::: fragment
+In other words, $\alpha$ is the error rate that a research controls.
+:::
+
+::: fragment
+Typically, we want this error rate to be small ($\alpha = 0.05$).
+:::
+
+## Hypothesis Test Process
+
+::: incremental
+1.  Set up the Null and Alternative Hypothesis.
+
+    - $H_0: \beta = 0$ and $H_a: \beta \ne 0$
+
+2.  Compute p-value or confidence interval
+
+3.  Make a decision 
+
+4.  Interpret the results
+
+:::
+
+# Example 1
+
+## Example
+
+Use a logistic regression to model the outcome `premie` and `habit`.
+
+```{r}
+#| code-fold: true
+#| eval: false
+
+glm(premie ~ habit, data = ncbirths, family = binomial())
+b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))
+
+```
+
+# Example 2
+
+## Example
+
+## Logistic Model 2
+
+```{r}
+#| code-fold: true
+#| eval: false
+
+glm(premie ~ visits, data = ncbirths, family = binomial())
+
+b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))
+```

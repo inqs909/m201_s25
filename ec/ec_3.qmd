@@ -1,0 +1,45 @@
+---
+title: "Extra Credit 3"
+description: Instructions for extra credit three.
+navbar: false
+date: 01-05-2025
+editor: source
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+---
+
+Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. The majority of these books are available through the Broome Library.
+
+**Books:**
+
+-   Happiness: A Guide to Developing Life's
+
+    -   Matthieu Ricard
+
+-   Grit: The Power of Passion and Perserverance
+
+    -   Angela Duckworth
+
+-   Mindset: The New Psychology of Success
+
+    -   Carol Dweck
+
+Report guidelines
+
+-   4-5 Pages
+
+-   Must include a title page
+
+-   Double Spaced
+
+-   12 point font
+
+-   Proofread your work
+
+-   Submit a pdf of your work to Canvas
+
+-   **Due 5/13/2024**
+
+**Worth 3 final grade percentage points.**

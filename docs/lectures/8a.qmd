@@ -1,0 +1,220 @@
+---
+title: "Quantifying Errors"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+penguins_nona <- penguins |> drop_na() 
+df <- rexp(1000, 2) |> {\(.) tibble(x = ., y=1:length(.))}()
+
+```
+
+# Announcements
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+## Math Senior Seminar
+
+![](img/Bayesian%20Mixed%20Effects%20Models%20and%20Cats%20Analysis%20of%20Evolutionary%20Biological%20Data%20(1)%20(1).png){fig-align="center"}
+
+# Quantifying Error in Models
+
+## Word Model
+
+$$
+Y = Model + Error
+$$
+
+## Model Mean
+
+$$
+Y = Mean + Error
+$$
+
+## Model Median
+
+$$
+Y = Median + Error
+$$
+
+## Model Mode
+
+$$
+Y = Mode + Error
+$$
+
+## Quantifying Error
+
+$$
+Error = Y - Model
+$$
+
+## Quantifying Total Error
+
+1, 2, 2, 3, 3, 3
+
+::: fragment
+Mean: 2.33
+
+Median: 2.5
+
+Mode: 3
+:::
+
+## Errors
+
+Mean: -1.33, -.33, -.33, .67, .67, .67
+
+Median: -1.5, -.5, -.5., .5, .5. .5
+
+Mode: -2, -1, -1, 0, 0, 0
+
+## Add all errors together
+
+$$
+\sum^6_{i-1}Y_i -\mathrm{model}
+$$
+
+::: fragment
+Mean: $0.02 \approx 0$
+
+Median: -1
+
+Mode: -4
+:::
+
+## Absolute Value of error
+
+$$
+\sum^6_{i-1}|Y_i -\mathrm{model}|
+$$
+
+::: fragment
+Mean: 4
+
+Median: 4
+
+Mode: 4
+:::
+
+## Sum of Squares
+
+$$
+\sum^6_{i-1}(Y_i -\mathrm{model})^2
+$$
+
+::: fragment
+Mean: 3.3334
+
+Median: 3.5
+
+Mode: 6
+:::
+
+## Why Mean
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(palmerpenguins)
+pmean <- penguins |> drop_na() |> with(mean(flipper_length_mm))
+pmedian <- penguins |> drop_na() |> with(median(flipper_length_mm))
+pmode <- 190
+sse <- function(y, x){
+  sum((y-x)^2)
+}
+sse_v <- Vectorize(sse, "x")
+ssmean <- penguins |> drop_na() |> with(sse(flipper_length_mm, pmean))
+ssmedian <- penguins |> drop_na() |> with(sse(flipper_length_mm, pmedian))
+ssmode <- penguins |> drop_na() |> with(sse(flipper_length_mm, pmode))
+tibble(x= c("Mean", "Median", "Mode"), y = c(ssmean, ssmedian, ssmode)) |> 
+  ggplot(aes(x,y)) + geom_point(size = 10) + theme_bw() +
+  theme(axis.text.x = element_text(size = 36))
+
+```
+
+## Why Mean
+
+```{r}
+pna <- penguins |> drop_na()
+tibble(x = 150:250, y= penguins |> drop_na() |> with(sse_v(flipper_length_mm,150:250))) |>
+  ggplot(aes(x,y)) + geom_line() + 
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.x = element_text(size = 36))
+```
+
+## Why Mean
+
+```{r}
+#| echo: true
+pna |> with(mean(flipper_length_mm))
+```
+
+```{r}
+tibble(x = 150:250, y= penguins |> drop_na() |> with(sse_v(flipper_length_mm,150:250))) |>
+  ggplot(aes(x,y)) + geom_line() + 
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.x = element_text(size = 36)) +
+  geom_vline(xintercept=pmean, col = "red")
+```
+
+## Why Not Others?
+
+```{r}
+tibble(x = 150:250, y= penguins |> drop_na() |> with(sse_v(flipper_length_mm,150:250))) |>
+  ggplot(aes(x,y)) + geom_line() + 
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.x = element_text(size = 36)) +
+  geom_vline(xintercept=pmean, col = "red") +
+  geom_vline(xintercept=pmedian, col = "blue") +
+  geom_vline(xintercept=pmode, col = "green") 
+  
+```

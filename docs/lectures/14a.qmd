@@ -1,0 +1,284 @@
+---
+title: "Inference"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false
+    code-fold: true
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    error: true
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+webr: 
+  show-startup-message: true
+  packages: ['tidyr', 'ggplot2', 'palmerpenguins', 'openintro']
+  
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - webr
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+#| cache: true
+
+set.seed(3249)
+library(coursekata)
+res <- lm(body_mass_kg ~ species, data = penguins)
+
+f_sim_1000 <- do(1000) * f(shuffle(body_mass_kg) ~ species, 
+                         data = penguins)
+f_sim_10000 <- do(10000) * f(shuffle(body_mass_kg) ~ species, 
+                         data = penguins)
+f_sim_100000 <- do(100000) * f(shuffle(body_mass_kg) ~ species, 
+                         data = penguins)
+
+```
+
+```{r}
+#| include: false
+#| label: load_libraries
+
+library(ggformula)
+library(mosaic)
+library(coursekata)
+```
+
+# Inference
+
+```{webr-r}
+#| context: setup
+shuffle <- function(x){
+  n <- length(x)
+  return(sample(x, n))
+}
+penguins <- penguins |> drop_na() |> 
+  mutate(body_mass_kg = body_mass_g / 1000)
+```
+
+## Motivating Example
+
+```{r}
+
+penguins |> ggplot(aes(x=species, y = body_mass_kg)) +
+  geom_jitter() + theme_bw() +
+  theme(axis.title = element_text(size = 36)) +
+  labs(x = "Species", y = "Body Mass")
+
+```
+
+## Adding a Box Plot
+
+```{r}
+penguins |> ggplot(aes(x=species, y = body_mass_kg)) +
+  geom_jitter() + geom_boxplot() + theme_bw() +
+  theme(axis.title = element_text(size = 36)) +
+  labs(x = "Species", y = "Body Mass")
+
+```
+
+## Linear Model
+
+```{r}
+#| echo: true
+res <- penguins %>% lm(body_mass_kg ~ species, data = .)
+res
+```
+
+## Are the Means from each species different? Or is it due to random chance?
+
+## Inference
+
+The process to determine if an estimate of a parameter is valuable or just due to random chance.
+
+## Randomness of Data
+
+```{r}
+#| echo: true
+penguins %>% gf_jitter(shuffle(body_mass_kg) ~ species) %>%
+  gf_theme(theme_bw()) %>%
+  gf_labs(x = "Quarter Mile Time", y = "MPG") %>%
+  gf_theme(axis.title = element_text(size = 24))
+```
+
+## Empirical vs Shuffled
+
+```{webr-r}
+shuffle <- function(x){n <- length(x); return(sample(x, n))}
+penguins |> ggplot(aes(x = species, y = body_mass_g)) +
+  theme_bw() +labs(x = "Species", y = "Body Mass") + theme(axis.text = element_text(size = 18)) +
+  geom_jitter()
+```
+
+## Obtaining F
+
+```{r}
+f(shuffle(mpg) ~ qsec, data = mtcars)
+f(shuffle(mpg) ~ qsec, data = mtcars)
+f(shuffle(mpg) ~ qsec, data = mtcars)
+f(shuffle(mpg) ~ qsec, data = mtcars)
+f(shuffle(mpg) ~ qsec, data = mtcars)
+f(shuffle(mpg) ~ qsec, data = mtcars)
+```
+
+## Obtaining PRE
+
+```{r}
+pre(shuffle(mpg) ~ qsec, data = mtcars)
+pre(shuffle(mpg) ~ qsec, data = mtcars)
+pre(shuffle(mpg) ~ qsec, data = mtcars)
+pre(shuffle(mpg) ~ qsec, data = mtcars)
+pre(shuffle(mpg) ~ qsec, data = mtcars)
+pre(shuffle(mpg) ~ qsec, data = mtcars)
+```
+
+## Repeat it 1000
+
+```{r}
+#| echo: true
+f_sim <- do(1000) * f(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+pre_sim <- do(1000) * pre(shuffle(mpg) ~ qsec, 
+                         data = mtcars)
+```
+
+## Distribution of PRE
+
+The distribution of $PRE$ shows all the possible values that $PRE$ can take with their respective probabilities.
+
+## Distribution of PRE
+
+```{r}
+#| echo: true
+gf_histogram(~pre, data = pre_sim)
+
+```
+
+## Distribution of $F$
+
+The distribution of $F$ shows all the possible values that $F$ can take with their respective probabilities.
+
+## Distribution of $F$
+
+```{r}
+#| echo: true
+gf_histogram(~f, data = f_sim)
+```
+
+## Portioning the upper 5% the Distribution
+
+```{r}
+#| echo: true
+gf_histogram(~f, data = f_sim, fill = ~upper(f, .05))
+```
+
+## Where is our observed value?
+
+```{r}
+#| echo: true
+gf_histogram(~f, data = f_sim, fill = ~upper(f, .05)) %>%
+  gf_vline(xintercept = f(res))
+```
+
+# P-Value
+
+## P-Value
+
+The p-value tells you what is the probability of observing your $F$ or something more extreme.
+
+## Visually
+
+```{r}
+#| echo: true
+gf_histogram(~f, data = f_sim, fill = ~ f > f(res)) %>%
+  gf_vline(xintercept = f(res))
+```
+
+## Computing the p-value
+
+We will count how many simulated $F$'s are more extreme and divided by the number of simulations plus one.
+
+## Counting how many F's are more extreme
+
+```{r}
+#| echo: true
+tally(~ f > f(res), data = f_sim)
+```
+
+## Computing the p-value
+
+```{r}
+tally(~ f > f(res), data = f_sim)[1] / 10001
+```
+
+# Compute Mathematically
+
+## Mathematical Model
+
+$$
+TS = \frac{MSG}{MSE} \sim F(k-1,n-k-1)
+$$
+
+## P-Value
+
+$$
+\mathrm{p} = Pr(TS \ge F)
+$$
+
+## Let's have R do it!
+
+```{r}
+penguins %>% lm(body_mass_kg ~ species, data = .) %>% supernova()
+```
+
+## Mathematical compared to Increasing Simulated Number
+
+$$
+P= 0.000
+$$
+
+```{r}
+print("Sim: 1000")
+tally(~ f > f(res), data = f_sim_1000)[1] / 10001
+```
+
+## Mathematical compared to Increasing Simulated Number
+
+$$
+P= 0.000
+$$
+
+```{r}
+print("Sim: 1000")
+tally(~ f > f(res), data = f_sim_1000)[1] / 1001
+print("Sim: 10000")
+tally(~ f > f(res), data = f_sim_10000)[1] / 10001
+print("Sim: 100000")
+tally(~ f > f(res), data = f_sim_100000)[1] / 100001
+
+```

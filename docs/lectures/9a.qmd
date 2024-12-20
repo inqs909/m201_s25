@@ -1,0 +1,159 @@
+---
+title: "Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+```
+
+# Announcements
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+## Extra Credit
+
+::: fragment
+**1 New Extra Credit Assignment are being created.**
+:::
+
+::: fragment
+### Assessing your current progress in Math 201 and other classes
+
+-   Assess your grade in Math 201
+:::
+
+# Empty Model
+
+## Motivation: Penguins
+
+```{r}
+penguins_nona |> select(bill_length_mm)
+```
+
+## Calculate Mean
+
+```{r}
+penguins_nona |> select(bill_length_mm)
+```
+
+## Mean
+
+```{r}
+penguins_nona |> summarise(mean = mean(bill_length_mm))
+```
+
+## Empty Model
+
+::: fragment
+$$
+flipper\_length = mean + error
+$$
+:::
+
+::: fragment
+$$
+Y = 42.8375 + \varepsilon 
+$$
+:::
+
+::: fragment
+### Prediction
+
+$$
+\hat Y = 42.8375
+$$
+:::
+
+# Linear Model
+
+## Linear Model
+
+$$
+Y = b_0 + b_1 X + \varepsilon
+$$
+
+## Penguin Species
+
+```{r}
+penguins_nona
+```
+
+## Calculate Means per Species
+
+```{r}
+penguins_nona
+```
+
+::: fragement
+```{r}
+penguins_nona |> group_by(species) |> 
+  summarise(mean = mean(bill_length_mm))
+```
+:::
+
+## Construct Model
+
+Using only one equation, construct a model that will give you only two value to the corresponding means:
+
+```{r}
+penguins_nona |> group_by(species) |> 
+  summarise(mean = mean(bill_length_mm))
+```
+
+# EPE Session
+
+## EPE Session
+
+```{r}
+penguins |>  drop_na() |> group_by(species) |> 
+  summarise(mean = mean(flipper_length_mm))
+```
+
+Construct a Model with 3 species groups

@@ -1,0 +1,80 @@
+---
+title: "Inference"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    error: true
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(mosaic)
+library(tidyverse)
+library(taylor)
+library(DT)
+library(supernova)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+tuesdata <- tidytuesdayR::tt_load('2020-07-07')
+tuesdata <- tidytuesdayR::tt_load(2020, week = 28)
+
+coffee_ratings <- tuesdata$coffee_ratings
+
+# Or read in the data manually
+
+#coffee_ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-07/coffee_ratings.csv')
+
+```
+
+# Inference
+
+## Inference
+
+## Estimation
+
+## Randomness
+
+## Linear Model
+
+## Distribution of $b_1$
+
+## Density Plot

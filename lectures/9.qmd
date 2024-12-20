@@ -1,0 +1,345 @@
+---
+title: "The Bootstrap Method"
+format:
+  revealjs:
+    width: 1200
+    df-print: paged
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    code-fold: true
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+editor: source
+---
+
+```{r}
+#| include: false
+library(MASS)
+library(tidyverse)
+library(csucistats)
+library(waffle)
+library(patchwork)
+
+theme_set(theme_bw() + 
+            theme(
+              axis.text.x = element_text(size = 24),
+              axis.title = element_text(size = 30),
+              plot.title = element_text(size = 48),
+              strip.text = element_text(size = 20),
+              legend.title = element_blank(),
+              legend.text = element_text(size = 24)))
+
+```
+
+
+
+# Motivation
+
+## Motivation
+
+The `bacteria` data set contians information on whether bacteria (`y`: y or n) is present after utilizing treatments (`ap`: **a**ctive or **p**lacebo).
+
+::: fragment
+We are interesting in determine the proportion of having bacteria present is different for those taking an "active" or "placebo".
+:::
+
+## Comparing Proportions
+
+We are interesting in determining if different groups see different proportions of a binary outcome.
+
+We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
+
+## 2 by 2 Cross Tabulations
+
+|         |           |           |
+|---------|-----------|-----------|
+| Groups  | Outcome 1 | Outcome 2 |
+| Group 1 | $p_{11}$  | $p_{21}$  |
+| Group 2 | $p_{12}$  | $p_{22}$  |
+
+
+::: fragment
+We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
+
+:::
+
+## Test Statistic
+
+We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
+
+::: fragment
+However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
+:::
+
+::: fragment
+$$
+T =  \hat p_{11} - \hat p_{12}
+$$
+:::
+
+
+## Obtain Difference in R
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: show
+
+
+props_df(DATA, GROUP, OUTCOME, VAL, diff = TRUE)
+```
+
+## Bacteria Example
+
+```{r}
+#| code-fold: show
+
+
+props_df(bacteria, ap, y, "y")
+```
+
+## Bacteria Example
+
+```{r}
+#| code-fold: show
+
+
+props_df(bacteria, ap, y, "y", TRUE)
+```
+
+
+# Hypothesis Test
+
+## Hypothesis Test
+
+Is $T = .125$ of a difference large enough to indicate that an active drug is effective against the bacteria, or seeing this can be due to random chance.
+
+
+## Hypotheis Test
+
+We will test the following hypothesis:
+
+$$
+H_0:\ \Delta =  p_1-p_2 = 0
+$$
+
+$$
+H_a:\ \Delta = p_1 - p_2 \neq 0
+$$
+
+
+## Hypothesis Test
+
+
+```{r}
+sim_stats <- replicate(1000, props(bacteria$ap, shuffle(bacteria$y), "y", T))
+test_stat <- props(bacteria$ap, bacteria$y, "y", T)
+sum(abs(sim_stats) > abs(test_stat)) / 1001
+ggplot(data.frame(x = sim_stats), aes(x)) + 
+  geom_density() +
+  geom_vline(xintercept = test_stat)
+```
+
+
+## Hypothesis test 
+
+
+::: incremental
+-  What if $\Delta = - 0.5$?
+-  What if $\Delta = 0.5$?
+-  What if $\Delta = - 0.25$?
+-  What if $\Delta = 0.25$?
+:::
+
+
+::: fragment
+Can we determine the plausible values of $\Delta$ that may have produced our data set?
+:::
+
+
+# Confidence Intervals and Standard Error
+
+## Standard Error
+
+The standard error is the standard deviation of a statistic.
+
+::: fragment
+It can give us a margin of error for the statistic that we compute from the data.
+:::
+
+
+## Confidence Intervals
+
+Confidence Intervals give you a collection of values that may contain the true parameter of interest. 
+
+::: fragment
+The probability of capturing the true parameter is known as the confidence. This value can take any number between 0% to 100%
+:::
+
+## Confidence Interval
+
+The confidence interval were displayed as: X%: (L, U)
+
+## Confidence Interval Intepretation
+
+
+
+## Confidence Intervals
+
+These are a collection of $\Delta$ values that will fail to reject the Null Hypothesis.
+
+::: fragment
+The $\Delta$ values that are not different from our current estimate $T$
+:::
+
+## Confidence Intervals
+
+```{r}
+data.frame(x = rnorm(1000, 0.15, 0.05)) |> 
+  ggplot(aes(x)) + 
+  geom_density() +
+  geom_vline(xintercept = test_stat)
+```
+
+## Confidence Intervals
+
+```{r}
+data.frame(x = rnorm(1000, 0.075, 0.05)) |> 
+  ggplot(aes(x)) + 
+  geom_density() +
+  geom_vline(xintercept = test_stat)
+```
+
+## How to construct the DGP centered around $\Delta$?
+
+::: fragment
+Bootstrapping Techniques
+:::
+
+::: fragment
+Mathematical Models
+:::
+
+
+# Bootstrapping Techniques
+
+## Bootstrapping Techniques
+
+Bootstrapping is a technique to determine which $\Delta = p_1-p_2$ values, or any other statistic, will **not** be significantly different than $T$.
+
+::: fragment
+Bootstrapping will simulate several fake data sets from the DGP of the data. Afterwards, each data set will produce a statistic to construct the sampling distribution.
+:::
+
+## Bootstrap Theory
+
+::: fragment
+The data set was generated from a distribution called $f$.
+:::
+
+::: fragment
+$f$ is unknown, we will sample from $\hat f$ generated from the data.
+:::
+
+::: fragment
+When $n \rightarrow \infty$, then $\hat f\rightarrow f$
+:::
+
+::: fragment
+So long as $n$ is sufficiently large, the DGP of a statistic will be generated.
+:::
+
+## Bootstrapping Algorithm
+
+1.  Resample the data set using the `resample()` function
+2.  Compute the statistic of interest
+3.  Store the statistic
+4.  Repeat steps 1-3, until you a high number of simulations
+5.  Compute the confidence interval or standard errors from the bootstrap estimates
+
+## Bootstrapping in R
+
+The `resample()` will create a new data set by sampling the old data set with replacement.
+
+```{r}
+#| echo: true
+boot1 <- resample(bacteria)
+props_df(boot1, ap, y, yval = "y", TRUE)
+```
+
+## Repeat Process
+
+Use the `replicate()` function to repeat this process a high number of times.
+
+```{r}
+#| echo: true
+boot_samples <-replicate(1000, 
+                         props_df(resample(bacteria), ap, y, yval = "y", TRUE))
+
+```
+
+## Bootstrap Distribution
+
+```{r}
+ggplot(data.frame(x = boot_samples), aes(x)) +
+  geom_histogram() + 
+  geom_vline(xintercept = test_stat) 
+```
+
+## Bootstrap-Based Standard Error
+
+
+```{r}
+sd(boot_samples)
+```
+## Interpreting the SE
+
+$$
+0.125 \pm 0.05
+$$
+
+## 95% Confidence Interval
+
+```{r}
+ggplot(data.frame(x = boot_samples), aes(x)) +
+  geom_histogram(aes(fill = middle(x, .95))) + 
+  geom_vline(xintercept = test_stat) 
+```
+
+## 95% Confidence Interval
+
+```{r}
+#| echo: true
+
+quantile(boot_samples, probs = c(0.025, 0.975))
+
+```
+
+
+## Interpretation
+
+We are 95% confident that the true difference in proportion ($\Delta$) is captured between the ranges (0.025, 0.224).
+

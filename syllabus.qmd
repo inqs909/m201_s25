@@ -1,0 +1,139 @@
+---
+title: "Syllabus"
+editor: source
+navbar: false
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+  typst:
+    margin:
+      x: 1cm
+      y: 1cm
+---
+
+## Math 201: Elementary Statistics
+
+### Course Information
+
+**Term:** Spring 2025
+
+**Instructor:** Isaac Quintanilla Salinas
+
+**Email:** isaac.qs\@csuci.edu
+
+**Office Location:** BTE 2840
+
+**Office Hours:** TBD
+
+Or by Zoom appointment.
+
+**Lecture:** TBD
+
+### Course Description
+
+Critical reasoning using a quantitative and statistical, problem-solving approach to solving real-world problems. Topics include: probability and statistics, sample data, probability and empirical data distributions, sampling techniques, estimation and hypothesis testing, ANOVA, and correlation and regression analysis. Students will use standard statistical software to analyze real-world and simulated data. GenEd: B4
+
+### Learning Outcomes
+
+-   Prepare students for advanced courses in data-management and statistics
+-   Reason both inductively and deductively with quantitative information and data
+-   Use statistical software for complex statistical analysis of real-world and simulated data
+-   Empower students to apply computational and inferential thinking to address real-world problems
+-   Write the results of a statistical study and draw conclusion in reports
+
+### Textbook
+
+[Introduction to Modern Statistics](https://openintro-ims.netlify.app/)
+
+### Embedded Peer Educator (EPE)
+
+TBD
+
+### Course Grading
+
+| Category             | Percentage |
+|:---------------------|:-----------|
+| Participation        | 5%         |
+| Reading Assignments  | 10%        |
+| Video Assignments    | 10%        |
+| Homework             | 15%        | 
+| Notebook Assignments | 15%        |
+| Exam 1               | 15%        |
+| Exam 2               | 15%        |
+| Exam 3               | 15%        |
+
+At the end of the quarter, course grades will be assigned according to the following scale:
+
+|         |            |        |            |         |            |         |            |       |       |
+|:-------|:-------|:-------|:-------|:-------|:-------|:-------|:-------|:-------|:-------|
+| **A+**  | 98 -- 100  | **B+** | 87 -- \<90 | **C+**  | 77 -- \<80 | **D+**  | 67 -- \<70 |       |       |
+| **A**   | 93 -- \<98 | **B**  | 83 -- \<87 | **C**   | 73 -- \<77 | **D**   | 63 -- \<67 | **F** | \< 60 |
+| **A--** | 90 - \<93  | **B-** | 80 -- \<83 | **C--** | 70 -- \<73 | **D--** | 60 -- \<63 |       |       |
+
+#### Participation
+
+Participation is based on short writing assignments conducted in class. There will be no make ups for these writing prompts.
+
+#### Notebook Assignments
+
+Notebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. The notebook assignment will be due on Wednesday at 11:59 PM every week.
+
+#### Reading Assignments
+
+Reading assignments are designed to teach you different statistical concepts and R Programming. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Sunday night at 11:59 PM. The 3 lowest reading assignments will be dropped.
+
+#### Video Lectures
+
+Videos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using PlayPosit, where questions are embedded in the video to check for understanding. The videos may require students to program and/or read research articles.
+
+#### Exams
+
+There will be three in exams. Exam #1 will be on Sept 30, Exam #2 will be on Nov 13, and Exam #3 will be on Dec 11 at 8-10 AM (Sec 01) or Dec 9 1-3 PM (Sec 02). While the exams are not considered cumulative, the material builds on each other. Developing a strong understanding of the material through out the course is important for your success. At the end of the semester, your lowest exam grade will be replaced by your median average exam grade. This course will operate under a zero-tolerance policy. Talking during the time of the exam, sharing materials, looking at another students' exam, or not following directions given will be subject to the University's academic integrity policy.
+
+#### Extra Credit
+
+There will be **3** extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found [here](ec.html).
+
+### Class Schedule
+
+The following outline may be subject to change. Any changes will be announced in class.
+
+| Week        | Topic                                   | Readings   | NB Due | Video Lecture Due |
+|:--------------|:--------------|:--------------|:--------------|---------------|
+| 8/26-8/30   | Welcome to College/Course               |            | 1       |                   |
+| 9/2-9/6     | Hello Data and Study Design             | Ch 1 and 2 | 2       | 1 and 2           |
+| 9/9-9/13    | Exploring Categorical Data              | Ch 4       | 3       | 3                 |
+| 9/16-9/20   | Exploring Numerical Data                | Ch 5       | 4       | 4                 |
+| 9/23-9/27   | Simple Linear Regression                | Ch 7       | 5       | 5                 |
+| 9/30-10/4   | Exam #1/Multivariable Linear Regression |            |         |                   |
+| 10/7-10/11  | Multivariable Linear Regression         | Ch 8       | 6       | 6                 |
+| 10/14-10/18 | Logistic Regression                     | Ch 9       | 7       | 7                 |
+| 10/21-10/25 | Hypothesis Testing                      | Ch 11      | 8       | 8                 |
+| 10/28-11/1  | Bootstrap-based Confidence Intervals    | Ch 12      | 9       | 9                 |
+| 11/4-11/9   | Mathematical Models                     | Ch 13      | 10      | 10                |
+| 11/11-11/15 | Exam #2                                 |            |         |                   |
+| 11/18-11/22 | Decision Errors                         | Ch 14      | 11      | 11                |
+| 11/25-11/29 | Linear Regression Inference             | Ch 24      |         |                   |
+| 12/2-12/6   | Logistic Regression Inference           | Ch 26      | 12      | 12                |
+| 12/9-12/13   | Exam #3                                 |            |         |                   |
+
+### Use of Generative Artificial Intelligence
+
+The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.  
+
+
+### University Policies
+
+1.  **Academic Honesty**:
+
+    Conduct yourself with honesty and integrity. Do not submit others' work as your own. For assignments and quizzes that allow you to work with a group, only put your name on what the group submits if you genuinely contributed to the work. Work completely independently on exams, using only the materials that are indicated as allowed. Failure to observe academic honesty results in substantial penalties that can include failing the course.
+
+2.  **Disabilities:**
+
+    If you are a student with a disability requesting reasonable accommodations in this course, you need to contact Disability Accommodations and Support Services (DASS) located on the second floor of Arroyo Hall, via email accommodations\@csuci.edu or call 805-437-3331. All requests for reasonable accommodations require registration with DASS in advance of need: <https://www.csuci.edu/dass/students/apply-for-services.htm>. Faculty, students and DASS will work together regarding classroom accommodations. You are encouraged to discuss approved.
+
+3.  **Emergency Procedure Notice to Students:**
+
+    CSUCI is following guidelines and public orders from the California Department of Public Health and Ventura County Public Health for the COVID-19 pandemic as it pertains to CSUCI students, employees and visitors on the campus. Students are expected to adhere to all health and safety requirements as noted on the University's Spring 2023 Semester [website](https://www.csuci.edu/news/campus-updates/covid-19/index.htm) or they may be subject to removal from the classroom.
+

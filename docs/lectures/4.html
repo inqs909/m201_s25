@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Numerical Data – MATH 201</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-41afc036f4045670d8a63ab41900e02e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
+<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MATH 201</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">syllabus.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ec.html"> 
+<span class="menu-text">Extra Credit</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link active" data-scroll-target="#r-packages">R Packages</a></li>
+  <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example">Motivating Example</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a>
+  <ul class="collapse">
+  <li><a href="#what-is-numerical-data" id="toc-what-is-numerical-data" class="nav-link" data-scroll-target="#what-is-numerical-data">What is numerical data?</a></li>
+  <li><a href="#summary-statistics-1" id="toc-summary-statistics-1" class="nav-link" data-scroll-target="#summary-statistics-1">Summary Statistics</a></li>
+  <li><a href="#central-tendency" id="toc-central-tendency" class="nav-link" data-scroll-target="#central-tendency">Central Tendency</a></li>
+  <li><a href="#variation" id="toc-variation" class="nav-link" data-scroll-target="#variation">Variation</a></li>
+  <li><a href="#minimum" id="toc-minimum" class="nav-link" data-scroll-target="#minimum">Minimum</a></li>
+  <li><a href="#maximum" id="toc-maximum" class="nav-link" data-scroll-target="#maximum">Maximum</a></li>
+  <li><a href="#quartiles" id="toc-quartiles" class="nav-link" data-scroll-target="#quartiles">Quartiles</a></li>
+  <li><a href="#q1" id="toc-q1" class="nav-link" data-scroll-target="#q1">Q1</a></li>
+  <li><a href="#q2---median" id="toc-q2---median" class="nav-link" data-scroll-target="#q2---median">Q2 - Median</a></li>
+  <li><a href="#q3" id="toc-q3" class="nav-link" data-scroll-target="#q3">Q3</a></li>
+  <li><a href="#interquartile-range" id="toc-interquartile-range" class="nav-link" data-scroll-target="#interquartile-range">Interquartile Range</a></li>
+  <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range">Range</a></li>
+  <li><a href="#how-to-identify-the-quartiles" id="toc-how-to-identify-the-quartiles" class="nav-link" data-scroll-target="#how-to-identify-the-quartiles">How to identify the quartiles?</a></li>
+  <li><a href="#mean" id="toc-mean" class="nav-link" data-scroll-target="#mean">Mean</a></li>
+  <li><a href="#mean-1" id="toc-mean-1" class="nav-link" data-scroll-target="#mean-1">Mean</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a></li>
+  <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation">Standard Deviation</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  </ul></li>
+  <li><a href="#numerical-statistics-in-r" id="toc-numerical-statistics-in-r" class="nav-link" data-scroll-target="#numerical-statistics-in-r">Numerical Statistics in R</a>
+  <ul class="collapse">
+  <li><a href="#numerical-statistics-in-r-1" id="toc-numerical-statistics-in-r-1" class="nav-link" data-scroll-target="#numerical-statistics-in-r-1">Numerical Statistics in R</a></li>
+  <li><a href="#mean-2" id="toc-mean-2" class="nav-link" data-scroll-target="#mean-2">Mean</a></li>
+  <li><a href="#median" id="toc-median" class="nav-link" data-scroll-target="#median">Median</a></li>
+  <li><a href="#standard-deviation-1" id="toc-standard-deviation-1" class="nav-link" data-scroll-target="#standard-deviation-1">Standard Deviation</a></li>
+  <li><a href="#variance-1" id="toc-variance-1" class="nav-link" data-scroll-target="#variance-1">Variance</a></li>
+  <li><a href="#quartiles-1" id="toc-quartiles-1" class="nav-link" data-scroll-target="#quartiles-1">Quartiles</a></li>
+  <li><a href="#max-and-min" id="toc-max-and-min" class="nav-link" data-scroll-target="#max-and-min">Max and Min</a></li>
+  <li><a href="#summary-statistics-2" id="toc-summary-statistics-2" class="nav-link" data-scroll-target="#summary-statistics-2">Summary Statistics</a></li>
+  <li><a href="#mr.-trash-wheel" id="toc-mr.-trash-wheel" class="nav-link" data-scroll-target="#mr.-trash-wheel">Mr.&nbsp;Trash Wheel</a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a>
+  <ul class="collapse">
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">Histogram</a></li>
+  <li><a href="#histogram-r-code" id="toc-histogram-r-code" class="nav-link" data-scroll-target="#histogram-r-code">Histogram R Code</a></li>
+  <li><a href="#histogram-1" id="toc-histogram-1" class="nav-link" data-scroll-target="#histogram-1">Histogram</a></li>
+  <li><a href="#histogram-2" id="toc-histogram-2" class="nav-link" data-scroll-target="#histogram-2">Histogram</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
+  <li><a href="#histograms-1" id="toc-histograms-1" class="nav-link" data-scroll-target="#histograms-1">Histograms</a></li>
+  <li><a href="#mr.-trash-wheel-1" id="toc-mr.-trash-wheel-1" class="nav-link" data-scroll-target="#mr.-trash-wheel-1">Mr.&nbsp;Trash Wheel</a></li>
+  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot">Box Plot</a></li>
+  <li><a href="#box-plot-1" id="toc-box-plot-1" class="nav-link" data-scroll-target="#box-plot-1">Box Plot</a></li>
+  <li><a href="#box-plot-r-code" id="toc-box-plot-r-code" class="nav-link" data-scroll-target="#box-plot-r-code">Box Plot R Code</a></li>
+  <li><a href="#box-plot-2" id="toc-box-plot-2" class="nav-link" data-scroll-target="#box-plot-2">Box Plot</a></li>
+  <li><a href="#box-plot-3" id="toc-box-plot-3" class="nav-link" data-scroll-target="#box-plot-3">Box Plot</a></li>
+  <li><a href="#dot-plots" id="toc-dot-plots" class="nav-link" data-scroll-target="#dot-plots">Dot Plots</a></li>
+  <li><a href="#dot-plots-in-r" id="toc-dot-plots-in-r" class="nav-link" data-scroll-target="#dot-plots-in-r">Dot Plots in R</a></li>
+  <li><a href="#dot-plots-1" id="toc-dot-plots-1" class="nav-link" data-scroll-target="#dot-plots-1">Dot Plots</a></li>
+  </ul></li>
+  <li><a href="#transformed-data" id="toc-transformed-data" class="nav-link" data-scroll-target="#transformed-data">Transformed Data</a>
+  <ul class="collapse">
+  <li><a href="#transformed-data-1" id="toc-transformed-data-1" class="nav-link" data-scroll-target="#transformed-data-1">Transformed Data</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots">Scatter Plots</a>
+  <ul class="collapse">
+  <li><a href="#scatter-plots-1" id="toc-scatter-plots-1" class="nav-link" data-scroll-target="#scatter-plots-1">Scatter Plots</a></li>
+  <li><a href="#positive-relationship" id="toc-positive-relationship" class="nav-link" data-scroll-target="#positive-relationship">Positive Relationship</a></li>
+  <li><a href="#negative-relationship" id="toc-negative-relationship" class="nav-link" data-scroll-target="#negative-relationship">Negative Relationship</a></li>
+  <li><a href="#no-relationship" id="toc-no-relationship" class="nav-link" data-scroll-target="#no-relationship">No Relationship</a></li>
+  <li><a href="#weak-positive-or-negative-relationship" id="toc-weak-positive-or-negative-relationship" class="nav-link" data-scroll-target="#weak-positive-or-negative-relationship">Weak Positive or Negative Relationship</a></li>
+  <li><a href="#scatter-plots-in-r" id="toc-scatter-plots-in-r" class="nav-link" data-scroll-target="#scatter-plots-in-r">Scatter Plots in R</a></li>
+  <li><a href="#mr.-trash-wheel-2" id="toc-mr.-trash-wheel-2" class="nav-link" data-scroll-target="#mr.-trash-wheel-2">Mr.&nbsp;Trash Wheel</a></li>
+  <li><a href="#transformed-data-2" id="toc-transformed-data-2" class="nav-link" data-scroll-target="#transformed-data-2">Transformed Data</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="4.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Numerical Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="r-packages">R Packages</h2>
+<ul>
+<li>csucistats</li>
+<li>tidyverse</li>
+</ul>
+</section>
+<section id="motivating-example" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-example">Motivating Example</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Zzjw-Pw5jwQ?si=WUBQTifP1TNSxDoJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+</section>
+<section id="summary-statistics" class="level1">
+<h1>Summary Statistics</h1>
+<section id="what-is-numerical-data" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-numerical-data">What is numerical data?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>trashwheel<span class="sc">$</span>PlasticBottles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   [1] 1450 1120 2450 2380  980 1430  910 3580 2400 1340  740  950  530  840 1130 1640 1350 1640 1730 5960 2170 1930 3200 2500 2140 1630 3640 1430  570 4800  550 2240 4220 1400 2820 1900 3650  760 1250  880 1800 1370  550
+#&gt;  [44]  640 1160 1570 1340 1740 2870 3120 2780 2240 2550 1470 1240 1150 2850  960  870 1340 2630 1850 2830 1740 2780 1260 2340 3240  940  830  960  870  920 1130 1060  740  950 2340 2660 2430 2690 1540 1240 2870 2450 1830
+#&gt;  [87] 2360 2640 2840 2640 3070 2820 2640  870 3220 1980  410  640 2730 1360  760 1240  800 2540 2130 2670 1940 2140 1960 1640 1850 2370 2530 2720 2250 3240 3530 2340 2460 1340  950 2240 3050 1630 1120 3340 3560 2460 3860
+#&gt; [130] 3230 3760 3640 4230 3590 3740 4200 3840 4350 3960 4150 4450 3460 2850 3560 4130 4350 4420 2130 2450 2300 2850 2640 3250 2530 2780 2740 2530 1876 2340 2244 2980 3460 1840 1360 1880 2460 2260 2890 2140 2570 2030 1940
+#&gt; [173] 1870 1920 1920 2230  980  650  430  390  490  210  560  470  390  460  530  460  340  360 2540 2870 2230 2340 2560 2340 2480 2540 2980 3250 3340 2850 3220 2110 3670 2890 1460 3240 3530 2760 2980 2430 1500 1270 1340
+#&gt; [216] 2780 2910 2760 2950 2550 2720 2540 2370 2250 1260  950 1020 2250 1130 1240 1950 1460 2210 2470 2150  970  840  790  750  810  790  670  710  730  820  760  670  730  750  820 1580 2130 2350 2460 1220  950  400 1050
+#&gt; [259] 1480 1300 1650 2130 2340 1890 1420 1280 1140  870  940  620 1560 1720 1890 1760  890  710  620  780  540  670  820  540  730  910  710 1750 1320 2740 1120 2100 3110 1200 1390  940 1220 1960 2150 2380 1440 1080 1840
+#&gt; [302] 2100 1500  660  590 1200 2610 1820 1080  790 1240  780  480  300  990 1110  580 2200 1900 2800  840  680  300  240 1015 2150  580 1400  800 1110 1980 1040  940  600  460  980 1880  900 1740 1140 2040 2800 1800 3300
+#&gt; [345] 1880 2000 2680  950 3700 1900 3600 2400 4400  980 1980 3600 2200 2800 4200  800 1400 1800 2210  980 2800 1900 2780 2440 3400  920 1260 1980 1000  960  640  860  590 1800 3600 2300 3900 2900 1850 3400  980  750  500
+#&gt; [388] 3200 3800 1850 2800  980 3200 2800 2640 1200  510  660  480 2900 2300 1980 1040  900 3400 1800 3000 2800  950 3800  800  760  540  340  600  480 2100 1840 1100 2650 1900  900 1880 1240 3000 2300 1400 2050 3250 2100
+#&gt; [431] 2450 4050 3800 3000 2200 3500 1800 1250 2200 1640 1080 1790 2080 1600 2200 2000 1200  980  800 1200 1800 1440 1600 2400 1900 2100 1200  720  800 2200 1600 1000 3000 2700 2300 1900 5800 1800 2200 3400 4400 3400 2500
+#&gt; [474] 1600 1200 1040 4400 4800 1800 3600 3000 4200 1400 2800 1800 3400 2600 3300 4100 1800 3500 2900  850  680 3100 1750  980 2800 1200  840 1040  500  800  640  900  660  750 3800 2900 1800 2700 4200 3000 1200  600 4400
+#&gt; [517] 3100 2800 1100 3400 2800  800 1800  540 3300 2800  900 2100 3200 1440  800  540 2900 2000  960 3200 1250 2900 2100 3600 1400 3900 3000 1800 2700 2400 2900 1400 3900 4200 2800 1900  960  640  750  500 3500 2900 2100
+#&gt; [560] 3200 1800 1500 2100 1000 2900 1600 2100 1700 2400 3600 2700 2900 1800 2200 3000 2100 1000 2700 2200 3100 3400 4000 2100 1900 2300 3200 1200 3400 2100  980  540 1100  750 1800 2300 3400 2700 3000 3800 4200 1800 2000
+#&gt; [603] 3300 4200 1200 2200  850  980  300  450   80 1800 2200 3400 3100 2600 1800 1200 2200 1400 2100 1600 2000 3200 2100 1400  880 2000 1200 1950 9540 8350 8590 7830 8210 9830 9240 9540 8230 7540 8490 9610 7960 8870 7420
+#&gt; [646] 8250 8472 7530 2340 2210 2670  657 2290 2110 7340 9230 1020  900 1140 1350 1200 1090  920 3150 6970 9100 8400 6500 4400 3600 4000 3700 4057 8800 6800 5900 7500 8000 4400 6600 3800 4800 4400 5200 6400 5900 4800 5600
+#&gt; [689] 7200 4400 5400 4800 6700 6000 6800 5950 7200 6400 5300 4900 4400 5000 4900 4800 5800 3600 4200 5000 5400 6400 4000 4300 5100 3900 2700 3000 4100 3900 4400 4900 3600 4500 5000 5400 3400 4800 3800 2900 3200 4200 2900
+#&gt; [732]   NA 3400 4100 3900 4900 3400 5100 4200 2900 3800 3200 4000 1150 2320 3450 1490  920 1010  680 1800 2700  950  103 1850 1200 1050 1860 1180 1050 1420 1800 1500 1200  860  640 1400  980 2100 1100 2400 1500 2200 1200
+#&gt; [775] 2000 1800 1000 2100 2400 2700 3000  980  240  840 1800 1000  500   12 2400 1000 1800  300 2100 2400 1200 1800 2100  280  480  150 1400  980   40  640  800 1000  810  500 1800  840  500 1500  480 1000 1200  450  280
+#&gt; [818]  150    0    0 2100 1800 1400  980 3000 2400 1100  340 1200  600 2300 1200 3000 4200 1800  980 2100 3200 1050 2700  980 1400  800  640  240 2100 2800 1600 1200 2200  980  540  320  270 1200  360  120  480    0 2400
+#&gt; [861] 3200 2500 1800  250  240  640  180  540    0    0 2800 1600  980  480  720    0  360 2100 2900 2100 1800 2900 3200 1800 1600 2800 1200 2100 2500 1800 1600 2100 1200  980 2500 1900 2100 1200  900  800  480  720 1600
+#&gt; [904] 2400  800  500  640  900 1400 2100 1900  960 2400 1800 2700 1500  930 2100 3000 1600 1200 4100 5400 4400 5000 3400 4900 2500 2700 1300  800  440 2100 3200 1100  800  540 4100 3300 1500  850  440 2800 1200 1400  880
+#&gt; [947]  750 1800  400   10 1400  600 2500 1100 2300 1000 1300  500  700   20    0 1800  680 2800 3300 2900 1800 2800 1000 2500  950  360    0 3400 2700 3200 2800 1600 2900 2000 2500 1400  800 1500 2100 1400  980 1800  500
+#&gt; [990] 1200  180    0    0</code></pre>
+</div>
+</div>
+</section>
+<section id="summary-statistics-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics-1">Summary Statistics</h2>
+<p>Summary statistics are used to describe the distribution of data.</p>
+</section>
+<section id="central-tendency" class="level2">
+<h2 class="anchored" data-anchor-id="central-tendency">Central Tendency</h2>
+<p>Central tendency is a statistical concept that refers to the central or typical value around which a set of data points tends to cluster. It is used to summarize and describe a data set by identifying a single representative value that provides insights into the data’s overall characteristics.</p>
+</section>
+<section id="variation" class="level2">
+<h2 class="anchored" data-anchor-id="variation">Variation</h2>
+<p>Variation in statistics refers to the extent to which data points in a dataset deviate or differ from a central tendency measure. Understanding variation is crucial for making informed decisions, drawing meaningful conclusions, and assessing the reliability of statistical analyses.</p>
+</section>
+<section id="minimum" class="level2">
+<h2 class="anchored" data-anchor-id="minimum">Minimum</h2>
+<p>The minimum (min) is the smallest value in the data.</p>
+</section>
+<section id="maximum" class="level2">
+<h2 class="anchored" data-anchor-id="maximum">Maximum</h2>
+<p>The maximum (max) is the largest value in the data.</p>
+</section>
+<section id="quartiles" class="level2">
+<h2 class="anchored" data-anchor-id="quartiles">Quartiles</h2>
+<p>Quartiles are three values (Q1, Q2, Q3) that divides the data into four subsets.</p>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.postimg.cc/p2BbKK5t/image.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="q1" class="level2">
+<h2 class="anchored" data-anchor-id="q1">Q1</h2>
+<p>Q1 is the value signifying that a quarter of the data is lower than it.</p>
+</section>
+<section id="q2---median" class="level2">
+<h2 class="anchored" data-anchor-id="q2---median">Q2 - Median</h2>
+<p>Q2 is the value signifying that half of the data is below it.</p>
+<div class="fragment">
+<p>The median also represents the central tendency of the data.</p>
+</div>
+</section>
+<section id="q3" class="level2">
+<h2 class="anchored" data-anchor-id="q3">Q3</h2>
+<p>Q3 is the value signifying that 3 quarters of the data is below it.</p>
+</section>
+<section id="interquartile-range" class="level2">
+<h2 class="anchored" data-anchor-id="interquartile-range">Interquartile Range</h2>
+<div class="fragment">
+<p><span class="math display">\[
+IQR = Q_3 - Q_1
+\]</span></p>
+</div>
+</section>
+<section id="range" class="level2">
+<h2 class="anchored" data-anchor-id="range">Range</h2>
+<div class="fragment">
+<p><span class="math display">\[
+R = \mathrm{max} - \mathrm{min}
+\]</span></p>
+</div>
+</section>
+<section id="how-to-identify-the-quartiles" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-identify-the-quartiles">How to identify the quartiles?</h2>
+<ol type="1">
+<li>Sort the data</li>
+<li>ID Max and Min</li>
+<li>Find the amount of data the makes a quarter:
+<ol type="1">
+<li><span class="math inline">\(K=N/4\)</span></li>
+</ol></li>
+<li>Create 4 groups using the sorted data
+<ol type="1">
+<li>group by data size</li>
+<li>If <span class="math inline">\(K\)</span> has a decimal, the <span class="math inline">\(Kth\)</span> value is quartile of each group.</li>
+</ol></li>
+</ol>
+</section>
+<section id="mean" class="level2">
+<h2 class="anchored" data-anchor-id="mean">Mean</h2>
+<p>Describe how you will find the mean of these numbers:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 15 16 14 19 14</code></pre>
+</div>
+</div>
+</section>
+<section id="mean-1" class="level2">
+<h2 class="anchored" data-anchor-id="mean-1">Mean</h2>
+<p>The mean is another measurement for central tendency.</p>
+<p><span class="math display">\[
+\bar X = \frac{1}{n}\sum^n_{i=1}X_i
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(n\)</span>: total data points</p></li>
+<li><p><span class="math inline">\(X_i\)</span>: data points</p></li>
+<li><p><span class="math inline">\(i\)</span>: indexing data</p></li>
+<li><p><span class="math inline">\(\sum\)</span>: add all from first (bottom) to last (up)</p></li>
+</ul>
+</section>
+<section id="variance" class="level2">
+<h2 class="anchored" data-anchor-id="variance">Variance</h2>
+<p>The variance is a measurement on the average squared distance the data points are from the central tendency.</p>
+<p><span class="math display">\[
+s^2 = \frac{1}{n-1}\sum^n_{i=1}(X_i-\bar X)^2
+\]</span></p>
+</section>
+<section id="standard-deviation" class="level2">
+<h2 class="anchored" data-anchor-id="standard-deviation">Standard Deviation</h2>
+<p>The standard deviation is a measurement on the average distance the data points are from the central tendency.</p>
+<p><span class="math display">\[
+s=\sqrt{s^2}
+\]</span></p>
+</section>
+<section id="outliers" class="level2">
+<h2 class="anchored" data-anchor-id="outliers">Outliers</h2>
+<p>These are data points that seem to be highly distant from all other variables.</p>
+<div class="fragment">
+<p><img src="https://miro.medium.com/v2/resize:fit:697/0*_k9tUMfs2P4CGUA3.png" class="img-fluid"></p>
+</div>
+</section>
+</section>
+<section id="numerical-statistics-in-r" class="level1">
+<h1>Numerical Statistics in R</h1>
+<section id="numerical-statistics-in-r-1" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-statistics-in-r-1">Numerical Statistics in R</h2>
+</section>
+<section id="mean-2" class="level2">
+<h2 class="anchored" data-anchor-id="mean-2">Mean</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(DATA<span class="sc">$</span>VAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="median" class="level2">
+<h2 class="anchored" data-anchor-id="median">Median</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(DATA<span class="sc">$</span>VAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="standard-deviation-1" class="level2">
+<h2 class="anchored" data-anchor-id="standard-deviation-1">Standard Deviation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(DATA<span class="sc">$</span>VAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="variance-1" class="level2">
+<h2 class="anchored" data-anchor-id="variance-1">Variance</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(DATA<span class="sc">$</span>VAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quartiles-1" class="level2">
+<h2 class="anchored" data-anchor-id="quartiles-1">Quartiles</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(DATA<span class="sc">$</span>VAR, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="max-and-min" class="level2">
+<h2 class="anchored" data-anchor-id="max-and-min">Max and Min</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(DATA<span class="sc">$</span>VAR)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(DATA<span class="sc">$</span>VAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary-statistics-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics-2">Summary Statistics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_stats</span>(DATA<span class="sc">$</span>VAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mr.-trash-wheel" class="level2">
+<h2 class="anchored" data-anchor-id="mr.-trash-wheel">Mr.&nbsp;Trash Wheel</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_stats</span>(trashwheel<span class="sc">$</span>PlasticBottles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 1 × 10
+#&gt;     min   q25  mean median   q75   max    sd      var   iqr missing
+#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1     0  988. 2219.   1900  2900  9830 1650. 2723984. 1912.       1</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-visualization" class="level1">
+<h1>Data Visualization</h1>
+<section id="histogram" class="level2">
+<h2 class="anchored" data-anchor-id="histogram">Histogram</h2>
+<p>A histogram is a graphical representation of the distribution or frequency of data points in a dataset. It provides a visual way to understand the shape, central tendency, and spread of a dataset by dividing the data into intervals or bins and showing how many data points fall into each bin as a bar.</p>
+</section>
+<section id="histogram-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="histogram-r-code">Histogram R Code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="histogram-1" class="level2">
+<h2 class="anchored" data-anchor-id="histogram-1">Histogram</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(y), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram-2" class="level2">
+<h2 class="anchored" data-anchor-id="histogram-2">Histogram</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">1000</span>, <span class="dv">2</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(y), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">1000</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(y), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histograms-1" class="level2">
+<h2 class="anchored" data-anchor-id="histograms-1">Histograms</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="fl">0.4</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (y <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">23</span>) <span class="sc">+</span> (y <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">27</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(z), <span class="fu">aes</span>(z)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mr.-trash-wheel-1" class="level2">
+<h2 class="anchored" data-anchor-id="mr.-trash-wheel-1">Mr.&nbsp;Trash Wheel</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: Removed 1 row containing non-finite outside the scale range (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="box-plot" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot">Box Plot</h2>
+<p>A box plot, also known as a box-and-whisker plot, is a graphical representation of the distribution and key statistical characteristics of a dataset. It provides a visual summary of the data’s central tendency, spread, and potential outliers.</p>
+</section>
+<section id="box-plot-1" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-1">Box Plot</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://miro.medium.com/max/9000/1*2c21SkzJMf3frPXPAR_gZA.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="box-plot-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-r-code">Box Plot R Code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="box-plot-2" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-2">Box Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: Removed 1 row containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="box-plot-3" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-3">Box Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(<span class="at">y =</span> PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: Removed 1 row containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dot-plots" class="level2">
+<h2 class="anchored" data-anchor-id="dot-plots">Dot Plots</h2>
+<p>Dot Plots are similar to histograms, but they incorporate dots to count how many data points fall within bins.</p>
+</section>
+<section id="dot-plots-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="dot-plots-in-r">Dot Plots in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binwidth =</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dot-plots-1" class="level2">
+<h2 class="anchored" data-anchor-id="dot-plots-1">Dot Plots</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binwidth =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`stat_bindot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="transformed-data" class="level1">
+<h1>Transformed Data</h1>
+<section id="transformed-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="transformed-data-1">Transformed Data</h2>
+<p>When working with skewed data, it may be beneficial to transform the data to identify trends.</p>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(Y = \ln(X)\)</span></li>
+<li><span class="math inline">\(Y = \frac{1}{X}\)</span></li>
+<li><span class="math inline">\(Y = \sqrt X\)</span></li>
+</ul>
+</div>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ly <span class="ot">&lt;-</span> <span class="fu">log</span>(y)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(y), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Skewed Data"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">y =</span> ly), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Log-Transformed Data"</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scatter-plots" class="level1">
+<h1>Scatter Plots</h1>
+<section id="scatter-plots-1" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plots-1">Scatter Plots</h2>
+<p>Scatter plots demonstrate how two variables behave with each other. They can tell you any postive or negative trends, if they exist, with the combination of the plots.</p>
+</section>
+<section id="positive-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="positive-relationship">Positive Relationship</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="negative-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="negative-relationship">Negative Relationship</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="no-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="no-relationship">No Relationship</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="weak-positive-or-negative-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="weak-positive-or-negative-relationship">Weak Positive or Negative Relationship</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scatter-plots-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plots-in-r">Scatter Plots in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(<span class="at">x =</span> VAR1, <span class="at">y =</span> VAR2)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mr.-trash-wheel-2" class="level2">
+<h2 class="anchored" data-anchor-id="mr.-trash-wheel-2">Mr.&nbsp;Trash Wheel</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles, PlasticBags)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="transformed-data-2" class="level2">
+<h2 class="anchored" data-anchor-id="transformed-data-2">Transformed Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(<span class="fu">log</span>(PlasticBottles), <span class="fu">log</span>(PlasticBags))) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("www\.inqs\.info\/m201_s25");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,67 @@
+---
+title: "Extra Credit 4"
+description: Instructions for extra credit four.
+navbar: false
+date: 01-05-2025
+editor: source
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+---
+
+Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. Some of these books are available through the Broome Library.
+
+**Books:**
+
+-   The Book of Why
+
+    -   Judea Pearl
+
+-   Algorithms of Oppression
+
+    -   Safiya Umoja Noble
+
+-   Data Feminism
+
+    -   Catherine D'Ignazio and Lauren Klein
+
+-   Weapons of Math Destruction
+
+    -   Cathy O'Niel
+
+-   Invisible women : data bias in a world designed for men
+
+    -   Caroline Criado Perez
+
+-   Factfulness: Ten Reasons We're Wrong About the World... and Why Things are Better Than You Think
+
+    -   Hans Rosling
+
+-   Artificial Unintelligence: How Computers Misunderstand the World
+
+    -   Merideth Broussard
+
+-   Technically Wrong: Sexist Apps, Biased Algorithms, and Other Threats of Toxic Tech
+
+    -   Sara Wachter-Boettcher
+
+-   **OR ANY Book Approved By Me (Deadline for Approval by NOV 15, 2024)**
+
+Report guidelines
+
+-   4-5 Pages
+
+-   Must include a title page
+
+-   Double Spaced
+
+-   12 point font
+
+-   Proofread your work
+
+-   Submit a pdf of your work to Canvas
+
+-   **Due 5/13/2024**
+
+**Worth 3 final grade percentage points.**

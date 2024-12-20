@@ -1,0 +1,193 @@
+---
+title: "Data Summarization"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+
+editor: visual
+---
+
+# Sampling
+
+## Sampling
+
+Sampling is the process of selecting units from a population interest to collect data from.
+
+![](https://www.simplypsychology.org/wp-content/uploads/Sample-Target-Population-1024x546.jpeg){fig-align="center"}
+
+## Sampling
+
+When Sampling you want to maintain these properties:
+
+-   Representative sample
+
+-   Large enough sample size
+
+## Sampling Example
+
+We want to answer the question, are people happy?
+
+![](https://www.nationsonline.org/maps/USA-map.jpg){fig-align="center"}
+
+## Random Sampling
+
+When sampling, we strive for random sampling
+
+-   Each unit in the population of interest must have an equal probability of being selected for the study.
+
+-   This ensures a representative population
+
+## Independent Sampling
+
+In addition to random sampling, we strive to make sure each unit is independent from each other.
+
+-   The probability of UNIT A being sampled will not affect the probability of UNIT B to be sampled.
+
+## Sampling Variation
+
+-   Random samples may vary from the population of interest.
+
+-   Due to randomness, samples many not look the or biased.
+
+-   However, this is to be expected as because the sample will not be biased in one way or another.
+
+-   Samples are then considered unbiased as long as experimental units were collected randomly.
+
+# Data Structure
+
+## Data Structure
+
+```{r}
+library(tidyverse)
+library(DT)
+library(palmerpenguins)
+penguins |> drop_na() |> 
+  datatable(options = list(dom = "tp",
+                           pageLength = 6))
+```
+
+## Data
+
+A data set can be manipulated in ways to make it easier to process:
+
+-   `filter()`: allows you to remove rows that do not satisfy a certain condition
+
+-   `select()`: select to view certain variables
+
+-   `mutate()`: add a new variable to the data set based on a set of instructions
+
+## Selecting a Variable
+
+I am interested in viewing species, island, and body_mass_g in my data set:
+
+```{r}
+#| echo: true
+
+select(penguins, species, island, body_mass_g)
+
+```
+
+## Filtering a Data Set
+
+I am only interested in looking at the penguins with a body mass bigger than 4000 g:
+
+```{r}
+#| echo: true
+
+penguins_over_4000 <- filter(penguins, body_mass_g > 4000)
+select(penguins_over_4000, species, island, body_mass_g)
+```
+
+# Data Manipulation
+
+## Data Manipulation
+
+This is a process where we can manipulate the data when there are errors in the data recording process.
+
+OR
+
+Data must be formatted in a way for analysis (computer requirements).
+
+## Missing Data
+
+```{r}
+penguins |>  select(species, island, body_mass_g) |> 
+  datatable(options = list(dom = "tp",
+                           pageLength = 6))
+```
+
+## Handling Missing Data
+
+How do we handle missing data?
+
+-   Remove the experimental unit
+
+-   Take and educated guess what it is
+
+    -   Replace with mean
+
+    -   Single Imputation
+
+    -   Multiple Imputation
+
+## Handling Missing Data
+
+For this class, we will remove the entire experimental unit.
+
+```{r}
+#| echo: true
+
+
+# Obtaining the number of rows
+nrow(penguins)
+
+# Removing missing cases
+penguins_missing_removed <- drop_na(penguins)
+nrow(penguins_missing_removed)
+```
+
+## Summarizing Data
+
+```{r}
+rnorm(8, mean = 10, sd = 3) |> round(2)
+```
+
+How would a computer count how many values are greater than 10?
+
+# Prediction
+
+## Prediction
+
+3, 4, 6, 2, 7, 9, 2, 0, 1, 4, 6, 2
+
+List as many ways you can present the data to collaborators. With each method, what are the advantages and disadvantages?

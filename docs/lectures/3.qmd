@@ -1,0 +1,419 @@
+---
+title: "Categorical Data"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+
+editor: source
+---
+
+## R Packages
+
+-   csucistats
+-   tidyverse
+-   ggtricks
+-   ggmosaic
+-   waffle
+
+# The Great American Coffee Taste Test
+
+## Background
+
+In October 2023, [James Hoffman](https://www.youtube.com/watch?v=bMOOQfeloH0) and [Cometeer](https://cometeer.com/pages/the-great-american-coffee-taste-test) held the "Great American Coffee Taste Test" on YouTube, asking viewers to fill out a survey and coffee ordered from Cometeer.
+
+## Data
+
+The data is part of [DSLC](https://dslc.io/) [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) program where data sets are provided to help data science learners how to create graphics.
+
+Information on the data sets variables (columns) can be found [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-05-14/readme.md).
+
+## Data
+
+```{r}
+#| code-fold: true
+library(csucistats)
+library(ggtricks)
+library(waffle)
+library(ggmosaic)
+library(tidyverse)
+library(ThemePark)
+library(DT)
+coffee <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv")
+datatable(slice_sample(coffee, n = 10), options = list(dom = "p", pageLength = 5))
+
+```
+
+# Categorical Data
+
+## Categorical Data
+
+Categorical data are data recordings that represented a category.
+
+::: fragment
+Data may be recorded as a "character" or "string" data.
+:::
+
+::: fragment
+Data may be recorded as a whole number, with an attached code book indicating the categories each number belongs to.
+:::
+
+## Examples of Categorical Data
+
+::: incremental
+
+-   Are you a student?
+
+-   What city do you live in?
+
+-   What is your major?
+
+:::
+
+## Likert Scale
+
+Likert scales are the rating systems you may have answered in surveys.
+
+::: fragment
+1.    Strongly Disagree
+2.    Disagree
+3.    Neutral
+4.    Agree
+5.    Strongly Agree
+:::
+
+## Likert Scales
+
+Likert scales may be treated as numerical data if the jumps between scales are equal.
+
+## Summarizing Categorical Data
+
+Once we have the data, how do we summarize it to other people.
+
+# Continguency Tables
+
+## Continguency Tables
+
+Continguency tables display how often a category is seen in the data.
+
+::: fragment
+There are two types of statistics that are reported in a table, the frequency and proportion. 
+:::
+
+
+## Frequencey
+
+Frequency represents the count of observing a specific category in your sample. 
+
+```{r}
+#| echo: false
+sample(coffee$cups, 10)
+```
+
+## Proportions (relative frequencey)
+
+Proportions represent the percentage that the category represents the sample.
+
+::: fragment
+This allows you to generalize your sample to the population, regardless of sample size.
+:::
+
+## Continguency Tables in R
+
+The variable `caffeine` indicates how much caffeine a participant prefers.
+
+```{r}
+#| echo: true
+
+cat_stats(coffee$caffeine)
+```
+
+
+# Bar Plots
+
+## Plotting in R
+
+Plotting in R can be done via the [ggplot2](https://ggplot2.tidyverse.org/), a powerful library based on the [Grammar of Graphics](https://link.springer.com/book/10.1007/0-387-28695-0).
+
+## Plotting in R
+
+1.    You need to create a base plot using the `ggplot()`
+2.    Use the `+` to change the look of the base plot 
+3.    Indicate how to transform the base plot to the desired plot
+  1.    `geom_*`
+  2.    `stat_*`
+4.    Change the look of the plot with other functions
+5.    Use a `theme_*` function to add a theme to the plot
+
+## Bar Plots
+
+Bar Plots can be used to display the frequency or proportions on the data.
+
+```{r}
+#| echo: false
+
+ggplot(coffee) +
+  geom_bar(aes(caffeine))
+```
+
+## Frequency Bar Plots in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+ggplot(data = DATA, aes(x = VARIABLE)) +
+  geom_bar()
+```
+
+## Frequency Bar Plots in R
+
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+ggplot(coffee, aes(caffeine)) +
+  geom_bar()
+```
+
+
+## Relative Frequency Bar Plots in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+ggplot(data = DATA, aes(x = VARIABLE, y = after_stat(prop), group = 1)) +
+  geom_bar()
+```
+
+## Relative Frequency Bar Plots in R
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+ggplot(coffee, aes(caffeine, after_stat(prop), group = 1)) +
+  geom_bar()
+```
+
+# Cross-Tabulation
+
+## Cross-Tabulation
+
+Cross Tabulations allow you to see how data points are divided when looking at 2 different categorical variables.
+
+## Data
+
+The variable `taste` indicates if the participants like the taste of coffee.
+
+```{r}
+#| echo: false
+#| eval: true
+
+coffee$caffeine
+coffee$taste
+```
+
+## Cross Tabulations
+
+```{r}
+cat_stats(coffee$caffeine, coffee$taste)
+```
+
+## Table Proportions
+
+```{r}
+cat_stats(coffee$caffeine, coffee$taste, prop = "table")
+```
+
+## Row Proportions
+
+```{r}
+cat_stats(coffee$caffeine, coffee$taste, prop = "row")
+```
+
+## Column Proportions
+
+```{r}
+cat_stats(coffee$caffeine, coffee$taste, prop = "col")
+```
+
+## Stacked Bar Plot in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+ggplot(DATA, aes(x = VAR1, y = after_stat(count), fill = VAR2)) +
+  geom_bar()
+
+```
+
+## Stacked Bar Plot in R
+
+```{r}
+#| echo: true
+#| eval: true
+ggplot(coffee, aes(x = caffeine, y = after_stat(count), fill = taste)) +
+  geom_bar()
+```
+
+## Stacked Bar Plot in R
+
+```{r}
+#| echo: true
+#| eval: true
+ggplot(coffee, aes(y = caffeine, x = after_stat(count), fill = taste)) +
+  geom_bar()
+
+```
+
+
+# Other Plots
+
+## Pie Charts
+
+Pie charts are useful methods to show how a categories are related to each other in a sample.
+
+```{r}
+#| echo: false
+#| eval: false
+coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+ggplot(coffee_pie, aes(cat = Category, val = n, fill = Category)) +
+  geom_pie()
+```
+
+
+## Pie Chart in R
+
+```{r}
+#| echo: true
+#| eval: false
+df_pie <- cat_stats(DATA$VARIABLE, pie = TRUE)
+ggplot(df_pie, aes(cat = Category, val = n, fill = Category)) +
+  geom_pie()
+```
+
+## Pie Chart in R
+
+```{r}
+#| echo: true
+#| eval: false
+coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+ggplot(coffee_pie, aes(cat = Category, val = n, fill = Category)) +
+  geom_pie()
+```
+
+
+
+## Mosiac Plots 
+
+Mosiac Plots are usful in visualizing two categorical variables with its relative proportions.
+
+```{r}
+#| echo: false
+#| eval: true
+ggplot(coffee) +
+  geom_mosaic(aes(x = product(caffeine, taste), fill = taste))
+```
+
+
+## Mosiac Plots in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+ggplot(DATA) +
+  geom_mosaic(aes(x = product(VARIABLE), fill = VARIABLE))
+```
+
+
+## Mosiac Plots in R
+
+```{r}
+#| echo: true
+#| eval: true
+ggplot(coffee) +
+  geom_mosaic(aes(x = product(caffeine, taste), fill = taste))
+```
+
+
+## Waffle Charts
+
+## Waffle Charts
+
+Waffle Charts is similar to the pie charts where you can visualize the proportions.
+
+```{r}
+#| echo: false
+#| eval: false
+
+coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+ggplot(coffee_pie, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE)
+```
+
+
+## Waffle Charts in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+df_pie <- cat_stats(DATA$VARIABLE, pie = TRUE)
+ggplot(df_pie, aes(cat = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE)
+
+
+```
+
+
+## Waffle Charts in R
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+ggplot(coffee_pie, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE)
+```
+
+# Theming
+
+## Themes
+
+The R packages `ThemePark` and `ggthemes` allows you to change the overall look of a plot.
+
+::: fragment
+All you need to do is add the theme to the plot.
+:::

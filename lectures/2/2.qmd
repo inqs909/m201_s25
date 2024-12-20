@@ -1,0 +1,133 @@
+---
+title: "Numbers & Data"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+
+editor: source
+---
+
+## Documents
+
+-   Video_1A.ypynb
+
+# Case Study
+
+## Penguin
+
+![Picture from: World Wildlife Fund](https://www.wwf.org.uk/sites/default/files/styles/fundraising_slice_1900/public/2016-10/Original_WW22776.jpg){fig-align="center"}
+
+::: notes
+-   What is the current knowledge of penguins?
+-   How do we gain new knowledge of penguins?
+-   Can anything we learn about this penguin be applied to other penguins?
+:::
+
+## Penguin
+
+::: columns
+::: {.column width="50%"}
+![Picture from: World Wildlife Fund](https://www.wwf.org.uk/sites/default/files/styles/fundraising_slice_1900/public/2016-10/Original_WW22776.jpg){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+::: incremental
+-   How long is its flipper?
+-   How long is its beak?
+-   What is its mass?
+-   What its species?
+-   Where was it found?
+-   When was it found?
+:::
+:::
+:::
+
+
+## Penguins
+
+![Picture from: Australian Antarctic Program](https://www.antarctica.gov.au/site/assets/files/19882/rs1662_aad.600x514.jpg){fig-align="center"}
+
+## Palmer Penguins
+
+Palmer Penguins is a study to determine if 
+
+# Data
+
+## Observations
+
+An observation is the unit which contains information to be obtained.\
+
+::: fragment
+Also known as experimental unit.
+:::
+
+## Data
+
+Data is information from a particular experimental unit. There can be more that one piece of information per experimental unit.
+
+## Data Structure
+
+The structure of the data can be represented in various forms:
+
+-   A list of long numbers
+
+-   Table
+
+## Tabular Form
+
+```{r}
+#| echo: false
+#| message: false
+palmerpenguins::penguins |> 
+  DT::datatable(options = list(dom = "t",
+                pageLength = 4))
+
+```
+
+# Measurements
+
+## Measurements
+
+Measurements are the processes where we represent an attribute of an experimental unit as either a number or category.
+
+## Quantitative Measurements
+
+Quantitative measurements are data measurements that take a numeric form.
+
+## Qualitative Measurements
+
+Qualitative measurements are data measurements that take a certain category.
+
+## Value
+
+A value is a description (number or category) of a specific attribute of an experimental unit.
+
+## Variable
+
+A variable is the descriptive attribute that we want to obtain from an experimental unit. In terms of a data set, the variable contains all the values of specific attribute in a sample.

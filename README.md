@@ -1,2 +1,1 @@
-# m201_s25
-# m201_s25
+# Math 201 Course Material

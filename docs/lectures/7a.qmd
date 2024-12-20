@@ -1,0 +1,250 @@
+---
+title: "A Simple Model"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+penguins_nona <- penguins |> drop_na() 
+df <- rexp(1000, 2) |> {\(.) tibble(x = ., y=1:length(.))}()
+
+```
+
+# Announcements
+
+## Computer Literacy Survey
+
+![](img/frame%20(4).png){fig-align="center"}
+
+## Plotathon
+
+![](img/2023%20PAT%20Faculty%20Flyer.png){fig-align="center"}
+
+## R Workshop
+
+-   Tuesday November 7, 12-1:30PM
+
+-   Broome 2680
+
+-   Free Lunch
+
+# A Simple Model
+
+## Generated Model
+
+$$
+Outcome \sim OtherStuff
+$$
+
+## Other Stuff
+
+What is other stuff?
+
+## Generated Model
+
+$$
+Outcome \sim DGP
+$$
+
+## A Simple Model
+
+```{r}
+df |> ggplot(aes(x)) +
+  geom_histogram() +
+  theme_zelda()
+```
+
+## A Simple Model
+
+$$
+Outcome = \_\_\_ + OtherStuff 
+$$
+
+## Notation
+
+$$
+Y = \ \ \ \ \ \ \ \ \ + \varepsilon 
+$$
+
+## The Simple Generated Model
+
+$$
+Y \sim \mu + \varepsilon
+$$
+
+$$
+\varepsilon \sim DGP
+$$
+
+::: fragment
+DGP is not the same as the previous one, it is transformed due $\beta_0$. Consider this the NULL DGP.
+:::
+
+## Observing Data
+
+$$
+Y = \beta_0 + \varepsilon
+$$
+
+## Estimated Data
+
+$$
+\hat Y=\hat\beta_0
+$$
+
+## Notation
+
+::: columns
+::: {.column width="50%"}
+### Observed
+
+$$
+Y = \beta_0 + \varepsilon
+$$
+:::
+
+::: {.column width="50%"}
+### Estimated
+
+$$
+\hat Y = \hat \beta_0
+$$
+:::
+:::
+
+# Mean vs Median
+
+## Mean vs Median
+
+![](https://i.redd.it/l1g8wkxc474b1.jpg){fig-align="center"}
+
+## Mean vs Median
+
+Which one is preferred?
+
+## Mean vs Median
+
+```{r}
+df |> 
+  ggplot(aes(x)) +
+    geom_histogram() +
+    geom_vline(aes(xintercept = mean(x)),
+               col = "red") +
+    geom_vline(aes(xintercept = median(x)),
+               col = "blue") + 
+    theme_zelda()
+
+```
+
+## Deviations
+
+Deviations are know as the distance of a data point from a model:
+
+$$
+\hat r_i= y_i -\hat y_i
+$$
+
+These are also know as residuals ($\hat r_i$)
+
+## Deviations
+
+```{r}
+penguins |> drop_na() |> 
+  {\(.) .$body_mass_g - mean(.$body_mass_g)}() |> 
+  {\(.) tibble(y = sample(., length(.)), x = 1:length(.))}() |> 
+  ggplot(aes(x,y)) + geom_point() + 
+    geom_hline(yintercept = 0, col = "red") +
+    labs(x = "Index", y = "Deviation") +
+    theme_zelda(axis.title.y = element_text(size = 48),
+                axis.text.y = element_text(size = 36))
+```
+
+## Deviations
+
+```{r}
+penguins |> drop_na() |> 
+  {\(.) .$body_mass_g - mean(.$body_mass_g)}() 
+```
+
+## Sum of Deviations with Mean
+
+```{r}
+#| echo: true
+penguins |> drop_na() |> 
+  {\(.) .$body_mass_g - mean(.$body_mass_g)}() |> 
+  sum()
+```
+
+## $10^{-x}$
+
+```{r}
+x <- 0:15
+y <- 10^{-x}
+ggplot(tibble(x=x, y=y), aes(x,y)) + geom_line() +
+  theme_bw() +
+  labs(y="10^{-x}")+
+  theme(axis.text.y = element_text(size = 36),
+        axis.text.x = element_text(size = 36),
+        axis.title.x = element_text(size = 36),
+        axis.title.y = element_text(size = 36))
+```
+
+## Sum of Median Deviations with Median
+
+```{r}
+#| echo: true
+penguins |> drop_na() |> 
+  {\(.) .$body_mass_g - median(.$body_mass_g)}() |> 
+  sum()
+```
+
+# EPE Session
+
+## Prediction
+
+```{r}
+rpois(3, 28)
+```
+
+Come up with 3 ways to transform the data.
+
+Does this remind you of something you have learned in your previous math classes?

@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Linear Regression – MATH 201</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-41afc036f4045670d8a63ab41900e02e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
+<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MATH 201</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">syllabus.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ec.html"> 
+<span class="menu-text">Extra Credit</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#modeling-relationships" id="toc-modeling-relationships" class="nav-link active" data-scroll-target="#modeling-relationships">Modeling Relationships</a>
+  <ul class="collapse">
+  <li><a href="#explaining-variation" id="toc-explaining-variation" class="nav-link" data-scroll-target="#explaining-variation">Explaining Variation</a></li>
+  <li><a href="#explaining-variation-1" id="toc-explaining-variation-1" class="nav-link" data-scroll-target="#explaining-variation-1">Explaining Variation</a></li>
+  <li><a href="#explaining-variation-with-one-variable" id="toc-explaining-variation-with-one-variable" class="nav-link" data-scroll-target="#explaining-variation-with-one-variable">Explaining Variation with One Variable</a></li>
+  </ul></li>
+  <li><a href="#a-simple-model" id="toc-a-simple-model" class="nav-link" data-scroll-target="#a-simple-model">A Simple Model</a>
+  <ul class="collapse">
+  <li><a href="#generated-model" id="toc-generated-model" class="nav-link" data-scroll-target="#generated-model">Generated Model</a></li>
+  <li><a href="#a-simple-model-1" id="toc-a-simple-model-1" class="nav-link" data-scroll-target="#a-simple-model-1">A Simple Model</a></li>
+  <li><a href="#a-simple-model-2" id="toc-a-simple-model-2" class="nav-link" data-scroll-target="#a-simple-model-2">A Simple Model</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#the-simple-generated-model" id="toc-the-simple-generated-model" class="nav-link" data-scroll-target="#the-simple-generated-model">The Simple Generated Model</a></li>
+  <li><a href="#observing-data" id="toc-observing-data" class="nav-link" data-scroll-target="#observing-data">Observing Data</a></li>
+  <li><a href="#estimated-line" id="toc-estimated-line" class="nav-link" data-scroll-target="#estimated-line">Estimated Line</a></li>
+  <li><a href="#notation-1" id="toc-notation-1" class="nav-link" data-scroll-target="#notation-1">Notation</a></li>
+  </ul></li>
+  <li><a href="#modelling-data" id="toc-modelling-data" class="nav-link" data-scroll-target="#modelling-data">Modelling Data</a>
+  <ul class="collapse">
+  <li><a href="#indexing-data" id="toc-indexing-data" class="nav-link" data-scroll-target="#indexing-data">Indexing Data</a></li>
+  <li><a href="#indexing-data-1" id="toc-indexing-data-1" class="nav-link" data-scroll-target="#indexing-data-1">Indexing Data</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#estimated-value" id="toc-estimated-value" class="nav-link" data-scroll-target="#estimated-value">Estimated Value</a></li>
+  <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation">Estimation</a></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals">Residuals</a></li>
+  <li><a href="#estimation-in-r" id="toc-estimation-in-r" class="nav-link" data-scroll-target="#estimation-in-r">Estimation in R</a></li>
+  <li><a href="#modeling-body-mass-in-penguins" id="toc-modeling-body-mass-in-penguins" class="nav-link" data-scroll-target="#modeling-body-mass-in-penguins">Modeling Body Mass in Penguins</a></li>
+  </ul></li>
+  <li><a href="#linear-model" id="toc-linear-model" class="nav-link" data-scroll-target="#linear-model">Linear Model</a>
+  <ul class="collapse">
+  <li><a href="#linear-model-1" id="toc-linear-model-1" class="nav-link" data-scroll-target="#linear-model-1">Linear Model</a></li>
+  <li><a href="#linear-model-2" id="toc-linear-model-2" class="nav-link" data-scroll-target="#linear-model-2">Linear Model</a></li>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot">Scatter Plot</a></li>
+  <li><a href="#imposing-a-line" id="toc-imposing-a-line" class="nav-link" data-scroll-target="#imposing-a-line">Imposing a Line</a></li>
+  <li><a href="#modelling-the-data" id="toc-modelling-the-data" class="nav-link" data-scroll-target="#modelling-the-data">Modelling the Data</a></li>
+  <li><a href="#linear-model-3" id="toc-linear-model-3" class="nav-link" data-scroll-target="#linear-model-3">Linear Model</a></li>
+  <li><a href="#sse" id="toc-sse" class="nav-link" data-scroll-target="#sse">SSE</a></li>
+  <li><a href="#fitting-a-model-in-r" id="toc-fitting-a-model-in-r" class="nav-link" data-scroll-target="#fitting-a-model-in-r">Fitting a Model in R</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#interpretation-of-hatbeta_0" id="toc-interpretation-of-hatbeta_0" class="nav-link" data-scroll-target="#interpretation-of-hatbeta_0">Interpretation of <span class="math inline">\(\hat\beta_0\)</span></a></li>
+  <li><a href="#interpreting-example" id="toc-interpreting-example" class="nav-link" data-scroll-target="#interpreting-example">Interpreting Example</a></li>
+  <li><a href="#interpretation-of-hat-beta_1" id="toc-interpretation-of-hat-beta_1" class="nav-link" data-scroll-target="#interpretation-of-hat-beta_1">Interpretation of <span class="math inline">\(\hat \beta_1\)</span></a></li>
+  <li><a href="#interpreting-example-1" id="toc-interpreting-example-1" class="nav-link" data-scroll-target="#interpreting-example-1">Interpreting Example</a></li>
+  </ul></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables">Categorical Variables</a>
+  <ul class="collapse">
+  <li><a href="#body-mass-with-species" id="toc-body-mass-with-species" class="nav-link" data-scroll-target="#body-mass-with-species">Body Mass with Species</a></li>
+  <li><a href="#body-mass-with-species-1" id="toc-body-mass-with-species-1" class="nav-link" data-scroll-target="#body-mass-with-species-1">Body Mass with Species</a></li>
+  <li><a href="#group-statistics" id="toc-group-statistics" class="nav-link" data-scroll-target="#group-statistics">Group Statistics</a></li>
+  <li><a href="#compute-group-statistics" id="toc-compute-group-statistics" class="nav-link" data-scroll-target="#compute-group-statistics">Compute Group Statistics</a></li>
+  <li><a href="#linear-models-with-categorical-variables" id="toc-linear-models-with-categorical-variables" class="nav-link" data-scroll-target="#linear-models-with-categorical-variables">Linear Models with Categorical Variables</a></li>
+  <li><a href="#binary-dummy-variables" id="toc-binary-dummy-variables" class="nav-link" data-scroll-target="#binary-dummy-variables">Binary (Dummy) Variables</a></li>
+  <li><a href="#binary-dummy-variables-1" id="toc-binary-dummy-variables-1" class="nav-link" data-scroll-target="#binary-dummy-variables-1">Binary (Dummy) Variables</a></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
+  <li><a href="#species-dummy-variables" id="toc-species-dummy-variables" class="nav-link" data-scroll-target="#species-dummy-variables">Species Dummy Variables</a></li>
+  <li><a href="#linear-model-4" id="toc-linear-model-4" class="nav-link" data-scroll-target="#linear-model-4">Linear Model</a></li>
+  <li><a href="#fitting-a-model-in-r-1" id="toc-fitting-a-model-in-r-1" class="nav-link" data-scroll-target="#fitting-a-model-in-r-1">Fitting a Model in R</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example</a></li>
+  <li><a href="#finding-the-adelie-mass" id="toc-finding-the-adelie-mass" class="nav-link" data-scroll-target="#finding-the-adelie-mass">Finding the Adelie MASS</a></li>
+  <li><a href="#finding-the-chinstrap-mass" id="toc-finding-the-chinstrap-mass" class="nav-link" data-scroll-target="#finding-the-chinstrap-mass">Finding the Chinstrap MASS</a></li>
+  <li><a href="#finding-the-gentoo-mass" id="toc-finding-the-gentoo-mass" class="nav-link" data-scroll-target="#finding-the-gentoo-mass">Finding the Gentoo MASS</a></li>
+  <li><a href="#intepreting-hat-beta_1" id="toc-intepreting-hat-beta_1" class="nav-link" data-scroll-target="#intepreting-hat-beta_1">Intepreting <span class="math inline">\(\hat \beta_1\)</span></a></li>
+  <li><a href="#intepreting-hat-beta_2" id="toc-intepreting-hat-beta_2" class="nav-link" data-scroll-target="#intepreting-hat-beta_2">Intepreting <span class="math inline">\(\hat \beta_2\)</span></a></li>
+  </ul></li>
+  <li><a href="#strength-and-correlation" id="toc-strength-and-correlation" class="nav-link" data-scroll-target="#strength-and-correlation">Strength and Correlation</a>
+  <ul class="collapse">
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a></li>
+  <li><a href="#coefficient-of-determination" id="toc-coefficient-of-determination" class="nav-link" data-scroll-target="#coefficient-of-determination">Coefficient of Determination</a></li>
+  <li><a href="#correlation-in-r" id="toc-correlation-in-r" class="nav-link" data-scroll-target="#correlation-in-r">Correlation in R</a></li>
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example</a></li>
+  <li><a href="#coefficient-of-determination-in-r" id="toc-coefficient-of-determination-in-r" class="nav-link" data-scroll-target="#coefficient-of-determination-in-r">Coefficient of Determination in R</a></li>
+  <li><a href="#example-4" id="toc-example-4" class="nav-link" data-scroll-target="#example-4">Example</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Linear Regression</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="modeling-relationships" class="level1">
+<h1>Modeling Relationships</h1>
+<section id="explaining-variation" class="level2">
+<h2 class="anchored" data-anchor-id="explaining-variation">Explaining Variation</h2>
+<div class="fragment">
+<p>This is the process where we try to reduce the variation with the use of other variables.</p>
+</div>
+<div class="fragment">
+<p>Can be thought of as getting it less wrong when taking an educated guess.</p>
+</div>
+</section>
+<section id="explaining-variation-1" class="level2">
+<h2 class="anchored" data-anchor-id="explaining-variation-1">Explaining Variation</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="explaining-variation-with-one-variable" class="level2">
+<h2 class="anchored" data-anchor-id="explaining-variation-with-one-variable">Explaining Variation with One Variable</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="a-simple-model" class="level1">
+<h1>A Simple Model</h1>
+<section id="generated-model" class="level2">
+<h2 class="anchored" data-anchor-id="generated-model">Generated Model</h2>
+<p><span class="math display">\[
+Y \sim DGP_1
+\]</span></p>
+</section>
+<section id="a-simple-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-model-1">A Simple Model</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="a-simple-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-model-2">A Simple Model</h2>
+<p><span class="math display">\[
+Y = \_\_\_ + error
+\]</span></p>
+</section>
+<section id="notation" class="level2">
+<h2 class="anchored" data-anchor-id="notation">Notation</h2>
+<p><span class="math display">\[
+Y = \ \ \ \ \ \ \ \ \ + \varepsilon
+\]</span></p>
+</section>
+<section id="the-simple-generated-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-simple-generated-model">The Simple Generated Model</h2>
+<p><span class="math display">\[
+Y \sim \mu + \varepsilon
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon \sim DGP_2
+\]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(DGP_2\)</span> is not the same as the <span class="math inline">\(DGP_1\)</span>, it is transformed due <span class="math inline">\(\beta_0\)</span>. Consider this the NULL <span class="math inline">\(DGP\)</span>.</p>
+</div>
+</section>
+<section id="observing-data" class="level2">
+<h2 class="anchored" data-anchor-id="observing-data">Observing Data</h2>
+<p><span class="math display">\[
+Y = \beta_0 + \varepsilon
+\]</span></p>
+</section>
+<section id="estimated-line" class="level2">
+<h2 class="anchored" data-anchor-id="estimated-line">Estimated Line</h2>
+<p><span class="math display">\[
+\hat Y=\hat\beta_0
+\]</span></p>
+</section>
+<section id="notation-1" class="level2">
+<h2 class="anchored" data-anchor-id="notation-1">Notation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="observed" class="level3">
+<h3 class="anchored" data-anchor-id="observed">Observed</h3>
+<p><span class="math display">\[
+Y = \beta_0 + \varepsilon
+\]</span></p>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="estimated" class="level3">
+<h3 class="anchored" data-anchor-id="estimated">Estimated</h3>
+<p><span class="math display">\[
+\hat Y = \hat \beta_0
+\]</span></p>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="modelling-data" class="level1">
+<h1>Modelling Data</h1>
+<section id="indexing-data" class="level2">
+<h2 class="anchored" data-anchor-id="indexing-data">Indexing Data</h2>
+<p>The data in a data set can be indexed by a number.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 1 × 6
+#&gt;   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
+#&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+#&gt; 1           39.1          18.7               181        3750 male   2007</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p>Making the variable “body_mass_g” be represented by <span class="math inline">\(Y\)</span> and “flipper_length_mm” as <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+Y_1 = 3750 \ \ X_1=181
+\]</span></p>
+</div>
+</section>
+<section id="indexing-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="indexing-data-1">Indexing Data</h2>
+<p><span class="math display">\[
+Y_i, X_i
+\]</span></p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>With the data that we collect from a sample, we hypothesize how the data was generated.</p>
+<div class="fragment">
+<p>Using a simple model:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \varepsilon_i
+\]</span></p>
+</div>
+</section>
+<section id="estimated-value" class="level2">
+<h2 class="anchored" data-anchor-id="estimated-value">Estimated Value</h2>
+<p><span class="math display">\[
+\hat Y_i = \hat \beta_0
+\]</span></p>
+</section>
+<section id="estimation" class="level2">
+<h2 class="anchored" data-anchor-id="estimation">Estimation</h2>
+<p>To estimate <span class="math inline">\(\hat \beta_0\)</span>, we minimize the follow function:</p>
+<p><span class="math display">\[
+\sum^n_{i=1} (Y_i-\hat Y_i)^2
+\]</span></p>
+<div class="fragment">
+<p>This is known as the sum squared errors, SSE</p>
+</div>
+</section>
+<section id="residuals" class="level2">
+<h2 class="anchored" data-anchor-id="residuals">Residuals</h2>
+<p>The residuals are known as the observed errors from the data in the model:</p>
+<p><span class="math display">\[
+r_i = Y_i - \hat Y_i
+\]</span></p>
+</section>
+<section id="estimation-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-in-r">Estimation in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="modeling-body-mass-in-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-body-mass-in-penguins">Modeling Body Mass in Penguins</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ 1, data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt; (Intercept)  
+#&gt;        4207</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="linear-model" class="level1">
+<h1>Linear Model</h1>
+<section id="linear-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="linear-model-1">Linear Model</h2>
+<p>The goal of Statistics is to develop models the have a better explanation of the outcome <span class="math inline">\(Y\)</span>.</p>
+<div class="fragment">
+<p>In particularly, reduce the sum of squared errors.</p>
+</div>
+<div class="fragment">
+<p>By utilizing a bit more of information, <span class="math inline">\(X\)</span>, we can increase the predicting capabilities of the model.</p>
+</div>
+<div class="fragment">
+<p>Thus, the linear model is born.</p>
+</div>
+</section>
+<section id="linear-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="linear-model-2">Linear Model</h2>
+<p><span class="math display">\[
+Y = \beta_0 + \beta_1 X + \varepsilon
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon \sim DGP_3
+\]</span></p>
+</section>
+<section id="scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot">Scatter Plot</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="imposing-a-line" class="level2">
+<h2 class="anchored" data-anchor-id="imposing-a-line">Imposing a Line</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modelling-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-the-data">Modelling the Data</h2>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]</span></p>
+</section>
+<section id="linear-model-3" class="level2">
+<h2 class="anchored" data-anchor-id="linear-model-3">Linear Model</h2>
+<p><span class="math display">\[
+\hat Y_i = \hat \beta_0 + \hat \beta_1 X_i
+\]</span></p>
+<div class="fragment">
+<p>Goal is to obtain numerical values for <span class="math inline">\(\hat \beta_0\)</span> and <span class="math inline">\(\hat \beta_1\)</span> that will minimize the SSE.</p>
+</div>
+</section>
+<section id="sse" class="level2">
+<h2 class="anchored" data-anchor-id="sse">SSE</h2>
+<p><span class="math display">\[
+\sum^n_{i=1} (Y_i-\hat Y_i)^2
+\]</span></p>
+<p><span class="math display">\[
+\hat Y_i = \hat \beta_0 + \hat \beta_1 X_i
+\]</span></p>
+</section>
+<section id="fitting-a-model-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-a-model-in-r">Fitting a Model in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Y: “body_mass_g”; X: “flipper_length_mm”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;       (Intercept)  flipper_length_mm  
+#&gt;          -5872.09              50.15</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+\hat Y_i = -5872.09 + 50.15 X_i
+\]</span></p>
+</section>
+<section id="interpretation-of-hatbeta_0" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-hatbeta_0">Interpretation of <span class="math inline">\(\hat\beta_0\)</span></h2>
+<p>The intercept <span class="math inline">\(\hat \beta_0\)</span> can be interpreted as the base value when <span class="math inline">\(X\)</span> is set to 0.</p>
+<div class="fragment">
+<p>Some times the intercept can be interpretable to real world scenarios.</p>
+</div>
+<div class="fragment">
+<p>Other times it cannot.</p>
+</div>
+</section>
+<section id="interpreting-example" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-example">Interpreting Example</h2>
+<p><span class="math display">\[
+\hat Y_i = -5872.09 + 50.15 X_i
+\]</span> When flipper length is 0 mm, the body mass is -5872 grams.</p>
+</section>
+<section id="interpretation-of-hat-beta_1" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-hat-beta_1">Interpretation of <span class="math inline">\(\hat \beta_1\)</span></h2>
+<p>The slope <span class="math inline">\(\hat \beta_1\)</span> indicates how will y change when x increases by 1 unit.</p>
+<div class="fragment">
+<p>It will demonstrate if there is, on average, a positive or negative relationship based on the sign provided.</p>
+</div>
+</section>
+<section id="interpreting-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-example-1">Interpreting Example</h2>
+<p><span class="math display">\[
+\hat Y_i = -5872.09 + 50.15 X_i
+\]</span></p>
+<p>When flipper length increases by 1 mm, the body mass will increase by 50.15 grams.</p>
+</section>
+</section>
+<section id="categorical-variables" class="level1">
+<h1>Categorical Variables</h1>
+<section id="body-mass-with-species" class="level2">
+<h2 class="anchored" data-anchor-id="body-mass-with-species">Body Mass with Species</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="body-mass-with-species-1" class="level2">
+<h2 class="anchored" data-anchor-id="body-mass-with-species-1">Body Mass with Species</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="group-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="group-statistics">Group Statistics</h2>
+<p>We can use statistics to explain a continuous variable by the categories.</p>
+<div class="fragment">
+<p>Compute statistics for each group.</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_by_cat_stats</span>(DATA, NUM, CAT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="compute-group-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="compute-group-statistics">Compute Group Statistics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_by_cat_stats</span>(penguins, body_mass_g, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 3 × 11
+#&gt;   species     min   q25  mean median   q75   max    sd     var   iqr missing
+#&gt;   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;int&gt;
+#&gt; 1 Adelie     2850 3362. 3706.   3700  4000  4775  459. 210332.  638.       0
+#&gt; 2 Chinstrap  2700 3488. 3733.   3700  3950  4800  384. 147713.  462.       0
+#&gt; 3 Gentoo     3950 4700  5092.   5050  5500  6300  501. 251478.  800        0</code></pre>
+</div>
+</div>
+</section>
+<section id="linear-models-with-categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="linear-models-with-categorical-variables">Linear Models with Categorical Variables</h2>
+<p>A line is normally used to model 2 continuous variables.</p>
+<div class="fragment">
+<p>However, the predictor variable <span class="math inline">\(X\)</span> can be restricted to a set a variables that can symbolize categories.</p>
+</div>
+<div class="fragment">
+<p>A category will be used as a reference for a model.</p>
+</div>
+</section>
+<section id="binary-dummy-variables" class="level2">
+<h2 class="anchored" data-anchor-id="binary-dummy-variables">Binary (Dummy) Variables</h2>
+<p>Binary variables are variable that can only take on the value 0 or 1.</p>
+<p><span class="math display">\[
+D_i = \left\{
+\begin{array}{cc}
+1 &amp; Category\\
+0 &amp; Other
+\end{array}
+\right.
+\]</span></p>
+</section>
+<section id="binary-dummy-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="binary-dummy-variables-1">Binary (Dummy) Variables</h2>
+<p>To fit a model with categorical variables, we must utilize dummy (binary) variables that indicate which category is being referenced. We use <span class="math inline">\(C-1\)</span> dummy variables where <span class="math inline">\(C\)</span> indicates the number of categories. When coded correctly, each category will be represented by a combination of dummy variables.</p>
+</section>
+<section id="example-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-1">Example</h2>
+<p>If we have 4 categories, we will need 3 dummy variables:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Cat 1</th>
+<th>Cat 2</th>
+<th>Cat 3</th>
+<th>Cat 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dummy 1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Dummy 2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Dummy 2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="species-dummy-variables" class="level2">
+<h2 class="anchored" data-anchor-id="species-dummy-variables">Species Dummy Variables</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Chinstrap</th>
+<th>Gentoo</th>
+<th>Adelie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(D_1\)</span></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(D_2\)</span></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="linear-model-4" class="level2">
+<h2 class="anchored" data-anchor-id="linear-model-4">Linear Model</h2>
+<p><span class="math display">\[
+\hat Y_i = \hat \beta_0 + \hat\beta_1 D_{1i} + \hat\beta_2 D_{2i}
+\]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(\hat \beta_1\)</span> indicates how body mass changes from Adelie to Chinstrap.</p>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(\hat \beta_2\)</span> indicates how body mass changes from Adelie to Gentoo.</p>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(\hat \beta_0\)</span> represents the baseline level, in this case the body mass of Adelie.</p>
+</div>
+</section>
+<section id="fitting-a-model-in-r-1" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-a-model-in-r-1">Fitting a Model in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-2" class="level2">
+<h2 class="anchored" data-anchor-id="example-2">Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ species, data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;      (Intercept)  speciesChinstrap     speciesGentoo  
+#&gt;          3706.16             26.92           1386.27</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+\hat Y_i = 3706 + 26.92 D_{1i} + 1386.27 D_{2i}
+\]</span></p>
+</section>
+<section id="finding-the-adelie-mass" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-adelie-mass">Finding the Adelie MASS</h2>
+<p><span class="math display">\[
+\hat Y_i = 3706 + 26.92 (0) + 1386.27 (0)
+\]</span></p>
+</section>
+<section id="finding-the-chinstrap-mass" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-chinstrap-mass">Finding the Chinstrap MASS</h2>
+<p><span class="math display">\[
+\hat Y_i = 3706 + 26.92 (1) + 1386.27 (0)
+\]</span></p>
+</section>
+<section id="finding-the-gentoo-mass" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-gentoo-mass">Finding the Gentoo MASS</h2>
+<p><span class="math display">\[
+\hat Y_i = 3706 + 26.92 (0) + 1386.27 (1)
+\]</span></p>
+</section>
+<section id="intepreting-hat-beta_1" class="level2">
+<h2 class="anchored" data-anchor-id="intepreting-hat-beta_1">Intepreting <span class="math inline">\(\hat \beta_1\)</span></h2>
+<p>On average, Chinstrap has a larger mass than Adelie by about 26.92 grams.</p>
+</section>
+<section id="intepreting-hat-beta_2" class="level2">
+<h2 class="anchored" data-anchor-id="intepreting-hat-beta_2">Intepreting <span class="math inline">\(\hat \beta_2\)</span></h2>
+<p>On average, Gentoo has a larger mass than Adelie by about 1386.27 grams.</p>
+</section>
+</section>
+<section id="strength-and-correlation" class="level1">
+<h1>Strength and Correlation</h1>
+<section id="correlation" class="level2">
+<h2 class="anchored" data-anchor-id="correlation">Correlation</h2>
+<p>Correlation is a statistics that can be used to describe the strength of the relationship between 2 continuous variables.</p>
+<div class="fragment">
+<p><span class="math display">\[
+r = \frac{1}{n-1}\sum^n_{i=1}\frac{x_i - \bar x}{s_x}\frac{y_i - \bar y}{s_y}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\bar x\)</span>, <span class="math inline">\(\bar y\)</span>: sample means</li>
+<li><span class="math inline">\(s_x\)</span>, <span class="math inline">\(s_y\)</span>: sample standard deviations</li>
+</ul>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+-1 \leq r \leq 1
+\]</span></p>
+</div>
+</section>
+<section id="correlations" class="level2">
+<h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://openintro-ims.netlify.app/model-slr_files/figure-html/fig-posNegCorPlots-1.png" class="img-fluid figure-img"></p>
+<figcaption>From IMS 2e</figcaption>
+</figure>
+</div>
+</section>
+<section id="coefficient-of-determination" class="level2">
+<h2 class="anchored" data-anchor-id="coefficient-of-determination">Coefficient of Determination</h2>
+<p>The coefficient of determination evaluates the strength between an outcome <span class="math inline">\(Y\)</span> and the linear model, which includes <span class="math inline">\(X\)</span>.</p>
+<div class="fragment">
+<p><span class="math display">\[
+R^2 = r^2
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+0 \leq R^2 \leq 1
+\]</span></p>
+</div>
+<div class="fragment">
+<p>The coefficient of determination measures the total variation explained by the linear model. The closer to 1, the better the linear model.</p>
+</div>
+</section>
+<section id="correlation-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-in-r">Correlation in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(DATA<span class="sc">$</span>Y, DATA<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-3">Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.8729789</code></pre>
+</div>
+</div>
+</section>
+<section id="coefficient-of-determination-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="coefficient-of-determination-in-r">Coefficient of Determination in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-4" class="level2">
+<h2 class="anchored" data-anchor-id="example-4">Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.6744887</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("www\.inqs\.info\/m201_s25");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

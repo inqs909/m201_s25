@@ -1,0 +1,236 @@
+---
+title: "Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+library(taylor)
+library(DT)
+library(tidytuesdayR)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+horrors <- tt_load(2022, week =44)$horror_movies
+scooby <- tt_load(2021, week =29)$scoobydoo
+```
+
+# Motivation: Danceability
+
+## Motivation: Danceability
+
+```{r}
+set.seed(66745675)
+taylors <- taylor_all_songs |>
+  filter(album_name %in% c("Midnights", "Fearless (Taylor's Version)")) |>
+  select(album_name, track_name, danceability) |>
+  drop_na() |> slice_sample(n=6) 
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+## Find the Empty Model
+
+## Find the Empty Model
+
+$$
+\hat Y_i = 0.5698
+$$
+
+## Find SSE
+
+$$
+SSE = 0.0573
+$$
+
+## Find a Model explaining variability with album
+
+## Find a Model explaining variability with album
+
+$$
+\hat Y_i = 0.519 + 0.1017 X
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Midnights\\
+0 & Other
+\end{array}
+\right.
+$$
+
+## Find the SSE of the previous Linear Model
+
+## Find the SSE of the previous Linear Model
+
+$$
+SSE  = 0.0418
+$$
+
+# Motivation: Horror Movies
+
+## Motivation: Horror Movies
+
+```{r}
+set.seed(4414)
+horror <- horrors |> filter(genre_names %in% 
+                    c("Horror, Thriller", "Horror, Mystery", "Horror, Horror")) |> 
+  group_by(genre_names) |> 
+  select(genre_names, title, vote_average) |>
+  slice_sample(n=3) |> ungroup()
+horror |> datatable(options = list(dom = "t"))
+```
+
+## Create the Empty Model for `vote_average`
+
+## Create the Empty Model for `vote_average`
+
+$$
+\hat Y_i = 4.856
+$$
+
+## Find SSE for Empty Model
+
+## Find SSE for Empty Model
+
+$$
+SSE = 36.562
+$$
+
+## Find a Model to explain `vote_average` by `genre_names`
+
+## Find a Model to explain `vote_average` by `genre_names`
+
+$$
+\hat Y_i = 5.4667 -1.1 X - 0.733 Z  
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Mystery \\
+0 & Other
+\end{array}
+\right.
+\ \ 
+Z = \left\{\begin{array}{cc}
+1 & Thriller\\
+0 & Other
+\end{array}
+\right.
+$$
+
+## Find SSE of previous Linear Model
+
+## Find SSE of previous Linear Model
+
+$$
+SSE = 34.680
+$$
+
+# Motivation: Scooby Doo
+
+## Motivation: Scooby Doo
+
+```{r}
+set.seed(531334111)
+doo <- scooby |> mutate(zoinks_count = as.numeric(zoinks)) |> drop_na() |>
+  filter(zoinks_count>1) |> 
+  filter(monster_type %in% 
+           c("Possessed Object", "Mythical", "Undead", "Magician")) |>
+  group_by(monster_type) |> 
+  select(monster_type, zoinks_count) |> 
+  slice_sample(n=2) |> ungroup()
+doo |> datatable(options = list(dom = "t"))
+```
+
+## Fit an Empty Model on Zoinks Count
+
+## Fit an Empty Model on Zoinks Count
+
+$$
+\hat Y_i = 3.375
+$$
+
+## SSE of Empty Model
+
+## SSE of Empty Model
+
+$$
+SSE = 39.875
+$$
+
+## Fit a model explaining Zoinks count and monster type
+
+## Fit a model explaining Zoinks count and monster type
+
+$$
+\hat Y_i = 2.5 -0.5 X +3 Z +1 A   
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Mythical \\
+0 & Other
+\end{array}
+\right.
+\ \ 
+Z = \left\{\begin{array}{cc}
+1 & Possessed \ Object\\
+0 & Other
+\end{array}
+\right.
+\ \
+A = \left\{\begin{array}{cc}
+1 & Undead\\
+0 & Other
+\end{array}
+\right.
+$$
+
+## Find the SSE of the previous model
+
+## Find the SSE of the previous model
+
+$$
+SSE = 25.5
+$$

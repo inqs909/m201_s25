@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+    - "*.qmd"
+    - "!files/"
+  resources:
+    - "*.json"
+    - "files"
+    - "_extensions"
+
+execute:
+  freeze: auto
+
+
+website:
+  repo-url: https://github.com/inqs909/m201_s25
+  title: "MATH 201"
+  site-url: www.inqs.info/m201_s25
+  navbar:
+    right:
+      - syllabus.qmd
+      - lectures.qmd
+      - ec.qmd
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+
+
+

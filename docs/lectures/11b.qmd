@@ -1,0 +1,260 @@
+---
+title: "Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    error: true
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(mosaic)
+library(tidyverse)
+library(taylor)
+library(DT)
+library(supernova)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+tuesdata <- tidytuesdayR::tt_load('2020-07-07')
+tuesdata <- tidytuesdayR::tt_load(2020, week = 28)
+
+coffee_ratings <- tuesdata$coffee_ratings
+
+# Or read in the data manually
+
+#coffee_ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-07/coffee_ratings.csv')
+
+```
+
+# Announcements
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+# Motivating Example: Coffee
+
+## Motivating Example: Coffee
+
+```{r}
+coffee_aroma <- coffee_ratings |> filter(aroma > 5.5)
+coffee_aroma |> ggplot(aes(x=aroma, y = flavor)) +
+  geom_point() + theme_bw() +
+  theme(axis.title = element_text(size = 36))
+
+```
+
+## Fitting a Linear Model
+
+$$
+\hat Y = 1.1372 + 0.8435 X
+$$
+
+$$
+X = \mathrm{AROMA\ Score}
+$$
+
+$$
+\hat Y = \mathrm{Predicted\ Flavor\ Score}
+$$
+
+# ANOVA Table
+
+## ANOVA Table
+
+The ANOVA table is designed to organize how much variation is explained by either the group or regression model. It
+
+## ANOVA Table
+
+| Source    | SS  | DF           | MS                | F                 | PRE               | p-value      |
+|-----------|-----|--------------|-------------------|-------------------|-------------------|--------------|
+| Model (M) | SSM | $1$ or $k-1$ | $\frac{SSM}{DFM}$ | $\frac{MSM}{MSE}$ | $\frac{SSM}{SST}$ | $P(f \ge F)$ |
+| Error (E) | SSE | $n - DFM$    | $\frac{SSE}{DFE}$ |                   |                   |              |
+| NULL (T)  | SST | $n-1$        |                   |                   |                   |              |
+
+## Sum of Squares (SS)
+
+How much variation is involved in the row
+
+::: fragment
+**Model,** how much variation is explained
+:::
+
+::: fragment
+**Error,** how much variation is remaining
+:::
+
+## Degrees of Freedom (DF)
+
+How much 'freedom' does the row have
+
+::: fragment
+For **Model,** less is better
+:::
+
+::: fragment
+For **Error,** more is better
+:::
+
+## Mean Square Error
+
+On average, how much variation is involved.
+
+::: fragment
+**Model,** the average variation explained by the model.
+:::
+
+::: fragment
+**Error,** the average amount of variation remaining.
+:::
+
+## Proportion Reduction Error (PRE)
+
+The percentage of error explained by the model for all the error.
+
+## F
+
+How much variation is explained by the model versus the remaining amount or variation not explained
+
+::: fragment
+$F>1$: Model explains the majority of the variation
+:::
+
+::: fragment
+$0\le F<1$: Model does not explain the majority of the variation
+:::
+
+## How to do it in R
+
+Pass the `lm` saved object to the `supernova` function:
+
+```{r}
+#| echo: true
+#| eval: false
+coffee_lm <- lm(flavor ~ aroma, data = coffee_aroma)
+supernova(coffee_lm)
+```
+
+## R Output
+
+```{r}
+supernova(coffee_lm)
+```
+
+# Assessing Model Fit
+
+## Assessing Model Fit
+
+The 2 statistics that we can use to assess a model are PRE and F.
+
+## PRE
+
+This will tell you how much variation is explained by the model.
+
+::: fragment
+**PRE \> 0.5** is considered good
+:::
+
+## F
+
+This will tell you if the explanation of the variation is due to random chance or not.
+
+::: fragment
+If the p-value is less than 0.05, the explanation is not due to random chance.
+:::
+
+## PRE vs F
+
+::: fragment
+**PRE,** will tell you if the model is useful.
+:::
+
+::: fragment
+**F,** will tell you if the model's explanation is due to chance or not.
+:::
+
+::: fragment
+**Both are needed.**
+:::
+
+# Example
+
+## Example
+
+```{r}
+coffee_aroma |> ggplot(aes(x=aroma, y = flavor)) +
+  geom_point() + theme_bw() +
+  theme(axis.title = element_text(size = 36))
+```
+
+## Linear Model
+
+```{r}
+#| echo: true
+
+coffee_lm <- lm(flavor ~ aroma, data = coffee_aroma)
+coffee_lm
+
+```
+
+## ANOVA Table
+
+```{r}
+#| echo: true
+
+supernova(coffee_lm)
+
+```
+
+# EPE Session
+
+## Topics that will be on the exam
+
+-   Constructing the NULL Model
+
+-   Constructing a Group Model
+
+-   Calculating SSE
+
+-   Interpreting the Regression Model
+
+-   Some R programming

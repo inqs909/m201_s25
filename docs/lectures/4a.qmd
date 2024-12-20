@@ -1,0 +1,253 @@
+---
+title: "Summarizing Data"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+```
+
+# Announcements
+
+## Dominos with Dean Kholi
+
+![](img/Screenshot%20from%202023-09-10%2019-49-13.png){fig-align="center"}
+
+## Complete Survey
+
+![](img/frame_1.png){fig-align="center"}
+
+## Solito: A Memoir
+
+![](https://ww2.kqed.org/app/uploads/sites/43/2022/09/Zamora_Author-Photo_credit_Gerardo-del-Valle-COLLAGE-1020x765.jpg){fig-align="center"}
+
+## Voces Inocentes
+
+::: columns
+::: {.column width="50%"}
+![](https://m.media-amazon.com/images/M/MV5BM2Q5ZmE4YTUtZjY1Ny00MjIxLWFiYTAtMjcxODk1YjE0NzExXkEyXkFqcGdeQXVyMTU3NDU4MDg2._V1_.jpg){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+-   September 18
+
+-   Broome Library 1360
+
+-   5 - 8 PM
+
+-   Snacks will be provided
+
+-   CW: Portrays war, child soldiers, children death
+
+-   [Register here](https://csuci.libcal.com/event/11273223)
+
+-   OH cancelled that day.
+:::
+:::
+
+# Summary Statistics
+
+## Summary Statistics
+
+Summary statistics are used to describe the distribution of data.
+
+## Central Tendency
+
+Central tendency is a statistical concept that refers to the central or typical value around which a set of data points tends to cluster. It is used to summarize and describe a data set by identifying a single representative value that provides insights into the data's overall characteristics.
+
+## Variation
+
+Variation in statistics refers to the extent to which data points in a dataset deviate or differ from a central tendency measure. Understanding variation is crucial for making informed decisions, drawing meaningful conclusions, and assessing the reliability of statistical analyses.
+
+## Minimum
+
+The minimum (min) is the smallest value in the data.
+
+## Maximum
+
+The maximum (max) is the largest value in the data.
+
+## Quartiles
+
+::: fragment
+Quartiles are three values (Q1, Q2, Q3) that divides the data into four subsets.
+:::
+
+::: fragment
+![](https://i.postimg.cc/p2BbKK5t/image.png){fig-align="center"}
+:::
+
+## Q1
+
+Q1 is the value signifying that a quarter of the data is lower than it.
+
+## Q2 - Median
+
+Q2 is the value signifying that half of the data is below it.
+
+::: fragment
+The median also represents the central tendency of the data.
+:::
+
+## Q3
+
+Q3 is the value signifying that 3 quarters of the data is below it.
+
+## Interquartile Range
+
+::: fragment
+$$
+IQR = Q_3 - Q_1
+$$
+:::
+
+## Range
+
+::: fragment
+$$
+R = \mathrm{max} - \mathrm{min}
+$$
+:::
+
+## How to identify the data?
+
+1.  Sort the data
+2.  ID Max and Min
+3.  Find the amount of data the makes a quarter:
+    1.  $K=N/4$
+4.  Create 4 groups using the sorted data
+    1.  group by data size
+    2.  If $K$ has a decimal, the $Kth$ value is quartile of each group.
+
+## Mean
+
+Describe how you will find the mean of these numbers:
+
+```{r}
+#| echo: false
+
+rpois(5, 15)
+
+```
+
+## Mean
+
+The mean is another measurement for central tendency.
+
+$$
+\bar X = \frac{1}{n}\sum^n_{i=1}X_i
+$$
+
+-   $n$: total data points
+
+-   $X_i$: data points
+
+-   $i$: indexing data
+
+-   $\sum$: add all from first (bottom) to last (up)
+
+## Variance
+
+## Variance
+
+The variance is a measurement on the average squared distance the data points are from the central tendency.
+
+$$
+s^2 = \frac{1}{n}\sum^n_{i=1}(X_i-\bar X)^2
+$$
+
+## Standard Deviation
+
+The standard deviation is a measurement on the average distance the data points are from the central tendency.
+
+$$
+s=\sqrt{s^2}
+$$
+
+# Data Visualization
+
+## Histogram
+
+A histogram is a graphical representation of the distribution or frequency of data points in a dataset. It provides a visual way to understand the shape, central tendency, and spread of a dataset by dividing the data into intervals or bins and showing how many data points fall into each bin.
+
+## Histogram R Code
+
+```{r}
+#| eval: false
+#| echo: true
+
+gf_histogram(~bill_length_mm, data = penguins)
+```
+
+## Histogram
+
+```{r}
+penguins |> gf_histogram(~bill_length_mm, data = _) |> 
+  gf_labs(title = "Histogram of Bill Length", x = "Bill Length (mm)") +
+  theme_barbie()
+```
+
+## Box Plot
+
+A box plot, also known as a box-and-whisker plot, is a graphical representation of the distribution and key statistical characteristics of a dataset. It provides a visual summary of the data's central tendency, spread, and potential outliers.
+
+## Box Plot
+
+![](https://miro.medium.com/max/9000/1*2c21SkzJMf3frPXPAR_gZA.png){fig-align="center"}
+
+## Box Plot R Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+gf_boxplot(~bill_length_mm, data = penguins)
+
+```
+
+## Box Plot
+
+```{r}
+penguins |> ggplot(aes(bill_length_mm)) +
+  geom_boxplot() +
+  ggtitle("Box Plot of Bill Length") +
+  theme_futurama()
+```

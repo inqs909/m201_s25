@@ -1,0 +1,155 @@
+---
+title: "Welcome!"
+subtitle: "Introduction to Statistics"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: true 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+
+editor: visual
+---
+
+## Learning Outcomes
+
+-   Introductions
+-   Embedded Peer Educator
+-   Syllabus
+-   Important Announcements
+-   Statistics Activity
+-   Access to Coursekata
+
+# Introductions
+
+## Introductions
+
+-   San Bernardino, CA
+
+-   CSU Monterey Bay
+
+    -   BS Biology
+
+-   San Diego State University
+
+    -   Master's in Public Health
+
+-   UC Riverside
+
+    -   PhD in Applied Statistics
+
+## Introductions
+
+::: nonincremental
+-   Name
+
+-   Year
+
+-   Major
+
+-   Fun Fact
+
+-   Career Goal
+:::
+
+# Embedded Peer Educator
+
+## EPE - Devin Frost (Sec 01)
+
+-   4th Year
+
+-   Math Major
+
+    -   Emphasis - Statistics
+
+    -   Emphasis - Pure Mathematics
+
+-   Philosophy Minor
+
+## EPE - Amanda Parks (Sec 02)
+
+-   2nd Year
+
+-   Pre-Nursing Major
+
+# Syllabus
+
+https://www.inqs.info/m201_f23/syllabus.html
+
+# Important Announcements
+
+## Register to Math 97
+
+This course is a 4 unit course:
+
+3 Units Math 201
+
+1 Unit Math 97
+
+## Field Trip
+
+We will be taking a field trip to the library on Wednesday Aug 23.
+
+## Math Minds
+
+-   Math MINDS is open to motivated Channel Islands students enrolled in a B4 Quantitative reasoning course this semester. This FREE transformative program includes:
+
+    -   **A \$350 scholarship award (payable upon completion of the program requirements)**
+
+    -   Four workshops early in the semester to develop your mathematical ability with active learning
+
+        -   Weeks 4 through 8 of the semester
+
+    -   Individualized skill development through a minimum of four one-on-one tutoring sessions with Learning Resource Center tutors
+
+        -   Minimum of **two tutoring sessions** before Week 6 of the semester
+
+        -   Minimum of **two additional tutoring sessions** before Week 12 of the semester
+
+    -   A short asynchronous online course about learning mathematics
+
+    -   Four MasterMINDS Group Check-In Meetings
+
+        -   Weeks 9 through 15 of the semester
+
+    -   Support to build long-lasting strength and confidence in your mathematical ability
+
+    -   A chance to make new friends and strengthen your college journey!
+
+# Statistics Activity
+
+## When do you use statistics?
+
+## What is the difference between math and stats?
+
+## What is variation?
+
+## Complete Survey
+
+https://forms.gle/EdYK1sGZpDEibaHK7
+
+![](https://www.inqs.info/m201_f23/files/img/frame.png){fig-align="center"}
+
+# Access to Coursekata

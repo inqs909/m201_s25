@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Randomization Tests – MATH 201</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-41afc036f4045670d8a63ab41900e02e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
+<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MATH 201</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">syllabus.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ec.html"> 
+<span class="menu-text">Extra Credit</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sampling-distribution" id="toc-sampling-distribution" class="nav-link active" data-scroll-target="#sampling-distribution">Sampling Distribution</a>
+  <ul class="collapse">
+  <li><a href="#sampling-distribution-1" id="toc-sampling-distribution-1" class="nav-link" data-scroll-target="#sampling-distribution-1">Sampling Distribution</a></li>
+  <li><a href="#modelling-the-data" id="toc-modelling-the-data" class="nav-link" data-scroll-target="#modelling-the-data">Modelling the Data</a></li>
+  <li><a href="#error-term" id="toc-error-term" class="nav-link" data-scroll-target="#error-term">Error Term</a></li>
+  <li><a href="#randomness-effect" id="toc-randomness-effect" class="nav-link" data-scroll-target="#randomness-effect">Randomness Effect</a></li>
+  </ul></li>
+  <li><a href="#simulating-unicorns" id="toc-simulating-unicorns" class="nav-link" data-scroll-target="#simulating-unicorns">Simulating Unicorns</a>
+  <ul class="collapse">
+  <li><a href="#simulating-unicorns-1" id="toc-simulating-unicorns-1" class="nav-link" data-scroll-target="#simulating-unicorns-1">Simulating Unicorns</a></li>
+  <li><a href="#simulating-unicorn-data" id="toc-simulating-unicorn-data" class="nav-link" data-scroll-target="#simulating-unicorn-data">Simulating Unicorn Data</a></li>
+  <li><a href="#unicorn-data-variables" id="toc-unicorn-data-variables" class="nav-link" data-scroll-target="#unicorn-data-variables">Unicorn Data Variables</a></li>
+  <li><a href="#magical-and-nature-score" id="toc-magical-and-nature-score" class="nav-link" data-scroll-target="#magical-and-nature-score">Magical and Nature Score</a></li>
+  <li><a href="#simulating-n0-3.24" id="toc-simulating-n0-3.24" class="nav-link" data-scroll-target="#simulating-n0-3.24">Simulating <span class="math inline">\(N(0, 3.24)\)</span></a></li>
+  <li><a href="#collecting" id="toc-collecting" class="nav-link" data-scroll-target="#collecting">Collecting</a></li>
+  <li><a href="#dgp-of-magical-score-1" id="toc-dgp-of-magical-score-1" class="nav-link" data-scroll-target="#dgp-of-magical-score-1">DGP of Magical Score 1</a></li>
+  <li><a href="#dgp-of-magical-score-2" id="toc-dgp-of-magical-score-2" class="nav-link" data-scroll-target="#dgp-of-magical-score-2">DGP of Magical Score 2</a></li>
+  <li><a href="#estimating-beta_1-via-lm" id="toc-estimating-beta_1-via-lm" class="nav-link" data-scroll-target="#estimating-beta_1-via-lm">Estimating <span class="math inline">\(\beta_1\)</span> via <code>lm</code></a></li>
+  <li><a href="#collecting-a-new-sample" id="toc-collecting-a-new-sample" class="nav-link" data-scroll-target="#collecting-a-new-sample">Collecting a new sample</a></li>
+  <li><a href="#collecting-a-new-sample-1" id="toc-collecting-a-new-sample-1" class="nav-link" data-scroll-target="#collecting-a-new-sample-1">Collecting a new sample</a></li>
+  <li><a href="#collecting-a-new-sample-2" id="toc-collecting-a-new-sample-2" class="nav-link" data-scroll-target="#collecting-a-new-sample-2">Collecting a new sample</a></li>
+  <li><a href="#collecting-1000-samples" id="toc-collecting-1000-samples" class="nav-link" data-scroll-target="#collecting-1000-samples">Collecting 1000 Samples</a></li>
+  <li><a href="#distributions-of-hat-beta_1" id="toc-distributions-of-hat-beta_1" class="nav-link" data-scroll-target="#distributions-of-hat-beta_1">Distributions of <span class="math inline">\(\hat \beta_1\)</span></a></li>
+  </ul></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a>
+  <ul class="collapse">
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
+  <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link" data-scroll-target="#hypothesis-tests">Hypothesis Tests</a></li>
+  <li><a href="#null-hypothesis-h_0" id="toc-null-hypothesis-h_0" class="nav-link" data-scroll-target="#null-hypothesis-h_0">Null Hypothesis <span class="math inline">\(H_0\)</span></a></li>
+  <li><a href="#alternative-hypothesis-h_a" id="toc-alternative-hypothesis-h_a" class="nav-link" data-scroll-target="#alternative-hypothesis-h_a">Alternative Hypothesis <span class="math inline">\(H_a\)</span></a></li>
+  <li><a href="#example-of-null-and-alternative-hypothesis" id="toc-example-of-null-and-alternative-hypothesis" class="nav-link" data-scroll-target="#example-of-null-and-alternative-hypothesis">Example of Null and Alternative Hypothesis</a></li>
+  <li><a href="#hypothesis-test" id="toc-hypothesis-test" class="nav-link" data-scroll-target="#hypothesis-test">Hypothesis Test</a></li>
+  <li><a href="#comparison-of-null-distribution" id="toc-comparison-of-null-distribution" class="nav-link" data-scroll-target="#comparison-of-null-distribution">Comparison of Null Distribution</a></li>
+  </ul></li>
+  <li><a href="#comparing-proportions" id="toc-comparing-proportions" class="nav-link" data-scroll-target="#comparing-proportions">Comparing Proportions</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#crosstabulation" id="toc-crosstabulation" class="nav-link" data-scroll-target="#crosstabulation">Crosstabulation</a></li>
+  <li><a href="#comparing-proportions-1" id="toc-comparing-proportions-1" class="nav-link" data-scroll-target="#comparing-proportions-1">Comparing Proportions</a></li>
+  <li><a href="#by-2-cross-tabulations" id="toc-by-2-cross-tabulations" class="nav-link" data-scroll-target="#by-2-cross-tabulations">2 by 2 Cross Tabulations</a></li>
+  <li><a href="#test-statistic" id="toc-test-statistic" class="nav-link" data-scroll-target="#test-statistic">Test Statistic</a></li>
+  <li><a href="#obtain-proportion-in-r" id="toc-obtain-proportion-in-r" class="nav-link" data-scroll-target="#obtain-proportion-in-r">Obtain Proportion in R</a></li>
+  <li><a href="#obtain-difference-in-r" id="toc-obtain-difference-in-r" class="nav-link" data-scroll-target="#obtain-difference-in-r">Obtain Difference in R</a></li>
+  <li><a href="#bacteria-example" id="toc-bacteria-example" class="nav-link" data-scroll-target="#bacteria-example">Bacteria Example</a></li>
+  <li><a href="#bacteria-example-1" id="toc-bacteria-example-1" class="nav-link" data-scroll-target="#bacteria-example-1">Bacteria Example</a></li>
+  <li><a href="#hypothesis-test-1" id="toc-hypothesis-test-1" class="nav-link" data-scroll-target="#hypothesis-test-1">Hypothesis Test</a></li>
+  <li><a href="#hypotheis-test" id="toc-hypotheis-test" class="nav-link" data-scroll-target="#hypotheis-test">Hypotheis Test</a></li>
+  <li><a href="#hypothesis-test-2" id="toc-hypothesis-test-2" class="nav-link" data-scroll-target="#hypothesis-test-2">Hypothesis Test</a></li>
+  </ul></li>
+  <li><a href="#randomization-tests" id="toc-randomization-tests" class="nav-link" data-scroll-target="#randomization-tests">Randomization Tests</a>
+  <ul class="collapse">
+  <li><a href="#visualizing" id="toc-visualizing" class="nav-link" data-scroll-target="#visualizing">Visualizing</a></li>
+  <li><a href="#randomization-tests-1" id="toc-randomization-tests-1" class="nav-link" data-scroll-target="#randomization-tests-1">Randomization Tests</a></li>
+  <li><a href="#randomization-tests-2" id="toc-randomization-tests-2" class="nav-link" data-scroll-target="#randomization-tests-2">Randomization Tests</a></li>
+  <li><a href="#randomziation-1" id="toc-randomziation-1" class="nav-link" data-scroll-target="#randomziation-1">Randomziation 1</a></li>
+  <li><a href="#randomziation-2" id="toc-randomziation-2" class="nav-link" data-scroll-target="#randomziation-2">Randomziation 2</a></li>
+  <li><a href="#randomziation-3" id="toc-randomziation-3" class="nav-link" data-scroll-target="#randomziation-3">Randomziation 3</a></li>
+  <li><a href="#randomziation-4" id="toc-randomziation-4" class="nav-link" data-scroll-target="#randomziation-4">Randomziation 4</a></li>
+  <li><a href="#randomization-test" id="toc-randomization-test" class="nav-link" data-scroll-target="#randomization-test">Randomization Test</a></li>
+  <li><a href="#simulating-h_0" id="toc-simulating-h_0" class="nav-link" data-scroll-target="#simulating-h_0">Simulating <span class="math inline">\(H_0\)</span></a></li>
+  <li><a href="#shuffling-data" id="toc-shuffling-data" class="nav-link" data-scroll-target="#shuffling-data">Shuffling Data</a></li>
+  <li><a href="#shuffle-data" id="toc-shuffle-data" class="nav-link" data-scroll-target="#shuffle-data">Shuffle Data</a></li>
+  <li><a href="#computing-proportions" id="toc-computing-proportions" class="nav-link" data-scroll-target="#computing-proportions">Computing Proportions</a></li>
+  <li><a href="#repeat-process" id="toc-repeat-process" class="nav-link" data-scroll-target="#repeat-process">Repeat Process</a></li>
+  <li><a href="#the-replicate-function" id="toc-the-replicate-function" class="nav-link" data-scroll-target="#the-replicate-function">The <code>replicate</code> Function</a></li>
+  <li><a href="#repeat-1000-times" id="toc-repeat-1000-times" class="nav-link" data-scroll-target="#repeat-1000-times">Repeat 1000 times</a></li>
+  <li><a href="#visualize-data" id="toc-visualize-data" class="nav-link" data-scroll-target="#visualize-data">Visualize Data</a></li>
+  <li><a href="#compute-data-propoortion" id="toc-compute-data-propoortion" class="nav-link" data-scroll-target="#compute-data-propoortion">Compute Data Propoortion</a></li>
+  <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison">Comparison</a></li>
+  </ul></li>
+  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value">P-Value</a>
+  <ul class="collapse">
+  <li><a href="#p-value-1" id="toc-p-value-1" class="nav-link" data-scroll-target="#p-value-1">P-Value</a></li>
+  <li><a href="#sided-p-value" id="toc-sided-p-value" class="nav-link" data-scroll-target="#sided-p-value">2-Sided P-Value</a></li>
+  <li><a href="#visually-2-sided-p-value" id="toc-visually-2-sided-p-value" class="nav-link" data-scroll-target="#visually-2-sided-p-value">Visually 2-Sided P-Value</a></li>
+  <li><a href="#computing-the-p-value" id="toc-computing-the-p-value" class="nav-link" data-scroll-target="#computing-the-p-value">Computing the p-value</a></li>
+  <li><a href="#computing-the-p-value-1" id="toc-computing-the-p-value-1" class="nav-link" data-scroll-target="#computing-the-p-value-1">Computing the p-value</a></li>
+  <li><a href="#computing-the-p-value-2" id="toc-computing-the-p-value-2" class="nav-link" data-scroll-target="#computing-the-p-value-2">Computing the P-Value</a></li>
+  <li><a href="#computing-p-value" id="toc-computing-p-value" class="nav-link" data-scroll-target="#computing-p-value">Computing P-value</a></li>
+  </ul></li>
+  <li><a href="#process" id="toc-process" class="nav-link" data-scroll-target="#process">Process</a>
+  <ul class="collapse">
+  <li><a href="#identify-your-variables" id="toc-identify-your-variables" class="nav-link" data-scroll-target="#identify-your-variables">Identify your Variables</a></li>
+  <li><a href="#create-your-hypothesis" id="toc-create-your-hypothesis" class="nav-link" data-scroll-target="#create-your-hypothesis">Create your Hypothesis</a></li>
+  <li><a href="#compute-a-test-statistic-for-the-data" id="toc-compute-a-test-statistic-for-the-data" class="nav-link" data-scroll-target="#compute-a-test-statistic-for-the-data">Compute a test statistic for the data</a></li>
+  <li><a href="#generate-a-null-distribution." id="toc-generate-a-null-distribution." class="nav-link" data-scroll-target="#generate-a-null-distribution.">Generate a null distribution.</a></li>
+  <li><a href="#compute-the-p-value" id="toc-compute-the-p-value" class="nav-link" data-scroll-target="#compute-the-p-value">Compute the p-value</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="8.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Randomization Tests</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sampling-distribution" class="level1">
+<h1>Sampling Distribution</h1>
+<section id="sampling-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-distribution-1">Sampling Distribution</h2>
+<p>Sampling Distribution is the idea that the statistics that you generate (slopes and intercepts) have their own data generation process.</p>
+<div class="fragment">
+<p>In other words, the numerical values you obtain from the <code>lm</code> and <code>glm</code> function can be different if we got a different data set.</p>
+</div>
+<div class="fragment">
+<p>Some values will be more common than others. Because of this, they have their own data generating process, like the outcome of interest has it’s own data generating process.</p>
+</div>
+</section>
+<section id="modelling-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-the-data">Modelling the Data</h2>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span>: Outcome data</li>
+<li><span class="math inline">\(X_i\)</span>: Predictor data</li>
+<li><span class="math inline">\(\beta_0, \beta_1\)</span>: parameters</li>
+<li><span class="math inline">\(\varepsilon_i\)</span>: error term</li>
+</ul>
+</section>
+<section id="error-term" class="level2">
+<h2 class="anchored" data-anchor-id="error-term">Error Term</h2>
+<p><span class="math display">\[
+\varepsilon_i \sim DGP
+\]</span></p>
+<div class="notes">
+<ul>
+<li>The error terms forces the outcome variable to be different from the mathematical model.</li>
+<li>The numbers being generated are random and cannot be predicted.</li>
+</ul>
+</div>
+</section>
+<section id="randomness-effect" class="level2">
+<h2 class="anchored" data-anchor-id="randomness-effect">Randomness Effect</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="simulating-unicorns" class="level1">
+<h1>Simulating Unicorns</h1>
+<section id="simulating-unicorns-1" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-unicorns-1">Simulating Unicorns</h2>
+<p>To better understand the variation in statistics, let’s simulate a data set of unicorn characteristics to visualize and understand the variation.</p>
+<div class="fragment">
+<p>We will simulate a data set using then <code>unicorns</code> function and only need to specify how many unicorns you want to simulate.</p>
+</div>
+</section>
+<section id="simulating-unicorn-data" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-unicorn-data">Simulating Unicorn Data</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unicorns</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 10 × 15
+#&gt;    Unicorn_ID   Age Gender      Color Type_of_Unicorn Type_of_Horn Horn_Length Horn_Strength Weight Health_Score Personality_Score Magical_Score Elusiveness_Score Gentleness_Score Nature_Score
+#&gt;         &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;        &lt;int&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
+#&gt;  1          1     2 Genderfluid Pink  Rainbow         Opal                4.99          27.8  121.             6             2.59         10762.              33.5            16.6          917.
+#&gt;  2          2     4 Female      Black Rainbow         Opal                5.37          26.2  108.             2             1.64         10819.              33.1            53.4          924.
+#&gt;  3          3    15 Non-binary  Gold  Rainbow         Aquamarine          5.15          27.6  180.             8             1.53         11062.              42.3            29.9          955.
+#&gt;  4          4    11 Female      Gray  Ember           Opal                4.96          29.5  135.             9             0.754        10992.              33.3            -1.42         946.
+#&gt;  5          5    11 Agender     White Rainbow         Aquamarine          5.22          27.5  175.             2             2.09         10967.              38.4            37.0          943.
+#&gt;  6          6    10 Non-binary  Pink  Jewel           Opal                5.01          33.0  124.             4             0.681        11009.              33.8            27.2          948.
+#&gt;  7          7     8 Non-binary  White Rainbow         Aquamarine          5.04          26.5  110.             5             1.18         10897.              30.9            45.5          934.
+#&gt;  8          8    20 Non-binary  Black Jewel           Aquamarine          5.15          25.2  154.             7             4.68         11281.              35.5            26.0          983.
+#&gt;  9          9     6 Female      Gray  Ruvas           Aquamarine          4.80          27.7   80.7            5             0.974        10852.              35.0            -2.49         928.
+#&gt; 10         10    14 Male        Black Ruvas           Opal                5.03          27.2  106.             9             0.861        11102.              34.9             3.83         960.</code></pre>
+</div>
+</div>
+</section>
+<section id="unicorn-data-variables" class="level2">
+<h2 class="anchored" data-anchor-id="unicorn-data-variables">Unicorn Data Variables</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">unicorns</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;  [1] "Unicorn_ID"        "Age"               "Gender"            "Color"             "Type_of_Unicorn"   "Type_of_Horn"      "Horn_Length"       "Horn_Strength"     "Weight"            "Health_Score"     
+#&gt; [11] "Personality_Score" "Magical_Score"     "Elusiveness_Score" "Gentleness_Score"  "Nature_Score"</code></pre>
+</div>
+</div>
+<p>We will only look at <code>Magical_Score</code> and <code>Nature_Score</code>.</p>
+</section>
+<section id="magical-and-nature-score" class="level2">
+<h2 class="anchored" data-anchor-id="magical-and-nature-score">Magical and Nature Score</h2>
+<p><span class="math display">\[
+Magical =  3423 + 8 \times Nature + \varepsilon
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon \sim N(0, 3.24)
+\]</span></p>
+</section>
+<section id="simulating-n0-3.24" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-n0-3.24">Simulating <span class="math inline">\(N(0, 3.24)\)</span></h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">1.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 2.278277</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting" class="level2">
+<h2 class="anchored" data-anchor-id="collecting">Collecting</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unicorns</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(Nature_Score, Magical_Score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 10 × 2
+#&gt;    Nature_Score Magical_Score
+#&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+#&gt;  1         920.        10779.
+#&gt;  2         973.        11204.
+#&gt;  3         915.        10739.
+#&gt;  4         980.        11269.
+#&gt;  5         929.        10860.
+#&gt;  6         954.        11056.
+#&gt;  7         930.        10860.
+#&gt;  8         942.        10961.
+#&gt;  9         946.        10994.
+#&gt; 10         926.        10831.</code></pre>
+</div>
+</div>
+</section>
+<section id="dgp-of-magical-score-1" class="level2">
+<h2 class="anchored" data-anchor-id="dgp-of-magical-score-1">DGP of Magical Score 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dgp-of-magical-score-2" class="level2">
+<h2 class="anchored" data-anchor-id="dgp-of-magical-score-2">DGP of Magical Score 2</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estimating-beta_1-via-lm" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-beta_1-via-lm">Estimating <span class="math inline">\(\beta_1\)</span> via <code>lm</code></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>u1 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u1)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;     3433.491         7.989</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting-a-new-sample" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-a-new-sample">Collecting a new sample</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>u2 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u2)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;     3424.212         7.999</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting-a-new-sample-1" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-a-new-sample-1">Collecting a new sample</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>u3 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u3)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;     3424.178         7.999</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting-a-new-sample-2" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-a-new-sample-2">Collecting a new sample</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>u4 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u4)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;     3429.370         7.993</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting-1000-samples" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-1000-samples">Collecting 1000 Samples</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>betas <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">b</span>(Magical_Score <span class="sc">~</span> Nature_Score, <span class="dv">1</span>, <span class="fu">unicorns</span>(<span class="dv">500</span>)))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    [1] 8.001255 7.992453 7.999343 8.005823 8.000710 7.999781 7.997726 7.999512 7.999101 8.003225 7.996390 7.993764 7.999847 8.000417 8.003056 8.001019 7.997537 8.000407 8.002184 7.999232 8.001242 8.002330 8.004709
+#&gt;   [24] 8.004690 7.995788 7.997278 7.997508 8.000461 8.004561 7.998831 8.008543 7.996063 7.999354 8.002189 8.004922 7.990975 8.002928 8.004257 8.005203 7.996880 8.002255 7.991368 7.997307 8.001478 7.994456 7.997678
+#&gt;   [47] 7.997048 8.004792 7.999704 7.997330 7.998805 8.007506 7.994847 8.002333 7.992776 7.996405 8.014476 8.009902 8.005587 7.990489 8.004463 8.002895 7.997455 7.999188 7.995108 7.997888 7.999190 8.001474 8.001455
+#&gt;   [70] 8.003676 8.003235 7.995725 8.004625 8.001586 8.000428 8.000742 8.006186 8.004568 7.999210 7.997078 8.001424 8.002736 8.000569 7.993641 7.993541 7.993028 7.993966 7.999231 8.001121 8.005623 8.014221 8.000585
+#&gt;   [93] 8.001006 7.998490 7.997128 8.002733 8.007139 7.994807 7.998411 7.995108 8.002814 7.996777 8.001536 8.002280 7.996463 7.990522 7.999892 8.000692 8.000303 7.994132 7.992591 8.004693 7.995858 8.002965 7.999006
+#&gt;  [116] 7.999816 8.005320 8.000924 8.004907 8.000558 8.001831 8.004566 7.998109 7.991353 7.998766 7.999266 7.995890 8.003041 8.000638 8.003315 7.999406 8.005077 8.001966 8.001305 7.996714 8.005907 7.997003 7.995407
+#&gt;  [139] 7.997614 8.007502 7.998757 7.998483 7.994954 8.000608 7.990699 7.998869 7.990083 8.000592 8.006462 8.002260 7.998538 8.000208 8.003851 7.999202 7.999222 8.004044 7.999884 7.995850 7.998828 8.002472 8.004701
+#&gt;  [162] 8.005915 7.995387 7.993068 7.988268 8.005387 7.996792 7.997493 7.994016 8.001878 7.998964 8.008201 7.998731 7.990647 8.001382 8.005756 8.018648 8.003967 7.993205 7.993077 7.996754 8.002307 8.000217 8.003897
+#&gt;  [185] 7.998670 7.998995 8.001025 7.995255 8.001280 7.995567 8.003152 8.002558 7.999434 7.998121 7.998213 8.001043 8.004523 7.996273 8.000599 8.000238 8.010942 7.997437 8.000389 7.996749 7.994510 7.997178 8.003518
+#&gt;  [208] 7.996621 7.998222 8.003652 8.005038 8.001474 8.001968 8.001863 7.996394 7.997817 7.994379 8.002831 8.001702 7.998730 8.003577 8.002717 7.997608 8.001038 8.000247 8.000492 7.997068 7.996173 8.002786 8.001030
+#&gt;  [231] 8.002635 8.009380 7.995761 8.002738 7.992479 7.999004 8.000989 7.999310 8.000511 8.002894 8.001906 8.006290 8.003384 7.995907 8.006741 7.996838 8.002513 8.006741 7.997175 8.005336 8.004701 8.003229 7.997711
+#&gt;  [254] 8.001788 8.001383 7.997527 8.007385 8.006241 8.004109 8.012530 7.998152 7.999467 8.000587 7.995885 7.997052 8.001188 7.994955 7.995145 8.001595 7.998851 7.999592 7.992276 7.997955 7.993697 7.997914 7.994994
+#&gt;  [277] 8.004746 8.001407 7.999802 7.998787 7.998329 8.002371 8.003589 7.995864 8.002899 7.998341 8.005140 8.003500 8.004846 8.004262 8.002107 7.998248 7.996731 7.996545 8.001471 8.002064 8.001215 7.997520 8.000356
+#&gt;  [300] 8.003130 7.992917 7.995532 8.007630 7.999062 7.997575 8.006776 8.003338 7.995350 8.004410 7.996469 8.000116 7.998926 7.993992 7.997495 8.001274 7.990026 7.996241 8.005680 8.002234 8.004088 7.992671 8.003651
+#&gt;  [323] 8.003119 7.994927 8.003292 8.002099 7.999531 7.999984 7.998282 8.006987 8.004022 8.006061 7.997439 8.003166 7.997610 7.991666 8.006528 8.003432 7.996464 8.000910 8.006753 7.999177 7.993526 7.995304 8.001827
+#&gt;  [346] 7.995558 8.000368 7.998116 7.997622 8.007479 8.005939 7.998431 8.002467 7.998867 8.002594 7.999503 8.006584 8.002195 7.999128 8.004723 7.997563 7.999405 7.996193 8.000480 7.999040 7.989779 7.997618 7.993243
+#&gt;  [369] 7.992374 8.003248 7.999763 7.994922 7.992058 7.995176 7.995228 7.997218 8.003556 8.004211 8.001695 7.994872 7.997762 8.004335 7.998548 8.005644 7.998017 8.004685 8.000491 7.997471 8.000884 8.006391 8.004629
+#&gt;  [392] 7.998375 8.004816 7.992927 8.002163 7.992457 8.002215 7.998828 8.003335 7.995448 8.001175 7.999364 8.000650 7.993445 8.007786 8.005078 8.003714 8.004187 7.993890 8.002283 7.994022 7.999269 8.002017 8.007412
+#&gt;  [415] 8.004770 7.997981 8.004327 7.998840 8.002313 7.999883 7.999515 7.995730 7.996485 7.999673 7.996710 7.999365 8.006839 8.000764 8.000416 8.002264 8.003454 8.007574 7.999767 7.999320 8.003950 7.993589 7.992462
+#&gt;  [438] 7.995199 7.998508 8.004083 7.995282 8.002728 7.999052 8.002762 8.004196 7.999523 7.993897 8.002355 8.006035 7.996700 7.998971 7.997435 8.007472 8.001774 8.002015 8.000020 7.988128 8.004899 8.005479 7.998637
+#&gt;  [461] 7.998551 7.998603 8.006008 8.000009 8.000133 8.005015 7.996266 7.996882 8.003624 8.001050 7.995501 8.003236 7.995789 7.991793 7.992897 7.999753 7.994799 7.998966 7.993526 8.005220 8.001964 8.006276 7.998629
+#&gt;  [484] 8.001441 7.999001 8.000858 8.014383 7.998001 7.999737 8.000313 8.002916 7.997470 7.997694 7.998002 8.006092 8.006434 7.988973 7.991901 8.002075 7.998648 7.994163 7.999997 7.998027 7.997132 7.999020 7.996900
+#&gt;  [507] 7.998546 7.996514 7.993650 8.002240 7.996646 7.994918 8.001627 7.993582 7.999205 7.994238 8.000125 7.999372 8.006593 8.002393 8.003716 8.008257 8.000376 8.001626 8.006167 8.001032 7.999024 7.997154 7.997655
+#&gt;  [530] 7.998353 8.002297 7.999485 8.011278 7.995409 7.993309 7.997688 8.002184 8.007058 7.993467 8.004288 8.000398 8.001501 7.995619 7.994292 7.998555 8.002718 8.000914 8.000067 7.998960 7.998534 7.999130 7.999809
+#&gt;  [553] 8.004436 8.000169 8.004503 7.998282 7.990379 7.999694 7.996538 8.003096 8.004276 8.002383 8.000014 8.003088 7.991322 8.005335 7.999611 7.998709 7.994055 7.996595 8.002474 7.991171 8.002384 8.004269 8.003841
+#&gt;  [576] 8.007428 7.998956 8.000234 8.004750 8.000089 8.003189 8.002731 7.998123 8.000439 7.996142 7.997328 8.000682 7.998839 8.000894 8.013405 8.001009 7.998222 8.002298 7.996810 8.005548 8.006936 7.999252 7.997598
+#&gt;  [599] 8.001970 8.000485 7.996522 7.999632 8.002405 8.003753 7.994922 8.004333 7.999821 8.006971 7.994230 8.003497 8.000895 7.999163 7.998341 8.000088 8.003672 8.000453 8.003247 7.999884 8.003800 8.000891 8.004621
+#&gt;  [622] 8.001404 8.003632 7.995903 8.001889 7.995085 8.003777 7.993620 7.997929 7.988339 8.000555 7.997409 7.990026 8.005505 8.001209 7.996479 8.002492 7.999873 8.000048 7.995780 8.006749 7.992300 7.999507 7.995393
+#&gt;  [645] 8.003586 7.995281 8.002921 8.002440 8.001489 7.997121 8.001360 8.001307 8.002521 8.000021 8.001179 7.996497 8.001741 7.997852 8.007067 7.999708 7.994365 7.999552 8.005871 7.997420 7.995760 7.997766 7.999617
+#&gt;  [668] 8.004437 7.994362 7.999584 8.005580 8.002497 7.995458 7.997847 7.995384 7.990549 8.004961 8.005078 7.998567 8.004815 8.006321 8.006544 8.008949 8.004946 7.995037 8.004646 7.998003 8.000635 8.000302 8.002351
+#&gt;  [691] 8.009100 8.003560 7.999272 7.998413 7.997694 8.001950 7.997775 8.000430 7.999527 8.000386 7.996954 8.003329 7.994738 8.005889 7.998380 7.999572 8.003243 8.008880 7.994569 8.000530 7.992927 8.001305 8.004806
+#&gt;  [714] 8.005112 8.001341 8.002326 7.998777 7.998029 7.991902 8.004943 8.000850 7.996307 7.996075 7.999372 8.001828 7.998587 7.999012 7.997992 7.994675 8.002565 7.999400 7.997213 7.996240 7.997413 8.006449 7.994725
+#&gt;  [737] 8.006827 8.001711 7.998191 7.998483 8.004585 7.992692 8.000826 7.998521 8.000870 7.997029 7.994092 7.999165 7.999461 8.002150 8.004002 8.001065 8.000200 8.000707 7.992955 7.995585 7.996499 8.007952 8.001151
+#&gt;  [760] 7.996643 7.997483 7.998786 8.003282 8.003088 8.000151 8.004074 7.991284 8.010860 8.000534 8.007501 8.002507 7.997697 7.998352 7.999234 7.996460 7.997274 7.998526 7.997978 8.006309 7.997780 7.996778 8.004498
+#&gt;  [783] 7.995935 8.000401 8.004363 8.002564 7.999875 7.999730 7.998181 7.993333 7.999395 8.001483 8.005137 7.995002 8.006015 8.001039 7.996869 8.008532 7.991951 7.995787 7.999984 7.999014 8.001975 7.997122 8.004272
+#&gt;  [806] 7.997841 7.997744 7.995446 8.006146 8.001328 8.000657 7.998805 7.992894 8.003562 7.992761 8.001720 8.001305 7.991201 8.004370 8.001767 7.999498 7.999386 7.996181 7.995813 8.000712 7.999691 7.992353 7.997081
+#&gt;  [829] 8.003510 8.004440 7.999823 8.006614 8.003193 7.999240 7.999531 7.997710 7.992607 7.998796 8.004112 7.999911 7.998510 7.991570 7.998481 7.993918 8.004866 7.997165 8.001597 8.001704 8.003878 8.000220 8.000844
+#&gt;  [852] 7.999865 8.001320 7.999737 7.998038 7.997607 7.995421 7.997252 8.001297 7.999014 8.001181 7.999582 8.000584 7.996053 8.000881 8.004496 7.999976 8.001812 8.002931 8.000264 8.005998 7.998305 8.002813 8.004085
+#&gt;  [875] 8.004141 8.003589 7.991012 8.004121 8.005524 8.002012 8.006316 8.001254 7.994691 8.005730 7.991580 8.004444 8.003127 8.007209 8.009768 8.001368 8.000517 8.000803 8.003360 7.994986 7.999374 8.001876 8.001043
+#&gt;  [898] 7.993863 8.009552 8.003852 8.002222 7.996909 8.009530 7.998692 7.998834 8.001472 8.000386 7.997918 8.002765 8.000431 8.005088 7.994998 8.003191 8.003736 8.000466 8.010706 8.006900 7.996472 7.999244 7.999713
+#&gt;  [921] 8.000078 7.996039 8.001705 8.007055 7.997500 8.005995 8.006221 8.000118 7.998413 8.001651 8.003078 8.003302 7.999440 7.993533 8.008660 7.995938 7.993130 7.999774 8.000575 8.000425 7.996296 8.000673 8.001646
+#&gt;  [944] 7.995788 8.000513 7.998563 7.998806 7.993536 7.998358 8.000231 7.996207 7.996439 7.999699 8.000695 8.004675 8.003500 7.999092 7.993381 8.000244 7.997153 8.000179 7.998922 7.998751 8.001345 7.997772 7.999223
+#&gt;  [967] 8.003086 8.001134 8.010650 7.995934 8.000172 8.006464 7.994085 8.007558 8.000547 8.004934 7.998890 8.001463 7.997066 8.000321 8.004631 8.008018 7.998343 7.999005 7.995193 8.000114 7.998655 7.996514 7.997445
+#&gt;  [990] 7.997490 8.004470 8.001418 8.000230 8.001431 7.992112 7.993829 8.005906 7.998882 7.996081 7.996542</code></pre>
+</div>
+</div>
+</section>
+<section id="distributions-of-hat-beta_1" class="level2">
+<h2 class="anchored" data-anchor-id="distributions-of-hat-beta_1">Distributions of <span class="math inline">\(\hat \beta_1\)</span></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> betas), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hypothesis-testing" class="level1">
+<h1>Hypothesis Testing</h1>
+<section id="inference" class="level2">
+<h2 class="anchored" data-anchor-id="inference">Inference</h2>
+<p>In the real world, we do not know how the model is generated; therefore, the parameters that are being estimated are unknown.</p>
+<div class="fragment">
+<p>We use statistics to determine what is our best guess of what the true parameter is.</p>
+</div>
+<div class="fragment">
+<p>We can use processes known as inferential procedures to determine which values of the parameter it cannot be. This is known as inference.</p>
+</div>
+</section>
+<section id="hypothesis-tests" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis Tests</h2>
+<p>Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the <strong>Null</strong> and <strong>Alternative</strong> Hypothesis.</p>
+</section>
+<section id="null-hypothesis-h_0" class="level2">
+<h2 class="anchored" data-anchor-id="null-hypothesis-h_0">Null Hypothesis <span class="math inline">\(H_0\)</span></h2>
+<p>The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.</p>
+</section>
+<section id="alternative-hypothesis-h_a" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-hypothesis-h_a">Alternative Hypothesis <span class="math inline">\(H_a\)</span></h2>
+<p>The alternative hypothesis contradicts the null hypothesis.</p>
+</section>
+<section id="example-of-null-and-alternative-hypothesis" class="level2">
+<h2 class="anchored" data-anchor-id="example-of-null-and-alternative-hypothesis">Example of Null and Alternative Hypothesis</h2>
+<p>We want to see if <span class="math inline">\(\mu\)</span> (the true value) is different from <span class="math inline">\(\mu_0\)</span> (a number we want to test)</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu=\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu\ne\mu_0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \mu\le\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu&gt;\mu_0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu\ge\mu_0\)</span></td>
+<td><span class="math inline">\(H_0: \mu&lt;\mu_0\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hypothesis-test" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-test">Hypothesis Test</h2>
+<p>The idea of hypothesis testing is to generate the sampling distribution of a statistic assuming the null hypothesis is true.</p>
+<div class="fragment">
+<p>Compute the statistic from your data.</p>
+</div>
+<div class="fragment">
+<p>Afterwards, see where your statistic lies in comparison of your null sampling distribution.</p>
+</div>
+</section>
+<section id="comparison-of-null-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-null-distribution">Comparison of Null Distribution</h2>
+<p>If your statistic lies near the mounds, it is believed that your data came from the null distribution.</p>
+<p>If your statistic is more in the tail regions, it is believed that your data <strong>did not</strong> come from your null distribution.</p>
+</section>
+</section>
+<section id="comparing-proportions" class="level1">
+<h1>Comparing Proportions</h1>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>The <code>bacteria</code> data set contians information on whether bacteria (<code>y</code>: y or n) is present after utilizing treatments (<code>ap</code>: <strong>a</strong>ctive or <strong>p</strong>lacebo).</p>
+<div class="fragment">
+<p>We are interesting in determine the proportion of having bacteria present is different for those taking an “active” or “placebo”.</p>
+</div>
+</section>
+<section id="crosstabulation" class="level2">
+<h2 class="anchored" data-anchor-id="crosstabulation">Crosstabulation</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="comparing-proportions-1" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-proportions-1">Comparing Proportions</h2>
+<p>We are interesting in determining if different groups see different proportions of a binary outcome.</p>
+<p>We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.</p>
+</section>
+<section id="by-2-cross-tabulations" class="level2">
+<h2 class="anchored" data-anchor-id="by-2-cross-tabulations">2 by 2 Cross Tabulations</h2>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>Groups</td>
+<td>Outcome 1</td>
+<td>Outcome 2</td>
+</tr>
+<tr class="even">
+<td>Group 1</td>
+<td><span class="math inline">\(p_{11}\)</span></td>
+<td><span class="math inline">\(p_{21}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Group 2</td>
+<td><span class="math inline">\(p_{12}\)</span></td>
+<td><span class="math inline">\(p_{22}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>We want to compare <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span>, to determine if the probability of outcome 1 are the same for both groups.</p>
+</div>
+</section>
+<section id="test-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="test-statistic">Test Statistic</h2>
+<p>We can use both <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span> to determine if there is a fundamental difference.</p>
+<div class="fragment">
+<p>However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+T =  p_{11} - p_{12}
+\]</span></p>
+</div>
+</section>
+<section id="obtain-proportion-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="obtain-proportion-in-r">Obtain Proportion in R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(DATA<span class="sc">$</span>GROUP, DATA<span class="sc">$</span>OUTCOME, VAL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="obtain-difference-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="obtain-difference-in-r">Obtain Difference in R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(DATA<span class="sc">$</span>GROUP, DATA<span class="sc">$</span>OUTCOME, VAL, <span class="at">diff =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="bacteria-example" class="level2">
+<h2 class="anchored" data-anchor-id="bacteria-example">Bacteria Example</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;     a     p 
+#&gt; 0.750 0.875</code></pre>
+</div>
+</div>
+</section>
+<section id="bacteria-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="bacteria-example-1">Bacteria Example</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.125</code></pre>
+</div>
+</div>
+</section>
+<section id="hypothesis-test-1" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-test-1">Hypothesis Test</h2>
+<p>Is 12.5% of a difference large enough to indicate that an active drug is effective against the bacteria, or seeing this can be due to random chance.</p>
+</section>
+<section id="hypotheis-test" class="level2">
+<h2 class="anchored" data-anchor-id="hypotheis-test">Hypotheis Test</h2>
+<p>We will test the following hypothesis:</p>
+<p><span class="math display">\[
+H_0:\ p_1-p_2 = 0
+\]</span></p>
+<p><span class="math display">\[
+H_a:\ p_1 - p_2 \neq 0
+\]</span></p>
+</section>
+<section id="hypothesis-test-2" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-test-2">Hypothesis Test</h2>
+<p>In words:</p>
+<p><span class="math inline">\(H_0\)</span>: The variables bacteria presence and active drug treatment are independent of each other.</p>
+<p><span class="math inline">\(H_a\)</span>: The variables bacteria presence and active drug treatment are dependent of each other.</p>
+</section>
+</section>
+<section id="randomization-tests" class="level1">
+<h1>Randomization Tests</h1>
+<section id="visualizing" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing">Visualizing</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomization-tests-1" class="level2">
+<h2 class="anchored" data-anchor-id="randomization-tests-1">Randomization Tests</h2>
+<p>The idea of a randomization test is that each observed outcome variable was dictated by a mathematical model.</p>
+<div class="fragment">
+<p>Therefore, a randomization is most interested to determine if the mathematical model exist or completely random.</p>
+</div>
+<div class="fragment">
+<p>This is equivalent to saying the there is not pattern in the data. IE, independent variables.</p>
+</div>
+</section>
+<section id="randomization-tests-2" class="level2">
+<h2 class="anchored" data-anchor-id="randomization-tests-2">Randomization Tests</h2>
+<p><span class="math inline">\(H_0\)</span>: The outcome and predictor variables are <strong>independent</strong> of each other.</p>
+<p><span class="math inline">\(H_a\)</span>: The outcome and predictor variables are <strong>dependent</strong> of each other.</p>
+</section>
+<section id="randomziation-1" class="level2">
+<h2 class="anchored" data-anchor-id="randomziation-1">Randomziation 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-2" class="level2">
+<h2 class="anchored" data-anchor-id="randomziation-2">Randomziation 2</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-3" class="level2">
+<h2 class="anchored" data-anchor-id="randomziation-3">Randomziation 3</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-4" class="level2">
+<h2 class="anchored" data-anchor-id="randomziation-4">Randomziation 4</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomization-test" class="level2">
+<h2 class="anchored" data-anchor-id="randomization-test">Randomization Test</h2>
+<p>The act of randomizing the outcome to a set of predictor variables allow you to construct the sampling of distribution of the null hypothesis.</p>
+<div class="fragment">
+<p><span class="math inline">\(H_0\)</span>: The variables bacteria presence and active drug treatment are independent of each other. <span class="math inline">\(p_{active}-p_{placebo} = 0\)</span></p>
+<p><span class="math inline">\(H_a\)</span>: The variables bacteria presence and active drug treatment are dependent of each other. <span class="math inline">\(p_{active}-p_{placebo} \neq 0\)</span></p>
+</div>
+</section>
+<section id="simulating-h_0" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-h_0">Simulating <span class="math inline">\(H_0\)</span></h2>
+<p>We are interested in simulating the distribution for <span class="math inline">\(p_{active}-p_{placebo}\)</span>. We do this by randomly assigning the observed outcomes to the predictor variable. Then, we compute the difference in proportions using the <code>props</code> function. Afterwards, we store the value and repeat the process again.</p>
+<div class="fragment">
+<p>Lastly, we compare where the data statistic compared to our simulated distribution.</p>
+</div>
+</section>
+<section id="shuffling-data" class="level2">
+<h2 class="anchored" data-anchor-id="shuffling-data">Shuffling Data</h2>
+<p>The <code>shuffle</code> function will mix up a variable in R:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shuffle</span>(VECTOR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="shuffle-data" class="level2">
+<h2 class="anchored" data-anchor-id="shuffle-data">Shuffle Data</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bacteria<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   [1] y y y y y y n y y y y y y y y y y y y y y y y y y y y y n n n y n y y y y y y y y y y y y y y y y y n n y y y y y y y y y n y y y y y y y n y y y y y n y y y n n n y y n y n y y y y y y y y y y y y y y n y n y n y
+#&gt; [108] y y n n n y n n y n n y y y y y y y n n y y y n y y y y y y n y y y y y y y y y y n n n y y y y y y y y y y y y y y y y y y n y n n y n y y n y y y y y y y y y y y y y y y y y y y n y y y y y y y y y y n n y y y n
+#&gt; [215] n y y y n y
+#&gt; Levels: n y</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   [1] n y y n y y y y y y n y n y y y y n y n y y n y y y y y y y y n y y n y y y y n y y y y y y y y y n y n y y y n y y n y y n y y y n y n y y n y y y y y y y n y y y y y y y y y y y n y y n y y y y n y y n y y y y y
+#&gt; [108] y y y y y y y y y y y y y y y n y n y y y y y y y y n n y y y y y y y y n y y y y y y y y y y y y y y y y y n y y y y y y y y y y y y y y n y n n y n y y y n y y y n y n n y y y n n y n y y y n y y y n y y n y y y
+#&gt; [215] y y y y y y
+#&gt; Levels: n y</code></pre>
+</div>
+</div>
+</section>
+<section id="computing-proportions" class="level2">
+<h2 class="anchored" data-anchor-id="computing-proportions">Computing Proportions</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.1434812</code></pre>
+</div>
+</div>
+</section>
+<section id="repeat-process" class="level2">
+<h2 class="anchored" data-anchor-id="repeat-process">Repeat Process</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.00436828</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.05981183</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.00436828</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.05107527</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.03259409</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.05981183</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.06955645</code></pre>
+</div>
+</div>
+</section>
+<section id="the-replicate-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-replicate-function">The <code>replicate</code> Function</h2>
+<p>The <code>replicate</code> function will execute a task multiple times and store the values in a vector.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(N, FUN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>N: number of simulations</li>
+<li>FUN: the command to be repeated</li>
+</ul>
+</section>
+<section id="repeat-1000-times" class="level2">
+<h2 class="anchored" data-anchor-id="repeat-1000-times">Repeat 1000 times</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>sim_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T))</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>sim_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    [1] -0.09677419 -0.05981183  0.08803763  0.03259409  0.12500000 -0.02284946  0.05107527  0.12500000  0.05107527 -0.00436828  0.03259409 -0.04133065 -0.09677419 -0.04133065 -0.07829301 -0.02284946 -0.09677419
+#&gt;   [18]  0.05107527  0.03259409  0.03259409 -0.04133065  0.08803763 -0.07829301 -0.05981183 -0.00436828 -0.00436828 -0.07829301 -0.07829301 -0.09677419 -0.00436828  0.03259409 -0.09677419  0.10651882  0.01411290
+#&gt;   [35]  0.03259409 -0.04133065 -0.00436828  0.03259409  0.01411290  0.06955645 -0.04133065  0.05107527 -0.02284946  0.06955645 -0.09677419  0.05107527 -0.04133065 -0.02284946  0.06955645  0.08803763  0.06955645
+#&gt;   [52] -0.02284946 -0.04133065  0.06955645 -0.00436828 -0.04133065  0.05107527  0.06955645 -0.05981183 -0.00436828  0.01411290  0.05107527  0.01411290  0.01411290  0.03259409 -0.07829301  0.03259409 -0.02284946
+#&gt;   [69]  0.03259409 -0.00436828  0.10651882 -0.00436828 -0.02284946  0.06955645  0.03259409  0.05107527 -0.05981183 -0.09677419  0.08803763 -0.09677419  0.03259409 -0.02284946  0.05107527  0.01411290 -0.04133065
+#&gt;   [86] -0.00436828  0.06955645  0.03259409 -0.09677419  0.03259409 -0.04133065  0.05107527  0.01411290 -0.05981183  0.05107527  0.01411290 -0.00436828 -0.02284946 -0.02284946 -0.07829301 -0.05981183  0.05107527
+#&gt;  [103]  0.03259409 -0.05981183  0.01411290 -0.04133065  0.01411290 -0.02284946  0.01411290 -0.00436828  0.03259409 -0.05981183  0.08803763  0.01411290  0.03259409 -0.00436828 -0.02284946  0.01411290  0.01411290
+#&gt;  [120] -0.00436828  0.01411290  0.06955645  0.10651882 -0.05981183  0.03259409 -0.04133065  0.05107527 -0.04133065  0.03259409  0.03259409  0.05107527  0.06955645  0.01411290  0.06955645 -0.04133065  0.03259409
+#&gt;  [137] -0.00436828 -0.00436828 -0.00436828  0.03259409  0.03259409  0.05107527  0.03259409 -0.02284946 -0.02284946 -0.02284946 -0.05981183  0.06955645 -0.00436828 -0.07829301 -0.00436828 -0.04133065  0.03259409
+#&gt;  [154]  0.08803763  0.03259409  0.08803763 -0.04133065 -0.02284946 -0.05981183  0.05107527  0.12500000 -0.00436828 -0.05981183 -0.07829301 -0.04133065 -0.04133065 -0.05981183 -0.02284946 -0.00436828 -0.02284946
+#&gt;  [171]  0.01411290 -0.04133065 -0.02284946  0.06955645 -0.04133065  0.06955645  0.03259409 -0.07829301 -0.04133065 -0.04133065  0.01411290 -0.00436828  0.01411290 -0.09677419  0.05107527  0.01411290 -0.02284946
+#&gt;  [188]  0.10651882  0.05107527  0.01411290 -0.13373656 -0.02284946 -0.13373656 -0.11525538  0.01411290  0.03259409 -0.02284946  0.10651882  0.03259409 -0.09677419  0.01411290  0.05107527  0.01411290  0.01411290
+#&gt;  [205] -0.05981183 -0.02284946 -0.02284946  0.03259409 -0.09677419  0.06955645  0.01411290 -0.02284946 -0.07829301  0.10651882  0.01411290 -0.02284946  0.06955645 -0.05981183 -0.05981183  0.01411290 -0.04133065
+#&gt;  [222]  0.01411290 -0.00436828 -0.02284946 -0.02284946 -0.09677419 -0.04133065 -0.02284946 -0.02284946 -0.04133065 -0.00436828  0.01411290 -0.05981183 -0.02284946  0.03259409 -0.05981183 -0.00436828  0.06955645
+#&gt;  [239] -0.05981183  0.01411290 -0.00436828  0.01411290  0.01411290 -0.07829301 -0.00436828 -0.00436828 -0.02284946 -0.00436828 -0.02284946  0.08803763 -0.02284946  0.05107527 -0.00436828  0.10651882  0.05107527
+#&gt;  [256] -0.00436828 -0.00436828 -0.04133065 -0.04133065  0.01411290 -0.09677419 -0.05981183 -0.02284946  0.03259409  0.03259409  0.01411290  0.05107527  0.01411290 -0.00436828 -0.07829301 -0.00436828 -0.02284946
+#&gt;  [273] -0.05981183  0.06955645  0.03259409  0.05107527 -0.13373656 -0.02284946 -0.00436828  0.03259409  0.05107527 -0.15221774  0.12500000  0.01411290  0.03259409  0.03259409 -0.09677419 -0.07829301  0.05107527
+#&gt;  [290] -0.00436828 -0.00436828 -0.04133065  0.06955645 -0.04133065  0.01411290 -0.00436828 -0.07829301  0.05107527 -0.04133065 -0.05981183  0.03259409 -0.00436828 -0.02284946 -0.00436828  0.05107527  0.06955645
+#&gt;  [307] -0.15221774 -0.04133065 -0.02284946 -0.04133065  0.03259409 -0.09677419 -0.15221774  0.05107527 -0.02284946 -0.02284946 -0.11525538 -0.04133065 -0.02284946 -0.00436828  0.06955645  0.01411290 -0.00436828
+#&gt;  [324] -0.15221774 -0.00436828 -0.00436828  0.05107527 -0.02284946 -0.00436828 -0.04133065  0.03259409  0.03259409  0.01411290  0.03259409  0.06955645  0.03259409  0.06955645  0.06955645  0.01411290  0.01411290
+#&gt;  [341]  0.03259409  0.01411290 -0.04133065 -0.02284946  0.06955645  0.05107527  0.03259409  0.03259409 -0.02284946  0.01411290 -0.04133065  0.05107527  0.05107527  0.03259409  0.03259409  0.03259409  0.05107527
+#&gt;  [358] -0.07829301  0.03259409  0.03259409 -0.02284946 -0.07829301  0.01411290  0.01411290 -0.00436828  0.06955645  0.06955645  0.03259409 -0.02284946  0.08803763 -0.02284946 -0.04133065  0.03259409 -0.11525538
+#&gt;  [375]  0.05107527 -0.00436828 -0.05981183 -0.00436828  0.01411290 -0.04133065 -0.00436828 -0.07829301 -0.07829301 -0.05981183 -0.00436828 -0.00436828 -0.00436828 -0.13373656  0.01411290  0.01411290  0.05107527
+#&gt;  [392]  0.01411290 -0.09677419  0.01411290  0.03259409  0.08803763  0.01411290  0.05107527  0.01411290 -0.02284946  0.05107527 -0.02284946 -0.05981183  0.03259409 -0.02284946 -0.07829301  0.01411290  0.10651882
+#&gt;  [409] -0.05981183  0.01411290 -0.00436828  0.10651882 -0.02284946 -0.04133065  0.03259409 -0.02284946  0.10651882 -0.02284946  0.01411290 -0.05981183 -0.00436828  0.05107527 -0.07829301 -0.04133065  0.01411290
+#&gt;  [426] -0.05981183 -0.05981183 -0.04133065  0.03259409  0.08803763  0.06955645 -0.05981183 -0.04133065 -0.04133065 -0.15221774 -0.13373656 -0.07829301 -0.09677419 -0.05981183  0.03259409 -0.04133065 -0.09677419
+#&gt;  [443] -0.04133065  0.01411290  0.08803763 -0.04133065  0.01411290  0.03259409 -0.11525538 -0.02284946  0.05107527  0.03259409 -0.04133065  0.01411290  0.05107527 -0.07829301 -0.00436828  0.01411290 -0.07829301
+#&gt;  [460] -0.00436828 -0.07829301  0.03259409  0.05107527 -0.00436828  0.06955645  0.05107527  0.03259409 -0.04133065 -0.02284946 -0.00436828  0.05107527 -0.09677419  0.03259409 -0.07829301  0.05107527 -0.09677419
+#&gt;  [477] -0.04133065  0.05107527 -0.04133065  0.03259409 -0.05981183 -0.00436828 -0.02284946 -0.13373656 -0.04133065 -0.07829301 -0.09677419  0.03259409  0.08803763  0.05107527 -0.04133065  0.08803763 -0.02284946
+#&gt;  [494]  0.01411290  0.03259409 -0.02284946  0.01411290 -0.07829301 -0.05981183  0.03259409  0.06955645  0.01411290  0.03259409 -0.09677419 -0.05981183 -0.09677419  0.01411290 -0.00436828  0.03259409  0.03259409
+#&gt;  [511]  0.01411290 -0.04133065 -0.00436828  0.05107527 -0.04133065 -0.07829301 -0.07829301  0.06955645 -0.04133065 -0.09677419 -0.00436828  0.03259409 -0.00436828  0.03259409  0.01411290  0.08803763  0.03259409
+#&gt;  [528] -0.05981183  0.01411290 -0.00436828 -0.00436828 -0.00436828 -0.00436828 -0.05981183  0.03259409 -0.05981183 -0.00436828 -0.00436828 -0.09677419 -0.00436828 -0.00436828  0.05107527  0.06955645  0.06955645
+#&gt;  [545]  0.01411290  0.03259409  0.05107527 -0.07829301  0.14348118 -0.02284946  0.06955645 -0.02284946  0.12500000  0.01411290 -0.09677419 -0.05981183  0.01411290  0.14348118  0.06955645  0.01411290 -0.02284946
+#&gt;  [562] -0.05981183 -0.04133065  0.03259409 -0.00436828  0.12500000 -0.04133065  0.03259409  0.03259409 -0.05981183  0.05107527 -0.02284946  0.01411290  0.06955645 -0.00436828  0.01411290  0.03259409 -0.13373656
+#&gt;  [579] -0.04133065 -0.04133065  0.06955645 -0.00436828 -0.02284946  0.10651882 -0.04133065 -0.04133065  0.01411290  0.10651882  0.03259409  0.05107527  0.14348118 -0.00436828  0.03259409 -0.04133065  0.05107527
+#&gt;  [596]  0.03259409  0.01411290 -0.02284946  0.05107527  0.03259409 -0.00436828 -0.04133065 -0.00436828  0.05107527 -0.09677419  0.03259409  0.01411290 -0.00436828  0.05107527  0.01411290  0.01411290  0.03259409
+#&gt;  [613] -0.04133065  0.10651882  0.05107527  0.08803763  0.03259409 -0.05981183 -0.04133065  0.01411290 -0.00436828  0.03259409 -0.00436828 -0.00436828  0.05107527 -0.11525538 -0.00436828  0.03259409 -0.04133065
+#&gt;  [630] -0.05981183 -0.00436828  0.10651882  0.05107527  0.05107527 -0.00436828 -0.00436828 -0.05981183  0.08803763 -0.00436828 -0.00436828  0.01411290  0.06955645  0.03259409 -0.00436828 -0.05981183 -0.04133065
+#&gt;  [647] -0.11525538 -0.09677419  0.03259409  0.08803763  0.01411290  0.12500000  0.01411290  0.03259409  0.01411290 -0.00436828 -0.04133065  0.05107527 -0.05981183  0.01411290 -0.07829301 -0.05981183 -0.00436828
+#&gt;  [664] -0.04133065  0.05107527  0.01411290 -0.04133065  0.06955645 -0.00436828 -0.04133065  0.10651882 -0.02284946  0.01411290 -0.04133065  0.03259409 -0.04133065 -0.04133065  0.03259409  0.08803763 -0.05981183
+#&gt;  [681] -0.04133065 -0.04133065 -0.00436828 -0.00436828  0.03259409  0.03259409 -0.07829301 -0.07829301  0.01411290 -0.02284946  0.05107527 -0.02284946 -0.07829301 -0.00436828  0.03259409  0.01411290  0.06955645
+#&gt;  [698] -0.04133065 -0.07829301 -0.02284946  0.06955645 -0.04133065  0.06955645 -0.02284946 -0.00436828  0.06955645 -0.04133065 -0.02284946 -0.04133065  0.03259409  0.08803763  0.06955645 -0.02284946 -0.04133065
+#&gt;  [715]  0.06955645 -0.02284946 -0.00436828 -0.00436828  0.03259409  0.03259409  0.05107527  0.03259409 -0.04133065  0.03259409 -0.05981183 -0.02284946 -0.00436828  0.03259409  0.03259409 -0.07829301 -0.02284946
+#&gt;  [732]  0.01411290 -0.02284946 -0.04133065  0.05107527 -0.04133065  0.08803763  0.01411290  0.08803763 -0.00436828  0.01411290  0.05107527  0.03259409 -0.00436828  0.01411290  0.03259409  0.05107527  0.06955645
+#&gt;  [749]  0.01411290  0.05107527  0.01411290 -0.02284946 -0.00436828 -0.04133065 -0.05981183  0.10651882  0.01411290 -0.00436828  0.05107527  0.05107527 -0.05981183  0.05107527  0.03259409 -0.00436828 -0.02284946
+#&gt;  [766] -0.09677419  0.03259409  0.03259409 -0.04133065 -0.00436828  0.05107527 -0.09677419 -0.04133065  0.03259409 -0.04133065 -0.02284946 -0.00436828  0.05107527  0.01411290  0.01411290 -0.00436828 -0.04133065
+#&gt;  [783]  0.06955645  0.12500000  0.05107527  0.14348118 -0.13373656  0.06955645 -0.00436828 -0.02284946  0.05107527  0.05107527 -0.04133065 -0.00436828 -0.05981183 -0.05981183 -0.00436828 -0.05981183 -0.05981183
+#&gt;  [800]  0.06955645  0.06955645 -0.00436828  0.05107527 -0.00436828 -0.02284946 -0.09677419  0.01411290  0.01411290 -0.02284946  0.01411290 -0.04133065 -0.07829301 -0.05981183  0.01411290  0.03259409 -0.00436828
+#&gt;  [817]  0.08803763 -0.09677419  0.14348118 -0.11525538  0.08803763  0.01411290 -0.07829301 -0.09677419  0.05107527 -0.04133065  0.05107527 -0.05981183  0.03259409 -0.00436828  0.06955645  0.05107527  0.01411290
+#&gt;  [834]  0.01411290  0.08803763  0.10651882  0.05107527 -0.00436828  0.03259409  0.06955645  0.01411290  0.06955645 -0.02284946  0.08803763 -0.04133065  0.01411290 -0.00436828 -0.05981183  0.12500000 -0.04133065
+#&gt;  [851]  0.05107527 -0.00436828  0.03259409  0.05107527  0.01411290 -0.05981183 -0.00436828  0.01411290 -0.05981183 -0.00436828 -0.04133065  0.03259409  0.01411290 -0.00436828  0.12500000  0.01411290 -0.04133065
+#&gt;  [868]  0.06955645 -0.02284946 -0.05981183  0.05107527  0.01411290  0.05107527 -0.05981183  0.03259409  0.06955645  0.03259409  0.06955645 -0.00436828  0.05107527  0.01411290 -0.04133065  0.01411290 -0.07829301
+#&gt;  [885] -0.04133065 -0.02284946 -0.00436828  0.01411290 -0.00436828 -0.05981183 -0.00436828  0.14348118 -0.02284946 -0.07829301 -0.02284946 -0.02284946 -0.09677419 -0.07829301 -0.00436828  0.06955645 -0.00436828
+#&gt;  [902] -0.07829301 -0.00436828 -0.04133065  0.03259409  0.01411290 -0.11525538 -0.05981183  0.03259409 -0.00436828  0.05107527 -0.00436828  0.05107527  0.01411290  0.01411290  0.03259409 -0.02284946 -0.00436828
+#&gt;  [919] -0.07829301 -0.05981183 -0.00436828 -0.02284946 -0.13373656  0.01411290 -0.05981183  0.06955645 -0.00436828  0.05107527 -0.02284946 -0.00436828 -0.02284946 -0.07829301 -0.02284946  0.01411290 -0.00436828
+#&gt;  [936]  0.03259409  0.06955645 -0.02284946 -0.05981183  0.06955645 -0.00436828  0.03259409 -0.00436828 -0.07829301  0.03259409  0.06955645  0.10651882 -0.02284946 -0.00436828 -0.04133065 -0.02284946 -0.04133065
+#&gt;  [953] -0.02284946 -0.00436828 -0.00436828  0.01411290 -0.02284946 -0.02284946  0.01411290  0.03259409  0.05107527 -0.05981183 -0.04133065  0.01411290  0.08803763 -0.07829301  0.03259409  0.05107527 -0.00436828
+#&gt;  [970]  0.01411290 -0.00436828  0.01411290  0.01411290 -0.00436828  0.03259409  0.10651882  0.05107527  0.01411290 -0.05981183  0.08803763 -0.00436828 -0.02284946  0.05107527  0.01411290 -0.04133065  0.01411290
+#&gt;  [987] -0.09677419 -0.05981183  0.05107527 -0.00436828 -0.02284946  0.05107527  0.01411290 -0.07829301 -0.02284946  0.05107527 -0.04133065 -0.02284946  0.03259409 -0.00436828</code></pre>
+</div>
+</div>
+</section>
+<section id="visualize-data" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-data">Visualize Data</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-data-propoortion" class="level2">
+<h2 class="anchored" data-anchor-id="compute-data-propoortion">Compute Data Propoortion</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>test_stat <span class="ot">&lt;-</span> <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, T)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>test_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.125</code></pre>
+</div>
+</div>
+</section>
+<section id="comparison" class="level2">
+<h2 class="anchored" data-anchor-id="comparison">Comparison</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="p-value" class="level1">
+<h1>P-Value</h1>
+<section id="p-value-1" class="level2">
+<h2 class="anchored" data-anchor-id="p-value-1">P-Value</h2>
+<p>The p-value determines the probability of observing our data statistic, given that the null hypothesis is true.</p>
+<div class="fragment">
+<p>When the p-value is large, we believe there is a high probability that the null hypothesis is true.</p>
+</div>
+<div class="fragment">
+<p>When the p-value is small, we believe that it is unlikely the the null hypothesis is true. We believe that the alternative may be a better model.</p>
+</div>
+</section>
+<section id="sided-p-value" class="level2">
+<h2 class="anchored" data-anchor-id="sided-p-value">2-Sided P-Value</h2>
+<p>Due to randomness, there is a possibility of observing the same magnitude of <span class="math inline">\(p_{active}-p_{placebo}\)</span>, but in the opposite direction; therefore, we must look at both sides.</p>
+</section>
+<section id="visually-2-sided-p-value" class="level2">
+<h2 class="anchored" data-anchor-id="visually-2-sided-p-value">Visually 2-Sided P-Value</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span>test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="8_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="computing-the-p-value" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-p-value">Computing the p-value</h2>
+<p>We will count how many simulated <span class="math inline">\(p_{active}-p_{placebo}\)</span>’s are more extreme than our test statistic and divided by the number of simulations plus one.</p>
+</section>
+<section id="computing-the-p-value-1" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-p-value-1">Computing the p-value</h2>
+<p><span class="math display">\[
+p = \frac{m +1}{N + 1}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(m\)</span>: number of more extreme values than our test statistic</li>
+<li><span class="math inline">\(N\)</span>: number of simulations</li>
+</ul>
+</section>
+<section id="computing-the-p-value-2" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-p-value-2">Computing the P-Value</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">sum</span>(<span class="fu">abs</span>(SIM_VECTOR) <span class="sc">&gt;</span> <span class="fu">abs</span>(TEST_STAT)) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (N <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="computing-p-value" class="level2">
+<h2 class="anchored" data-anchor-id="computing-p-value">Computing P-value</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(sim_stats) <span class="sc">&gt;</span> <span class="fu">abs</span>(test_stat)) <span class="sc">/</span> <span class="dv">1001</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.01998002</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="process" class="level1">
+<h1>Process</h1>
+<section id="identify-your-variables" class="level2">
+<h2 class="anchored" data-anchor-id="identify-your-variables">Identify your Variables</h2>
+<ul>
+<li>What is your predictor variable?</li>
+<li>What is your outcome variable?</li>
+</ul>
+</section>
+<section id="create-your-hypothesis" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-hypothesis">Create your Hypothesis</h2>
+<p>Choose a hypothesis that is appropriate for your model.</p>
+</section>
+<section id="compute-a-test-statistic-for-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="compute-a-test-statistic-for-the-data">Compute a test statistic for the data</h2>
+<p>Identify what is you want to compute and compare.</p>
+</section>
+<section id="generate-a-null-distribution." class="level2">
+<h2 class="anchored" data-anchor-id="generate-a-null-distribution.">Generate a null distribution.</h2>
+<p>Simulate the potential null distribution using the <code>shuffle</code> and <code>replicate</code> function.</p>
+</section>
+<section id="compute-the-p-value" class="level2">
+<h2 class="anchored" data-anchor-id="compute-the-p-value">Compute the p-value</h2>
+<p>Use the probability formula to determine the likelihood of observing your test statistic given that the null hypothesis is true.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("www\.inqs\.info\/m201_s25");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

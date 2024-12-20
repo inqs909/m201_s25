@@ -1,0 +1,15 @@
+{
+  "hash": "adedf6394c8a916291089afb547ea17a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Welcome!\"\nformat:\n  revealjs:\n    scrollable: true\n    theme: [default, styles.scss]\n    navigation-mode: vertical\n    controls-layout: bottom-right\n    controls-tutorial: true\n    incremental: false \n    chalkboard:\n      src: notes/chalkboard_1a.json\n      storage: chalkboard_pres\n      theme: whiteboard\n      chalk-width: 4\nknitr:\n  opts_chunk: \n    echo: true\n    eval: true\n    message: false\n    warnings: false\n    comment: \"#>\" \n    \nrevealjs-plugins:\n  - pointer\n  - verticator\n  \nfilters: \n  - reveal-header\n  - code-fullscreen\n  - reveal-auto-agenda\n  \nauto-agenda:\n  bullets: numbered\n  heading: Learning Outcomes\n  \neditor: visual\n---\n\n\n\n\n\n## Learning Outcomes\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

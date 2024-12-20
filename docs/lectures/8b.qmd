@@ -1,0 +1,282 @@
+---
+title: "Quantifying Errors"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+penguins_nona <- penguins |> drop_na() 
+df <- rexp(1000, 2) |> {\(.) tibble(x = ., y=1:length(.))}()
+
+```
+
+# Announcements
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+## Extra Credit
+
+::: fragment
+**2 New Extra Credit Assignment are being created.**
+:::
+
+::: fragment
+### Assessing your current progress in Math 201 and other classes
+
+-   Assess your grade in Math 201
+:::
+
+# Z-Scores
+
+## Motivation: **Left Ventricular Ejection Fraction**
+
+A crucial measure of cardiac function that assesses how effectively the left ventricle of the heart pumps blood out to the body with each heartbeat.
+
+## Measurement
+
+$$
+LVEF = \frac{{(EDV - ESV)}}{{EDV}} \times 100
+$$
+
+-   EDV: End-Diastolic Volume
+
+-   ESV: End-Systolic Volume
+
+## Data Distribution
+
+```{r}
+(rnorm(10000, 63, 5)) |> tibble(x = _) |> 
+  ggplot(aes(x)) + geom_density() +
+  theme_bw() + ylab("P(X)") +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.y = element_text(size = 24))
+```
+
+## Interest
+
+Let's say you have a patient with an FVEF of 75. Is this a sign of something wrong or still close to average.
+
+## Z-Score
+
+A Z-score represents the number of standard deviations a value (data point) is away from the mean:
+
+$$
+Z= \frac{X-\mathrm{mean}}{\mathrm{sd}}
+$$
+
+## Z-Score
+
+::: columns
+::: {.column width="50%"}
+### Above the Mean
+
+$$
+Z>0
+$$
+:::
+
+::: {.column width="50%"}
+### Below the Mean
+
+$$
+Z<0
+$$
+:::
+:::
+
+## Z-Score vs Standard Deviations
+
+::: columns
+::: {.column width="50%"}
+### Z-Score
+
+Tells you how many standard deviations you are away form the mean.
+:::
+
+::: {.column width="50%"}
+### Standard Deviation
+
+Tells you the average deviations the all the data points are from the mean.
+:::
+:::
+
+## Calculate Z-Scores
+
+65, 56, 72, 75, 60
+
+Mean: 63
+
+Variance: 5
+
+$$
+Z = \frac{X - \mathrm{mean}}{\mathrm{sd}} 
+$$
+
+# Error Distribution
+
+## Normal Distribution
+
+A normal distribution, often referred to as a Gaussian distribution, is a symmetric probability distribution that is characterized by its bell-shaped curve.
+
+## Normal Distribution
+
+::: fragment
+**Symmetry**: The curve is symmetric, meaning that the left and right sides of the distribution are mirror images of each other.
+:::
+
+::: fragment
+**Bell-shaped**: The majority of data points cluster around the mean of the distribution, and as you move away from the mean in either direction, the frequency of data points decreases.
+:::
+
+::: fragment
+**Mean and Standard Deviation:** The distribution is defined by two parameters: the mean ($\mu$) and the variation ($\sigma^2$).
+:::
+
+## Normal Distribution Notation
+
+$$
+X \sim N(\mu, \sigma^2)
+$$
+
+## Normal Distribution
+
+```{r}
+df <- (rnorm(10000, 63, 5)) |> tibble(x = _) 
+df |> 
+  ggplot(aes(x)) + theme_bw() +
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(df$x), 
+                            sd = sd(df$x)), col = "red")
+```
+
+## Z - Distribution
+
+The Z distribution is a special case of a normal distribution:
+
+$$
+Z = X \sim N(0,1)
+$$
+
+Z-Scores follow a standard normal distribution.
+
+## $Z \sim N(0,1)$
+
+```{r}
+df <- (rnorm(100000, 0, 1)) |> tibble(x = _) 
+df |> 
+  ggplot(aes(x)) + theme_bw() +
+  xlab("Z") +
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(df$x), 
+                            sd = sd(df$x)), col = "red") +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.x = element_text(size = 36)) 
+```
+
+## FVEP Histogram
+
+```{r}
+df <- (rnorm(1000, 63, 5)) |> tibble(x = _) 
+df |> 
+  ggplot(aes(x)) + geom_histogram(aes(y=..density..),bin=10) +
+  theme_bw() + ylab("P(X)") +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.y = element_text(size = 24)) #+ 
+  # stat_function(fun = dnorm,
+  #               args = list(mean = mean(df$x), 
+  #                           sd = sd(df$x)), col = "red")
+```
+
+## FVEP Normal?
+
+```{r}
+df <- (rnorm(1000, 63, 5)) |> tibble(x = _) 
+df |> 
+  ggplot(aes(x)) + geom_histogram(aes(y=..density..),bin=10) +
+  theme_bw() + ylab("P(X)") +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.y = element_text(size = 24)) + 
+  stat_function(fun = dnorm,
+                args = list(mean = mean(df$x), 
+                            sd = sd(df$x)), 
+                col = "red", lwd = 2)
+```
+
+## Error Histogram
+
+```{r}
+df <- (rnorm(1000, 63, 5) - 63) |> tibble(x = _) 
+df |> 
+  ggplot(aes(x)) + geom_histogram(aes(y=..density..),bin=10) +
+  theme_bw() + ylab("P(X)") +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.y = element_text(size = 24)) + 
+  stat_function(fun = dnorm,
+                args = list(mean = mean(df$x), 
+                            sd = sd(df$x)), 
+                col = "red", lwd = 2)
+```
+
+## Z-Score of FVEP Histogram
+
+```{r}
+df <- ((rnorm(1000, 63, 5) - 63) / 5) |> tibble(x = _) 
+df |> 
+  ggplot(aes(x)) + geom_histogram(aes(y=..density..),bin=10) +
+  theme_bw() + ylab("P(X)") +
+  theme(axis.text.x = element_text(size = 36),
+        axis.title.y = element_text(size = 24)) + 
+  stat_function(fun = dnorm,
+                args = list(mean = mean(df$x), 
+                            sd = sd(df$x)), 
+                col = "red", lwd = 2)
+```
+
+# The Empirical Rule
+
+## Empirical Rule
+
+![](https://i0.wp.com/statisticsbyjim.com/wp-content/uploads/2021/08/empirical_rule_graph2.png?fit=572%2C384&ssl=1){fig-align="center"}
+
+# EPE Session

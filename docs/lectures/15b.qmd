@@ -1,0 +1,239 @@
+---
+title: "Confidence Intervals"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false
+    code-fold: true
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    error: true
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - webr
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+#| cache: true
+
+set.seed(3249)
+res <- lm(body_mass_kg ~ species, data = penguins)
+themes <- list(theme_bw(),
+               theme(axis.title = element_text(size = 32),
+        axis.text = element_text(size = 26)))
+b1_sim_1000_1 <- tibble(b1 = rnorm(1000, 1, sd = 1)) + 3.7
+b1_sim_1000_2 <- tibble(b1 = rnorm(1000, -0.1, sd = 1)) + 3.7
+b1_sim_1000_3 <- tibble(b1 = rnorm(1000, -2, sd = 1)) + 3.7
+b1_sim_1000_4 <- tibble(b1 = rnorm(1000, 3, sd = 1)) + 3.7
+b1_boot_1000 <- tibble(b1 = rnorm(1000, 3.7, sd = 1))
+
+```
+
+# Confidence Intervals
+
+## Motivating Example
+
+```{r}
+library(coursekata)
+penguins |> ggplot(aes(x=species, y = body_mass_kg)) +
+  geom_jitter() +
+  theme(axis.title = element_text(size = 36)) +
+  labs(x = "Species", y = "Body Mass") + themes
+```
+
+## Motivating Example
+
+```{r}
+penguins |> ggplot(aes(x=species, y = body_mass_kg)) +
+  geom_jitter() + geom_boxplot() +
+  theme(axis.title = element_text(size = 36)) +
+  labs(x = "Species", y = "Body Mass") + themes
+```
+
+## Linear Models
+
+```{r}
+#| echo: true
+
+res <- penguins %>% lm(body_mass_kg ~ species, data = .)
+res
+```
+
+## Computing the mean
+
+$$
+\hat Y = 3.71 + 0.03 \times Chinstrap + 1.39 \times Gentoo 
+$$
+
+-   Adelie
+
+-   Chinstrap
+
+-   Gentoo
+
+## Confidence Interval
+
+These are a collection of $\beta_1$ values that will fail to reject the Null Hypothesis.
+
+::: fragment
+The $\beta_1$ values that are not different from our current estimate $b_1$
+:::
+
+## Confidence Interval
+
+These are a collection of specific parameters that will fail to reject the null hypothesis.
+
+-   Adelie: $\mu_a$
+
+-   Chinstrap: $\mu_c$
+
+-   Gentoo: $\mu_g$
+
+## Looking at Adelie
+
+```{r}
+b1_sim_1000_4 |> ggplot(aes(b1)) + 
+  geom_density() +
+  geom_vline(xintercept = 3.7) +
+  geom_density(data = b1_sim_1000_1) +
+  geom_density(data = b1_sim_1000_2) +
+  geom_density(data = b1_sim_1000_3) +
+  geom_density(data = b1_boot_1000, 
+               fill = "green", alpha = .2)  +
+  xlab("Adelie") +
+  themes
+```
+
+## Boostrap CI
+
+```{r}
+#| echo: true
+extract_mean <- function(x){
+means <- favstats(body_mass_kg ~ species, data = penguins) %>% 
+  select(species, mean) %>%
+  t() %>% .[2,] |> as.numeric() 
+return(tibble(adelie = means[1], 
+                chinstrap = means[2], 
+                gentoo = means[3]))
+}
+boot_means <- do(1000) * extract_mean(resample(penguins))
+print("Adelie")
+quantile(boot_means$adelie, probs = c(.025, .975))
+print("Chinstrap")
+quantile(boot_means$chinstrap, probs = c(.025, .975))
+print("Gentoo")
+quantile(boot_means$gentoo, probs = c(.025, .975))
+```
+
+## Mathematical Models
+
+Use the `pairwise()` to compute confidence intervals.
+
+A difference occurs when 0 is not within the intervals.
+
+```{r}
+#| echo: true
+res %>% pairwise()
+```
+
+## Plots
+
+```{r}
+#| echo: true
+
+res %>% pairwise(plot = T)
+
+```
+
+# Semester
+
+## Final
+
+-   Max of 30 Questions
+
+-   Mixed of Multiple Choice, True or False, and Free Response
+
+-   Get 1 sheet of notes, front and back
+
+-   In-person
+
+-   You are not allowed to talk to anyone during the exam
+
+-   You can use an inexpensive calculator, bring one
+
+-   All other electronic devices must be silenced an put away
+
+-   The exam is worth 100 points
+
+-   Write any explanations in the context of the problem
+
+## Final Material
+
+-   Linear Models
+
+-   Inference
+
+-   Confidence Intervals
+
+## MW 10 AM Class Final
+
+Wednesday December 6
+
+8 AM - 10 AM
+
+## MW 2 PM Class Final
+
+Wednesday December 6
+
+1 PM - 3 PM
+
+## When are Labs DUE
+
+DEC 7th 11:59 PM
+
+## When are Readings DUE
+
+DEC 7th 11:59 PM
+
+## When are Extra Credits DUE
+
+DEC 7th 11:59 PM
+
+# Course Evaluations
+
+## Please Complete Course Evaluations
+
+-   Complete them for all your courses
+
+# Complete Survey
+
+## Complete Survey
+
+![](img/frame%20(7).png){fig-align="center"}

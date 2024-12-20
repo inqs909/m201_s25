@@ -1,0 +1,206 @@
+---
+title: "Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+  
+auto-agenda:
+  bullets: numbered
+  heading: Learning Outcomes
+  
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(palmerpenguins)
+library(ggformula)
+library(ThemePark)
+library(tidyverse)
+library(taylor)
+library(DT)
+set.seed(29)
+penguins_nona <- penguins |> drop_na() |> 
+  filter(species != "Chinstrap") |> 
+  slice_sample(n=8) |>
+  select(species, bill_length_mm)
+```
+
+# Announcements
+
+## Scorpio Season is Here!!
+
+The first 6 reading assignments and quizzes are open for retakes until October 31!
+
+::: fragment
+**This is your last chance!!**
+:::
+
+::: fragment
+**No more new chances will be coming for remaining of semester.**
+:::
+
+::: fragment
+**Other Assignment are still due.**
+:::
+
+## Plotathon
+
+![](img/PAT24%20L&L%20Tools%20Workshop.png){fig-align="center"}
+
+## Wednesday's Class
+
+Is Cancelled.
+
+But, I encourage you to attend the LRC during this time to learn more about empty models and linear models.
+
+::: fragment
+Devin and Amanda may hold extra sessions.
+:::
+
+# Linear Models
+
+## Motivation: Danceability
+
+```{r}
+set.seed(147)
+taylors <- taylor_all_songs |>
+  filter(album_name %in% c("Midnights", "1989", "Speak Now")) |>
+  select(album_name, track_name, danceability) |>
+  drop_na() |> slice_sample(n=6) 
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+## Empty Model
+
+1.  Find the Mean of all the data
+2.  $$
+    \hat Y_i =  mean
+    $$
+3.  The predicted value is $\hat Y_i$
+
+## Find the Empty Model
+
+```{r}
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+## SSE of the Empty Model
+
+$$
+SSE = \sum^n_{i=1}(Y_i-\hat Y_i)^2
+$$
+
+1.  For each data point
+    1.  Find the predicted value
+    2.  Obtain the residual value ($Y_i-\hat Y_i$)
+    3.  Square the residual $(Y_i-\hat Y_i)^2$
+2.  Repeat the process for all data points
+3.  Add up all the squared Residuals
+
+## Compute SSE for the Data
+
+```{r}
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+$$
+\hat Y_i = 0.567
+$$
+
+## Modelling Danceability with Album
+
+We want to see if album can explain danceability.
+
+```{r}
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+## Modelling an outcome with categorical
+
+1.  Compute the means for each group
+2.  Identify the number of predictor variables (inputs, independent, X, Z, ...) to explain the outcome variable (Y)
+    1.  You need one less the number of categories
+3.  Construct the generic model
+    1.  $\hat Y_i = b_0 + b_1 X$: for 2 categories
+    2.  $\hat Y_i = b_0 + b_1 X + b_2Z$: for 3 categories
+    3.  $\hat Y_i = b_0 + b_1 X + b_2 Z + b_3 A + \cdots$ : for 4 or more categories
+4.  Define each variable to indicate category
+    1.  $1$: for a specific category
+    2.  $0$: for other
+    3.  Known as indicator variable
+5.  Set the mean for each group equal to the model with appropriate indicator variable values
+6.  Solve for the coefficients $b_0, b_1, b_2, \ldots$ using algebra
+7.  Construct final model with numerical values
+
+## Model Danceability with Albums
+
+```{r}
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+## SSE of the Model
+
+$$
+SSE = \sum^n_{i=1}(Y_i-\hat Y_i)^2
+$$
+
+1.  For each data point
+    1.  Find the predicted value
+    2.  Obtain the residual value ($Y_i-\hat Y_i$)
+    3.  Square the residual $(Y_i-\hat Y_i)^2$
+2.  Repeat the process for all data points
+3.  Add up all the squared Residuals
+
+## Compute the SSE for the Model
+
+```{r}
+taylors |>  datatable(options = list(dom = "t"))
+```
+
+$$
+\hat Y_i = 0.6185 - 0.0455 X - 0.1095 Z 
+$$
+
+$$
+Z = \left\{\begin{array}{cc}
+1 & Speak\ Now\\
+0 & Other
+\end{array}
+\right.
+$$
+
+$$
+X = \left\{\begin{array}{cc}
+1 & Midnights\\
+0 & Other
+\end{array}
+\right.
+$$

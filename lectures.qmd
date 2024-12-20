@@ -1,0 +1,8 @@
+---
+title: "Lectures"
+editor: source
+listing:
+  contents: lectures
+  type: default
+---
+
