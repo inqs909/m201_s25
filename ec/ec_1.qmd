@@ -1,0 +1,38 @@
+---
+title: "Extra Credit 1"
+description: Instructions for extra credit one.
+navbar: false
+date: 01-05-2025
+editor: source
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+---
+
+**Complete One of the Following Assignments**
+
+**Due 5/13/2024**
+
+**Worth 1 final grade percentage points.**
+
+### Visit a Lunch and/or Research Talk
+
+
+Candidates will be visiting the campus for the Data Science Position being offered 
+
+
+### Write a Wellness Plan
+
+Write a welness plan to ensure you will maintain your overall 
+
+Report guidelines
+
+-   1-2 Pages
+
+-   Double Spaced
+
+-   12 point font
+
+
+

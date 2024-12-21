@@ -16,7 +16,8 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.39">
 
-  <title>MATH 201 – Inference with Linear Regression</title>
+  <meta name="dcterms.date" content="2025-04-01">
+  <title>MATH 201 – Sampling Distribution</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -197,637 +198,1146 @@
       margin-right: 0; 
     }
   </style>
+  <link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+  <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Inference with Linear Regression</h1>
+  <h1 class="title">Sampling Distribution</h1>
 
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2025-04-01</p>
 </section>
 <section>
-<section id="motivating-example" class="title-slide slide level1 agenda-slide center">
-<h1>Motivating Example</h1>
+<section id="sampling-distribution" class="title-slide slide level1 agenda-slide center">
+<h1>Sampling Distribution</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-active">
-<p>Motivating Example</p>
+<p>Sampling Distribution</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Mathematical Models</p>
+<p>Simulating Unicorns</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
+<p>Hypothesis Testing</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
+<p>Comparing Proportions</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Model Assumptions</p>
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>P-Value</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Process</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="motivating-example-1" class="slide level2">
-<h2>Motivating Example</h2>
+<section id="sampling-distribution-1" class="slide level2">
+<h2>Sampling Distribution</h2>
+<p>Sampling Distribution is the idea that the statistics that you generate (slopes and intercepts) have their own data generation process.</p>
+<div class="fragment">
+<p>In other words, the numerical values you obtain from the <code>lm</code> and <code>glm</code> function can be different if we got a different data set.</p>
+</div>
+<div class="fragment">
+<p>Some values will be more common than others. Because of this, they have their own data generating process, like the outcome of interest has it’s own data generating process.</p>
+</div>
+</section>
+<section id="modelling-the-data" class="slide level2">
+<h2>Modelling the Data</h2>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span>: Outcome data</li>
+<li><span class="math inline">\(X_i\)</span>: Predictor data</li>
+<li><span class="math inline">\(\beta_0, \beta_1\)</span>: parameters</li>
+<li><span class="math inline">\(\varepsilon_i\)</span>: error term</li>
+</ul>
+</section>
+<section id="error-term" class="slide level2">
+<h2>Error Term</h2>
+<p><span class="math display">\[
+\varepsilon_i \sim DGP
+\]</span></p>
+<aside class="notes">
+<ul>
+<li>The error terms forces the outcome variable to be different from the mathematical model.</li>
+<li>The numbers being generated are random and cannot be predicted.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="randomness-effect" class="slide level2">
+<h2>Randomness Effect</h2>
+
+<img data-src="12_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="simulating-unicorns" class="title-slide slide level1 agenda-slide center">
+<h1>Simulating Unicorns</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Sampling Distribution</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Simulating Unicorns</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Comparing Proportions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>P-Value</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Process</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="simulating-unicorns-1" class="slide level2">
+<h2>Simulating Unicorns</h2>
+<p>To better understand the variation in statistics, let’s simulate a data set of unicorn characteristics to visualize and understand the variation.</p>
+<div class="fragment">
+<p>We will simulate a data set using then <code>unicorns</code> function and only need to specify how many unicorns you want to simulate.</p>
+</div>
+</section>
+<section id="simulating-unicorn-data" class="slide level2">
+<h2>Simulating Unicorn Data</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">unicorns</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Unicorn_ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Color"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Type_of_Unicorn"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Type_of_Horn"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Horn_Length"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Horn_Strength"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Weight"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Health_Score"],"name":[10],"type":["int"],"align":["right"]},{"label":["Personality_Score"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Magical_Score"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Elusiveness_Score"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Gentleness_Score"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["Nature_Score"],"name":[15],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"4","3":"Non-binary","4":"Silver","5":"Ruvas","6":"Opal","7":"5.465307","8":"26.13338","9":"95.85981","10":"7","11":"1.2061077","12":"10817.36","13":"37.44063","14":"51.297276","15":"923.9821"},{"1":"2","2":"13","3":"Agender","4":"Silver","5":"Jewel","6":"Aquamarine","7":"5.144989","8":"31.40568","9":"176.50814","10":"3","11":"0.4774693","12":"11082.94","13":"37.97389","14":"87.019946","15":"957.1620"},{"1":"3","2":"4","3":"Genderfluid","4":"Black","5":"Jewel","6":"Aquamarine","7":"5.423439","8":"32.30349","9":"77.16563","10":"4","11":"0.4642751","12":"10850.49","13":"39.64838","14":"-20.991985","15":"928.2645"},{"1":"4","2":"19","3":"Male","4":"Black","5":"Ember","6":"Opal","7":"5.349964","8":"27.40067","9":"130.45634","10":"7","11":"0.4199198","12":"11236.69","13":"35.61400","14":"7.378667","15":"976.7927"},{"1":"5","2":"6","3":"Agender","4":"Gray","5":"Ruvas","6":"Aquamarine","7":"5.282165","8":"28.37068","9":"92.94959","10":"3","11":"1.1476177","12":"10856.23","13":"36.00368","14":"32.739294","15":"929.4471"},{"1":"6","2":"7","3":"Genderfluid","4":"Gold","5":"Rainbow","6":"Opal","7":"4.949724","8":"31.30961","9":"124.22204","10":"4","11":"1.5577022","12":"10886.64","13":"34.78133","14":"-14.308443","15":"932.8079"},{"1":"7","2":"4","3":"Female","4":"Brown","5":"Jewel","6":"Opal","7":"5.493783","8":"26.93429","9":"156.47388","10":"6","11":"0.1072272","12":"10852.16","13":"37.73113","14":"29.149792","15":"928.6527"},{"1":"8","2":"13","3":"Agender","4":"Pink","5":"Ember","6":"Aquamarine","7":"4.421251","8":"30.98700","9":"131.51968","10":"2","11":"0.2627573","12":"11056.36","13":"38.60596","14":"-3.548232","15":"954.0685"},{"1":"9","2":"1","3":"Agender","4":"Black","5":"Ruvas","6":"Opal","7":"5.147302","8":"27.98803","9":"158.27478","10":"10","11":"0.3855125","12":"10756.24","13":"30.37957","14":"41.427185","15":"916.6058"},{"1":"10","2":"18","3":"Agender","4":"Black","5":"Jewel","6":"Opal","7":"5.114381","8":"27.70868","9":"178.68549","10":"9","11":"1.9744132","12":"11249.06","13":"34.62187","14":"73.689385","15":"978.1388"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="unicorn-data-variables" class="slide level2">
+<h2>Unicorn Data Variables</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">names</span>(<span class="fu">unicorns</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;  [1] "Unicorn_ID"        "Age"               "Gender"            "Color"             "Type_of_Unicorn"   "Type_of_Horn"      "Horn_Length"       "Horn_Strength"     "Weight"            "Health_Score"     
+#&gt; [11] "Personality_Score" "Magical_Score"     "Elusiveness_Score" "Gentleness_Score"  "Nature_Score"</code></pre>
+</div>
+</div>
+<p>We will only look at <code>Magical_Score</code> and <code>Nature_Score</code>.</p>
+</section>
+<section id="magical-and-nature-score" class="slide level2">
+<h2>Magical and Nature Score</h2>
+<p><span class="math display">\[
+Magical =  3423 + 8 \times Nature + \varepsilon
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon \sim N(0, 3.24)
+\]</span></p>
+</section>
+<section id="simulating-n0-3.24" class="slide level2">
+<h2>Simulating <span class="math inline">\(N(0, 3.24)\)</span></h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">1.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -1.881814</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting" class="slide level2">
+<h2>Collecting</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>p1 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
-<span id="cb1-3"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb1-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Body Mass"</span>)</span>
-<span id="cb1-5"><a></a>  </span>
-<span id="cb1-6"><a></a>p2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb1-7"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb1-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper Length"</span>, <span class="at">y =</span> <span class="st">"Body Mass"</span>)  </span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">unicorns</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(Nature_Score, Magical_Score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Nature_Score"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Magical_Score"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"959.7628","2":"11099.54"},{"1":"939.1152","2":"10932.62"},{"1":"976.0361","2":"11232.52"},{"1":"930.0296","2":"10862.89"},{"1":"936.5928","2":"10917.92"},{"1":"948.5210","2":"11009.67"},{"1":"969.9342","2":"11180.92"},{"1":"958.6468","2":"11096.24"},{"1":"916.0436","2":"10752.72"},{"1":"942.2980","2":"10961.88"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="dgp-of-magical-score-1" class="slide level2">
+<h2>DGP of Magical Score 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"></section></section>
-<section>
-<section id="mathematical-models" class="title-slide slide level1 agenda-slide center">
-<h1>Mathematical Models</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Mathematical Models</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Model Assumptions</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="mathematical-models-1" class="slide level2">
-<h2>Mathematical Models</h2>
-</section>
-<section id="standard-normal-distribution" class="slide level2">
-<h2>Standard Normal Distribution</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><span class="math display">\[
-{\frac{1}{\sqrt{2 \pi}}} e^{-\frac{1}{2}x^2}
-\]</span></p>
-</div><div class="column" style="width:50%;">
+<img data-src="12_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="dgp-of-magical-score-2" class="slide level2">
+<h2>DGP of Magical Score 2</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), </span>
-<span id="cb2-2"><a></a>           <span class="at">y1 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">1</span>),</span>
-<span id="cb2-3"><a></a>           <span class="at">y2 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">10</span>),</span>
-<span id="cb2-4"><a></a>           <span class="at">y3 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">30</span>),</span>
-<span id="cb2-5"><a></a>           <span class="at">y4 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">100</span>),</span>
-<span id="cb2-6"><a></a>           <span class="at">y5 =</span> <span class="fu">dnorm</span>((<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)))) <span class="sc">|&gt;</span> </span>
-<span id="cb2-7"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-8"><a></a>  <span class="co"># geom_line(aes(x, y1, color = "1")) +</span></span>
-<span id="cb2-9"><a></a>  <span class="co"># geom_line(aes(x, y2, color = "10")) +</span></span>
-<span id="cb2-10"><a></a>  <span class="co"># geom_line(aes(x, y3, color = "30")) +</span></span>
-<span id="cb2-11"><a></a>  <span class="co"># geom_line(aes(x, y4, color = "100")) +</span></span>
-<span id="cb2-12"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(x, y5)) <span class="sc">+</span></span>
-<span id="cb2-13"><a></a>  <span class="fu">ylab</span>(<span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="12_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
-</figure>
+
 </div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="t-distribution" class="slide level2">
-<h2>t Distribution</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><span class="math display">\[
-\frac{\Gamma \left(\frac{v+1}{2}\right)}{\sqrt{\pi v}\Gamma\left(\frac{v}{2}\right)} \left(1 + \frac{x^2}{v}\right)^{-\frac{v+1}{2}}
-\]</span></p>
-</div><div class="column" style="width:50%;">
+<img data-src="12_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="estimating-beta_1-via-lm" class="slide level2">
+<h2>Estimating <span class="math inline">\(\beta_1\)</span> via <code>lm</code></h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), </span>
-<span id="cb3-2"><a></a>           <span class="at">y1 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">1</span>),</span>
-<span id="cb3-3"><a></a>           <span class="at">y2 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">10</span>),</span>
-<span id="cb3-4"><a></a>           <span class="at">y3 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">30</span>),</span>
-<span id="cb3-5"><a></a>           <span class="at">y4 =</span> <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">100</span>),</span>
-<span id="cb3-6"><a></a>           <span class="at">y5 =</span> <span class="fu">dnorm</span>((<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)))) <span class="sc">|&gt;</span> </span>
-<span id="cb3-7"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(x, y1, <span class="at">color =</span> <span class="st">"1"</span>)) <span class="sc">+</span></span>
-<span id="cb3-9"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(x, y2, <span class="at">color =</span> <span class="st">"10"</span>)) <span class="sc">+</span></span>
-<span id="cb3-10"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(x, y3, <span class="at">color =</span> <span class="st">"30"</span>)) <span class="sc">+</span></span>
-<span id="cb3-11"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(x, y4, <span class="at">color =</span> <span class="st">"100"</span>)) <span class="sc">+</span></span>
-<span id="cb3-12"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(x, y5, <span class="at">color =</span> <span class="st">"Normal"</span>)) <span class="sc">+</span></span>
-<span id="cb3-13"><a></a>  <span class="fu">ylab</span>(<span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="12_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section></section>
-<section>
-<section id="beta-hypothesis-testing" class="title-slide slide level1 agenda-slide center">
-<h1><span class="math inline">\(\beta\)</span> Hypothesis Testing</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Mathematical Models</p>
-</div></li>
-<li><div class="agenda-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Model Assumptions</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="hypothesis" class="slide level2">
-<h2>Hypothesis</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><span class="math display">\[H_0: \beta = \theta\]</span></p>
-</div><div class="column" style="width:50%;">
-<p><span class="math display">\[H_0: \beta \ne \theta\]</span></p>
-</div></div>
-</section>
-<section id="testing-beta_j" class="slide level2">
-<h2>Testing <span class="math inline">\(\beta_j\)</span></h2>
-<p><span class="math display">\[
-T = \frac{\hat\beta_j-\theta}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(n\)</span>: sample size</li>
-<li><span class="math inline">\(p^\prime\)</span>: number of <span class="math inline">\(\beta\)</span>s</li>
-</ul>
-</section>
-<section id="p-value" class="slide level2">
-<h2>P-Value</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Alternative Hypothesis</th>
-<th>p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\beta&gt;\theta\)</span></td>
-<td><span class="math inline">\(P(\hat\beta &gt;T)=p\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\beta&lt;\theta\)</span></td>
-<td><span class="math inline">\(P(\hat\beta &lt; T)=p\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\beta\ne\theta\)</span></td>
-<td><span class="math inline">\(2\times P(\hat\beta &gt;|T|)=p\)</span></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="confidence-intervals" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p><span class="math display">\[
-\hat \beta_j \pm CV \times se(\hat\beta_j)
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(CV\)</span>: Critical Value <span class="math inline">\(P(X&lt;CV) = 1-\alpha/2\)</span></p></li>
-<li><p><span class="math inline">\(\alpha\)</span>: significance level</p></li>
-<li><p><span class="math inline">\(se\)</span>: Standard Error Function</p></li>
-</ul>
-</section>
-<section id="conducting-ht-of-beta_j" class="slide level2">
-<h2>Conducting HT of <span class="math inline">\(\beta_j\)</span></h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
-<span id="cb4-2"><a></a><span class="fu">summary</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species <span class="sc">+</span> flipper_length_mm, penguins)</span>
-<span id="cb5-2"><a></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>u1 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb9-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
 #&gt; Call:
-#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)
-#&gt; 
-#&gt; Residuals:
-#&gt;    Min     1Q Median     3Q    Max 
-#&gt; -898.8 -252.0  -24.8  229.8 1191.6 
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u1)
 #&gt; 
 #&gt; Coefficients:
-#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)       -4013.18     586.25  -6.846 3.74e-11 ***
-#&gt; speciesChinstrap   -205.38      57.57  -3.568 0.000414 ***
-#&gt; speciesGentoo       284.52      95.43   2.981 0.003083 ** 
-#&gt; flipper_length_mm    40.61       3.08  13.186  &lt; 2e-16 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; 
-#&gt; Residual standard error: 373.3 on 329 degrees of freedom
-#&gt; Multiple R-squared:  0.787,  Adjusted R-squared:  0.7851 
-#&gt; F-statistic: 405.3 on 3 and 329 DF,  p-value: &lt; 2.2e-16</code></pre>
+#&gt;  (Intercept)  Nature_Score  
+#&gt;      3413.97          8.01</code></pre>
 </div>
 </div>
 </section>
-<section id="confidence-interval" class="slide level2">
-<h2>Confidence Interval</h2>
+<section id="collecting-a-new-sample" class="slide level2">
+<h2>Collecting a new sample</h2>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">confint</span>(xlm, <span class="at">level =</span> LEVEL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>u2 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb11-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;                           5 %        95 %
-#&gt; (Intercept)       -4980.19064 -3046.16714
-#&gt; speciesChinstrap   -300.33123  -110.41973
-#&gt; speciesGentoo       127.11143   441.93578
-#&gt; flipper_length_mm    35.52645    45.68588</code></pre>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u2)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;     3419.135         8.004</code></pre>
 </div>
 </div>
-</section></section>
+</section>
+<section id="collecting-a-new-sample-1" class="slide level2">
+<h2>Collecting a new sample</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>u3 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb13-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u3)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;         3423             8</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting-a-new-sample-2" class="slide level2">
+<h2>Collecting a new sample</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>u4 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb15-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u4)
+#&gt; 
+#&gt; Coefficients:
+#&gt;  (Intercept)  Nature_Score  
+#&gt;     3420.826         8.002</code></pre>
+</div>
+</div>
+</section>
+<section id="collecting-1000-samples" class="slide level2">
+<h2>Collecting 1000 Samples</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>betas <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>,</span>
+<span id="cb17-2"><a></a>                   <span class="fu">b</span>(Magical_Score <span class="sc">~</span> Nature_Score, <span class="dv">1</span>, <span class="fu">unicorns</span>(<span class="dv">500</span>)))</span>
+<span id="cb17-3"><a></a></span>
+<span id="cb17-4"><a></a>betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    [1] 8.002559 8.001210 7.999719 7.997580 8.005697 7.998003 7.996752 7.998871 7.997353 7.996345 8.003738 8.000084 7.996591 8.006174 7.998451 8.001871 8.000169 7.997779 8.001002 8.002043 8.002666 7.998262 7.999756
+#&gt;   [24] 7.999976 8.000253 8.002138 8.003373 8.004242 8.001345 8.001582 8.006285 7.996484 7.996776 7.995931 8.005799 7.993932 8.001782 8.007974 8.000993 8.001713 8.004310 7.998974 7.989814 7.998636 7.999904 8.003910
+#&gt;   [47] 7.997741 8.001589 8.000339 7.996925 8.005664 8.000203 8.000086 7.996876 7.995204 8.005304 7.998540 7.996220 7.997192 8.002216 7.994154 8.001541 7.996384 8.006159 8.006694 7.991873 8.005497 8.000119 7.997531
+#&gt;   [70] 8.003605 8.000045 8.004137 8.000115 8.002499 7.999681 7.996201 7.995270 7.996452 8.004151 7.990909 8.005366 7.998832 7.999423 8.000814 8.008168 7.999009 8.001772 8.004291 8.000907 8.008148 7.999991 8.001356
+#&gt;   [93] 7.993926 8.001404 8.002153 7.998701 7.997342 7.997878 8.000889 8.002647 7.997294 7.992935 8.001352 7.998036 7.998369 8.002194 8.001733 8.005639 8.002602 8.000069 8.001756 8.000174 7.999917 8.000242 7.996170
+#&gt;  [116] 8.004944 7.995111 8.001091 8.000211 8.005103 7.999590 7.997711 8.006950 8.003349 8.002366 8.000788 8.001913 8.000388 8.001648 8.009436 8.001799 8.001832 8.000754 8.001381 7.999142 7.999191 8.009143 8.003605
+#&gt;  [139] 8.004032 8.000857 8.005373 7.999321 8.003161 7.998503 8.004747 7.997305 7.996209 7.998225 8.000409 7.994674 8.003740 7.994391 8.005882 7.996472 8.003111 7.999202 7.997005 7.999119 7.994681 7.996457 7.998162
+#&gt;  [162] 7.996914 7.995750 7.998906 8.002716 7.994168 7.998282 7.999355 8.005399 7.996875 8.004286 8.002871 7.995528 8.000538 8.003522 8.003272 8.000963 7.997856 8.001604 8.004995 7.996637 7.995086 8.002075 7.998462
+#&gt;  [185] 8.006481 7.999517 7.993386 8.002347 8.007174 8.001248 7.999403 7.997378 7.996678 7.991755 8.009109 7.995801 7.995389 8.005238 7.995224 7.998858 7.995997 7.999514 7.992274 7.997385 7.996260 7.990768 8.005370
+#&gt;  [208] 7.991329 7.996939 7.999931 7.996748 8.003260 7.998625 8.006382 7.997927 7.997535 7.999956 8.002994 7.998858 7.994533 7.992939 7.997343 8.000728 7.997946 8.000384 8.004114 7.994312 8.001165 8.000019 7.996351
+#&gt;  [231] 7.997399 7.999792 8.004778 7.999745 7.991090 7.997899 7.999279 7.999654 8.000753 8.002116 7.998600 8.001295 7.993655 7.997801 8.004290 8.001378 7.998788 7.999998 8.001240 7.997597 8.001904 8.004191 8.003812
+#&gt;  [254] 8.002707 8.004207 8.003074 8.000706 8.000811 7.994398 8.007721 8.003233 8.002936 7.996500 7.999237 7.998089 7.995222 7.997836 8.002842 8.003269 7.993599 8.001220 7.997449 7.994720 7.998800 7.996425 7.997658
+#&gt;  [277] 8.001799 7.997423 8.003607 7.993266 8.001742 7.998977 8.004473 8.001207 8.003601 7.999764 8.005852 7.998922 7.996034 7.994789 7.999147 7.998847 7.998082 7.998253 7.993545 7.997368 7.999936 8.002419 7.994264
+#&gt;  [300] 7.999976 8.000681 8.006499 7.999484 7.993000 7.998032 8.003536 8.004421 8.010589 7.999454 7.999047 8.000452 8.003072 8.003189 7.997750 7.999903 7.992827 7.999426 7.996731 7.996950 7.996414 8.004439 7.991945
+#&gt;  [323] 7.996996 7.991578 7.999366 8.003012 7.991982 8.003174 8.008707 7.992550 7.999697 7.991799 8.002185 7.994026 7.999154 8.006291 7.999629 8.001319 8.006350 8.006016 8.007062 8.002106 7.997444 8.000061 7.991074
+#&gt;  [346] 7.992954 8.001744 8.005785 8.006603 8.004097 8.000947 8.005050 7.996086 7.992294 7.999754 8.006520 8.001919 7.999586 8.000501 8.003509 8.002017 8.007745 7.997321 8.004008 7.996939 7.998945 7.999032 8.001959
+#&gt;  [369] 8.001032 7.996760 7.995314 7.994943 7.998591 7.992687 7.999077 8.000316 8.004963 7.999075 7.996790 8.009446 7.997257 7.996482 8.004142 7.995776 8.005582 7.996013 7.996343 8.004679 7.995597 8.006937 8.002654
+#&gt;  [392] 8.002345 8.000037 7.993854 7.996350 8.002679 7.996545 8.005786 8.005095 8.001529 7.997383 7.999709 8.005030 7.997746 8.002311 7.999860 7.994205 7.996858 8.000687 7.999768 8.001810 8.004148 8.000920 7.998341
+#&gt;  [415] 7.995953 8.002494 8.007664 7.998744 7.997051 8.002023 7.993528 7.999046 8.000323 8.001781 7.997293 7.998417 8.001982 8.002691 8.002272 8.003619 8.002125 8.001542 7.997982 8.006601 8.000988 7.997503 7.997587
+#&gt;  [438] 7.999805 7.997858 7.998275 7.995029 8.002976 8.000294 8.004763 7.999315 7.997076 7.997801 7.999407 7.995155 8.001016 7.999854 8.000188 7.997064 7.995961 7.998574 8.006244 7.995339 7.999111 7.997261 8.003571
+#&gt;  [461] 7.994293 7.998917 7.997539 8.001340 8.002143 8.011987 8.001402 7.993099 8.005192 8.000770 7.994629 8.003563 7.997745 7.997195 8.005066 7.998133 8.002121 7.998543 8.005696 8.003452 7.997507 8.000372 8.000961
+#&gt;  [484] 7.992066 7.999448 8.000409 8.002129 7.991610 7.999634 7.999686 7.997428 7.999872 7.995010 8.008958 7.995518 8.000387 8.008497 8.001811 7.995745 8.006775 7.995084 8.002414 8.004997 8.004947 8.002277 7.998973
+#&gt;  [507] 7.999929 8.005156 8.003174 8.005391 7.995758 8.000642 7.996380 8.003385 8.000613 7.992941 8.004345 8.001425 7.999157 7.997692 7.994513 8.001789 7.996828 8.004512 7.996205 7.994094 8.002671 8.001364 7.994016
+#&gt;  [530] 7.994661 7.999039 8.002495 8.005555 7.995614 8.004868 7.994757 8.002020 8.004951 8.000061 8.002285 8.003931 8.007024 7.994198 7.997316 8.000451 7.999457 7.996139 8.000747 7.995718 8.001374 8.005372 7.996852
+#&gt;  [553] 7.998622 8.001771 8.002811 7.998998 7.998436 7.997706 7.995198 7.994723 7.999950 7.996382 7.999437 7.995102 7.990361 8.000791 8.003352 7.998379 8.005674 7.998352 8.001737 7.998933 8.001356 8.001625 7.995031
+#&gt;  [576] 7.997868 8.005451 8.003497 8.000349 8.003535 7.999419 7.994910 8.000823 8.000370 8.000953 7.998869 7.995768 8.001686 8.001465 7.998531 7.997098 7.998570 8.002118 8.003978 8.000734 7.996243 7.997860 7.998379
+#&gt;  [599] 8.006343 8.000878 7.990610 7.998367 8.005421 7.998657 7.997655 8.008660 7.997526 7.997252 7.992014 8.002625 8.007892 7.995570 7.998250 7.998016 8.002770 7.998107 7.995998 7.999936 7.998549 8.002362 7.999476
+#&gt;  [622] 8.004716 7.995087 7.996154 8.005206 7.994459 7.997749 7.998916 8.007323 7.995279 8.001595 7.995746 7.994033 8.001935 7.996049 7.995871 7.998403 8.003489 7.999362 7.996511 7.996767 8.001971 8.003641 7.994576
+#&gt;  [645] 7.999601 8.002471 7.996346 7.995505 8.004752 7.991839 7.999552 7.993431 8.006709 7.999535 8.003609 8.004266 7.995868 8.000931 7.996234 7.997547 7.998601 8.002255 7.999587 8.003079 7.999070 8.001896 8.003994
+#&gt;  [668] 8.004076 7.998512 8.003841 8.001463 8.000434 7.994000 7.992880 7.993083 8.000680 8.003047 8.004075 7.998599 8.000692 8.002535 8.000749 7.997467 8.008228 7.997902 7.997754 7.996971 7.991573 8.006755 7.993928
+#&gt;  [691] 8.006830 8.000854 7.995271 7.995833 8.001811 8.006640 8.001350 8.005468 7.996254 7.999607 7.997556 8.003699 8.002785 8.001751 8.001394 8.006417 7.999644 7.999888 7.997518 7.999344 8.000623 8.005343 7.995304
+#&gt;  [714] 8.001036 8.009956 8.001763 7.994949 8.002453 7.997324 7.999426 8.003685 7.999046 7.994291 7.994278 7.999226 8.000975 8.004208 8.001797 7.998102 8.001463 7.998136 8.006666 7.999068 8.006282 8.005806 7.998435
+#&gt;  [737] 7.997874 7.998813 8.005014 8.001735 8.004172 8.005599 8.000800 8.001329 8.004350 7.997178 7.998806 8.001269 7.994385 8.002690 8.005650 8.005659 7.996899 8.005783 7.995680 7.996703 8.002504 8.004277 7.999383
+#&gt;  [760] 8.002235 8.007275 7.996964 8.001082 7.993379 7.991831 8.002386 7.998039 7.999845 7.999074 7.995605 8.003162 8.002435 8.000345 8.011441 7.998710 8.000779 8.005444 8.005204 8.000697 8.000999 7.998821 8.002515
+#&gt;  [783] 8.004143 7.999553 7.997602 8.005919 8.006861 7.997732 7.999016 8.002491 7.998321 8.001222 8.005326 8.002691 8.006444 8.004438 7.996648 8.001428 7.994303 7.996798 7.999572 8.001350 8.005821 8.005233 7.999551
+#&gt;  [806] 8.005174 7.999796 8.003464 8.003820 7.999586 7.997091 8.000921 8.007345 7.994482 8.003295 8.003489 7.996297 8.004456 8.000653 8.002024 7.997637 7.998671 7.996692 7.995169 8.012406 8.003015 8.000459 8.006452
+#&gt;  [829] 8.003668 7.998635 8.006871 7.991880 8.002674 7.997235 8.000844 8.000815 7.995452 7.996377 7.998799 7.994443 7.996986 7.996199 7.999782 8.002297 8.002327 7.995609 8.000998 7.999222 8.001134 7.996399 7.998738
+#&gt;  [852] 7.991205 7.995892 7.998605 7.999816 8.000095 7.998146 7.999483 7.995967 7.998239 8.002500 7.994185 7.999325 8.001548 8.000076 7.994833 8.003686 8.001806 8.007569 7.992244 7.993215 8.004778 7.999979 7.996627
+#&gt;  [875] 7.998487 8.000214 8.002259 8.003985 7.995670 7.999754 8.000677 8.011740 7.997389 8.001288 8.002118 7.999542 8.001483 8.008904 7.998856 8.008448 8.002252 8.001675 7.994862 8.001975 7.996636 7.992657 8.003640
+#&gt;  [898] 8.000616 7.996708 7.998691 8.004296 7.994478 7.994160 7.999815 8.001000 7.997338 7.994738 8.002254 7.996981 8.001764 7.995680 8.001539 8.006739 8.000190 8.003136 8.009232 7.995800 7.997028 8.005169 8.000403
+#&gt;  [921] 8.002005 7.998966 8.002106 7.999544 7.995277 7.997833 7.995002 8.006291 8.000074 8.005309 7.987886 8.000895 7.997152 7.999831 7.997195 8.002962 8.001319 7.999686 8.004537 7.998417 8.003153 8.002784 8.002241
+#&gt;  [944] 8.003567 7.993320 8.004310 7.995731 8.010337 7.997149 7.998995 8.007352 8.007706 7.992334 8.003774 7.996538 8.002655 7.997536 7.994276 7.990073 8.002714 7.997566 8.005357 8.002183 7.997509 7.991135 8.004295
+#&gt;  [967] 8.001316 8.002159 8.005453 7.995710 7.994510 8.003936 8.001915 7.998300 8.002197 8.006301 7.995031 8.005237 8.001216 8.003793 7.993889 8.005024 8.000517 7.993968 8.005418 7.997435 7.999207 7.991804 8.004814
+#&gt;  [990] 7.998962 8.007677 8.003315 7.990481 7.995732 7.992684 7.995971 7.997424 8.003575 7.994101 7.998129</code></pre>
+</div>
+</div>
+</section>
+<section id="distributions-of-hat-beta_1" class="slide level2">
+<h2>Distributions of <span class="math inline">\(\hat \beta_1\)</span></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> betas), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="12_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section></section>
 <section>
-<section id="model-hypothesis-testing" class="title-slide slide level1 agenda-slide center">
-<h1>Model Hypothesis Testing</h1>
+<section id="hypothesis-testing" class="title-slide slide level1 agenda-slide center">
+<h1>Hypothesis Testing</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
+<p>Sampling Distribution</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Mathematical Models</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
+<p>Simulating Unicorns</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Model Hypothesis Testing</p>
+<p>Hypothesis Testing</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Model Assumptions</p>
+<p>Comparing Proportions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>P-Value</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Process</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="model-inference" class="slide level2">
-<h2>Model inference</h2>
-<p>We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (<span class="math inline">\(\hat Y=\hat\beta_0 + \hat\beta_1 X\)</span>) to the mean of Y (<span class="math inline">\(\hat \mu_y\)</span>). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.</p>
-</section>
-<section id="model-inference-1" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given 2 models:</p>
-<p><span class="math display">\[
-\hat Y = \hat\beta_0 + \hat\beta_1 X_1 + \hat\beta_2 X_2 + \cdots + \hat\beta_p X_p
-\]</span></p>
-<p>or</p>
-<p><span class="math display">\[
-\hat Y = \bar y
-\]</span></p>
+<section id="inference" class="slide level2">
+<h2>Inference</h2>
+<p>In the real world, we do not know how the model is generated; therefore, the parameters that are being estimated are unknown.</p>
 <div class="fragment">
-<p>Is the model with predictors do a better job than using the average?</p>
+<p>We use statistics to determine what is our best guess of what the true parameter is.</p>
+</div>
+<div class="fragment">
+<p>We can use processes known as inferential procedures to determine which values of the parameter it cannot be. This is known as inference.</p>
 </div>
 </section>
-<section id="anova" class="slide level2">
-<h2>ANOVA</h2>
+<section id="hypothesis-tests" class="slide level2">
+<h2>Hypothesis Tests</h2>
+<p>Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the <strong>Null</strong> and <strong>Alternative</strong> Hypothesis.</p>
 </section>
-<section id="anova-table" class="slide level2">
-<h2>ANOVA Table</h2>
+<section id="null-hypothesis-h_0" class="slide level2">
+<h2>Null Hypothesis <span class="math inline">\(H_0\)</span></h2>
+<p>The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.</p>
+</section>
+<section id="alternative-hypothesis-h_a" class="slide level2">
+<h2>Alternative Hypothesis <span class="math inline">\(H_a\)</span></h2>
+<p>The alternative hypothesis contradicts the null hypothesis.</p>
+</section>
+<section id="example-of-null-and-alternative-hypothesis" class="slide level2">
+<h2>Example of Null and Alternative Hypothesis</h2>
+<p>We want to see if <span class="math inline">\(\mu\)</span> (the true value) is different from <span class="math inline">\(\mu_0\)</span> (a number we want to test)</p>
 <table class="caption-top">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Source</th>
-<th>DF</th>
-<th>SS</th>
-<th>MS</th>
-<th>F</th>
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Model</td>
-<td><span class="math inline">\(DFR=k-1\)</span></td>
-<td><span class="math inline">\(SSR\)</span></td>
-<td><span class="math inline">\(MSR=\frac{SSM}{DFR}\)</span></td>
-<td><span class="math inline">\(\hat F=\frac{MSR}{MSE}\)</span></td>
+<td><span class="math inline">\(H_0: \mu=\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu\ne\mu_0\)</span></td>
 </tr>
 <tr class="even">
-<td>Error</td>
-<td><span class="math inline">\(DFE=n-k\)</span></td>
-<td><span class="math inline">\(SSE\)</span></td>
-<td><span class="math inline">\(MSE=\frac{SSE}{DFE}\)</span></td>
-<td></td>
+<td><span class="math inline">\(H_0: \mu\le\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu&gt;\mu_0\)</span></td>
 </tr>
 <tr class="odd">
-<td>Total</td>
-<td><span class="math inline">\(TDF=n-1\)</span></td>
-<td><span class="math inline">\(TSS=SSR+SSE\)</span></td>
-<td></td>
-<td></td>
+<td><span class="math inline">\(H_0: \mu\ge\mu_0\)</span></td>
+<td><span class="math inline">\(H_0: \mu&lt;\mu_0\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-\hat F \sim F(DFR, DFE)
-\]</span></p>
 </section>
-<section id="conducting-an-anova-in-r" class="slide level2">
-<h2>Conducting an ANOVA in R</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
-<span id="cb10-2"><a></a><span class="fu">summary</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<section id="hypothesis-test" class="slide level2">
+<h2>Hypothesis Test</h2>
+<p>The idea of hypothesis testing is to generate the sampling distribution of a statistic assuming the null hypothesis is true.</p>
+<div class="fragment">
+<p>Compute the statistic from your data.</p>
+</div>
+<div class="fragment">
+<p>Afterwards, see where your statistic lies in comparison of your null sampling distribution.</p>
 </div>
 </section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
+<section id="comparison-of-null-distribution" class="slide level2">
+<h2>Comparison of Null Distribution</h2>
+<p>If your statistic lies near the mounds, it is believed that your data came from the null distribution.</p>
+<p>If your statistic is more in the tail regions, it is believed that your data <strong>did not</strong> come from your null distribution.</p>
+</section></section>
+<section>
+<section id="comparing-proportions" class="title-slide slide level1 agenda-slide center">
+<h1>Comparing Proportions</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Sampling Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Simulating Unicorns</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Comparing Proportions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>P-Value</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Process</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="motivation" class="slide level2">
+<h2>Motivation</h2>
+<p>The <code>bacteria</code> data set contians information on whether bacteria (<code>y</code>: y or n) is present after utilizing treatments (<code>ap</code>: <strong>a</strong>ctive or <strong>p</strong>lacebo).</p>
+<div class="fragment">
+<p>We are interesting in determine the proportion of having bacteria present is different for those taking an “active” or “placebo”.</p>
+</div>
+</section>
+<section id="crosstabulation" class="slide level2">
+<h2>Crosstabulation</h2>
+<p>linearia$y)</p>
+<pre><code>
+
+
+## Comparing Proportions
+
+We are interesting in determining if different groups see different proportions of a binary outcome.
+
+We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
+
+## 2 by 2 Cross Tabulations
+
+|         |           |           |
+|---------|-----------|-----------|
+| Groups  | Outcome 1 | Outcome 2 |
+| Group 1 | $p_{11}$  | $p_{21}$  |
+| Group 2 | $p_{12}$  | $p_{22}$  |
+
+
+::: fragment
+We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
+
+:::
+
+## Test Statistic
+
+We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
+
+::: fragment
+However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
+:::
+
+::: fragment
+$$
+T =  p_{11} - p_{12}
+$$
+:::
+
+## Obtain Proportion in R
+
+::: {.cell}
+
+```{.r .cell-code  code-fold="true"}
+props(DATA$GROUP, DATA$OUTCOME, VAL)</code></pre>
+<p>:::</p>
+</section>
+<section id="obtain-difference-in-r" class="slide level2">
+<h2>Obtain Difference in R</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">props</span>(DATA<span class="sc">$</span>GROUP, DATA<span class="sc">$</span>OUTCOME, VAL, <span class="at">diff =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="bacteria-example" class="slide level2">
+<h2>Bacteria Example</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)
-#&gt; 
-#&gt; Residuals:
-#&gt;    Min     1Q Median     3Q    Max 
-#&gt; -898.8 -252.0  -24.8  229.8 1191.6 
-#&gt; 
-#&gt; Coefficients:
-#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)       -4013.18     586.25  -6.846 3.74e-11 ***
-#&gt; speciesChinstrap   -205.38      57.57  -3.568 0.000414 ***
-#&gt; speciesGentoo       284.52      95.43   2.981 0.003083 ** 
-#&gt; flipper_length_mm    40.61       3.08  13.186  &lt; 2e-16 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; 
-#&gt; Residual standard error: 373.3 on 329 degrees of freedom
-#&gt; Multiple R-squared:  0.787,  Adjusted R-squared:  0.7851 
-#&gt; F-statistic: 405.3 on 3 and 329 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>#&gt;     a     p 
+#&gt; 0.750 0.875</code></pre>
 </div>
 </div>
 </section>
-<section id="model-inference-2" class="slide level2">
-<h2>Model Inference</h2>
-<p>Model inference can be extended to compare models that have different number of predictors.</p>
+<section id="bacteria-example-1" class="slide level2">
+<h2>Bacteria Example</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.125</code></pre>
+</div>
+</div>
 </section>
-<section id="model-inference-3" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given:</p>
+<section id="hypothesis-test-1" class="slide level2">
+<h2>Hypothesis Test</h2>
+<p>Is 12.5% of a difference large enough to indicate that an active drug is effective against the bacteria, or seeing this can be due to random chance.</p>
+</section>
+<section id="hypotheis-test" class="slide level2">
+<h2>Hypotheis Test</h2>
+<p>We will test the following hypothesis:</p>
 <p><span class="math display">\[
-M1:\ \hat y = \beta_0 + \beta_1 X_1 + \beta_2 X_2
+H_0:\ p_1-p_2 = 0
 \]</span></p>
 <p><span class="math display">\[
-M2:\ \hat y = \beta_0 + \beta_1 X_1  
+H_a:\ p_1 - p_2 \neq 0
 \]</span></p>
-<p>Let <span class="math inline">\(M1\)</span> be the FULL (larger) model, and let <span class="math inline">\(M2\)</span> be the RED (Reduced, smaller) model.</p>
 </section>
-<section id="model-inference-4" class="slide level2">
-<h2>Model Inference</h2>
-<p>He can test the following Hypothesis:</p>
+<section id="hypothesis-test-2" class="slide level2">
+<h2>Hypothesis Test</h2>
+<p>In words:</p>
+<p><span class="math inline">\(H_0\)</span>: The variables bacteria presence and active drug treatment are independent of each other.</p>
+<p><span class="math inline">\(H_a\)</span>: The variables bacteria presence and active drug treatment are dependent of each other.</p>
+</section></section>
+<section>
+<section id="randomization-tests" class="title-slide slide level1 agenda-slide center">
+<h1>Randomization Tests</h1>
+<div class="agenda">
 <ul>
-<li><span class="math inline">\(H_0\)</span>: The error variations between the FULL and RED model are not different.</li>
-<li><span class="math inline">\(H_1\)</span>: The error variations between the FULL and RED model are different.</li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Sampling Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Simulating Unicorns</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Comparing Proportions</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>P-Value</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Process</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="visualizing" class="slide level2">
+<h2>Visualizing</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb26-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb26-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb26-7"><a></a></span>
+<span id="cb26-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb26-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb26-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb26-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb26-14"><a></a></span>
+<span id="cb26-15"><a></a></span>
+<span id="cb26-16"><a></a></span>
+<span id="cb26-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomization-tests-1" class="slide level2">
+<h2>Randomization Tests</h2>
+<p>The idea of a randomization test is that each observed outcome variable was dictated by a mathematical model.</p>
+<div class="fragment">
+<p>Therefore, a randomization is most interested to determine if the mathematical model exist or completely random.</p>
+</div>
+<div class="fragment">
+<p>This is equivalent to saying the there is not pattern in the data. IE, independent variables.</p>
+</div>
+</section>
+<section id="randomization-tests-2" class="slide level2">
+<h2>Randomization Tests</h2>
+<p><span class="math inline">\(H_0\)</span>: The outcome and predictor variables are <strong>independent</strong> of each other.</p>
+<p><span class="math inline">\(H_a\)</span>: The outcome and predictor variables are <strong>dependent</strong> of each other.</p>
+</section>
+<section id="randomziation-1" class="slide level2">
+<h2>Randomziation 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb27-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb27-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb27-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb27-7"><a></a></span>
+<span id="cb27-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb27-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb27-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb27-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb27-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb27-14"><a></a></span>
+<span id="cb27-15"><a></a></span>
+<span id="cb27-16"><a></a></span>
+<span id="cb27-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-2" class="slide level2">
+<h2>Randomziation 2</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb28-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb28-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb28-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb28-7"><a></a></span>
+<span id="cb28-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb28-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb28-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb28-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb28-14"><a></a></span>
+<span id="cb28-15"><a></a></span>
+<span id="cb28-16"><a></a></span>
+<span id="cb28-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-3" class="slide level2">
+<h2>Randomziation 3</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb29-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb29-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb29-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb29-7"><a></a></span>
+<span id="cb29-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb29-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb29-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb29-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb29-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb29-14"><a></a></span>
+<span id="cb29-15"><a></a></span>
+<span id="cb29-16"><a></a></span>
+<span id="cb29-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-4" class="slide level2">
+<h2>Randomziation 4</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb30-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb30-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb30-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb30-7"><a></a></span>
+<span id="cb30-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb30-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb30-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb30-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb30-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb30-14"><a></a></span>
+<span id="cb30-15"><a></a></span>
+<span id="cb30-16"><a></a></span>
+<span id="cb30-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomization-test" class="slide level2">
+<h2>Randomization Test</h2>
+<p>The act of randomizing the outcome to a set of predictor variables allow you to construct the sampling of distribution of the null hypothesis.</p>
+<div class="fragment">
+<p><span class="math inline">\(H_0\)</span>: The variables bacteria presence and active drug treatment are independent of each other. <span class="math inline">\(p_{active}-p_{placebo} = 0\)</span></p>
+<p><span class="math inline">\(H_a\)</span>: The variables bacteria presence and active drug treatment are dependent of each other. <span class="math inline">\(p_{active}-p_{placebo} \neq 0\)</span></p>
+</div>
+</section>
+<section id="simulating-h_0" class="slide level2">
+<h2>Simulating <span class="math inline">\(H_0\)</span></h2>
+<p>We are interested in simulating the distribution for <span class="math inline">\(p_{active}-p_{placebo}\)</span>. We do this by randomly assigning the observed outcomes to the predictor variable. Then, we compute the difference in proportions using the <code>props</code> function. Afterwards, we store the value and repeat the process again.</p>
+<div class="fragment">
+<p>Lastly, we compare where the data statistic compared to our simulated distribution.</p>
+</div>
+</section>
+<section id="shuffling-data" class="slide level2">
+<h2>Shuffling Data</h2>
+<p>The <code>shuffle</code> function will mix up a variable in R:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">shuffle</span>(VECTOR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="shuffle-data" class="slide level2">
+<h2>Shuffle Data</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>bacteria<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   [1] y y y y y y n y y y y y y y y y y y y y y y y y y y y y n n n y n y y y y y y y y y y y y y y y y y n n y y y y y y y y y n y y y y y y y n y y y y y n y y y n n n y y n y n y y y y y y y y y y y y y y n y n y n y
+#&gt; [108] y y n n n y n n y n n y y y y y y y n n y y y n y y y y y y n y y y y y y y y y y n n n y y y y y y y y y y y y y y y y y y n y n n y n y y n y y y y y y y y y y y y y y y y y y y n y y y y y y y y y y n n y y y n
+#&gt; [215] n y y y n y
+#&gt; Levels: n y</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;   [1] y y y y y y y y y y y y y y y y y y y y y y n y n n y y n y y y n n n y y y y y y y n n y y y n y y y y n y n n y n y y y y y y y y y y n y y y y n y n y y n y y y y y n y y n y n n y y y y n y y y y y n y y y n y
+#&gt; [108] y y n y y y y y y y y y n y y y n y n y y y y y y y y y y y y y y y y n y y y y y y y y y y n y y y y n y y y y y y y y y y y y y y y y y y y y y y y n y n n y y y y n n y y y y y y y n n y y y n y n y n y y y y y
+#&gt; [215] n y y y y y
+#&gt; Levels: n y</code></pre>
+</div>
+</div>
+</section>
+<section id="computing-proportions" class="slide level2">
+<h2>Computing Proportions</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.00436828</code></pre>
+</div>
+</div>
+</section>
+<section id="repeat-process" class="slide level2">
+<h2>Repeat Process</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.03259409</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.02284946</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.00436828</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.00436828</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.06955645</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.06955645</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.02284946</code></pre>
+</div>
+</div>
+</section>
+<section id="the-replicate-function" class="slide level2">
+<h2>The <code>replicate</code> Function</h2>
+<p>The <code>replicate</code> function will execute a task multiple times and store the values in a vector.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">replicate</span>(N, FUN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>N: number of simulations</li>
+<li>FUN: the command to be repeated</li>
 </ul>
 </section>
-<section id="test-statistic" class="slide level2">
-<h2>Test Statistic</h2>
-<p><span class="math display">\[
-\hat F = \frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}
-\]</span></p>
-<p><span class="math display">\[
-\hat F \sim F[DFE(RED) - DFE(FULL), DFE(FULL)]
-\]</span></p>
-</section>
-<section id="anova-in-r" class="slide level2">
-<h2>ANOVA in R</h2>
+<section id="repeat-1000-times" class="slide level2">
+<h2>Repeat 1000 times</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y  <span class="sc">~</span>  X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4)</span>
-<span id="cb13-2"><a></a>red <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2)</span>
-<span id="cb13-3"><a></a><span class="fu">anova</span>(red, full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>sim_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T))</span>
+<span id="cb53-2"><a></a>sim_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    [1]  0.01411290 -0.00436828  0.01411290 -0.04133065  0.01411290 -0.05981183 -0.04133065 -0.00436828  0.01411290  0.08803763  0.03259409 -0.07829301  0.06955645  0.03259409  0.03259409 -0.05981183  0.01411290
+#&gt;   [18] -0.00436828  0.05107527  0.08803763  0.03259409 -0.05981183  0.03259409  0.01411290  0.03259409 -0.04133065 -0.04133065  0.06955645 -0.04133065  0.01411290  0.03259409 -0.02284946  0.06955645 -0.05981183
+#&gt;   [35]  0.05107527 -0.02284946  0.01411290 -0.05981183  0.08803763 -0.07829301 -0.09677419  0.03259409 -0.02284946 -0.07829301  0.03259409  0.01411290 -0.05981183  0.01411290 -0.00436828 -0.02284946 -0.05981183
+#&gt;   [52]  0.03259409  0.05107527  0.03259409 -0.02284946 -0.04133065 -0.04133065 -0.09677419 -0.00436828 -0.02284946 -0.05981183 -0.05981183 -0.00436828 -0.00436828 -0.05981183  0.08803763 -0.04133065 -0.00436828
+#&gt;   [69] -0.00436828 -0.02284946  0.03259409 -0.02284946 -0.02284946  0.08803763 -0.02284946 -0.04133065 -0.09677419 -0.07829301 -0.07829301  0.03259409 -0.11525538 -0.02284946 -0.00436828 -0.00436828  0.01411290
+#&gt;   [86]  0.01411290 -0.00436828 -0.00436828 -0.09677419 -0.05981183  0.01411290  0.05107527  0.01411290 -0.02284946  0.03259409 -0.05981183  0.08803763 -0.00436828  0.03259409 -0.00436828  0.01411290 -0.05981183
+#&gt;  [103]  0.05107527 -0.02284946 -0.00436828 -0.00436828 -0.02284946  0.03259409  0.06955645 -0.05981183 -0.04133065  0.06955645 -0.00436828 -0.04133065 -0.02284946  0.05107527  0.05107527  0.01411290 -0.00436828
+#&gt;  [120] -0.04133065  0.06955645  0.05107527 -0.04133065 -0.05981183  0.06955645 -0.02284946 -0.00436828  0.06955645 -0.04133065 -0.04133065 -0.02284946 -0.07829301 -0.07829301  0.06955645 -0.00436828 -0.05981183
+#&gt;  [137] -0.00436828 -0.02284946 -0.00436828  0.01411290  0.01411290 -0.05981183  0.01411290  0.01411290 -0.02284946 -0.02284946  0.06955645 -0.00436828 -0.11525538 -0.09677419  0.01411290 -0.02284946  0.03259409
+#&gt;  [154] -0.07829301  0.01411290 -0.04133065 -0.05981183  0.06955645 -0.07829301  0.03259409  0.08803763  0.06955645 -0.04133065  0.05107527 -0.04133065 -0.02284946 -0.04133065 -0.05981183  0.03259409 -0.02284946
+#&gt;  [171]  0.01411290 -0.02284946 -0.02284946  0.05107527  0.03259409 -0.02284946  0.03259409 -0.04133065 -0.00436828  0.05107527  0.03259409 -0.05981183 -0.07829301  0.03259409 -0.00436828 -0.02284946 -0.04133065
+#&gt;  [188] -0.11525538  0.03259409  0.01411290 -0.04133065 -0.07829301  0.06955645 -0.05981183  0.19892473  0.01411290  0.06955645  0.01411290 -0.04133065  0.06955645  0.01411290  0.03259409  0.03259409 -0.07829301
+#&gt;  [205] -0.04133065 -0.00436828  0.01411290  0.03259409  0.01411290 -0.00436828  0.05107527  0.05107527 -0.00436828 -0.00436828 -0.04133065  0.08803763 -0.02284946  0.05107527  0.03259409  0.01411290  0.10651882
+#&gt;  [222]  0.05107527 -0.00436828  0.12500000  0.01411290 -0.04133065  0.06955645  0.03259409  0.06955645 -0.00436828 -0.00436828 -0.00436828 -0.00436828 -0.02284946 -0.00436828 -0.00436828 -0.05981183 -0.02284946
+#&gt;  [239]  0.01411290  0.14348118  0.06955645 -0.05981183 -0.02284946 -0.00436828 -0.00436828 -0.02284946  0.01411290  0.06955645 -0.04133065 -0.11525538 -0.04133065 -0.05981183 -0.00436828  0.03259409  0.05107527
+#&gt;  [256] -0.04133065  0.03259409  0.01411290 -0.02284946  0.01411290 -0.04133065 -0.02284946  0.03259409 -0.00436828  0.05107527  0.05107527  0.06955645 -0.00436828 -0.00436828 -0.04133065 -0.02284946 -0.05981183
+#&gt;  [273]  0.03259409  0.05107527  0.01411290 -0.05981183 -0.02284946  0.03259409 -0.09677419 -0.00436828 -0.05981183  0.06955645 -0.07829301 -0.05981183  0.01411290 -0.00436828 -0.00436828  0.03259409 -0.02284946
+#&gt;  [290]  0.03259409 -0.05981183 -0.00436828  0.03259409 -0.02284946 -0.11525538 -0.00436828  0.01411290 -0.09677419 -0.02284946  0.05107527 -0.09677419  0.01411290 -0.00436828  0.03259409 -0.00436828 -0.02284946
+#&gt;  [307]  0.01411290  0.08803763  0.10651882 -0.04133065 -0.07829301  0.10651882 -0.05981183  0.03259409  0.06955645  0.03259409  0.03259409  0.03259409 -0.07829301 -0.00436828  0.03259409  0.08803763 -0.02284946
+#&gt;  [324] -0.00436828 -0.05981183  0.03259409 -0.00436828  0.08803763  0.05107527 -0.02284946  0.05107527  0.03259409 -0.11525538  0.05107527 -0.13373656 -0.04133065 -0.02284946 -0.11525538 -0.04133065  0.06955645
+#&gt;  [341] -0.13373656 -0.02284946  0.05107527 -0.05981183 -0.00436828  0.01411290  0.01411290  0.08803763 -0.02284946 -0.04133065 -0.04133065 -0.00436828 -0.04133065 -0.04133065 -0.07829301 -0.04133065  0.05107527
+#&gt;  [358] -0.07829301  0.01411290  0.03259409  0.01411290  0.01411290 -0.02284946 -0.05981183  0.01411290  0.01411290 -0.00436828 -0.00436828 -0.02284946  0.03259409 -0.07829301  0.05107527  0.05107527 -0.04133065
+#&gt;  [375] -0.00436828 -0.02284946 -0.13373656 -0.04133065  0.01411290  0.03259409  0.03259409  0.03259409  0.01411290 -0.04133065  0.06955645 -0.02284946 -0.05981183 -0.00436828 -0.04133065  0.06955645  0.08803763
+#&gt;  [392]  0.01411290 -0.04133065  0.01411290  0.05107527  0.01411290  0.01411290  0.03259409 -0.05981183  0.03259409  0.03259409 -0.07829301  0.03259409 -0.04133065  0.01411290  0.05107527 -0.07829301 -0.02284946
+#&gt;  [409]  0.01411290 -0.04133065 -0.05981183 -0.00436828 -0.07829301  0.03259409  0.01411290  0.03259409 -0.02284946  0.12500000  0.01411290 -0.02284946 -0.05981183 -0.02284946 -0.05981183 -0.00436828  0.03259409
+#&gt;  [426]  0.03259409  0.03259409 -0.02284946 -0.00436828  0.01411290 -0.00436828  0.03259409  0.05107527 -0.07829301 -0.02284946  0.05107527 -0.09677419 -0.07829301 -0.00436828  0.01411290  0.10651882 -0.02284946
+#&gt;  [443] -0.05981183  0.05107527  0.03259409  0.05107527  0.03259409 -0.04133065  0.06955645 -0.02284946  0.01411290  0.01411290 -0.04133065 -0.07829301 -0.02284946 -0.00436828  0.06955645 -0.00436828 -0.00436828
+#&gt;  [460]  0.01411290 -0.00436828 -0.05981183 -0.05981183 -0.02284946 -0.02284946 -0.05981183 -0.02284946 -0.02284946 -0.04133065 -0.09677419 -0.00436828  0.05107527  0.03259409  0.01411290  0.06955645  0.08803763
+#&gt;  [477] -0.00436828  0.01411290  0.05107527  0.01411290  0.01411290 -0.04133065  0.01411290 -0.05981183 -0.09677419 -0.00436828 -0.02284946 -0.00436828 -0.02284946  0.05107527  0.05107527 -0.00436828  0.01411290
+#&gt;  [494] -0.00436828 -0.00436828  0.05107527  0.05107527 -0.07829301 -0.07829301 -0.07829301  0.05107527  0.01411290 -0.09677419  0.05107527  0.06955645 -0.07829301  0.10651882 -0.05981183  0.03259409  0.01411290
+#&gt;  [511]  0.03259409  0.01411290  0.12500000 -0.02284946  0.05107527 -0.02284946 -0.00436828 -0.00436828 -0.04133065  0.05107527  0.01411290 -0.00436828 -0.02284946 -0.04133065 -0.02284946  0.05107527  0.01411290
+#&gt;  [528] -0.07829301  0.06955645 -0.04133065  0.03259409 -0.04133065 -0.02284946 -0.04133065 -0.07829301  0.01411290  0.03259409  0.12500000 -0.02284946 -0.00436828  0.06955645  0.03259409 -0.09677419  0.08803763
+#&gt;  [545] -0.00436828 -0.00436828  0.03259409  0.03259409  0.01411290  0.05107527 -0.09677419 -0.00436828 -0.00436828 -0.09677419 -0.00436828 -0.09677419 -0.05981183 -0.00436828 -0.07829301  0.01411290 -0.07829301
+#&gt;  [562]  0.01411290  0.03259409  0.01411290  0.06955645  0.14348118  0.01411290  0.06955645 -0.02284946  0.01411290 -0.04133065 -0.00436828  0.03259409  0.01411290 -0.02284946  0.06955645  0.08803763  0.12500000
+#&gt;  [579]  0.05107527 -0.04133065 -0.02284946  0.05107527  0.03259409 -0.02284946 -0.00436828 -0.05981183  0.03259409 -0.00436828  0.03259409  0.01411290 -0.05981183  0.05107527  0.06955645 -0.04133065  0.03259409
+#&gt;  [596]  0.03259409  0.06955645  0.03259409 -0.04133065  0.10651882  0.01411290  0.03259409 -0.05981183 -0.02284946  0.03259409  0.01411290  0.03259409  0.01411290 -0.05981183  0.01411290 -0.04133065  0.01411290
+#&gt;  [613]  0.08803763  0.08803763 -0.04133065 -0.02284946  0.01411290 -0.02284946 -0.04133065 -0.04133065  0.01411290  0.01411290  0.05107527  0.05107527  0.03259409  0.08803763  0.05107527  0.08803763  0.01411290
+#&gt;  [630]  0.03259409  0.03259409 -0.05981183 -0.07829301 -0.11525538  0.03259409  0.10651882 -0.05981183 -0.02284946 -0.07829301  0.01411290 -0.00436828  0.01411290 -0.05981183 -0.07829301 -0.02284946 -0.00436828
+#&gt;  [647]  0.10651882 -0.05981183  0.08803763  0.01411290 -0.00436828 -0.04133065 -0.04133065 -0.00436828  0.01411290 -0.00436828  0.01411290 -0.00436828  0.05107527 -0.02284946  0.05107527  0.01411290  0.05107527
+#&gt;  [664] -0.00436828  0.03259409 -0.05981183 -0.00436828 -0.05981183 -0.04133065 -0.00436828 -0.02284946 -0.02284946  0.03259409 -0.04133065  0.06955645  0.03259409  0.01411290 -0.02284946 -0.02284946 -0.00436828
+#&gt;  [681] -0.00436828  0.01411290 -0.00436828  0.01411290 -0.00436828  0.05107527 -0.05981183 -0.04133065  0.01411290 -0.00436828  0.03259409  0.05107527 -0.04133065 -0.00436828  0.03259409 -0.02284946 -0.05981183
+#&gt;  [698]  0.01411290 -0.04133065 -0.04133065  0.10651882  0.10651882 -0.04133065  0.05107527 -0.11525538  0.03259409  0.08803763 -0.02284946 -0.05981183  0.05107527 -0.04133065  0.03259409  0.06955645 -0.09677419
+#&gt;  [715] -0.05981183  0.01411290 -0.05981183 -0.00436828  0.05107527  0.06955645 -0.04133065  0.08803763  0.06955645  0.10651882 -0.02284946  0.05107527 -0.00436828 -0.07829301 -0.00436828 -0.05981183 -0.02284946
+#&gt;  [732] -0.02284946  0.03259409 -0.04133065 -0.04133065  0.03259409 -0.02284946  0.06955645 -0.05981183  0.06955645 -0.05981183  0.06955645 -0.02284946 -0.07829301  0.05107527 -0.11525538 -0.00436828 -0.00436828
+#&gt;  [749] -0.07829301 -0.00436828  0.08803763  0.01411290  0.05107527  0.05107527 -0.02284946 -0.07829301 -0.02284946  0.01411290  0.03259409 -0.00436828 -0.00436828  0.01411290 -0.05981183 -0.04133065  0.03259409
+#&gt;  [766] -0.02284946  0.03259409 -0.00436828 -0.00436828  0.06955645 -0.04133065  0.01411290 -0.05981183  0.01411290  0.03259409 -0.02284946 -0.07829301  0.08803763 -0.02284946 -0.00436828 -0.00436828  0.03259409
+#&gt;  [783]  0.01411290 -0.04133065  0.06955645  0.14348118 -0.04133065  0.08803763 -0.05981183  0.03259409 -0.02284946 -0.09677419  0.05107527  0.03259409 -0.02284946  0.05107527  0.03259409  0.03259409  0.05107527
+#&gt;  [800]  0.05107527 -0.00436828 -0.00436828  0.10651882  0.05107527  0.03259409  0.03259409 -0.00436828  0.03259409 -0.00436828  0.05107527  0.01411290 -0.07829301 -0.00436828  0.01411290  0.03259409 -0.09677419
+#&gt;  [817] -0.05981183  0.05107527  0.01411290 -0.02284946  0.12500000  0.10651882 -0.00436828 -0.02284946  0.16196237  0.12500000 -0.05981183 -0.00436828 -0.04133065 -0.04133065 -0.09677419 -0.00436828  0.08803763
+#&gt;  [834] -0.11525538 -0.02284946 -0.00436828 -0.09677419  0.03259409 -0.00436828  0.08803763  0.08803763  0.05107527  0.10651882  0.01411290  0.18044355 -0.00436828  0.01411290 -0.00436828  0.05107527 -0.07829301
+#&gt;  [851]  0.05107527 -0.09677419  0.05107527 -0.00436828 -0.00436828  0.05107527  0.06955645 -0.02284946  0.06955645  0.05107527 -0.04133065 -0.07829301  0.05107527 -0.05981183  0.01411290 -0.02284946 -0.00436828
+#&gt;  [868]  0.01411290 -0.05981183 -0.00436828 -0.00436828  0.05107527  0.03259409 -0.04133065 -0.04133065 -0.13373656  0.01411290  0.05107527 -0.04133065 -0.04133065  0.01411290 -0.05981183  0.06955645 -0.05981183
+#&gt;  [885]  0.05107527 -0.05981183  0.03259409 -0.04133065  0.03259409  0.05107527  0.03259409 -0.09677419  0.03259409 -0.02284946 -0.04133065 -0.00436828  0.01411290 -0.00436828 -0.02284946 -0.02284946  0.08803763
+#&gt;  [902] -0.02284946 -0.02284946  0.05107527 -0.07829301 -0.11525538 -0.07829301 -0.02284946 -0.11525538  0.03259409  0.08803763  0.01411290 -0.07829301 -0.04133065 -0.04133065 -0.02284946  0.10651882 -0.07829301
+#&gt;  [919] -0.09677419 -0.02284946  0.06955645  0.06955645 -0.09677419 -0.04133065 -0.05981183 -0.02284946  0.05107527 -0.00436828 -0.00436828 -0.02284946  0.01411290  0.01411290  0.05107527  0.03259409  0.01411290
+#&gt;  [936]  0.01411290  0.05107527 -0.11525538 -0.05981183 -0.00436828  0.10651882 -0.00436828  0.03259409 -0.04133065 -0.05981183  0.03259409 -0.02284946 -0.00436828 -0.02284946  0.06955645 -0.00436828 -0.00436828
+#&gt;  [953] -0.02284946 -0.00436828  0.05107527  0.12500000 -0.04133065 -0.00436828  0.06955645 -0.05981183 -0.00436828  0.05107527  0.01411290 -0.02284946  0.03259409  0.05107527 -0.00436828  0.08803763  0.03259409
+#&gt;  [970] -0.02284946 -0.00436828 -0.04133065  0.03259409  0.05107527  0.03259409  0.01411290 -0.02284946 -0.07829301 -0.05981183  0.14348118  0.03259409  0.08803763 -0.05981183 -0.04133065  0.05107527 -0.02284946
+#&gt;  [987]  0.05107527 -0.02284946  0.01411290 -0.09677419  0.03259409 -0.04133065  0.01411290  0.03259409 -0.02284946  0.03259409 -0.02284946  0.08803763 -0.02284946  0.06955645</code></pre>
+</div>
 </div>
 </section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
+<section id="visualize-data" class="slide level2">
+<h2>Visualize Data</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species <span class="sc">+</span> island <span class="sc">+</span> flipper_length_mm, penguins)</span>
-<span id="cb14-2"><a></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> island <span class="sc">+</span> flipper_length_mm, penguins)</span>
-<span id="cb14-3"><a></a><span class="fu">anova</span>(m2, m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="12_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<section id="compute-data-propoortion" class="slide level2">
+<h2>Compute Data Propoortion</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>test_stat <span class="ot">&lt;-</span> <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, T)</span>
+<span id="cb56-2"><a></a>test_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Model 1: body_mass_g ~ island + flipper_length_mm
-#&gt; Model 2: body_mass_g ~ species + island + flipper_length_mm
-#&gt;   Res.Df      RSS Df Sum of Sq      F    Pr(&gt;F)    
-#&gt; 1    329 47774435                                  
-#&gt; 2    327 45552857  2   2221579 7.9738 0.0004157 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<pre><code>#&gt; [1] 0.125</code></pre>
+</div>
+</div>
+</section>
+<section id="comparison" class="slide level2">
+<h2>Comparison</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb58-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb58-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="12_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="p-value" class="title-slide slide level1 agenda-slide center">
+<h1>P-Value</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Sampling Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Simulating Unicorns</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Comparing Proportions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-active">
+<p>P-Value</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Process</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="p-value-1" class="slide level2">
+<h2>P-Value</h2>
+<p>The p-value determines the probability of observing our data statistic, given that the null hypothesis is true.</p>
+<div class="fragment">
+<p>When the p-value is large, we believe there is a high probability that the null hypothesis is true.</p>
+</div>
+<div class="fragment">
+<p>When the p-value is small, we believe that it is unlikely the the null hypothesis is true. We believe that the alternative may be a better model.</p>
+</div>
+</section>
+<section id="sided-p-value" class="slide level2">
+<h2>2-Sided P-Value</h2>
+<p>Due to randomness, there is a possibility of observing the same magnitude of <span class="math inline">\(p_{active}-p_{placebo}\)</span>, but in the opposite direction; therefore, we must look at both sides.</p>
+</section>
+<section id="visually-2-sided-p-value" class="slide level2">
+<h2>Visually 2-Sided P-Value</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb59-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb59-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span>test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="12_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
+<section id="computing-the-p-value" class="slide level2">
+<h2>Computing the p-value</h2>
+<p>We will count how many simulated <span class="math inline">\(p_{active}-p_{placebo}\)</span>’s are more extreme than our test statistic and divided by the number of simulations plus one.</p>
+</section>
+<section id="computing-the-p-value-1" class="slide level2">
+<h2>Computing the p-value</h2>
+<p><span class="math display">\[
+p = \frac{m +1}{N + 1}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(m\)</span>: number of more extreme values than our test statistic</li>
+<li><span class="math inline">\(N\)</span>: number of simulations</li>
+</ul>
+</section>
+<section id="computing-the-p-value-2" class="slide level2">
+<h2>Computing the P-Value</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>(<span class="fu">sum</span>(<span class="fu">abs</span>(SIM_VECTOR) <span class="sc">&gt;</span> <span class="fu">abs</span>(TEST_STAT)) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (N <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="computing-p-value" class="slide level2">
+<h2>Computing P-value</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">sum</span>(<span class="fu">abs</span>(sim_stats) <span class="sc">&gt;</span> <span class="fu">abs</span>(test_stat)) <span class="sc">/</span> <span class="dv">1001</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.01098901</code></pre>
 </div>
 </div>
 </section></section>
 <section>
-<section id="model-assumptions" class="title-slide slide level1 agenda-slide center">
-<h1>Model Assumptions</h1>
+<section id="process" class="title-slide slide level1 agenda-slide center">
+<h1>Process</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
+<p>Sampling Distribution</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Mathematical Models</p>
+<p>Simulating Unicorns</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
+<p>Hypothesis Testing</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Model Hypothesis Testing</p>
+<p>Comparing Proportions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Randomization Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>P-Value</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Model Assumptions</p>
+<p>Process</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="model-assumptions-1" class="slide level2">
-<h2>Model Assumptions</h2>
-<p>When we are conducting inference linear regression, we will have to check the following conditions:</p>
+<section id="identify-your-variables" class="slide level2">
+<h2>Identify your Variables</h2>
 <ul>
-<li>Linearity</li>
-<li>Independence</li>
-<li>Normality</li>
-<li>Equal Variances</li>
-<li>Multicollinearity (for MLR)</li>
+<li>What is your predictor variable?</li>
+<li>What is your outcome variable?</li>
 </ul>
 </section>
-<section id="linearity" class="slide level2">
-<h2>Linearity</h2>
-<p>Probably considered the most important assumption, but there must be a linear relationship between both the outcome variable (y) and a set of predictors (<span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, …).</p>
+<section id="create-your-hypothesis" class="slide level2">
+<h2>Create your Hypothesis</h2>
+<p>Choose a hypothesis that is appropriate for your model.</p>
 </section>
-<section id="independence" class="slide level2">
-<h2>Independence</h2>
-<p>The data points must not influence each other.</p>
+<section id="compute-a-test-statistic-for-the-data" class="slide level2">
+<h2>Compute a test statistic for the data</h2>
+<p>Identify what is you want to compute and compare.</p>
 </section>
-<section id="normality" class="slide level2">
-<h2>Normality</h2>
-<p>The model errors (also known as residuals) must follow a normal distribution.</p>
+<section id="generate-a-null-distribution." class="slide level2">
+<h2>Generate a null distribution.</h2>
+<p>Simulate the potential null distribution using the <code>shuffle</code> and <code>replicate</code> function.</p>
 </section>
-<section id="equal-variances" class="slide level2">
-<h2>Equal Variances</h2>
-<p>The variability of the data points must be the same for all predictor values.</p>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-<p>Residuals are the errors between the observed value and the estimated model. Common residuals include</p>
-<ul>
-<li><p>Raw Residual</p></li>
-<li><p>Standardized Residual</p></li>
-<li><p>Jackknife (studentized) Residuals</p></li>
-</ul>
-</section>
-<section id="influential-measurements" class="slide level2">
-<h2>Influential Measurements</h2>
-<p>Influential measures are statistics that determine how much a data point affects the model. Common influential measures are</p>
-<ul>
-<li><p>Leverages</p></li>
-<li><p>Cook’s Distance</p></li>
-</ul>
-</section>
-<section id="raw-residuals" class="slide level2">
-<h2>Raw Residuals</h2>
-<p><span class="math display">\[
-\hat r_i = y_i - \hat y_i
-\]</span></p>
-</section>
-<section id="residual-analysis" class="slide level2">
-<h2>Residual Analysis</h2>
-<p>A residual analysis is used to test the assumptions of linear regression.</p>
-</section>
-<section id="qq-plot" class="slide level2">
-<h2>QQ Plot</h2>
-<p>A qq (quantile-quantile) plot will plot the estimated quantiles of the residuals against the theoretical quantiles from a normal distribution function. If the points from the qq-plot lie on the <span class="math inline">\(y=x\)</span> line, it is said that the residuals follow a normal distribution.</p>
-</section>
-<section id="residual-vs-fitted-plot" class="slide level2">
-<h2>Residual vs Fitted Plot</h2>
-<p>This plot allows you to assess the linearity, constant variance, and identify potential outliers. Create a scatter plot between the fitted values (x-axis) and the raw/standardized residuals (y-axis).</p>
-</section>
-<section id="variance-inflation-factor" class="slide level2">
-<h2>Variance Inflation Factor</h2>
-<p>The variance inflation factor is a measurement on how much variables are collinear with each other. A value greater than 10 is a cause for concern and action should be taken.</p>
-</section>
-<section id="residual-analysis-in-r" class="slide level2">
-<h2>Residual Analysis in R</h2>
-<p>Use the <code>resid_df</code> function to obtain the residuals of a model.</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>rdf <span class="ot">&lt;-</span> <span class="fu">resid_df</span>(LM_OBJECT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="residual-vs-fitted-plot-1" class="slide level2">
-<h2>Residual vs Fitted Plot</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(RDF, <span class="fu">aes</span>(fitted, resid)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="qq-plot-1" class="slide level2">
-<h2>QQ Plot</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(RDF, <span class="fu">aes</span>(<span class="at">sample =</span> resid)) <span class="sc">+</span> </span>
-<span id="cb18-2"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">stat_qq_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example-4" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>   island <span class="sc">+</span> species <span class="sc">+</span> flipper_length_mm,</span>
-<span id="cb19-2"><a></a>          penguins)</span>
-<span id="cb19-3"><a></a>dfxlm <span class="ot">&lt;-</span> <span class="fu">resid_df</span>(xlm)</span>
-<span id="cb19-4"><a></a></span>
-<span id="cb19-5"><a></a><span class="fu">ggplot</span>(dfxlm, <span class="fu">aes</span>(fitted, resid)) <span class="sc">+</span></span>
-<span id="cb19-6"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-7"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb19-8"><a></a></span>
-<span id="cb19-9"><a></a><span class="fu">ggplot</span>(dfxlm, <span class="fu">aes</span>(<span class="at">sample =</span> resid)) <span class="sc">+</span> </span>
-<span id="cb19-10"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb19-11"><a></a>  <span class="fu">stat_qq_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<section id="compute-the-p-value" class="slide level2">
+<h2>Compute the p-value</h2>
+<p>Use the probability formula to determine the likelihood of observing your test statistic given that the null hypothesis is true.</p>
 
 
 <div class="reveal-header">
@@ -884,7 +1394,7 @@ M2:\ \hat y = \beta_0 + \beta_1 X_1
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true,"src":"notes/chalkboard_1a.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
+'chalkboard': {"buttons":true,"theme":"whiteboard","chalkWidth":4},
 'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
 'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
@@ -1066,6 +1576,44 @@ M2:\ \hat y = \beta_0 + \beta_1 X_1
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

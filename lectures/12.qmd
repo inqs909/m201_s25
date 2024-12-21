@@ -1,8 +1,10 @@
 ---
-title: "Inference with Linear Regression"
+title: "Sampling Distribution"
+date: 4/1/25
 format:
   revealjs:
     width: 1200
+    df-print: paged
     scrollable: true
     theme: [default, styles.scss]
     navigation-mode: vertical
@@ -10,8 +12,6 @@ format:
     controls-tutorial: true
     incremental: false 
     chalkboard:
-      src: notes/chalkboard_1a.json
-      storage: chalkboard_pres
       theme: whiteboard
       chalk-width: 4
 knitr:
@@ -36,10 +36,12 @@ editor: source
 
 ```{r}
 #| include: false
+library(MASS)
 library(tidyverse)
 library(csucistats)
-library(palmerpenguins)
+library(waffle)
 library(patchwork)
+
 theme_set(theme_bw() + 
             theme(
               axis.text.x = element_text(size = 24),
@@ -49,401 +51,669 @@ theme_set(theme_bw() +
               legend.title = element_blank(),
               legend.text = element_text(size = 24)))
 
-penguins <- penguins |> drop_na()
-
 ```
 
-# Motivating Example
+# Sampling Distribution
 
-## Motivating Example
+## Sampling Distribution
 
-```{r}
-p1 <- penguins |> ggplot(aes(x=species, y = body_mass_g)) +
-  geom_jitter() + 
-  geom_boxplot() + 
-  labs(x = "Species", y = "Body Mass")
-  
-p2 <- penguins |> ggplot(aes(x=flipper_length_mm, y = body_mass_g)) +
-  geom_point() + 
-  labs(x = "Flipper Length", y = "Body Mass")  
-
-p1 + p2
-  
-```
-
-
-# Mathematical Models
-
-## Mathematical Models
-
-## Standard Normal Distribution
-
-::: columns
-::: {.column width="50%"}
-$$
-{\frac{1}{\sqrt{2 \pi}}} e^{-\frac{1}{2}x^2}
-$$
-:::
-
-::: {.column width="50%"}
-```{r}
-data.frame(x = seq(-5,5, length.out = 100), 
-           y1 = dt(seq(-5,5, length.out = 100), 1),
-           y2 = dt(seq(-5,5, length.out = 100), 10),
-           y3 = dt(seq(-5,5, length.out = 100), 30),
-           y4 = dt(seq(-5,5, length.out = 100), 100),
-           y5 = dnorm((seq(-5,5, length.out = 100)))) |> 
-  ggplot() +
-  # geom_line(aes(x, y1, color = "1")) +
-  # geom_line(aes(x, y2, color = "10")) +
-  # geom_line(aes(x, y3, color = "30")) +
-  # geom_line(aes(x, y4, color = "100")) +
-  geom_line(aes(x, y5)) +
-  ylab("y")
-  
-```
-:::
-:::
-
-## t Distribution
-
-::: columns
-::: {.column width="50%"}
-$$
-\frac{\Gamma \left(\frac{v+1}{2}\right)}{\sqrt{\pi v}\Gamma\left(\frac{v}{2}\right)} \left(1 + \frac{x^2}{v}\right)^{-\frac{v+1}{2}}
-$$
-:::
-
-::: {.column width="50%"}
-```{r}
-data.frame(x = seq(-5,5, length.out = 100), 
-           y1 = dt(seq(-5,5, length.out = 100), 1),
-           y2 = dt(seq(-5,5, length.out = 100), 10),
-           y3 = dt(seq(-5,5, length.out = 100), 30),
-           y4 = dt(seq(-5,5, length.out = 100), 100),
-           y5 = dnorm((seq(-5,5, length.out = 100)))) |> 
-  ggplot() +
-  geom_line(aes(x, y1, color = "1")) +
-  geom_line(aes(x, y2, color = "10")) +
-  geom_line(aes(x, y3, color = "30")) +
-  geom_line(aes(x, y4, color = "100")) +
-  geom_line(aes(x, y5, color = "Normal")) +
-  ylab("y")
-  
-```
-:::
-:::
-
-# $\beta$ Hypothesis Testing
-
-## Hypothesis
-
-::: columns
-::: {.column width="50%"}
-$$H_0: \beta = \theta$$
-:::
-
-::: {.column width="50%"}
-$$H_0: \beta \ne \theta$$
-:::
-:::
-
-## Testing $\beta_j$
-
-$$
-T = \frac{\hat\beta_j-\theta}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
-$$
-
--   $n$: sample size
--   $p^\prime$: number of $\beta$s
-
-## P-Value
-
-| Alternative Hypothesis | p-value                       |
-|------------------------|-------------------------------|
-| $\beta>\theta$         | $P(\hat\beta >T)=p$           |
-| $\beta<\theta$         | $P(\hat\beta < T)=p$          |
-| $\beta\ne\theta$       | $2\times P(\hat\beta >|T|)=p$ |
-
-## Confidence Intervals
-
-$$
-\hat \beta_j \pm CV \times se(\hat\beta_j)
-$$
-
--   $CV$: Critical Value $P(X<CV) = 1-\alpha/2$
-
--   $\alpha$: significance level
-
--   $se$: Standard Error Function
-
-## Conducting HT of $\beta_j$
-
-```{r}
-#| eval: false
-
-xlm <- lm(Y ~ X, data = DATA)
-summary(xlm)
-```
-
-## Example
-
-```{r}
-#| code-fold: show
-#| eval: true
-
-m1 <- lm(body_mass_g ~ species + flipper_length_mm, penguins)
-summary(m1)
-
-```
-
-## Confidence Interval
-
-```{r}
-#| code-fold: show
-#| eval: false
-confint(xlm, level = LEVEL)
-```
-
-## Example
-
-```{r}
-#| code-fold: show
-#| eval: true
-
-confint(m1, level = 0.90)
-```
-
-# Model Hypothesis Testing
-
-## Model inference
-
-We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model ($\hat Y=\hat\beta_0 + \hat\beta_1 X$) to the mean of Y ($\hat \mu_y$). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.
-
-## Model Inference
-
-Given 2 models:
-
-$$
-\hat Y = \hat\beta_0 + \hat\beta_1 X_1 + \hat\beta_2 X_2 + \cdots + \hat\beta_p X_p
-$$
-
-or
-
-$$
-\hat Y = \bar y
-$$
+Sampling Distribution is the idea that the statistics that you generate (slopes and intercepts) have their own data generation process.
 
 ::: fragment
-Is the model with predictors do a better job than using the average?
+In other words, the numerical values you obtain from the `lm` and `glm` function can be different if we got a different data set.
 :::
 
-## ANOVA
+::: fragment
+Some values will be more common than others. Because of this, they have their own data generating process, like the outcome of interest has it's own data generating process.
+:::
 
-## ANOVA Table
-
-| Source | DF        | SS            | MS                    | F                        |
-|---------------|---------------|---------------|---------------|---------------|
-| Model  | $DFR=k-1$ | $SSR$         | $MSR=\frac{SSM}{DFR}$ | $\hat F=\frac{MSR}{MSE}$ |
-| Error  | $DFE=n-k$ | $SSE$         | $MSE=\frac{SSE}{DFE}$ |                          |
-| Total  | $TDF=n-1$ | $TSS=SSR+SSE$ |                       |                          |
+## Modelling the Data
 
 $$
-\hat F \sim F(DFR, DFE)
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+$$ 
+
+- $Y_i$: Outcome data 
+- $X_i$: Predictor data 
+- $\beta_0, \beta_1$: parameters 
+- $\varepsilon_i$: error term
+
+## Error Term
+
+$$
+\varepsilon_i \sim DGP
 $$
 
-## Conducting an ANOVA in R
+::: notes
+-   The error terms forces the outcome variable to be different from the mathematical model.
+-   The numbers being generated are random and cannot be predicted.
+:::
+
+## Randomness Effect
+
+```{r}
+#| echo: false
+ggplot(tibble(x = rnorm(1000), y = rnorm(1000)), aes(x,y)) +
+  geom_point() +
+  theme_void()
+```
+
+# Simulating Unicorns
+
+## Simulating Unicorns
+
+To better understand the variation in statistics, let's simulate a data set of unicorn characteristics to visualize and understand the variation.
+
+::: fragment
+We will simulate a data set using then `unicorns` function and only need to specify how many unicorns you want to simulate.
+:::
+
+## Simulating Unicorn Data
 
 ```{r}
 #| code-fold: show
-#| eval: false
-xlm <- lm(Y ~ X, data = DATA)
-summary(xlm)
+unicorns(10)
 ```
 
-## Example
+## Unicorn Data Variables
 
 ```{r}
-summary(m1)
+#| code-fold: show
+
+names(unicorns(10))
 ```
 
-## Model Inference
+We will only look at `Magical_Score` and `Nature_Score`.
 
-Model inference can be extended to compare models that have different number of predictors.
-
-## Model Inference
-
-Given:
+## Magical and Nature Score
 
 $$
-M1:\ \hat y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 
-$$
+Magical =  3423 + 8 \times Nature + \varepsilon
+$$ 
 
 $$
-M2:\ \hat y = \beta_0 + \beta_1 X_1  
+\varepsilon \sim N(0, 3.24)
 $$
 
-Let $M1$ be the FULL (larger) model, and let $M2$ be the RED (Reduced, smaller) model.
+## Simulating $N(0, 3.24)$
 
-## Model Inference
+```{r}
+#| code-fold: show
+rnorm(1, 0, 1.8)
+```
 
-He can test the following Hypothesis:
+## Collecting
 
--   $H_0$: The error variations between the FULL and RED model are not different.
--   $H_1$: The error variations between the FULL and RED model are different.
+```{r}
+unicorns(10) |> select(Nature_Score, Magical_Score)
+```
+
+## DGP of Magical Score 1
+
+```{r}
+ggplot(unicorns(500), aes(Magical_Score)) +
+  geom_density()
+```
+
+## DGP of Magical Score 2
+
+```{r}
+ggplot(unicorns(500), aes(Magical_Score)) +
+  geom_density()
+```
+
+## Estimating $\beta_1$ via `lm`
+
+```{r}
+u1 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u1)
+```
+
+## Collecting a new sample
+
+```{r}
+u2 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u2)
+```
+
+## Collecting a new sample
+
+```{r}
+u3 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u3)
+```
+
+## Collecting a new sample
+
+```{r}
+u4 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u4)
+```
+
+## Collecting 1000 Samples
+
+```{r}
+betas <- replicate(1000,
+                   b(Magical_Score ~ Nature_Score, 1, unicorns(500)))
+
+betas
+```
+
+## Distributions of $\hat \beta_1$
+
+```{r}
+ggplot(tibble(x = betas), aes(x = x)) +
+  geom_density()
+```
+
+# Hypothesis Testing
+
+## Inference
+
+In the real world, we do not know how the model is generated; therefore, the parameters that are being estimated are unknown.
+
+::: fragment
+We use statistics to determine what is our best guess of what the true parameter is.
+:::
+
+::: fragment
+We can use processes known as inferential procedures to determine which values of the parameter it cannot be. This is known as inference.
+:::
+
+## Hypothesis Tests
+
+Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the **Null** and **Alternative** Hypothesis.
+
+## Null Hypothesis $H_0$
+
+The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.
+
+## Alternative Hypothesis $H_a$
+
+The alternative hypothesis contradicts the null hypothesis.
+
+## Example of Null and Alternative Hypothesis
+
+We want to see if $\mu$ (the true value) is different from $\mu_0$ (a number we want to test)
+
+| Null Hypothesis    | Alternative Hypothesis |
+|--------------------|------------------------|
+| $H_0: \mu=\mu_0$   | $H_a: \mu\ne\mu_0$     |
+| $H_0: \mu\le\mu_0$ | $H_a: \mu>\mu_0$       |
+| $H_0: \mu\ge\mu_0$ | $H_0: \mu<\mu_0$       |
+
+## Hypothesis Test
+
+The idea of hypothesis testing is to generate the sampling distribution of a statistic assuming the null hypothesis is true.
+
+::: fragment
+Compute the statistic from your data.
+:::
+
+::: fragment
+Afterwards, see where your statistic lies in comparison of your null sampling distribution.
+:::
+
+## Comparison of Null Distribution
+
+If your statistic lies near the mounds, it is believed that your data came from the null distribution.
+
+If your statistic is more in the tail regions, it is believed that your data **did not** come from your null distribution.
+
+# Comparing Proportions
+
+## Motivation
+
+The `bacteria` data set contians information on whether bacteria (`y`: y or n) is present after utilizing treatments (`ap`: **a**ctive or **p**lacebo).
+
+::: fragment
+We are interesting in determine the proportion of having bacteria present is different for those taking an "active" or "placebo".
+:::
+
+## Crosstabulation
+linearia$y)
+```
+
+
+
+## Comparing Proportions
+
+We are interesting in determining if different groups see different proportions of a binary outcome.
+
+We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
+
+## 2 by 2 Cross Tabulations
+
+|         |           |           |
+|---------|-----------|-----------|
+| Groups  | Outcome 1 | Outcome 2 |
+| Group 1 | $p_{11}$  | $p_{21}$  |
+| Group 2 | $p_{12}$  | $p_{22}$  |
+
+
+::: fragment
+We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
+
+:::
 
 ## Test Statistic
 
+We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
+
+::: fragment
+However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
+:::
+
+::: fragment
 $$
-\hat F = \frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)} 
+T =  p_{11} - p_{12}
+$$
+:::
+
+## Obtain Proportion in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+props(DATA$GROUP, DATA$OUTCOME, VAL)
+```
+
+## Obtain Difference in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+props(DATA$GROUP, DATA$OUTCOME, VAL, diff = TRUE)
+```
+
+## Bacteria Example
+
+```{r}
+props(bacteria$ap, bacteria$y, "y")
+```
+
+## Bacteria Example
+
+```{r}
+props(bacteria$ap, bacteria$y, "y", TRUE)
+```
+
+## Hypothesis Test
+
+Is 12.5% of a difference large enough to indicate that an active drug is effective against the bacteria, or seeing this can be due to random chance.
+
+
+## Hypotheis Test
+
+We will test the following hypothesis:
+
+$$
+H_0:\ p_1-p_2 = 0
 $$
 
 $$
-\hat F \sim F[DFE(RED) - DFE(FULL), DFE(FULL)]
+H_a:\ p_1 - p_2 \neq 0
 $$
 
-## ANOVA in R
+## Hypothesis Test
+
+In words:
+
+$H_0$: The variables bacteria presence and active drug treatment are independent of each other.
+
+$H_a$: The variables bacteria presence and active drug treatment are dependent of each other.
+
+
+# Randomization Tests
+
+## Visualizing 
+
+```{r}
+#| eval: false
+ab <- cat_stats(bacteria$y[bacteria$ap == "a"], pie = TRUE)
+abp <- ggplot(ab, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) + 
+  ggtitle("Active Treatment") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+pb <- cat_stats(bacteria$y[bacteria$ap == "p"], pie = TRUE)
+pbp <- ggplot(pb, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) +
+  ggtitle("Placebo") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+abp + pbp + plot_layout(guides = 'collect')
+
+
+```
+
+
+## Randomization Tests
+
+The idea of a randomization test is that each observed outcome variable was dictated by a mathematical model.
+
+::: fragment
+Therefore, a randomization is most interested to determine if the mathematical model exist or completely random. 
+:::
+
+::: fragment
+This is equivalent to saying the there is not pattern in the data. IE, independent variables.
+:::
+
+## Randomization Tests
+
+$H_0$: The outcome and predictor variables are **independent** of each other.
+
+$H_a$: The outcome and predictor variables are **dependent** of each other.
+
+## Randomziation 1
+
+
+```{r}
+#| eval: false
+ab <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "a"], pie = TRUE)
+abp <- ggplot(ab, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) + 
+  ggtitle("Active Treatment") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+pb <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "p"], pie = TRUE)
+pbp <- ggplot(pb, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) +
+  ggtitle("Placebo") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+abp + pbp + plot_layout(guides = 'collect')
+```
+
+
+## Randomziation 2
+
+
+```{r}
+#| eval: false
+ab <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "a"], pie = TRUE)
+abp <- ggplot(ab, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) + 
+  ggtitle("Active Treatment") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+pb <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "p"], pie = TRUE)
+pbp <- ggplot(pb, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) +
+  ggtitle("Placebo") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+abp + pbp + plot_layout(guides = 'collect')
+```
+
+
+## Randomziation 3
+
+
+```{r}
+#| eval: false
+ab <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "a"], pie = TRUE)
+abp <- ggplot(ab, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) + 
+  ggtitle("Active Treatment") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+pb <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "p"], pie = TRUE)
+pbp <- ggplot(pb, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) +
+  ggtitle("Placebo") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+abp + pbp + plot_layout(guides = 'collect')
+```
+
+
+## Randomziation 4
+
+
+```{r}
+#| eval: false
+ab <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "a"], pie = TRUE)
+abp <- ggplot(ab, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) + 
+  ggtitle("Active Treatment") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+pb <- cat_stats(shuffle(bacteria$y)[bacteria$ap == "p"], pie = TRUE)
+pbp <- ggplot(pb, aes(fill = Category, values = n)) +
+  geom_waffle(make_proportional = TRUE) +
+  ggtitle("Placebo") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+abp + pbp + plot_layout(guides = 'collect')
+```
+
+
+## Randomization Test
+
+The act of randomizing the outcome to a set of predictor variables allow you to construct the sampling of distribution of the null hypothesis.
+
+::: fragment
+$H_0$: The variables bacteria presence and active drug treatment are independent of each other. $p_{active}-p_{placebo} = 0$
+
+$H_a$: The variables bacteria presence and active drug treatment are dependent of each other. $p_{active}-p_{placebo} \neq 0$
+:::
+
+## Simulating $H_0$
+
+We are interested in simulating the distribution for $p_{active}-p_{placebo}$. We do this by randomly assigning the observed outcomes to the predictor variable. Then, we compute the difference in proportions using the `props` function. Afterwards, we store the value and repeat the process again.
+
+::: fragment
+Lastly, we compare where the data statistic compared to our simulated distribution.
+:::
+
+
+
+## Shuffling Data
+
+The `shuffle` function will mix up a variable in R:
+
 
 ```{r}
 #| code-fold: show
 #| eval: false
 
-full <- lm(Y  ~  X1 + X2 + X3 + X4)
-red <- lm(Y ~ X1 + X2)
-anova(red, full)
+shuffle(VECTOR)
 ```
 
-## Example
+
+## Shuffle Data
 
 ```{r}
-m1 <- lm(body_mass_g ~ species + island + flipper_length_mm, penguins)
-m2 <- lm(body_mass_g ~ island + flipper_length_mm, penguins)
-anova(m2, m1)
+#| echo: true
+#| code-fold: show
+bacteria$y
 ```
 
-# Model Assumptions
 
-## Model Assumptions
+```{r}
+#| echo: true
+#| code-fold: show
 
-When we are conducting inference linear regression, we will have to check the following conditions:
+shuffle(bacteria$y)
+```
 
--   Linearity
--   Independence
--   Normality
--   Equal Variances
--   Multicollinearity (for MLR)
 
-## Linearity
+## Computing Proportions
 
-Probably considered the most important assumption, but there must be a linear relationship between both the outcome variable (y) and a set of predictors ($x_1$, $x_2$, ...).
+```{r}
+#| code-fold: show
 
-## Independence
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+```
 
-The data points must not influence each other.
 
-## Normality
+## Repeat Process
 
-The model errors (also known as residuals) must follow a normal distribution.
+```{r}
+#| code-fold: show
 
-## Equal Variances
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
+props(bacteria$ap, shuffle(bacteria$y), "y", T)
 
-The variability of the data points must be the same for all predictor values.
+```
 
-## Residuals
+## The `replicate` Function
 
-Residuals are the errors between the observed value and the estimated model. Common residuals include
+The `replicate` function will execute a task multiple times and store the values in a vector.
 
--   Raw Residual
+```{r}
+#| code-fold: show
+#| eval: false
 
--   Standardized Residual
+replicate(N, FUN)
+```
 
--   Jackknife (studentized) Residuals
 
-## Influential Measurements
+- N: number of simulations
+- FUN: the command to be repeated
 
-Influential measures are statistics that determine how much a data point affects the model. Common influential measures are
 
--   Leverages
+## Repeat 1000 times
 
--   Cook's Distance
+```{r}
+#| code-fold: show
 
-## Raw Residuals
+sim_stats <- replicate(1000, props(bacteria$ap, shuffle(bacteria$y), "y", T))
+sim_stats
+```
+
+## Visualize Data
+
+```{r}
+
+ggplot(data.frame(x = sim_stats), aes(x)) + geom_density()
+```
+
+## Compute Data Propoortion
+
+
+```{r}
+#| code-fold: show
+test_stat <- props(bacteria$ap, bacteria$y, "y", T)
+test_stat
+```
+
+
+## Comparison
+
+```{r}
+#| code-fold: show
+
+ggplot(data.frame(x = sim_stats), aes(x)) + 
+  geom_density() +
+  geom_vline(xintercept = test_stat)
+```
+
+# P-Value
+
+## P-Value
+
+The p-value determines the probability of observing our data statistic, given that the null hypothesis is true.
+
+::: fragment
+When the p-value is large, we believe there is a high probability that the null hypothesis is true.
+:::
+
+::: fragment
+When the p-value is small, we believe that it is unlikely the the null hypothesis is true. We believe that the alternative may be a better model.
+:::
+
+## 2-Sided P-Value
+
+Due to randomness, there is a possibility of observing the same magnitude of $p_{active}-p_{placebo}$, but in the opposite direction; therefore, we must look at both sides.
+
+## Visually 2-Sided P-Value
+
+```{r}
+#| echo: true
+ggplot(data.frame(x = sim_stats), aes(x)) + 
+  geom_density() +
+  geom_vline(xintercept = c(-1,1) *test_stat)
+```
+
+## Computing the p-value
+
+We will count how many simulated $p_{active}-p_{placebo}$'s are more extreme than our test statistic and divided by the number of simulations plus one.
+
+## Computing the p-value
 
 $$
-\hat r_i = y_i - \hat y_i
+p = \frac{m +1}{N + 1}
 $$
 
-## Residual Analysis
+-   $m$: number of more extreme values than our test statistic
+-   $N$: number of simulations
 
-A residual analysis is used to test the assumptions of linear regression.
 
-## QQ Plot
-
-A qq (quantile-quantile) plot will plot the estimated quantiles of the residuals against the theoretical quantiles from a normal distribution function. If the points from the qq-plot lie on the $y=x$ line, it is said that the residuals follow a normal distribution.
-
-## Residual vs Fitted Plot
-
-This plot allows you to assess the linearity, constant variance, and identify potential outliers. Create a scatter plot between the fitted values (x-axis) and the raw/standardized residuals (y-axis).
-
-## Variance Inflation Factor
-
-The variance inflation factor is a measurement on how much variables are collinear with each other. A value greater than 10 is a cause for concern and action should be taken.
-
-## Residual Analysis in R
-
-Use the `resid_df` function to obtain the residuals of a model.
+## Computing the P-Value
 
 ```{r}
 #| code-fold: show
 #| eval: false
 
-rdf <- resid_df(LM_OBJECT)
-
+(sum(abs(SIM_VECTOR) > abs(TEST_STAT)) + 1) / (N + 1)
 ```
 
-## Residual vs Fitted Plot
+
+## Computing P-value
 
 ```{r}
-#| code-fold: show
-#| eval: false
-
-
-ggplot(RDF, aes(fitted, resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0, col = "red")
-
+sum(abs(sim_stats) > abs(test_stat)) / 1001
 ```
+# Process
 
-## QQ Plot
+## Identify your Variables
 
-```{r}
-#| code-fold: show
-#| eval: false
-
-ggplot(RDF, aes(sample = resid)) + 
-  stat_qq() +
-  stat_qq_line() 
-
-```
+-   What is your predictor variable?
+-   What is your outcome variable?
 
 
-## Example
+## Create your Hypothesis
 
-```{r}
-#| code-fold: true
-#| eval: false
+Choose a hypothesis that is appropriate for your model.
 
-xlm <- lm(body_mass_g ~   island + species + flipper_length_mm,
-          penguins)
-dfxlm <- resid_df(xlm)
+## Compute a test statistic for the data
 
-ggplot(dfxlm, aes(fitted, resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0, col = "red")
+Identify what is you want to compute and compare.
 
-ggplot(dfxlm, aes(sample = resid)) + 
-  stat_qq() +
-  stat_qq_line() 
+## Generate a null distribution.
 
+Simulate the potential null distribution using the `shuffle` and `replicate` function.
 
-```
+## Compute the p-value
+
+Use the probability formula to determine the likelihood of observing your test statistic given that the null hypothesis is true.

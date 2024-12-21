@@ -1,5 +1,9 @@
 ---
 title: "Numerical Data"
+date: 2/4/25
+description: |
+  Provides an overview descriptive statistics and data visualization techniques for numerical data.
+
 format:
   revealjs:
     scrollable: true

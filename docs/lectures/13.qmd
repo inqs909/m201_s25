@@ -1,5 +1,9 @@
 ---
-title: "Inference with Logistic Regression"
+title: "Inference"
+date: 4/8/25
+description: |
+  Begins the discussion on Inference.
+
 format:
   revealjs:
     width: 1200
@@ -38,7 +42,7 @@ editor: source
 #| include: false
 library(tidyverse)
 library(csucistats)
-library(survival)
+library(openintro)
 library(patchwork)
 theme_set(theme_bw() + 
             theme(
@@ -49,205 +53,226 @@ theme_set(theme_bw() +
               legend.title = element_blank(),
               legend.text = element_text(size = 24)))
 
-bladder1$death <- ifelse(bladder1$status %in% c(0, 1), 0, 1)
-bladder1$death2 <- ifelse(bladder1$death == 0, "Alive", "Dead")
-
-```
-
-# Motivating Example
-
-## Motivating Example
-
-
-```{r}
-bladder1 |> ggplot(aes(number, color = death2)) +
-  geom_boxplot()
 ```
 
 
-# $\beta$ Hypothesis Testing
 
-## Hypothesis
+# Motivation
 
-::: columns
-::: {.column width="50%"}
-$$H_0: \beta = \theta$$
-:::
+## Motivation
 
-::: {.column width="50%"}
-$$H_0: \beta \ne \theta$$
-:::
-:::
+The `ncbirths` data set provides information on whether different predictors. The outcome of interest will be `premie` ("full term" or "premie"). 
 
-## Testing $\beta_j$
+## Motivation 1
+
+Model the relationship between the outcome `premie` and `habit` ("smoker" and  "nonsmoker").
 
 
-$$
-\frac{\hat\beta_j - \theta}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
-$$
+## Motivation 2
 
-## Confidence Intervals
-
-$$
-PE \pm CV \times SE
-$$
-
--   PE: Point Estimate
-
--   CV: Critical Value $P(X<CV) = 1-\alpha/2$
-
--   $\alpha$: significance level
-
--   SE: Standard Error
+Model the relationship between the outcome `premie` and `visits` ("smoker" and  "nonsmoker").
 
 
-## Conducting HT of $\beta_j$
+
+## Logistic Model 1
+
+Use a logistic regression to model the outcome `premie` and `habit`.
 
 ```{r}
+#| code-fold: true
 #| eval: false
 
-xlm <- glm(Y ~ X, data = DATA, family = binomial())
-summary(xlm)
-```
-
-## Example
-
-```{r}
-#| code-fold: show
-#| eval: true
-
-m1 <- glm(death ~ recur + number + size, bladder1, family = binomial())
-summary(m1)
+glm(premie ~ habit, data = ncbirths, family = binomial())
 
 ```
 
-## Confidence Interval
+## Odds Ratio 1
 
 ```{r}
-#| code-fold: show
+#| code-fold: true
+#| eval: false
+b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))
+```
+
+## Odds Ratio 1
+
+```{r}
+#| code-fold: true
+b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))
+```
+The odds of a mother who smokes having a premature infant is 0.98 times lower than the odds of a mother who does not smoke.
+
+
+## Logistic Model 2
+
+Use a logistic regression to model the outcome `premie` and `visits`.
+
+```{r}
+#| code-fold: true
 #| eval: false
 
-confint(xlm, level = LEVEL)
+glm(premie ~ visits, data = ncbirths, family = binomial())
 
 ```
 
-
-## Example 
+## Odds Ratio 2
 
 ```{r}
-#| code-fold: show
-#| eval: true
-
-confint(m1, level = 0.95)
-
+#| code-fold: true
+#| eval: false
+b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))
 ```
-## Confidence Interval for Odds Ratio
+
+## Odds Ratio 2
 
 ```{r}
-#| code-fold: show
-#| eval: true
-
-exp(confint(m1, level = 0.95))
-
+#| code-fold: true
+b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))
 ```
 
+As the number of hospital visits increases by 1, the odds of having a premature infant decreases by a factor 0.89.
 
-# Model Hypothesis Testing
 
-## Model inference
-
-We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model ($g(\hat Y)=\hat\beta_0 + \hat\beta_1 X$) to the mean of Y ($\hat \mu_y$). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.
-
-## Model Inference
-
-Given 2 models:
-
-$$
-g(\hat Y) = \hat\beta_0 + \hat\beta_1 X_1 + \hat\beta_2 X_2 + \cdots + \hat\beta_p X_p
-$$
-
-or
-
-$$
-g(\hat Y) = \bar y
-$$
+## Real or Random
 
 ::: fragment
-Is the model with predictors do a better job than using the average?
+Does smoking have a protective effect on having a premature infant?
 :::
 
-## Likelihood Ratio Test
+::: fragment
+Does the number of hospital visits have a protective effect?
+:::
 
-The Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model. 
+::: fragment
+What is real and what is random?
+:::
 
 
-It conducts a hypothesis tests to see if models are significantly different from each other.
+# Hypothesis Testing
 
-## Conducting an LRT in R
+## Hypothesis Tests
 
-```{r}
-#| code-fold: show
-#| eval: false
+Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the **Null** and **Alternative** Hypothesis.
 
-xlm <- glm(Y ~ X, data = DATA, family = binomial)
-xlm0 <- glm(Y ~ 1, data = DATA, family = binomial)
-anova(xlm0, xlm, test = "LRT")
+## Null Hypothesis $H_0$
 
-```
+The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.
+
+## Alternative Hypothesis $H_a$
+
+The alternative hypothesis contradicts the null hypothesis.
+
+## Example of Null and Alternative Hypothesis
+
+We want to see if $\beta$ is different from $\beta^*$
+
+| Null Hypothesis    | Alternative Hypothesis |
+|--------------------|------------------------|
+| $H_0: \beta=\beta^*$   | $H_a: \beta\ne\beta^*$     |
+| $H_0: \beta\le\beta^*$ | $H_a: \beta>\beta^*$       |
+| $H_0: \beta\ge\beta^*$ | $H_0: \beta<\beta^*$       |
+
+## One-Side vs Two-Side Hypothesis Tests
+
+Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis ($H_a:\beta\ne\beta^*$) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.
+
+| Null Hypothesis    | Alternative Hypothesis | Side |
+|--------------------|------------------------|------------------------|
+| $H_0: \beta=\beta^*$   | $H_a: \beta\ne\beta^*$     | 2-Sided |
+| $H_0: \beta\le\beta^*$ | $H_a: \beta>\beta^*$       | 1-Sided |
+| $H_0: \beta\ge\beta^*$ | $H_0: \beta<\beta^*$       | 1-Sided |
+
+## Decision Making
+
+Hypothesis Testing will force you to make a decision: Reject $H_0$ **OR** Fail to Reject $H_0$
+
+::: fragment
+Reject $H_0$: The effect seen is not due to random chance, there is a process making contributing to the effect. 
+:::
+
+::: fragment
+Fail to Reject $H_0$: The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process.
+:::
+
+
+
+## Decision Making: P-Value
+
+The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true. 
+
+
+::: fragment
+**If $p < \alpha$, then you reject $H_0$; otherwise, you will fail to reject $H_0$.**
+:::
+
+## Decision Making: Confidence Interval Approach
+
+The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is $\beta\ne\beta^*$. The bootstrapping approach will result in a lower and upper bound denoted as: $(LB, UB)$. 
+
+
+::: fragment
+**If $\beta^*$ is in $(LB, UB)$, then you fail to reject $H_0$. If $\beta^*$ is not in $(LB,UB)$, then you reject $H_0$.**
+:::
+
+## Significance Level $\alpha$
+
+The significance level $\alpha$ is the probability you will reject the null hypothesis given that it was true. 
+
+::: fragment
+In other words, $\alpha$ is the error rate that a research controls.
+:::
+
+::: fragment
+Typically, we want this error rate to be small ($\alpha = 0.05$).
+:::
+
+## Hypothesis Test Process
+
+::: incremental
+1.  Set up the Null and Alternative Hypothesis.
+
+    - $H_0: \beta = 0$ and $H_a: \beta \ne 0$
+
+2.  Compute p-value or confidence interval
+
+3.  Make a decision 
+
+4.  Interpret the results
+
+:::
+
+# Example 1
 
 ## Example
 
-```{r}
-m0 <- update(m1, formula. = ~ 1)
-anova(m0, m1, test = "LRT")
-```
-
-## Model Inference
-
-Model inference can be extended to compare models that have different number of predictors.
-
-## Model Inference
-
-Given:
-
-$$
-M1:\ g(\hat y) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 
-$$
-
-$$
-M2:\ g(\hat y) = \beta_0 + \beta_1 X_1  
-$$
-
-Let $M1$ be the FULL (larger) model, and let $M2$ be the RED (Reduced, smaller) model.
-
-## Model Inference
-
-He can test the following Hypothesis:
-
--   $H_0$: The error variations between the FULL and RED model are not different.
--   $H_1$: The error variations between the FULL and RED model are different.
-
-
-## Likelihood Ratio Test in R
+Use a logistic regression to model the outcome `premie` and `habit`.
 
 ```{r}
-#| code-fold: show
+#| code-fold: true
 #| eval: false
 
-full <- glm(Y  ~  X1 + X2 + X3 + X4, DATA, family = binomial())
-red <- glm(Y ~ X1 + X2, DATA, family = binomial())
-anova(red, full, test = "LRT")
+glm(premie ~ habit, data = ncbirths, family = binomial())
+b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))
+
 ```
+
+# Example 2
 
 ## Example
 
+## Logistic Model 2
+
 ```{r}
-m1 <- glm(death ~ number + size + recur, bladder1, family = binomial())
-m2 <- glm(death ~ recur, bladder1, family = binomial())
-anova(m2, m1, test = "LRT")
+#| code-fold: true
+#| eval: false
+
+glm(premie ~ visits, data = ncbirths, family = binomial())
+
+b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)
+exp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))
 ```
-
-
-# Practice
-
-## 

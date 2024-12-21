@@ -1,5 +1,8 @@
 ---
-title: "Research Study"
+title: "Data Generating Process"
+date: 1/21/25
+description: |
+  Provide a Brief Introduction of Data, Study Design, and the Data Generating Process.
 format:
   revealjs:
     scrollable: true
@@ -32,6 +35,62 @@ filters:
 
 editor: source
 ---
+
+# Data
+
+## Observations
+
+An observation is the unit which contains information to be obtained.\
+
+::: fragment
+Also known as experimental unit.
+:::
+
+## Data
+
+Data is information from a particular experimental unit. There can be more that one piece of information per experimental unit.
+
+## Data Structure
+
+The structure of the data can be represented in various forms:
+
+-   A list of long numbers
+
+-   Table
+
+## Tabular Form
+
+```{r}
+#| echo: false
+#| message: false
+palmerpenguins::penguins |> 
+  DT::datatable(options = list(dom = "t",
+                pageLength = 4))
+
+```
+
+# Measurements
+
+## Measurements
+
+Measurements are the processes where we represent an attribute of an experimental unit as either a number or category.
+
+## Quantitative Measurements
+
+Quantitative measurements are data measurements that take a numeric form.
+
+## Qualitative Measurements
+
+Qualitative measurements are data measurements that take a certain category.
+
+## Value
+
+A value is a description (number or category) of a specific attribute of an experimental unit.
+
+## Variable
+
+A variable is the descriptive attribute that we want to obtain from an experimental unit. In terms of a data set, the variable contains all the values of specific attribute in a sample.
+
 
 # Study Design
 
@@ -123,7 +182,7 @@ In addition to random sampling, we strive to make sure each unit is independent 
 
 -   Samples are then considered unbiased as long as experimental units were collected randomly.
 
-# Data Distribution
+# Data Generating Process
 
 ## Data
 

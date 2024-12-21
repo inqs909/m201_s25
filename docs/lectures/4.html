@@ -16,6 +16,7 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.39">
 
+  <meta name="dcterms.date" content="2025-02-04">
   <title>MATH 201 – Numerical Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -208,6 +209,7 @@
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2025-02-04</p>
 </section>
 <section id="r-packages" class="slide level2">
 <h2>R Packages</h2>
@@ -358,7 +360,7 @@ R = \mathrm{max} - \mathrm{min}
 <p>Describe how you will find the mean of these numbers:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 15 16 14 19 14</code></pre>
+<pre><code>#&gt; [1] 12 19 14  7  7</code></pre>
 </div>
 </div>
 </section>
@@ -522,7 +524,7 @@ s=\sqrt{s^2}
 </details>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="histogram-2" class="slide level2">
 <h2>Histogram</h2>
 <div class="cell">
@@ -534,7 +536,7 @@ s=\sqrt{s^2}
 </details>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-14-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="histograms" class="slide level2">
 <h2>Histograms</h2>
 <div class="cell">
@@ -546,7 +548,7 @@ s=\sqrt{s^2}
 </details>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-15-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="histograms-1" class="slide level2">
 <h2>Histograms</h2>
 <div class="cell">
@@ -559,18 +561,15 @@ s=\sqrt{s^2}
 </details>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="mr.-trash-wheel-1" class="slide level2">
 <h2>Mr.&nbsp;Trash Wheel</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 1 row containing non-finite outside the scale range (`stat_bin()`).</code></pre>
-</div>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-17-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
 <section id="box-plot" class="slide level2">
 <h2>Box Plot</h2>
 <p>A box plot, also known as a box-and-whisker plot, is a graphical representation of the distribution and key statistical characteristics of a dataset. It provides a visual summary of the data’s central tendency, spread, and potential outliers.</p>
@@ -582,32 +581,26 @@ s=\sqrt{s^2}
 <section id="box-plot-r-code" class="slide level2">
 <h2>Box Plot R Code</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="box-plot-2" class="slide level2">
 <h2>Box Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
-<span id="cb21-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 1 row containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-19-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
 <section id="box-plot-3" class="slide level2">
 <h2>Box Plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(<span class="at">y =</span> PlasticBottles)) <span class="sc">+</span></span>
-<span id="cb23-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 1 row containing non-finite outside the scale range (`stat_boxplot()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(<span class="at">y =</span> PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-20-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
 <section id="dot-plots" class="slide level2">
 <h2>Dot Plots</h2>
 <p>Dot Plots are similar to histograms, but they incorporate dots to count how many data points fall within bins.</p>
@@ -615,8 +608,8 @@ s=\sqrt{s^2}
 <section id="dot-plots-in-r" class="slide level2">
 <h2>Dot Plots in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">geom_dotplot</span>(<span class="at">binwidth =</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(VARIABLE)) <span class="sc">+</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">geom_dotplot</span>(<span class="at">binwidth =</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dot-plots-1" class="slide level2">
@@ -624,15 +617,12 @@ s=\sqrt{s^2}
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
-<span id="cb26-2"><a></a>  <span class="fu">geom_dotplot</span>(<span class="at">binwidth =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles)) <span class="sc">+</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">geom_dotplot</span>(<span class="at">binwidth =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`stat_bindot()`).</code></pre>
-</div>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-22-1.png" width="672" class="r-stretch"></section></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="transformed-data" class="title-slide slide level1 agenda-slide center">
 <h1>Transformed Data</h1>
@@ -672,22 +662,22 @@ s=\sqrt{s^2}
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb28-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb28-3"><a></a>ly <span class="ot">&lt;-</span> <span class="fu">log</span>(y)</span>
-<span id="cb28-4"><a></a></span>
-<span id="cb28-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(y), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
-<span id="cb28-6"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb28-7"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Skewed Data"</span>)</span>
-<span id="cb28-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">y =</span> ly), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
-<span id="cb28-9"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb28-10"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Log-Transformed Data"</span>)</span>
-<span id="cb28-11"><a></a></span>
-<span id="cb28-12"><a></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb24-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb24-3"><a></a>ly <span class="ot">&lt;-</span> <span class="fu">log</span>(y)</span>
+<span id="cb24-4"><a></a></span>
+<span id="cb24-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(y), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb24-6"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb24-7"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Skewed Data"</span>)</span>
+<span id="cb24-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">y =</span> ly), <span class="fu">aes</span>(y)) <span class="sc">+</span></span>
+<span id="cb24-9"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb24-10"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Log-Transformed Data"</span>)</span>
+<span id="cb24-11"><a></a></span>
+<span id="cb24-12"><a></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-23-1.png" width="672" class="r-stretch"></section></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="scatter-plots" class="title-slide slide level1 agenda-slide center">
 <h1>Scatter Plots</h1>
@@ -718,49 +708,43 @@ s=\sqrt{s^2}
 <section id="positive-relationship" class="slide level2">
 <h2>Positive Relationship</h2>
 
-<img data-src="4_files/figure-html/unnamed-chunk-24-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
 <section id="negative-relationship" class="slide level2">
 <h2>Negative Relationship</h2>
 
-<img data-src="4_files/figure-html/unnamed-chunk-25-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
 <section id="no-relationship" class="slide level2">
 <h2>No Relationship</h2>
 
-<img data-src="4_files/figure-html/unnamed-chunk-26-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
 <section id="weak-positive-or-negative-relationship" class="slide level2">
 <h2>Weak Positive or Negative Relationship</h2>
 
-<img data-src="4_files/figure-html/unnamed-chunk-27-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
 <section id="scatter-plots-in-r" class="slide level2">
 <h2>Scatter Plots in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(<span class="at">x =</span> VAR1, <span class="at">y =</span> VAR2)) <span class="sc">+</span></span>
-<span id="cb29-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">ggplot</span>(DATA, <span class="fu">aes</span>(<span class="at">x =</span> VAR1, <span class="at">y =</span> VAR2)) <span class="sc">+</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="mr.-trash-wheel-2" class="slide level2">
 <h2>Mr.&nbsp;Trash Wheel</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles, PlasticBags)) <span class="sc">+</span></span>
-<span id="cb30-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(PlasticBottles, PlasticBags)) <span class="sc">+</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4_files/figure-html/unnamed-chunk-29-1.png" width="672" class="r-stretch"></section>
+<img data-src="4_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section id="transformed-data-2" class="slide level2">
 <h2>Transformed Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(<span class="fu">log</span>(PlasticBottles), <span class="fu">log</span>(PlasticBags))) <span class="sc">+</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">ggplot</span>(trashwheel, <span class="fu">aes</span>(<span class="fu">log</span>(PlasticBottles), <span class="fu">log</span>(PlasticBags))) <span class="sc">+</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="4_files/figure-html/unnamed-chunk-30-1.png" width="672"></p>
+<p><img data-src="4_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1003,6 +987,44 @@ s=\sqrt{s^2}
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

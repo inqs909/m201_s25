@@ -1,13 +1,19 @@
 {
-  "hash": "adedf6394c8a916291089afb547ea17a",
+  "hash": "fc9445511c9df2e7fdb3617b99a5ed43",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Welcome!\"\nformat:\n  revealjs:\n    scrollable: true\n    theme: [default, styles.scss]\n    navigation-mode: vertical\n    controls-layout: bottom-right\n    controls-tutorial: true\n    incremental: false \n    chalkboard:\n      src: notes/chalkboard_1a.json\n      storage: chalkboard_pres\n      theme: whiteboard\n      chalk-width: 4\nknitr:\n  opts_chunk: \n    echo: true\n    eval: true\n    message: false\n    warnings: false\n    comment: \"#>\" \n    \nrevealjs-plugins:\n  - pointer\n  - verticator\n  \nfilters: \n  - reveal-header\n  - code-fullscreen\n  - reveal-auto-agenda\n  \nauto-agenda:\n  bullets: numbered\n  heading: Learning Outcomes\n  \neditor: visual\n---\n\n\n\n\n\n## Learning Outcomes\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Welcome!\"\ndraft: true\nformat:\n  revealjs:\n    scrollable: true\n    theme: [default, styles.scss]\n    navigation-mode: vertical\n    controls-layout: bottom-right\n    controls-tutorial: true\n    incremental: false \n    chalkboard:\n      src: notes/chalkboard_1a.json\n      storage: chalkboard_pres\n      theme: whiteboard\n      chalk-width: 4\nknitr:\n  opts_chunk: \n    echo: true\n    eval: true\n    message: false\n    warnings: false\n    comment: \"#>\" \n    \nrevealjs-plugins:\n  - pointer\n  - verticator\n  \nfilters: \n  - reveal-header\n  - code-fullscreen\n  - reveal-auto-agenda\n  \nauto-agenda:\n  bullets: numbered\n  heading: Learning Outcomes\n  \neditor: visual\n---\n\n\n\n\n## Learning Outcomes",
+    "supporting": [
+      "template_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
-    "includes": {},
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
     "engineDependencies": {},
     "preserve": {},
     "postProcess": true

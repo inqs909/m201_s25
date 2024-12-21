@@ -1,5 +1,9 @@
 ---
-title: "Mathematical Models"
+title: "Poisson Regression"
+date: 3/25/25
+description: |
+  Begins the discussion for Poisson regression.
+
 format:
   revealjs:
     width: 1200
@@ -36,11 +40,11 @@ editor: source
 
 ```{r}
 #| include: false
-library(MASS)
+
 library(tidyverse)
 library(csucistats)
-library(waffle)
-library(patchwork)
+library(MASS)
+Melanoma$dead <- ifelse(Melanoma$status == 1, 1, 0)
 
 theme_set(theme_bw() + 
             theme(
@@ -53,268 +57,279 @@ theme_set(theme_bw() +
 
 ```
 
-
-
 # Motivation
 
-## Motivation
+## Melanoma
 
-The `bacteria` data set contians information on whether bacteria (`y`: y or n) is present after utilizing treatments (`ap`: **a**ctive or **p**lacebo).
+Melanoma is a type of skin cancer that causes the cells that produce melanin to grow out of control. What makes Melanoma so dangerous is that it can metastasize to other parts of the body.
 
-::: fragment
-We are interesting in determine the proportion of having bacteria present is different for those taking an "active" or "placebo".
-:::
+## Outcome of Interest
 
-## Comparing Proportions
+We are interested in learning how do different factors affect and individual's chances of survival. Therefore, we are measuring patients and if they lived or died during a study period.
 
-We are interesting in determining if different groups see different proportions of a binary outcome.
+## Data 
 
-We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
+We will be using the `Melanoma` data set with the following variables: `dead` (died by Melanoma, 1=yes, 0= no),  `sex` (1 = male, 0 = female), `age` (in years), `thickness` (tumour thickness in mm), ulcer (1 = presence, 0 absent).
 
-## 2 by 2 Cross Tabulations
+## Plot
 
-|         |           |           |
-|---------|-----------|-----------|
-| Groups  | Outcome 1 | Outcome 2 |
-| Group 1 | $p_{11}$  | $p_{21}$  |
-| Group 2 | $p_{12}$  | $p_{22}$  |
+```{r}
+Melanoma |> 
+  ggplot(aes(thickness, dead)) +
+  geom_point()
+```
 
+# Modeling Binary Outcomes
 
-::: fragment
-We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
+## Construct Model
 
-:::
-
-## Test Statistic
-
-We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
-
-::: fragment
-However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
-:::
-
-::: fragment
 $$
-T =  \hat p_{11} - \hat p_{12}
+\left(\begin{array}{c}
+Dead \\
+Alive
+\end{array}\right) = \beta_0 + \beta_1X
 $$
+
+## Let ...
+
+$$
+Y = \left\{\begin{array}{cc}
+1 & Dead \\
+0 & Alive
+\end{array}\right.
+$$
+
+## Construct a Model
+
+$$
+P\left(Y = 1\right) = \beta_0 + \beta_1X
+$$
+
+## Construct a Model
+
+$$
+P\left(Y = 1\right) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}
+$$
+
+## Construct a Model
+
+$$
+\frac{P(Y = 1)}{P(Y = 0)} = e^{\beta_0 + \beta_1X}
+$$
+
+where $\frac{P(Y = 1)}{P(Y = 0)}$ are considered the odds of observing $Y = 1$.
+
+## The Logistic Model
+
+$$
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
+$$
+
+
+# Logistic Regression
+
+## Logistic Regression
+
+Logistic Regression is used to model the association between a set of predictors and a **binary** outcome variable.
+
+::: fragment
+This is similar Linear Regression which models the association between a set of predictors and a **numerical** outcome variable.
 :::
 
-## Obtain Proportions in R
+## Logistic Regression
+
+Logistic Regression uses the logistic model to formulate the relationship between the predictors and the outcome.
+
+::: fragment
+
+More specifically, for an outcome of Y:
+
+$$
+Y = \left\{\begin{array}{cc}
+1 & \text{Category 1} \\
+0 & \text{Category 2}
+\end{array}\right.
+$$
+
+The Predictors variable will model the probability of observing category 1 ($P(Y=1)$)
+
+:::
+
+
+## Logistic Model
+
+$$
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
+$$
+
+## Regression Coefficients $\beta$
+
+The regression coefficients quantify how a specific predictor changes the odds of observing the first category of the outcome ($Y = 1$)
+
+## Estimating $\beta$
+
+To obtain the numerical value for $\beta$, denoted as $\hat \beta$, we will be finding the values of $\hat \beta$ that maximizes the likelihood function:
+
+$$
+L(\boldsymbol \beta) = \prod_{i=1}^n \left(\frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}\right)^{Y_i}\left(\frac{1}{1 + e^{\beta_0 + \beta_1X}}\right)^{1-Y_i}
+$$
+
+The likelihood function can be thought as the probability of observing the entire data set. Therefore, we want to choose the values the $\beta_0$ and $\beta_1$ that will result in the highest probability of observing the data.
+
+
+## Estimated Parameters
+
+The values you obtain ($\hat \beta$) tell you the relationship between the a predictor variable and the log odds of observing the first category of the outcome $Y=1$.
+
+::: fragment
+Exponentiating the estimate ($e^{\hat \beta}$) will give you the relationship between a predictor variable and the odds of observing the first category of the outcome $Y=1$.
+:::
+
+## Interpreting $\hat \beta$
+
+For a continuous predictor variable:
+
+As X increases by 1 unit, the odds of observing the first category ($Y = 1$) increases by a factor of $e^{\hat\beta}$.
+
+For a categorical predictor variable (first dummy variable):
+
+The odds of observing the first category ($Y = 1$) in the indicated category ($D=1$) is $e^{\hat\beta}$ times higher/lower compared to the reference category ($D=0$).
+
+
+## Logistic Regression in R
 
 ```{r}
 #| echo: true
 #| eval: false
-#| code-fold: show
 
-props_df(DATA, GROUP, OUTCOME, VAL)
+glm(Y ~ X1 + X2 + ... + Xp,
+    data = DATA,
+    family = binomial())
 ```
 
-## Obtain Difference in R
+
+## Example
+
+Modelling `dead` by `sex`, `age`, `thickness`, and `ulcer`: 
+
+```{r}
+glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+```
+
+$$
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+$$
+
+
+## Interpretation
+
+$$
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+$$
+
+::: fragment
+The odds of experiencing death in males is 1.5 times larger than the odds for females, adjusting for age, tumor thickness and the presence of an ulcer.
+:::
+
+::: fragment
+As age increases by 1 year, the odds of experiencing death increases by a factor of 1.004, adjusting for sex, tumor thickness and presence of an ulcer.
+:::
+
+# Prediction with Models
+
+## Working with probabilities
+
+As you can see, working with odds may be unintuitive for the average person. It will be better to predict the probability and display those results to individuals.
+
+## Predicting Probability
+
+
+$$
+\hat P\left(Y = 1\right) = \frac{e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}{1 + e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}
+$$
+
+## Prediction in R
 
 ```{r}
 #| echo: true
 #| eval: false
-#| code-fold: show
-
-
-props_df(DATA, GROUP, OUTCOME, VAL, diff = TRUE)
+xglm <- glm(Y ~ X1 + X2 + ... + Xp,
+            data = DATA,
+            family = binomial())
+predict_df <- data.frame(X1 = VAL,  X2 = VAL, ..., Xp = VAL)
+predict(xglm,
+        predict_df,
+        type = "response")
 ```
 
-## Bacteria Example
+
+## Example 1
+
+Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **with** ulcer presence. 
 
 ```{r}
-#| code-fold: show
-
-
-props_df(bacteria, ap, y, "y")
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
 ```
 
-## Bacteria Example
+
+## Example 1
+
+Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **without** ulcer presence. 
 
 ```{r}
-#| code-fold: show
-
-
-props_df(bacteria, ap, y, "y", TRUE)
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 0)
+predict(xglm, predict_df, type = "response")
 ```
 
-## Hypotheis Test
 
-We will test the following hypothesis:
+## Example 1
 
-$$
-H_0:\ \Delta =  p_1-p_2 = 0
-$$
+| | Ulcer Present | Ulcer not Present |
+|:-|:-|:-|
+| Probabiltiy | 48.7% | 20.3% |
 
-$$
-H_a:\ \Delta = p_1 - p_2 \neq 0
-$$
-
-# Normal Distribution
-
-## Normal Distribution
-
-The **Normal Distribution** is a probability distribution that is symmetric, with most of the data points clustering around the mean. 
-
-- It’s **bell-shaped** and is defined mathematically by two parameters:
-  - **Mean ($\mu$)**: The center or peak of the distribution.
-  - **Standard Deviation ($\sigma$)**: Controls the spread of the distribution.
+For a patient who is 75 years old, male, and a tumor thickness of 2.9, when an ulcer is present, the probability a patient dies increases to 48% compared to a patient who does not have an ulcer with a probability of 20%.
 
 
-## Normal Distribution
+## Example 2
+
+Predict the probability of observing death for a patient who is female, **75** years old, an tumor thickness of 2.9, and with ulcer presence. 
 
 ```{r}
-x <- seq(-4, 4, length.out = 1000)
-data.frame(x = x, y = dnorm(x)) |> 
-  ggplot(aes(x, y)) +
-  geom_line()
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 0, age = 75, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
 ```
 
 
+## Example 2
 
-## Properties of the Normal Distribution
-
-::: incremental
-
-1. **Symmetry**: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.
-2. **Unimodal**: There is a single peak at the mean.
-3. **Mean, Median, and Mode are Equal**: In a normal distribution, these three measures of central tendency are located at the same point.
-4. **68-95-99.7 Rule** (Empirical Rule)
- 
-:::
-
-## Standard Normal Distribution
-The **Standard Normal Distribution** is a special type of normal distribution with a mean of 0 and a standard deviation of 1. It's often used as a reference to convert any normal distribution to a standard form.
-
-## Z-Scores
-A **Z-score** (or standard score) tells us how many standard deviations an individual data point is from the mean. It’s calculated as: $Z = \frac{X - \mu}{\sigma}$
-
-- If $Z$ is positive, the data point is above the mean.
-- If $Z$ is negative, the data point is below the mean.
-- Using Z-scores, we can compare values across different normal distributions or find the probability associated with a particular score.
-
-
-
-## Empirical Rule
-
-The **Empirical Rule** provides a way to understand the spread of data in a normal distribution by describing how data points cluster around the mean. According to this rule:
-
-1. Approximately **68%** of data points fall within **one standard deviation** of the mean.
-2. Approximately **95%** of data points fall within **two standard deviations** of the mean.
-3. Approximately **99.7%** of data points fall within **three standard deviations** of the mean.
-
-
-
-## Empirical Rule and Normal Distribution
-
-In a normal distribution:
-
-- **68% of data** lies between $(\mu - \sigma)\) and \((\mu + \sigma)$.
-
-- **95% of data** lies between $(\mu - 2\sigma)\) and \((\mu + 2\sigma)$.
-
-- **99.7% of data** lies between $(\mu - 3\sigma)\) and \((\mu + 3\sigma)$.
-
-These intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities.
-
-
-## Visualizing the Empirical Rule
-
-1. The **68% region** represents the middle of the curve, starting one standard deviation left of the mean and ending one standard deviation right.
-2. The **95% region** stretches further out, covering almost the entire curve except for the outer tails.
-3. The **99.7% region** includes nearly all data points, covering the entire curve except for a tiny fraction at each extreme.
-
-## Empirical Rule
-
-![](img/fig-er6895997-1.png)
-
-# Central Limit Theorem
-
-## Central Limit Theorem
-What does the Central Limit Theorem (CLT) actually tell us?
-
-::: fragment
-
-The CLT states that:
-
-::: incremental
-
-1. **If you take a sufficiently large number of samples from any population, the distribution of the sample means will be approximately normal.**
-2. This approximation holds **no matter the shape of the original population distribution** (it could be normal, skewed, bimodal, etc.).
-3. The mean of this sampling distribution will be equal to the **population mean**.
-4. The standard deviation of this sampling distribution (often called the **standard error**) will be the population standard deviation divided by the square root of the sample size, \( \sigma_{\text{sample mean}} = \frac{\sigma}{\sqrt{n}} \).
-
-:::
-
-:::
-
-
-## Why the Central Limit Theorem is Important
-
-
-The CLT is powerful for several reasons:
-
-::: incremental
-
-1. **Predicting Sample Outcomes:** Since we know the distribution of sample means will be approximately normal, we can make predictions about future samples.
-2. **Confidence Intervals and Hypothesis Testing:** The normal distribution of sample means allows us to estimate population parameters (like the mean) with confidence and test hypotheses even if the population itself isn’t normally distributed.
-3. **Practical Applications in Various Fields:** From quality control in manufacturing to political polling and medicine, the CLT lets us make inferences about population characteristics based on sample data.
-
-:::
-
-# Inference
-
-## Using Mathematical Models
-
-The inferential procedures, such as computing the p-value or confidence interval, can be constructed with mathematical models.
-
-## Advantages
-
-::: incremental
-
--   Mathematical Models have been widely studied and implemented in several software packages.
--   These are not computationally intensive
--   Can work with smaller data set and provide more reliable results
-
-:::
-
-## Disadvantages
-
-::: incremental
--   If the mathematical model is wrong, results may be invalid.
--   Difficult to know what are the true mathematical models.
-:::
-
-# Inference in R
-
-## Inference in R
-
-$$
-H_0:\ \Delta =  p_1-p_2 = 0
-$$
-
-$$
-H_a:\ \Delta = p_1 - p_2 \neq 0
-$$
-
-## Proportions Test
+Predict the probability of observing death for a patient who is female, **55** years old, an tumor thickness of 2.9, and with ulcer presence. 
 
 ```{r}
-#| eval: false
-#| code-fold: show
-prop.test(x = c(CAT_1, CAT_2), n = c(N_1, N_2))
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 0, age = 55, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
 ```
 
+## Example 2
 
-## Descriptives
+| | 55 | 75 |
+|:-|:-|:-|
+| Probabiltiy | 36.8% | 38.7% |
 
-```{r}
-cat_stats(bacteria$ap, bacteria$y)
-```
-
-## Proportions Test in R
-
-```{r}
-prop.test(x = c(93, 84), n = c(124, 96))
-```
+For a patient who is female, a tumor thickness of 2.9, and has an ulcer, the probability a 75 year old patient dies increases to 38.7% compared to a 55 year old patient with a probability of 36.8%.
 

@@ -1,9 +1,9 @@
 ---
-title: "The Bootstrap Method"
+title: "Logistic Regression"
+date: 3/11/25
 format:
   revealjs:
     width: 1200
-    df-print: paged
     scrollable: true
     theme: [default, styles.scss]
     navigation-mode: vertical
@@ -37,11 +37,11 @@ editor: source
 
 ```{r}
 #| include: false
-library(MASS)
+
 library(tidyverse)
 library(csucistats)
-library(waffle)
-library(patchwork)
+library(MASS)
+Melanoma$dead <- ifelse(Melanoma$status == 1, 1, 0)
 
 theme_set(theme_bw() + 
             theme(
@@ -54,292 +54,279 @@ theme_set(theme_bw() +
 
 ```
 
-
-
 # Motivation
 
-## Motivation
+## Melanoma
 
-The `bacteria` data set contians information on whether bacteria (`y`: y or n) is present after utilizing treatments (`ap`: **a**ctive or **p**lacebo).
+Melanoma is a type of skin cancer that causes the cells that produce melanin to grow out of control. What makes Melanoma so dangerous is that it can metastasize to other parts of the body.
 
-::: fragment
-We are interesting in determine the proportion of having bacteria present is different for those taking an "active" or "placebo".
-:::
+## Outcome of Interest
 
-## Comparing Proportions
+We are interested in learning how do different factors affect and individual's chances of survival. Therefore, we are measuring patients and if they lived or died during a study period.
 
-We are interesting in determining if different groups see different proportions of a binary outcome.
+## Data 
 
-We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
+We will be using the `Melanoma` data set with the following variables: `dead` (died by Melanoma, 1=yes, 0= no),  `sex` (1 = male, 0 = female), `age` (in years), `thickness` (tumour thickness in mm), ulcer (1 = presence, 0 absent).
 
-## 2 by 2 Cross Tabulations
+## Plot
 
-|         |           |           |
-|---------|-----------|-----------|
-| Groups  | Outcome 1 | Outcome 2 |
-| Group 1 | $p_{11}$  | $p_{21}$  |
-| Group 2 | $p_{12}$  | $p_{22}$  |
+```{r}
+Melanoma |> 
+  ggplot(aes(thickness, dead)) +
+  geom_point()
+```
 
+# Modeling Binary Outcomes
 
-::: fragment
-We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
+## Construct Model
 
-:::
-
-## Test Statistic
-
-We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
-
-::: fragment
-However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
-:::
-
-::: fragment
 $$
-T =  \hat p_{11} - \hat p_{12}
+\left(\begin{array}{c}
+Dead \\
+Alive
+\end{array}\right) = \beta_0 + \beta_1X
 $$
+
+## Let ...
+
+$$
+Y = \left\{\begin{array}{cc}
+1 & Dead \\
+0 & Alive
+\end{array}\right.
+$$
+
+## Construct a Model
+
+$$
+P\left(Y = 1\right) = \beta_0 + \beta_1X
+$$
+
+## Construct a Model
+
+$$
+P\left(Y = 1\right) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}
+$$
+
+## Construct a Model
+
+$$
+\frac{P(Y = 1)}{P(Y = 0)} = e^{\beta_0 + \beta_1X}
+$$
+
+where $\frac{P(Y = 1)}{P(Y = 0)}$ are considered the odds of observing $Y = 1$.
+
+## The Logistic Model
+
+$$
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
+$$
+
+
+# Logistic Regression
+
+## Logistic Regression
+
+Logistic Regression is used to model the association between a set of predictors and a **binary** outcome variable.
+
+::: fragment
+This is similar Linear Regression which models the association between a set of predictors and a **numerical** outcome variable.
+:::
+
+## Logistic Regression
+
+Logistic Regression uses the logistic model to formulate the relationship between the predictors and the outcome.
+
+::: fragment
+
+More specifically, for an outcome of Y:
+
+$$
+Y = \left\{\begin{array}{cc}
+1 & \text{Category 1} \\
+0 & \text{Category 2}
+\end{array}\right.
+$$
+
+The Predictors variable will model the probability of observing category 1 ($P(Y=1)$)
+
 :::
 
 
-## Obtain Difference in R
+## Logistic Model
+
+$$
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
+$$
+
+## Regression Coefficients $\beta$
+
+The regression coefficients quantify how a specific predictor changes the odds of observing the first category of the outcome ($Y = 1$)
+
+## Estimating $\beta$
+
+To obtain the numerical value for $\beta$, denoted as $\hat \beta$, we will be finding the values of $\hat \beta$ that maximizes the likelihood function:
+
+$$
+L(\boldsymbol \beta) = \prod_{i=1}^n \left(\frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}\right)^{Y_i}\left(\frac{1}{1 + e^{\beta_0 + \beta_1X}}\right)^{1-Y_i}
+$$
+
+The likelihood function can be thought as the probability of observing the entire data set. Therefore, we want to choose the values the $\beta_0$ and $\beta_1$ that will result in the highest probability of observing the data.
+
+
+## Estimated Parameters
+
+The values you obtain ($\hat \beta$) tell you the relationship between the a predictor variable and the log odds of observing the first category of the outcome $Y=1$.
+
+::: fragment
+Exponentiating the estimate ($e^{\hat \beta}$) will give you the relationship between a predictor variable and the odds of observing the first category of the outcome $Y=1$.
+:::
+
+## Interpreting $\hat \beta$
+
+For a continuous predictor variable:
+
+As X increases by 1 unit, the odds of observing the first category ($Y = 1$) increases by a factor of $e^{\hat\beta}$.
+
+For a categorical predictor variable (first dummy variable):
+
+The odds of observing the first category ($Y = 1$) in the indicated category ($D=1$) is $e^{\hat\beta}$ times higher/lower compared to the reference category ($D=0$).
+
+
+## Logistic Regression in R
 
 ```{r}
 #| echo: true
 #| eval: false
-#| code-fold: show
 
-
-props_df(DATA, GROUP, OUTCOME, VAL, diff = TRUE)
+glm(Y ~ X1 + X2 + ... + Xp,
+    data = DATA,
+    family = binomial())
 ```
 
-## Bacteria Example
+
+## Example
+
+Modelling `dead` by `sex`, `age`, `thickness`, and `ulcer`: 
 
 ```{r}
-#| code-fold: show
-
-
-props_df(bacteria, ap, y, "y")
+glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
 ```
-
-## Bacteria Example
-
-```{r}
-#| code-fold: show
-
-
-props_df(bacteria, ap, y, "y", TRUE)
-```
-
-
-# Hypothesis Test
-
-## Hypothesis Test
-
-Is $T = .125$ of a difference large enough to indicate that an active drug is effective against the bacteria, or seeing this can be due to random chance.
-
-
-## Hypotheis Test
-
-We will test the following hypothesis:
 
 $$
-H_0:\ \Delta =  p_1-p_2 = 0
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
 $$
-
-$$
-H_a:\ \Delta = p_1 - p_2 \neq 0
-$$
-
-
-## Hypothesis Test
-
-
-```{r}
-sim_stats <- replicate(1000, props(bacteria$ap, shuffle(bacteria$y), "y", T))
-test_stat <- props(bacteria$ap, bacteria$y, "y", T)
-sum(abs(sim_stats) > abs(test_stat)) / 1001
-ggplot(data.frame(x = sim_stats), aes(x)) + 
-  geom_density() +
-  geom_vline(xintercept = test_stat)
-```
-
-
-## Hypothesis test 
-
-
-::: incremental
--  What if $\Delta = - 0.5$?
--  What if $\Delta = 0.5$?
--  What if $\Delta = - 0.25$?
--  What if $\Delta = 0.25$?
-:::
-
-
-::: fragment
-Can we determine the plausible values of $\Delta$ that may have produced our data set?
-:::
-
-
-# Confidence Intervals and Standard Error
-
-## Standard Error
-
-The standard error is the standard deviation of a statistic.
-
-::: fragment
-It can give us a margin of error for the statistic that we compute from the data.
-:::
-
-
-## Confidence Intervals
-
-Confidence Intervals give you a collection of values that may contain the true parameter of interest. 
-
-::: fragment
-The probability of capturing the true parameter is known as the confidence. This value can take any number between 0% to 100%
-:::
-
-## Confidence Interval
-
-The confidence interval were displayed as: X%: (L, U)
-
-## Confidence Interval Intepretation
-
-
-
-## Confidence Intervals
-
-These are a collection of $\Delta$ values that will fail to reject the Null Hypothesis.
-
-::: fragment
-The $\Delta$ values that are not different from our current estimate $T$
-:::
-
-## Confidence Intervals
-
-```{r}
-data.frame(x = rnorm(1000, 0.15, 0.05)) |> 
-  ggplot(aes(x)) + 
-  geom_density() +
-  geom_vline(xintercept = test_stat)
-```
-
-## Confidence Intervals
-
-```{r}
-data.frame(x = rnorm(1000, 0.075, 0.05)) |> 
-  ggplot(aes(x)) + 
-  geom_density() +
-  geom_vline(xintercept = test_stat)
-```
-
-## How to construct the DGP centered around $\Delta$?
-
-::: fragment
-Bootstrapping Techniques
-:::
-
-::: fragment
-Mathematical Models
-:::
-
-
-# Bootstrapping Techniques
-
-## Bootstrapping Techniques
-
-Bootstrapping is a technique to determine which $\Delta = p_1-p_2$ values, or any other statistic, will **not** be significantly different than $T$.
-
-::: fragment
-Bootstrapping will simulate several fake data sets from the DGP of the data. Afterwards, each data set will produce a statistic to construct the sampling distribution.
-:::
-
-## Bootstrap Theory
-
-::: fragment
-The data set was generated from a distribution called $f$.
-:::
-
-::: fragment
-$f$ is unknown, we will sample from $\hat f$ generated from the data.
-:::
-
-::: fragment
-When $n \rightarrow \infty$, then $\hat f\rightarrow f$
-:::
-
-::: fragment
-So long as $n$ is sufficiently large, the DGP of a statistic will be generated.
-:::
-
-## Bootstrapping Algorithm
-
-1.  Resample the data set using the `resample()` function
-2.  Compute the statistic of interest
-3.  Store the statistic
-4.  Repeat steps 1-3, until you a high number of simulations
-5.  Compute the confidence interval or standard errors from the bootstrap estimates
-
-## Bootstrapping in R
-
-The `resample()` will create a new data set by sampling the old data set with replacement.
-
-```{r}
-#| echo: true
-boot1 <- resample(bacteria)
-props_df(boot1, ap, y, yval = "y", TRUE)
-```
-
-## Repeat Process
-
-Use the `replicate()` function to repeat this process a high number of times.
-
-```{r}
-#| echo: true
-boot_samples <-replicate(1000, 
-                         props_df(resample(bacteria), ap, y, yval = "y", TRUE))
-
-```
-
-## Bootstrap Distribution
-
-```{r}
-ggplot(data.frame(x = boot_samples), aes(x)) +
-  geom_histogram() + 
-  geom_vline(xintercept = test_stat) 
-```
-
-## Bootstrap-Based Standard Error
-
-
-```{r}
-sd(boot_samples)
-```
-## Interpreting the SE
-
-$$
-0.125 \pm 0.05
-$$
-
-## 95% Confidence Interval
-
-```{r}
-ggplot(data.frame(x = boot_samples), aes(x)) +
-  geom_histogram(aes(fill = middle(x, .95))) + 
-  geom_vline(xintercept = test_stat) 
-```
-
-## 95% Confidence Interval
-
-```{r}
-#| echo: true
-
-quantile(boot_samples, probs = c(0.025, 0.975))
-
-```
 
 
 ## Interpretation
 
-We are 95% confident that the true difference in proportion ($\Delta$) is captured between the ranges (0.025, 0.224).
+$$
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+$$
+
+::: fragment
+The odds of experiencing death in males is 1.5 times larger than the odds for females, adjusting for age, tumor thickness and the presence of an ulcer.
+:::
+
+::: fragment
+As age increases by 1 year, the odds of experiencing death increases by a factor of 1.004, adjusting for sex, tumor thickness and presence of an ulcer.
+:::
+
+# Prediction with Models
+
+## Working with probabilities
+
+As you can see, working with odds may be unintuitive for the average person. It will be better to predict the probability and display those results to individuals.
+
+## Predicting Probability
+
+
+$$
+\hat P\left(Y = 1\right) = \frac{e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}{1 + e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}
+$$
+
+## Prediction in R
+
+```{r}
+#| echo: true
+#| eval: false
+xglm <- glm(Y ~ X1 + X2 + ... + Xp,
+            data = DATA,
+            family = binomial())
+predict_df <- data.frame(X1 = VAL,  X2 = VAL, ..., Xp = VAL)
+predict(xglm,
+        predict_df,
+        type = "response")
+```
+
+
+## Example 1
+
+Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **with** ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
+```
+
+
+## Example 1
+
+Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **without** ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 0)
+predict(xglm, predict_df, type = "response")
+```
+
+
+## Example 1
+
+| | Ulcer Present | Ulcer not Present |
+|:-|:-|:-|
+| Probabiltiy | 48.7% | 20.3% |
+
+For a patient who is 75 years old, male, and a tumor thickness of 2.9, when an ulcer is present, the probability a patient dies increases to 48% compared to a patient who does not have an ulcer with a probability of 20%.
+
+
+## Example 2
+
+Predict the probability of observing death for a patient who is female, **75** years old, an tumor thickness of 2.9, and with ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 0, age = 75, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
+```
+
+
+## Example 2
+
+Predict the probability of observing death for a patient who is female, **55** years old, an tumor thickness of 2.9, and with ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 0, age = 55, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
+```
+
+## Example 2
+
+| | 55 | 75 |
+|:-|:-|:-|
+| Probabiltiy | 36.8% | 38.7% |
+
+For a patient who is female, a tumor thickness of 2.9, and has an ulcer, the probability a 75 year old patient dies increases to 38.7% compared to a 55 year old patient with a probability of 36.8%.
 

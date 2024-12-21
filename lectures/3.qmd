@@ -1,5 +1,9 @@
 ---
 title: "Categorical Data"
+date: 1/27/25
+description: |
+  Provides an overview descriptive statistics and data visualization techniques for categorical data.
+
 format:
   revealjs:
     scrollable: true

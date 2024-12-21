@@ -16,7 +16,8 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.39">
 
-  <title>MATH 201 – Inference with Logistic Regression</title>
+  <meta name="dcterms.date" content="2025-04-08">
+  <title>MATH 201 – Inference</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -203,325 +204,339 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Inference with Logistic Regression</h1>
+  <h1 class="title">Inference</h1>
 
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2025-04-08</p>
 </section>
 <section>
-<section id="motivating-example" class="title-slide slide level1 agenda-slide center">
-<h1>Motivating Example</h1>
+<section id="motivation" class="title-slide slide level1 agenda-slide center">
+<h1>Motivation</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-active">
-<p>Motivating Example</p>
+<p>Motivation</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
+<p>Hypothesis Testing</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
+<p>Example 1</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Practice</p>
+<p>Example 2</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="motivating-example-1" class="slide level2">
-<h2>Motivating Example</h2>
+<section id="motivation-1" class="slide level2">
+<h2>Motivation</h2>
+<p>The <code>ncbirths</code> data set provides information on whether different predictors. The outcome of interest will be <code>premie</code> (“full term” or “premie”).</p>
+</section>
+<section id="motivation-1-1" class="slide level2">
+<h2>Motivation 1</h2>
+<p>Model the relationship between the outcome <code>premie</code> and <code>habit</code> (“smoker” and “nonsmoker”).</p>
+</section>
+<section id="motivation-2" class="slide level2">
+<h2>Motivation 2</h2>
+<p>Model the relationship between the outcome <code>premie</code> and <code>visits</code> (“smoker” and “nonsmoker”).</p>
+</section>
+<section id="logistic-model-1" class="slide level2">
+<h2>Logistic Model 1</h2>
+<p>Use a logistic regression to model the outcome <code>premie</code> and <code>habit</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>bladder1 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(number, <span class="at">color =</span> death2)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
 </div>
-<img data-src="13_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"></section></section>
+</section>
+<section id="odds-ratio-1" class="slide level2">
+<h2>Odds Ratio 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>)</span>
+<span id="cb2-2"><a></a><span class="fu">exp</span>(<span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="odds-ratio-1-1" class="slide level2">
+<h2>Odds Ratio 1</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.01344105</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">exp</span>(<span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.9866489</code></pre>
+</div>
+</div>
+<p>The odds of a mother who smokes having a premature infant is 0.98 times lower than the odds of a mother who does not smoke.</p>
+</section>
+<section id="logistic-model-2" class="slide level2">
+<h2>Logistic Model 2</h2>
+<p>Use a logistic regression to model the outcome <code>premie</code> and <code>visits</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="odds-ratio-2" class="slide level2">
+<h2>Odds Ratio 2</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>)</span>
+<span id="cb8-2"><a></a><span class="fu">exp</span>(<span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="odds-ratio-2-1" class="slide level2">
+<h2>Odds Ratio 2</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] -0.1063097</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">exp</span>(<span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.8991461</code></pre>
+</div>
+</div>
+<p>As the number of hospital visits increases by 1, the odds of having a premature infant decreases by a factor 0.89.</p>
+</section>
+<section id="real-or-random" class="slide level2">
+<h2>Real or Random</h2>
+<div class="fragment">
+<p>Does smoking have a protective effect on having a premature infant?</p>
+</div>
+<div class="fragment">
+<p>Does the number of hospital visits have a protective effect?</p>
+</div>
+<div class="fragment">
+<p>What is real and what is random?</p>
+</div>
+</section></section>
 <section>
-<section id="beta-hypothesis-testing" class="title-slide slide level1 agenda-slide center">
-<h1><span class="math inline">\(\beta\)</span> Hypothesis Testing</h1>
+<section id="hypothesis-testing" class="title-slide slide level1 agenda-slide center">
+<h1>Hypothesis Testing</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
+<p>Motivation</p>
 </div></li>
 <li><div class="agenda-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
+<p>Hypothesis Testing</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
+<p>Example 1</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Practice</p>
+<p>Example 2</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="hypothesis" class="slide level2">
-<h2>Hypothesis</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><span class="math display">\[H_0: \beta = \theta\]</span></p>
-</div><div class="column" style="width:50%;">
-<p><span class="math display">\[H_0: \beta \ne \theta\]</span></p>
-</div></div>
+<section id="hypothesis-tests" class="slide level2">
+<h2>Hypothesis Tests</h2>
+<p>Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the <strong>Null</strong> and <strong>Alternative</strong> Hypothesis.</p>
 </section>
-<section id="testing-beta_j" class="slide level2">
-<h2>Testing <span class="math inline">\(\beta_j\)</span></h2>
-<p><span class="math display">\[
-\frac{\hat\beta_j - \theta}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
-\]</span></p>
+<section id="null-hypothesis-h_0" class="slide level2">
+<h2>Null Hypothesis <span class="math inline">\(H_0\)</span></h2>
+<p>The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.</p>
 </section>
-<section id="confidence-intervals" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p><span class="math display">\[
-PE \pm CV \times SE
-\]</span></p>
+<section id="alternative-hypothesis-h_a" class="slide level2">
+<h2>Alternative Hypothesis <span class="math inline">\(H_a\)</span></h2>
+<p>The alternative hypothesis contradicts the null hypothesis.</p>
+</section>
+<section id="example-of-null-and-alternative-hypothesis" class="slide level2">
+<h2>Example of Null and Alternative Hypothesis</h2>
+<p>We want to see if <span class="math inline">\(\beta\)</span> is different from <span class="math inline">\(\beta^*\)</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta=\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta\ne\beta^*\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \beta\le\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta&gt;\beta^*\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta\ge\beta^*\)</span></td>
+<td><span class="math inline">\(H_0: \beta&lt;\beta^*\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-side-vs-two-side-hypothesis-tests" class="slide level2">
+<h2>One-Side vs Two-Side Hypothesis Tests</h2>
+<p>Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (<span class="math inline">\(H_a:\beta\ne\beta^*\)</span>) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta=\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta\ne\beta^*\)</span></td>
+<td>2-Sided</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \beta\le\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta&gt;\beta^*\)</span></td>
+<td>1-Sided</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta\ge\beta^*\)</span></td>
+<td><span class="math inline">\(H_0: \beta&lt;\beta^*\)</span></td>
+<td>1-Sided</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="decision-making" class="slide level2">
+<h2>Decision Making</h2>
+<p>Hypothesis Testing will force you to make a decision: Reject <span class="math inline">\(H_0\)</span> <strong>OR</strong> Fail to Reject <span class="math inline">\(H_0\)</span></p>
+<div class="fragment">
+<p>Reject <span class="math inline">\(H_0\)</span>: The effect seen is not due to random chance, there is a process making contributing to the effect.</p>
+</div>
+<div class="fragment">
+<p>Fail to Reject <span class="math inline">\(H_0\)</span>: The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process.</p>
+</div>
+</section>
+<section id="decision-making-p-value" class="slide level2">
+<h2>Decision Making: P-Value</h2>
+<p>The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true.</p>
+<div class="fragment">
+<p><strong>If <span class="math inline">\(p &lt; \alpha\)</span>, then you reject <span class="math inline">\(H_0\)</span>; otherwise, you will fail to reject <span class="math inline">\(H_0\)</span>.</strong></p>
+</div>
+</section>
+<section id="decision-making-confidence-interval-approach" class="slide level2">
+<h2>Decision Making: Confidence Interval Approach</h2>
+<p>The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is <span class="math inline">\(\beta\ne\beta^*\)</span>. The bootstrapping approach will result in a lower and upper bound denoted as: <span class="math inline">\((LB, UB)\)</span>.</p>
+<div class="fragment">
+<p><strong>If <span class="math inline">\(\beta^*\)</span> is in <span class="math inline">\((LB, UB)\)</span>, then you fail to reject <span class="math inline">\(H_0\)</span>. If <span class="math inline">\(\beta^*\)</span> is not in <span class="math inline">\((LB,UB)\)</span>, then you reject <span class="math inline">\(H_0\)</span>.</strong></p>
+</div>
+</section>
+<section id="significance-level-alpha" class="slide level2">
+<h2>Significance Level <span class="math inline">\(\alpha\)</span></h2>
+<p>The significance level <span class="math inline">\(\alpha\)</span> is the probability you will reject the null hypothesis given that it was true.</p>
+<div class="fragment">
+<p>In other words, <span class="math inline">\(\alpha\)</span> is the error rate that a research controls.</p>
+</div>
+<div class="fragment">
+<p>Typically, we want this error rate to be small (<span class="math inline">\(\alpha = 0.05\)</span>).</p>
+</div>
+</section>
+<section id="hypothesis-test-process" class="slide level2 scrollable">
+<h2>Hypothesis Test Process</h2>
+<div>
+<ol type="1">
+<li class="fragment"><p>Set up the Null and Alternative Hypothesis.</p>
 <ul>
-<li><p>PE: Point Estimate</p></li>
-<li><p>CV: Critical Value <span class="math inline">\(P(X&lt;CV) = 1-\alpha/2\)</span></p></li>
-<li><p><span class="math inline">\(\alpha\)</span>: significance level</p></li>
-<li><p>SE: Standard Error</p></li>
+<li class="fragment"><span class="math inline">\(H_0: \beta = 0\)</span> and <span class="math inline">\(H_a: \beta \ne 0\)</span></li>
+</ul></li>
+<li class="fragment"><p>Compute p-value or confidence interval</p></li>
+<li class="fragment"><p>Make a decision</p></li>
+<li class="fragment"><p>Interpret the results</p></li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="example-1" class="title-slide slide level1 agenda-slide center">
+<h1>Example 1</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Motivation</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Example 1</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Example 2</p>
+</div></li>
 </ul>
-</section>
-<section id="conducting-ht-of-beta_j" class="slide level2">
-<h2>Conducting HT of <span class="math inline">\(\beta_j\)</span></h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb2-2"><a></a><span class="fu">summary</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> recur <span class="sc">+</span> number <span class="sc">+</span> size, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb3-2"><a></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; glm(formula = death ~ recur + number + size, family = binomial(), 
-#&gt;     data = bladder1)
-#&gt; 
-#&gt; Coefficients:
-#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    
-#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  
-#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***
-#&gt; number       0.0008451  0.1124503   0.008 0.994004    
-#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; 
-#&gt; (Dispersion parameter for binomial family taken to be 1)
-#&gt; 
-#&gt;     Null deviance: 189.38  on 293  degrees of freedom
-#&gt; Residual deviance: 166.43  on 290  degrees of freedom
-#&gt; AIC: 174.43
-#&gt; 
-#&gt; Number of Fisher Scoring iterations: 6</code></pre>
-</div>
-</div>
-</section>
-<section id="confidence-interval" class="slide level2">
-<h2>Confidence Interval</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">confint</span>(xlm, <span class="at">level =</span> LEVEL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;                  2.5 %      97.5 %
-#&gt; (Intercept) -1.7353779  0.02529523
-#&gt; recur       -0.6217831 -0.20078281
-#&gt; number      -0.2421738  0.20731479
-#&gt; size        -0.5880581  0.06061498</code></pre>
-</div>
-</div>
-</section>
-<section id="confidence-interval-for-odds-ratio" class="slide level2">
-<h2>Confidence Interval for Odds Ratio</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">exp</span>(<span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;                 2.5 %    97.5 %
-#&gt; (Intercept) 0.1763335 1.0256179
-#&gt; recur       0.5369861 0.8180901
-#&gt; number      0.7849197 1.2303698
-#&gt; size        0.5554048 1.0624898</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="model-hypothesis-testing" class="title-slide slide level1 agenda-slide center">
-<h1>Model Hypothesis Testing</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Practice</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="model-inference" class="slide level2">
-<h2>Model inference</h2>
-<p>We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (<span class="math inline">\(g(\hat Y)=\hat\beta_0 + \hat\beta_1 X\)</span>) to the mean of Y (<span class="math inline">\(\hat \mu_y\)</span>). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.</p>
-</section>
-<section id="model-inference-1" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given 2 models:</p>
-<p><span class="math display">\[
-g(\hat Y) = \hat\beta_0 + \hat\beta_1 X_1 + \hat\beta_2 X_2 + \cdots + \hat\beta_p X_p
-\]</span></p>
-<p>or</p>
-<p><span class="math display">\[
-g(\hat Y) = \bar y
-\]</span></p>
-<div class="fragment">
-<p>Is the model with predictors do a better job than using the average?</p>
-</div>
-</section>
-<section id="likelihood-ratio-test" class="slide level2">
-<h2>Likelihood Ratio Test</h2>
-<p>The Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model.</p>
-<p>It conducts a hypothesis tests to see if models are significantly different from each other.</p>
-</section>
-<section id="conducting-an-lrt-in-r" class="slide level2">
-<h2>Conducting an LRT in R</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA, <span class="at">family =</span> binomial)</span>
-<span id="cb10-2"><a></a>xlm0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA, <span class="at">family =</span> binomial)</span>
-<span id="cb10-3"><a></a><span class="fu">anova</span>(xlm0, xlm, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
+<p>Use a logistic regression to model the outcome <code>premie</code> and <code>habit</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="at">formula. =</span> <span class="sc">~</span> <span class="dv">1</span>)</span>
-<span id="cb11-2"><a></a><span class="fu">anova</span>(m0, m1, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb13-2"><a></a><span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>)</span>
+<span id="cb13-3"><a></a><span class="fu">exp</span>(<span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> habit, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Analysis of Deviance Table
-#&gt; 
-#&gt; Model 1: death ~ 1
-#&gt; Model 2: death ~ recur + number + size
-#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)    
-#&gt; 1       293     189.38                         
-#&gt; 2       290     166.43  3   22.953 4.13e-05 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-</div>
-</section>
-<section id="model-inference-2" class="slide level2">
-<h2>Model Inference</h2>
-<p>Model inference can be extended to compare models that have different number of predictors.</p>
-</section>
-<section id="model-inference-3" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given:</p>
-<p><span class="math display">\[
-M1:\ g(\hat y) = \beta_0 + \beta_1 X_1 + \beta_2 X_2
-\]</span></p>
-<p><span class="math display">\[
-M2:\ g(\hat y) = \beta_0 + \beta_1 X_1  
-\]</span></p>
-<p>Let <span class="math inline">\(M1\)</span> be the FULL (larger) model, and let <span class="math inline">\(M2\)</span> be the RED (Reduced, smaller) model.</p>
-</section>
-<section id="model-inference-4" class="slide level2">
-<h2>Model Inference</h2>
-<p>He can test the following Hypothesis:</p>
+</section></section>
+<section>
+<section id="example-2" class="title-slide slide level1 agenda-slide center">
+<h1>Example 2</h1>
+<div class="agenda">
 <ul>
-<li><span class="math inline">\(H_0\)</span>: The error variations between the FULL and RED model are not different.</li>
-<li><span class="math inline">\(H_1\)</span>: The error variations between the FULL and RED model are different.</li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Motivation</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Example 1</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Example 2</p>
+</div></li>
 </ul>
-</section>
-<section id="likelihood-ratio-test-in-r" class="slide level2">
-<h2>Likelihood Ratio Test in R</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>full <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y  <span class="sc">~</span>  X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4, DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb13-2"><a></a>red <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2, DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb13-3"><a></a><span class="fu">anova</span>(red, full, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
+</section>
+<section id="logistic-model-2-1" class="slide level2">
+<h2>Logistic Model 2</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> number <span class="sc">+</span> size <span class="sc">+</span> recur, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb14-2"><a></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> recur, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb14-3"><a></a><span class="fu">anova</span>(m2, m1, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a><span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>)</span>
+<span id="cb14-4"><a></a><span class="fu">exp</span>(<span class="fu">b</span>(<span class="fu">glm</span>(premie <span class="sc">~</span> visits, <span class="at">data =</span> ncbirths, <span class="at">family =</span> <span class="fu">binomial</span>()), <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Analysis of Deviance Table
-#&gt; 
-#&gt; Model 1: death ~ recur
-#&gt; Model 2: death ~ number + size + recur
-#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
-#&gt; 1       292     168.72                     
-#&gt; 2       290     166.43  2   2.2883   0.3185</code></pre>
 </div>
-</div>
-</section></section>
-<section>
-<section id="practice" class="title-slide slide level1 agenda-slide center">
-<h1>Practice</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Practice</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
 
 
 <div class="reveal-header">
@@ -760,6 +775,44 @@ M2:\ g(\hat y) = \beta_0 + \beta_1 X_1
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

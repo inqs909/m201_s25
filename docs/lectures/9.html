@@ -16,7 +16,8 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.39">
 
-  <title>MATH 201 – The Bootstrap Method</title>
+  <meta name="dcterms.date" content="2025-03-11">
+  <title>MATH 201 – Logistic Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -203,11 +204,12 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">The Bootstrap Method</h1>
+  <h1 class="title">Logistic Regression</h1>
 
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2025-03-11</p>
 </section>
 <section>
 <section id="motivation" class="title-slide slide level1 agenda-slide center">
@@ -218,387 +220,384 @@
 <p>Motivation</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Hypothesis Test</p>
+<p>Modeling Binary Outcomes</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Confidence Intervals and Standard Error</p>
+<p>Logistic Regression</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Bootstrapping Techniques</p>
+<p>Prediction with Models</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="motivation-1" class="slide level2">
-<h2>Motivation</h2>
-<p>The <code>bacteria</code> data set contians information on whether bacteria (<code>y</code>: y or n) is present after utilizing treatments (<code>ap</code>: <strong>a</strong>ctive or <strong>p</strong>lacebo).</p>
-<div class="fragment">
-<p>We are interesting in determine the proportion of having bacteria present is different for those taking an “active” or “placebo”.</p>
-</div>
+<section id="melanoma" class="slide level2">
+<h2>Melanoma</h2>
+<p>Melanoma is a type of skin cancer that causes the cells that produce melanin to grow out of control. What makes Melanoma so dangerous is that it can metastasize to other parts of the body.</p>
 </section>
-<section id="comparing-proportions" class="slide level2">
-<h2>Comparing Proportions</h2>
-<p>We are interesting in determining if different groups see different proportions of a binary outcome.</p>
-<p>We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.</p>
+<section id="outcome-of-interest" class="slide level2">
+<h2>Outcome of Interest</h2>
+<p>We are interested in learning how do different factors affect and individual’s chances of survival. Therefore, we are measuring patients and if they lived or died during a study period.</p>
 </section>
-<section id="by-2-cross-tabulations" class="slide level2">
-<h2>2 by 2 Cross Tabulations</h2>
-<table class="caption-top">
-<tbody>
-<tr class="odd">
-<td>Groups</td>
-<td>Outcome 1</td>
-<td>Outcome 2</td>
-</tr>
-<tr class="even">
-<td>Group 1</td>
-<td><span class="math inline">\(p_{11}\)</span></td>
-<td><span class="math inline">\(p_{21}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Group 2</td>
-<td><span class="math inline">\(p_{12}\)</span></td>
-<td><span class="math inline">\(p_{22}\)</span></td>
-</tr>
-</tbody>
-</table>
-<div class="fragment">
-<p>We want to compare <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span>, to determine if the probability of outcome 1 are the same for both groups.</p>
-</div>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<p>We will be using the <code>Melanoma</code> data set with the following variables: <code>dead</code> (died by Melanoma, 1=yes, 0= no), <code>sex</code> (1 = male, 0 = female), <code>age</code> (in years), <code>thickness</code> (tumour thickness in mm), ulcer (1 = presence, 0 absent).</p>
 </section>
-<section id="test-statistic" class="slide level2">
-<h2>Test Statistic</h2>
-<p>We can use both <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span> to determine if there is a fundamental difference.</p>
-<div class="fragment">
-<p>However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.</p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-T =  \hat p_{11} - \hat p_{12}
-\]</span></p>
-</div>
-</section>
-<section id="obtain-difference-in-r" class="slide level2">
-<h2>Obtain Difference in R</h2>
+<section id="plot" class="slide level2">
+<h2>Plot</h2>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">props_df</span>(DATA, GROUP, OUTCOME, VAL, <span class="at">diff =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>Melanoma <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(thickness, dead)) <span class="sc">+</span></span>
+<span id="cb1-3"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+
 </div>
-</section>
-<section id="bacteria-example" class="slide level2">
-<h2>Bacteria Example</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">props_df</span>(bacteria, ap, y, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;    p1    p2 
-#&gt; 0.750 0.875</code></pre>
-</div>
-</div>
-</section>
-<section id="bacteria-example-1" class="slide level2">
-<h2>Bacteria Example</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">props_df</span>(bacteria, ap, y, <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.125</code></pre>
-</div>
-</div>
-</section></section>
+<img data-src="9_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
 <section>
-<section id="hypothesis-test" class="title-slide slide level1 agenda-slide center">
-<h1>Hypothesis Test</h1>
+<section id="modeling-binary-outcomes" class="title-slide slide level1 agenda-slide center">
+<h1>Modeling Binary Outcomes</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Motivation</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Hypothesis Test</p>
+<p>Modeling Binary Outcomes</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Confidence Intervals and Standard Error</p>
+<p>Logistic Regression</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Bootstrapping Techniques</p>
+<p>Prediction with Models</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="hypothesis-test-1" class="slide level2">
-<h2>Hypothesis Test</h2>
-<p>Is <span class="math inline">\(T = .125\)</span> of a difference large enough to indicate that an active drug is effective against the bacteria, or seeing this can be due to random chance.</p>
-</section>
-<section id="hypotheis-test" class="slide level2">
-<h2>Hypotheis Test</h2>
-<p>We will test the following hypothesis:</p>
+<section id="construct-model" class="slide level2">
+<h2>Construct Model</h2>
 <p><span class="math display">\[
-H_0:\ \Delta =  p_1-p_2 = 0
-\]</span></p>
-<p><span class="math display">\[
-H_a:\ \Delta = p_1 - p_2 \neq 0
+\left(\begin{array}{c}
+Dead \\
+Alive
+\end{array}\right) = \beta_0 + \beta_1X
 \]</span></p>
 </section>
-<section id="hypothesis-test-2" class="slide level2">
-<h2>Hypothesis Test</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>sim_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T))</span>
-<span id="cb6-2"><a></a>test_stat <span class="ot">&lt;-</span> <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, T)</span>
-<span id="cb6-3"><a></a><span class="fu">sum</span>(<span class="fu">abs</span>(sim_stats) <span class="sc">&gt;</span> <span class="fu">abs</span>(test_stat)) <span class="sc">/</span> <span class="dv">1001</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.01498501</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="9_files/figure-html/unnamed-chunk-5-1.png" width="672" class="r-stretch"></section>
-<section id="hypothesis-test-3" class="slide level2">
-<h2>Hypothesis test</h2>
-<div>
-<ul>
-<li class="fragment">What if <span class="math inline">\(\Delta = - 0.5\)</span>?</li>
-<li class="fragment">What if <span class="math inline">\(\Delta = 0.5\)</span>?</li>
-<li class="fragment">What if <span class="math inline">\(\Delta = - 0.25\)</span>?</li>
-<li class="fragment">What if <span class="math inline">\(\Delta = 0.25\)</span>?</li>
-</ul>
-</div>
-<div class="fragment">
-<p>Can we determine the plausible values of <span class="math inline">\(\Delta\)</span> that may have produced our data set?</p>
-</div>
+<section id="let" class="slide level2">
+<h2>Let …</h2>
+<p><span class="math display">\[
+Y = \left\{\begin{array}{cc}
+1 &amp; Dead \\
+0 &amp; Alive
+\end{array}\right.
+\]</span></p>
+</section>
+<section id="construct-a-model" class="slide level2">
+<h2>Construct a Model</h2>
+<p><span class="math display">\[
+P\left(Y = 1\right) = \beta_0 + \beta_1X
+\]</span></p>
+</section>
+<section id="construct-a-model-1" class="slide level2">
+<h2>Construct a Model</h2>
+<p><span class="math display">\[
+P\left(Y = 1\right) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}
+\]</span></p>
+</section>
+<section id="construct-a-model-2" class="slide level2">
+<h2>Construct a Model</h2>
+<p><span class="math display">\[
+\frac{P(Y = 1)}{P(Y = 0)} = e^{\beta_0 + \beta_1X}
+\]</span></p>
+<p>where <span class="math inline">\(\frac{P(Y = 1)}{P(Y = 0)}\)</span> are considered the odds of observing <span class="math inline">\(Y = 1\)</span>.</p>
+</section>
+<section id="the-logistic-model" class="slide level2">
+<h2>The Logistic Model</h2>
+<p><span class="math display">\[
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
+\]</span></p>
 </section></section>
 <section>
-<section id="confidence-intervals-and-standard-error" class="title-slide slide level1 agenda-slide center">
-<h1>Confidence Intervals and Standard Error</h1>
+<section id="logistic-regression" class="title-slide slide level1 agenda-slide center">
+<h1>Logistic Regression</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Motivation</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Hypothesis Test</p>
+<p>Modeling Binary Outcomes</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Confidence Intervals and Standard Error</p>
+<p>Logistic Regression</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Bootstrapping Techniques</p>
+<p>Prediction with Models</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="standard-error" class="slide level2">
-<h2>Standard Error</h2>
-<p>The standard error is the standard deviation of a statistic.</p>
+<section id="logistic-regression-1" class="slide level2">
+<h2>Logistic Regression</h2>
+<p>Logistic Regression is used to model the association between a set of predictors and a <strong>binary</strong> outcome variable.</p>
 <div class="fragment">
-<p>It can give us a margin of error for the statistic that we compute from the data.</p>
+<p>This is similar Linear Regression which models the association between a set of predictors and a <strong>numerical</strong> outcome variable.</p>
 </div>
 </section>
-<section id="confidence-intervals" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p>Confidence Intervals give you a collection of values that may contain the true parameter of interest.</p>
+<section id="logistic-regression-2" class="slide level2">
+<h2>Logistic Regression</h2>
+<p>Logistic Regression uses the logistic model to formulate the relationship between the predictors and the outcome.</p>
 <div class="fragment">
-<p>The probability of capturing the true parameter is known as the confidence. This value can take any number between 0% to 100%</p>
-</div>
-</section>
-<section id="confidence-interval" class="slide level2">
-<h2>Confidence Interval</h2>
-<p>The confidence interval were displayed as: X%: (L, U)</p>
-</section>
-<section id="confidence-interval-intepretation" class="slide level2">
-<h2>Confidence Interval Intepretation</h2>
-</section>
-<section id="confidence-intervals-1" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p>These are a collection of <span class="math inline">\(\Delta\)</span> values that will fail to reject the Null Hypothesis.</p>
-<div class="fragment">
-<p>The <span class="math inline">\(\Delta\)</span> values that are not different from our current estimate <span class="math inline">\(T\)</span></p>
-</div>
-</section>
-<section id="confidence-intervals-2" class="slide level2">
-<h2>Confidence Intervals</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="fl">0.15</span>, <span class="fl">0.05</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
-<span id="cb9-3"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="9_files/figure-html/unnamed-chunk-6-1.png" width="672" class="r-stretch"></section>
-<section id="confidence-intervals-3" class="slide level2">
-<h2>Confidence Intervals</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="fl">0.075</span>, <span class="fl">0.05</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
-<span id="cb10-3"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb10-4"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="9_files/figure-html/unnamed-chunk-7-1.png" width="672" class="r-stretch"></section>
-<section id="how-to-construct-the-dgp-centered-around-delta" class="slide level2">
-<h2>How to construct the DGP centered around <span class="math inline">\(\Delta\)</span>?</h2>
-<div class="fragment">
-<p>Bootstrapping Techniques</p>
-</div>
-<div class="fragment">
-<p>Mathematical Models</p>
-</div>
-</section></section>
-<section>
-<section id="bootstrapping-techniques" class="title-slide slide level1 agenda-slide center">
-<h1>Bootstrapping Techniques</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Hypothesis Test</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Confidence Intervals and Standard Error</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bootstrapping Techniques</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="bootstrapping-techniques-1" class="slide level2">
-<h2>Bootstrapping Techniques</h2>
-<p>Bootstrapping is a technique to determine which <span class="math inline">\(\Delta = p_1-p_2\)</span> values, or any other statistic, will <strong>not</strong> be significantly different than <span class="math inline">\(T\)</span>.</p>
-<div class="fragment">
-<p>Bootstrapping will simulate several fake data sets from the DGP of the data. Afterwards, each data set will produce a statistic to construct the sampling distribution.</p>
-</div>
-</section>
-<section id="bootstrap-theory" class="slide level2">
-<h2>Bootstrap Theory</h2>
-<div class="fragment">
-<p>The data set was generated from a distribution called <span class="math inline">\(f\)</span>.</p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(f\)</span> is unknown, we will sample from <span class="math inline">\(\hat f\)</span> generated from the data.</p>
-</div>
-<div class="fragment">
-<p>When <span class="math inline">\(n \rightarrow \infty\)</span>, then <span class="math inline">\(\hat f\rightarrow f\)</span></p>
-</div>
-<div class="fragment">
-<p>So long as <span class="math inline">\(n\)</span> is sufficiently large, the DGP of a statistic will be generated.</p>
-</div>
-</section>
-<section id="bootstrapping-algorithm" class="slide level2 scrollable">
-<h2>Bootstrapping Algorithm</h2>
-<ol type="1">
-<li>Resample the data set using the <code>resample()</code> function</li>
-<li>Compute the statistic of interest</li>
-<li>Store the statistic</li>
-<li>Repeat steps 1-3, until you a high number of simulations</li>
-<li>Compute the confidence interval or standard errors from the bootstrap estimates</li>
-</ol>
-</section>
-<section id="bootstrapping-in-r" class="slide level2">
-<h2>Bootstrapping in R</h2>
-<p>The <code>resample()</code> will create a new data set by sampling the old data set with replacement.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>boot1 <span class="ot">&lt;-</span> <span class="fu">resample</span>(bacteria)</span>
-<span id="cb11-2"><a></a><span class="fu">props_df</span>(boot1, ap, y, <span class="at">yval =</span> <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.130291</code></pre>
-</div>
-</div>
-</section>
-<section id="repeat-process" class="slide level2">
-<h2>Repeat Process</h2>
-<p>Use the <code>replicate()</code> function to repeat this process a high number of times.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>boot_samples <span class="ot">&lt;-</span><span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
-<span id="cb13-2"><a></a>                         <span class="fu">props_df</span>(<span class="fu">resample</span>(bacteria), ap, y, <span class="at">yval =</span> <span class="st">"y"</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="bootstrap-distribution" class="slide level2">
-<h2>Bootstrap Distribution</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> boot_samples), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb14-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="9_files/figure-html/unnamed-chunk-10-1.png" width="672" class="r-stretch"></section>
-<section id="bootstrap-based-standard-error" class="slide level2">
-<h2>Bootstrap-Based Standard Error</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">sd</span>(boot_samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.05044719</code></pre>
-</div>
-</div>
-</section>
-<section id="interpreting-the-se" class="slide level2">
-<h2>Interpreting the SE</h2>
+<p>More specifically, for an outcome of Y:</p>
 <p><span class="math display">\[
-0.125 \pm 0.05
+Y = \left\{\begin{array}{cc}
+1 &amp; \text{Category 1} \\
+0 &amp; \text{Category 2}
+\end{array}\right.
+\]</span></p>
+<p>The Predictors variable will model the probability of observing category 1 (<span class="math inline">\(P(Y=1)\)</span>)</p>
+</div>
+</section>
+<section id="logistic-model" class="slide level2">
+<h2>Logistic Model</h2>
+<p><span class="math display">\[
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
 \]</span></p>
 </section>
-<section id="confidence-interval-1" class="slide level2">
-<h2>95% Confidence Interval</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> boot_samples), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">middle</span>(x, .<span class="dv">95</span>))) <span class="sc">+</span> </span>
-<span id="cb17-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
+<section id="regression-coefficients-beta" class="slide level2">
+<h2>Regression Coefficients <span class="math inline">\(\beta\)</span></h2>
+<p>The regression coefficients quantify how a specific predictor changes the odds of observing the first category of the outcome (<span class="math inline">\(Y = 1\)</span>)</p>
+</section>
+<section id="estimating-beta" class="slide level2">
+<h2>Estimating <span class="math inline">\(\beta\)</span></h2>
+<p>To obtain the numerical value for <span class="math inline">\(\beta\)</span>, denoted as <span class="math inline">\(\hat \beta\)</span>, we will be finding the values of <span class="math inline">\(\hat \beta\)</span> that maximizes the likelihood function:</p>
+<p><span class="math display">\[
+L(\boldsymbol \beta) = \prod_{i=1}^n \left(\frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}\right)^{Y_i}\left(\frac{1}{1 + e^{\beta_0 + \beta_1X}}\right)^{1-Y_i}
+\]</span></p>
+<p>The likelihood function can be thought as the probability of observing the entire data set. Therefore, we want to choose the values the <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that will result in the highest probability of observing the data.</p>
+</section>
+<section id="estimated-parameters" class="slide level2">
+<h2>Estimated Parameters</h2>
+<p>The values you obtain (<span class="math inline">\(\hat \beta\)</span>) tell you the relationship between the a predictor variable and the log odds of observing the first category of the outcome <span class="math inline">\(Y=1\)</span>.</p>
+<div class="fragment">
+<p>Exponentiating the estimate (<span class="math inline">\(e^{\hat \beta}\)</span>) will give you the relationship between a predictor variable and the odds of observing the first category of the outcome <span class="math inline">\(Y=1\)</span>.</p>
 </div>
-<img data-src="9_files/figure-html/unnamed-chunk-12-1.png" width="672" class="r-stretch"></section>
-<section id="confidence-interval-2" class="slide level2">
-<h2>95% Confidence Interval</h2>
+</section>
+<section id="interpreting-hat-beta" class="slide level2">
+<h2>Interpreting <span class="math inline">\(\hat \beta\)</span></h2>
+<p>For a continuous predictor variable:</p>
+<p>As X increases by 1 unit, the odds of observing the first category (<span class="math inline">\(Y = 1\)</span>) increases by a factor of <span class="math inline">\(e^{\hat\beta}\)</span>.</p>
+<p>For a categorical predictor variable (first dummy variable):</p>
+<p>The odds of observing the first category (<span class="math inline">\(Y = 1\)</span>) in the indicated category (<span class="math inline">\(D=1\)</span>) is <span class="math inline">\(e^{\hat\beta}\)</span> times higher/lower compared to the reference category (<span class="math inline">\(D=0\)</span>).</p>
+</section>
+<section id="logistic-regression-in-r" class="slide level2">
+<h2>Logistic Regression in R</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">quantile</span>(boot_samples, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">glm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> ... <span class="sc">+</span> Xp,</span>
+<span id="cb2-2"><a></a>    <span class="at">data =</span> DATA,</span>
+<span id="cb2-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>Modelling <code>dead</code> by <code>sex</code>, <code>age</code>, <code>thickness</code>, and <code>ulcer</code>:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">glm</span>(dead <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> thickness <span class="sc">+</span> ulcer,</span>
+<span id="cb3-2"><a></a>    <span class="at">data =</span> Melanoma,</span>
+<span id="cb3-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;       2.5%      97.5% 
-#&gt; 0.02499504 0.22086102</code></pre>
+<pre><code>#&gt; 
+#&gt; Call:  glm(formula = dead ~ sex + age + thickness + ulcer, family = binomial(), 
+#&gt;     data = Melanoma)
+#&gt; 
+#&gt; Coefficients:
+#&gt; (Intercept)          sex          age    thickness        ulcer  
+#&gt;    -2.39860      0.40767      0.00402      0.11253      1.31314  
+#&gt; 
+#&gt; Degrees of Freedom: 204 Total (i.e. Null);  200 Residual
+#&gt; Null Deviance:       242.4 
+#&gt; Residual Deviance: 210.3     AIC: 220.3</code></pre>
 </div>
 </div>
+<p><span class="math display">\[
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+\]</span></p>
 </section>
 <section id="interpretation" class="slide level2">
 <h2>Interpretation</h2>
-<p>We are 95% confident that the true difference in proportion (<span class="math inline">\(\Delta\)</span>) is captured between the ranges (0.025, 0.224).</p>
+<p><span class="math display">\[
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+\]</span></p>
+<div class="fragment">
+<p>The odds of experiencing death in males is 1.5 times larger than the odds for females, adjusting for age, tumor thickness and the presence of an ulcer.</p>
+</div>
+<div class="fragment">
+<p>As age increases by 1 year, the odds of experiencing death increases by a factor of 1.004, adjusting for sex, tumor thickness and presence of an ulcer.</p>
+</div>
+</section></section>
+<section>
+<section id="prediction-with-models" class="title-slide slide level1 agenda-slide center">
+<h1>Prediction with Models</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Motivation</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Modeling Binary Outcomes</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Logistic Regression</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Prediction with Models</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="working-with-probabilities" class="slide level2">
+<h2>Working with probabilities</h2>
+<p>As you can see, working with odds may be unintuitive for the average person. It will be better to predict the probability and display those results to individuals.</p>
+</section>
+<section id="predicting-probability" class="slide level2">
+<h2>Predicting Probability</h2>
+<p><span class="math display">\[
+\hat P\left(Y = 1\right) = \frac{e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}{1 + e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}
+\]</span></p>
+</section>
+<section id="prediction-in-r" class="slide level2">
+<h2>Prediction in R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>xglm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> ... <span class="sc">+</span> Xp,</span>
+<span id="cb5-2"><a></a>            <span class="at">data =</span> DATA,</span>
+<span id="cb5-3"><a></a>            <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb5-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X1 =</span> VAL,  <span class="at">X2 =</span> VAL, ..., <span class="at">Xp =</span> VAL)</span>
+<span id="cb5-5"><a></a><span class="fu">predict</span>(xglm,</span>
+<span id="cb5-6"><a></a>        predict_df,</span>
+<span id="cb5-7"><a></a>        <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example 1</h2>
+<p>Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and <strong>with</strong> ulcer presence.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>xglm <span class="ot">&lt;-</span> <span class="fu">glm</span>(dead <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> thickness <span class="sc">+</span> ulcer,</span>
+<span id="cb6-2"><a></a>    <span class="at">data =</span> Melanoma,</span>
+<span id="cb6-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb6-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sex =</span> <span class="dv">1</span>, <span class="at">age =</span> <span class="dv">75</span>, <span class="at">thickness =</span> <span class="fl">2.9</span>, <span class="at">ulcer =</span> <span class="dv">1</span>)</span>
+<span id="cb6-5"><a></a><span class="fu">predict</span>(xglm, predict_df, <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;         1 
+#&gt; 0.4875223</code></pre>
+</div>
+</div>
+</section>
+<section id="example-1-1" class="slide level2">
+<h2>Example 1</h2>
+<p>Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and <strong>without</strong> ulcer presence.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>xglm <span class="ot">&lt;-</span> <span class="fu">glm</span>(dead <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> thickness <span class="sc">+</span> ulcer,</span>
+<span id="cb8-2"><a></a>    <span class="at">data =</span> Melanoma,</span>
+<span id="cb8-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb8-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sex =</span> <span class="dv">1</span>, <span class="at">age =</span> <span class="dv">75</span>, <span class="at">thickness =</span> <span class="fl">2.9</span>, <span class="at">ulcer =</span> <span class="dv">0</span>)</span>
+<span id="cb8-5"><a></a><span class="fu">predict</span>(xglm, predict_df, <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;         1 
+#&gt; 0.2037438</code></pre>
+</div>
+</div>
+</section>
+<section id="example-1-2" class="slide level2">
+<h2>Example 1</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Ulcer Present</th>
+<th style="text-align: left;">Ulcer not Present</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Probabiltiy</td>
+<td style="text-align: left;">48.7%</td>
+<td style="text-align: left;">20.3%</td>
+</tr>
+</tbody>
+</table>
+<p>For a patient who is 75 years old, male, and a tumor thickness of 2.9, when an ulcer is present, the probability a patient dies increases to 48% compared to a patient who does not have an ulcer with a probability of 20%.</p>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example 2</h2>
+<p>Predict the probability of observing death for a patient who is female, <strong>75</strong> years old, an tumor thickness of 2.9, and with ulcer presence.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>xglm <span class="ot">&lt;-</span> <span class="fu">glm</span>(dead <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> thickness <span class="sc">+</span> ulcer,</span>
+<span id="cb10-2"><a></a>    <span class="at">data =</span> Melanoma,</span>
+<span id="cb10-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb10-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sex =</span> <span class="dv">0</span>, <span class="at">age =</span> <span class="dv">75</span>, <span class="at">thickness =</span> <span class="fl">2.9</span>, <span class="at">ulcer =</span> <span class="dv">1</span>)</span>
+<span id="cb10-5"><a></a><span class="fu">predict</span>(xglm, predict_df, <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;         1 
+#&gt; 0.3875575</code></pre>
+</div>
+</div>
+</section>
+<section id="example-2-1" class="slide level2">
+<h2>Example 2</h2>
+<p>Predict the probability of observing death for a patient who is female, <strong>55</strong> years old, an tumor thickness of 2.9, and with ulcer presence.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>xglm <span class="ot">&lt;-</span> <span class="fu">glm</span>(dead <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> thickness <span class="sc">+</span> ulcer,</span>
+<span id="cb12-2"><a></a>    <span class="at">data =</span> Melanoma,</span>
+<span id="cb12-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb12-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sex =</span> <span class="dv">0</span>, <span class="at">age =</span> <span class="dv">55</span>, <span class="at">thickness =</span> <span class="fl">2.9</span>, <span class="at">ulcer =</span> <span class="dv">1</span>)</span>
+<span id="cb12-5"><a></a><span class="fu">predict</span>(xglm, predict_df, <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;         1 
+#&gt; 0.3686531</code></pre>
+</div>
+</div>
+</section>
+<section id="example-2-2" class="slide level2">
+<h2>Example 2</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">55</th>
+<th style="text-align: left;">75</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Probabiltiy</td>
+<td style="text-align: left;">36.8%</td>
+<td style="text-align: left;">38.7%</td>
+</tr>
+</tbody>
+</table>
+<p>For a patient who is female, a tumor thickness of 2.9, and has an ulcer, the probability a 75 year old patient dies increases to 38.7% compared to a 55 year old patient with a probability of 36.8%.</p>
 
 
 <div class="reveal-header">
@@ -837,6 +836,44 @@ H_a:\ \Delta = p_1 - p_2 \neq 0
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

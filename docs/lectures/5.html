@@ -16,7 +16,8 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.39">
 
-  <title>MATH 201 – Linear Regression</title>
+  <meta name="dcterms.date" content="2025-02-11">
+  <title>MATH 201 – Distribution Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -203,747 +204,404 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Linear Regression</h1>
+  <h1 class="title">Distribution Functions</h1>
 
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2025-02-11</p>
 </section>
 <section>
-<section id="modeling-relationships" class="title-slide slide level1 agenda-slide center">
-<h1>Modeling Relationships</h1>
+<section id="motivation" class="title-slide slide level1 agenda-slide center">
+<h1>Motivation</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-active">
-<p>Modeling Relationships</p>
+<p>Motivation</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>A Simple Model</p>
+<p>Normal Distribution</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Modelling Data</p>
+<p>Central Limit Theorem</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Linear Model</p>
+<p>Inference</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
+<p>Inference in R</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="explaining-variation" class="slide level2">
-<h2>Explaining Variation</h2>
+<section id="motivation-1" class="slide level2">
+<h2>Motivation</h2>
+<p>The <code>bacteria</code> data set contians information on whether bacteria (<code>y</code>: y or n) is present after utilizing treatments (<code>ap</code>: <strong>a</strong>ctive or <strong>p</strong>lacebo).</p>
 <div class="fragment">
-<p>This is the process where we try to reduce the variation with the use of other variables.</p>
-</div>
-<div class="fragment">
-<p>Can be thought of as getting it less wrong when taking an educated guess.</p>
+<p>We are interesting in determine the proportion of having bacteria present is different for those taking an “active” or “placebo”.</p>
 </div>
 </section>
-<section id="explaining-variation-1" class="slide level2">
-<h2>Explaining Variation</h2>
-
-<img data-src="5_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"></section>
-<section id="explaining-variation-with-one-variable" class="slide level2">
-<h2>Explaining Variation with One Variable</h2>
-
-<img data-src="5_files/figure-html/unnamed-chunk-3-1.png" width="672" class="r-stretch"></section></section>
-<section>
-<section id="a-simple-model" class="title-slide slide level1 agenda-slide center">
-<h1>A Simple Model</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-</ul>
-</div>
+<section id="comparing-proportions" class="slide level2">
+<h2>Comparing Proportions</h2>
+<p>We are interesting in determining if different groups see different proportions of a binary outcome.</p>
+<p>We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.</p>
 </section>
-<section id="generated-model" class="slide level2">
-<h2>Generated Model</h2>
-<p><span class="math display">\[
-Y \sim DGP_1
-\]</span></p>
-</section>
-<section id="a-simple-model-1" class="slide level2">
-<h2>A Simple Model</h2>
-
-<img data-src="5_files/figure-html/unnamed-chunk-4-1.png" width="672" class="r-stretch"></section>
-<section id="a-simple-model-2" class="slide level2">
-<h2>A Simple Model</h2>
-<p><span class="math display">\[
-Y = \_\_\_ + error
-\]</span></p>
-</section>
-<section id="notation" class="slide level2">
-<h2>Notation</h2>
-<p><span class="math display">\[
-Y = \ \ \ \ \ \ \ \ \ + \varepsilon
-\]</span></p>
-</section>
-<section id="the-simple-generated-model" class="slide level2">
-<h2>The Simple Generated Model</h2>
-<p><span class="math display">\[
-Y \sim \mu + \varepsilon
-\]</span></p>
-<p><span class="math display">\[
-\varepsilon \sim DGP_2
-\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(DGP_2\)</span> is not the same as the <span class="math inline">\(DGP_1\)</span>, it is transformed due <span class="math inline">\(\beta_0\)</span>. Consider this the NULL <span class="math inline">\(DGP\)</span>.</p>
-</div>
-</section>
-<section id="observing-data" class="slide level2">
-<h2>Observing Data</h2>
-<p><span class="math display">\[
-Y = \beta_0 + \varepsilon
-\]</span></p>
-</section>
-<section id="estimated-line" class="slide level2">
-<h2>Estimated Line</h2>
-<p><span class="math display">\[
-\hat Y=\hat\beta_0
-\]</span></p>
-</section>
-<section id="notation-1" class="slide level2">
-<h2>Notation</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="observed">Observed</h3>
-<p><span class="math display">\[
-Y = \beta_0 + \varepsilon
-\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="estimated">Estimated</h3>
-<p><span class="math display">\[
-\hat Y = \hat \beta_0
-\]</span></p>
-</div></div>
-</section></section>
-<section>
-<section id="modelling-data" class="title-slide slide level1 agenda-slide center">
-<h1>Modelling Data</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="indexing-data" class="slide level2">
-<h2>Indexing Data</h2>
-<p>The data in a data set can be indexed by a number.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>penguins[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 1 × 6
-#&gt;   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-#&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-#&gt; 1           39.1          18.7               181        3750 male   2007</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p>Making the variable “body_mass_g” be represented by <span class="math inline">\(Y\)</span> and “flipper_length_mm” as <span class="math inline">\(X\)</span>:</p>
-<p><span class="math display">\[
-Y_1 = 3750 \ \ X_1=181
-\]</span></p>
-</div>
-</section>
-<section id="indexing-data-1" class="slide level2">
-<h2>Indexing Data</h2>
-<p><span class="math display">\[
-Y_i, X_i
-\]</span></p>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<p>With the data that we collect from a sample, we hypothesize how the data was generated.</p>
-<div class="fragment">
-<p>Using a simple model:</p>
-<p><span class="math display">\[
-Y_i = \beta_0 + \varepsilon_i
-\]</span></p>
-</div>
-</section>
-<section id="estimated-value" class="slide level2">
-<h2>Estimated Value</h2>
-<p><span class="math display">\[
-\hat Y_i = \hat \beta_0
-\]</span></p>
-</section>
-<section id="estimation" class="slide level2">
-<h2>Estimation</h2>
-<p>To estimate <span class="math inline">\(\hat \beta_0\)</span>, we minimize the follow function:</p>
-<p><span class="math display">\[
-\sum^n_{i=1} (Y_i-\hat Y_i)^2
-\]</span></p>
-<div class="fragment">
-<p>This is known as the sum squared errors, SSE</p>
-</div>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-<p>The residuals are known as the observed errors from the data in the model:</p>
-<p><span class="math display">\[
-r_i = Y_i - \hat Y_i
-\]</span></p>
-</section>
-<section id="estimation-in-r" class="slide level2">
-<h2>Estimation in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="modeling-body-mass-in-penguins" class="slide level2">
-<h2>Modeling Body Mass in Penguins</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ 1, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt; (Intercept)  
-#&gt;        4207</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="linear-model" class="title-slide slide level1 agenda-slide center">
-<h1>Linear Model</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="linear-model-1" class="slide level2">
-<h2>Linear Model</h2>
-<p>The goal of Statistics is to develop models the have a better explanation of the outcome <span class="math inline">\(Y\)</span>.</p>
-<div class="fragment">
-<p>In particularly, reduce the sum of squared errors.</p>
-</div>
-<div class="fragment">
-<p>By utilizing a bit more of information, <span class="math inline">\(X\)</span>, we can increase the predicting capabilities of the model.</p>
-</div>
-<div class="fragment">
-<p>Thus, the linear model is born.</p>
-</div>
-</section>
-<section id="linear-model-2" class="slide level2">
-<h2>Linear Model</h2>
-<p><span class="math display">\[
-Y = \beta_0 + \beta_1 X + \varepsilon
-\]</span></p>
-<p><span class="math display">\[
-\varepsilon \sim DGP_3
-\]</span></p>
-</section>
-<section id="scatter-plot" class="slide level2">
-<h2>Scatter Plot</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb6-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb6-4"><a></a>                   <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb6-5"><a></a>                   <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb6-6"><a></a>                   <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb6-7"><a></a>                   <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-8"><a></a>                   <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="5_files/figure-html/unnamed-chunk-8-1.png" width="672" class="r-stretch"></section>
-<section id="imposing-a-line" class="slide level2">
-<h2>Imposing a Line</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb7-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb7-5"><a></a>                   <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb7-6"><a></a>                   <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb7-7"><a></a>                   <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb7-8"><a></a>                   <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-9"><a></a>                   <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="5_files/figure-html/unnamed-chunk-9-1.png" width="672" class="r-stretch"></section>
-<section id="modelling-the-data" class="slide level2">
-<h2>Modelling the Data</h2>
-<p><span class="math display">\[
-Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
-\]</span></p>
-</section>
-<section id="linear-model-3" class="slide level2">
-<h2>Linear Model</h2>
-<p><span class="math display">\[
-\hat Y_i = \hat \beta_0 + \hat \beta_1 X_i
-\]</span></p>
-<div class="fragment">
-<p>Goal is to obtain numerical values for <span class="math inline">\(\hat \beta_0\)</span> and <span class="math inline">\(\hat \beta_1\)</span> that will minimize the SSE.</p>
-</div>
-</section>
-<section id="sse" class="slide level2">
-<h2>SSE</h2>
-<p><span class="math display">\[
-\sum^n_{i=1} (Y_i-\hat Y_i)^2
-\]</span></p>
-<p><span class="math display">\[
-\hat Y_i = \hat \beta_0 + \hat \beta_1 X_i
-\]</span></p>
-</section>
-<section id="fitting-a-model-in-r" class="slide level2">
-<h2>Fitting a Model in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<p>Y: “body_mass_g”; X: “flipper_length_mm”</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt;       (Intercept)  flipper_length_mm  
-#&gt;          -5872.09              50.15</code></pre>
-</div>
-</div>
-<p><span class="math display">\[
-\hat Y_i = -5872.09 + 50.15 X_i
-\]</span></p>
-</section>
-<section id="interpretation-of-hatbeta_0" class="slide level2">
-<h2>Interpretation of <span class="math inline">\(\hat\beta_0\)</span></h2>
-<p>The intercept <span class="math inline">\(\hat \beta_0\)</span> can be interpreted as the base value when <span class="math inline">\(X\)</span> is set to 0.</p>
-<div class="fragment">
-<p>Some times the intercept can be interpretable to real world scenarios.</p>
-</div>
-<div class="fragment">
-<p>Other times it cannot.</p>
-</div>
-</section>
-<section id="interpreting-example" class="slide level2">
-<h2>Interpreting Example</h2>
-<p><span class="math display">\[
-\hat Y_i = -5872.09 + 50.15 X_i
-\]</span> When flipper length is 0 mm, the body mass is -5872 grams.</p>
-</section>
-<section id="interpretation-of-hat-beta_1" class="slide level2">
-<h2>Interpretation of <span class="math inline">\(\hat \beta_1\)</span></h2>
-<p>The slope <span class="math inline">\(\hat \beta_1\)</span> indicates how will y change when x increases by 1 unit.</p>
-<div class="fragment">
-<p>It will demonstrate if there is, on average, a positive or negative relationship based on the sign provided.</p>
-</div>
-</section>
-<section id="interpreting-example-1" class="slide level2">
-<h2>Interpreting Example</h2>
-<p><span class="math display">\[
-\hat Y_i = -5872.09 + 50.15 X_i
-\]</span></p>
-<p>When flipper length increases by 1 mm, the body mass will increase by 50.15 grams.</p>
-</section></section>
-<section>
-<section id="categorical-variables" class="title-slide slide level1 agenda-slide center">
-<h1>Categorical Variables</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="body-mass-with-species" class="slide level2">
-<h2>Body Mass with Species</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb11-5"><a></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb11-6"><a></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb11-7"><a></a>          <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb11-8"><a></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb11-9"><a></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="5_files/figure-html/unnamed-chunk-12-1.png" width="672" class="r-stretch"></section>
-<section id="body-mass-with-species-1" class="slide level2">
-<h2>Body Mass with Species</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb12-3"><a></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb12-5"><a></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb12-6"><a></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb12-7"><a></a>          <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb12-8"><a></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-9"><a></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="5_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"></section>
-<section id="group-statistics" class="slide level2">
-<h2>Group Statistics</h2>
-<p>We can use statistics to explain a continuous variable by the categories.</p>
-<div class="fragment">
-<p>Compute statistics for each group.</p>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">num_by_cat_stats</span>(DATA, NUM, CAT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="compute-group-statistics" class="slide level2">
-<h2>Compute Group Statistics</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">num_by_cat_stats</span>(penguins, body_mass_g, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 11
-#&gt;   species     min   q25  mean median   q75   max    sd     var   iqr missing
-#&gt;   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;int&gt;
-#&gt; 1 Adelie     2850 3362. 3706.   3700  4000  4775  459. 210332.  638.       0
-#&gt; 2 Chinstrap  2700 3488. 3733.   3700  3950  4800  384. 147713.  462.       0
-#&gt; 3 Gentoo     3950 4700  5092.   5050  5500  6300  501. 251478.  800        0</code></pre>
-</div>
-</div>
-</section>
-<section id="linear-models-with-categorical-variables" class="slide level2">
-<h2>Linear Models with Categorical Variables</h2>
-<p>A line is normally used to model 2 continuous variables.</p>
-<div class="fragment">
-<p>However, the predictor variable <span class="math inline">\(X\)</span> can be restricted to a set a variables that can symbolize categories.</p>
-</div>
-<div class="fragment">
-<p>A category will be used as a reference for a model.</p>
-</div>
-</section>
-<section id="binary-dummy-variables" class="slide level2">
-<h2>Binary (Dummy) Variables</h2>
-<p>Binary variables are variable that can only take on the value 0 or 1.</p>
-<p><span class="math display">\[
-D_i = \left\{
-\begin{array}{cc}
-1 &amp; Category\\
-0 &amp; Other
-\end{array}
-\right.
-\]</span></p>
-</section>
-<section id="binary-dummy-variables-1" class="slide level2">
-<h2>Binary (Dummy) Variables</h2>
-<p>To fit a model with categorical variables, we must utilize dummy (binary) variables that indicate which category is being referenced. We use <span class="math inline">\(C-1\)</span> dummy variables where <span class="math inline">\(C\)</span> indicates the number of categories. When coded correctly, each category will be represented by a combination of dummy variables.</p>
-</section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
-<p>If we have 4 categories, we will need 3 dummy variables:</p>
+<section id="by-2-cross-tabulations" class="slide level2">
+<h2>2 by 2 Cross Tabulations</h2>
 <table class="caption-top">
-<thead>
-<tr class="header">
-<th></th>
-<th>Cat 1</th>
-<th>Cat 2</th>
-<th>Cat 3</th>
-<th>Cat 4</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td>Dummy 1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
+<td>Groups</td>
+<td>Outcome 1</td>
+<td>Outcome 2</td>
 </tr>
 <tr class="even">
-<td>Dummy 2</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
+<td>Group 1</td>
+<td><span class="math inline">\(p_{11}\)</span></td>
+<td><span class="math inline">\(p_{21}\)</span></td>
 </tr>
 <tr class="odd">
-<td>Dummy 2</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
+<td>Group 2</td>
+<td><span class="math inline">\(p_{12}\)</span></td>
+<td><span class="math inline">\(p_{22}\)</span></td>
 </tr>
 </tbody>
 </table>
+<div class="fragment">
+<p>We want to compare <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span>, to determine if the probability of outcome 1 are the same for both groups.</p>
+</div>
 </section>
-<section id="species-dummy-variables" class="slide level2">
-<h2>Species Dummy Variables</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th></th>
-<th>Chinstrap</th>
-<th>Gentoo</th>
-<th>Adelie</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(D_1\)</span></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(D_2\)</span></td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="linear-model-4" class="slide level2">
-<h2>Linear Model</h2>
+<section id="test-statistic" class="slide level2">
+<h2>Test Statistic</h2>
+<p>We can use both <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span> to determine if there is a fundamental difference.</p>
+<div class="fragment">
+<p>However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
-\hat Y_i = \hat \beta_0 + \hat\beta_1 D_{1i} + \hat\beta_2 D_{2i}
+T =  \hat p_{11} - \hat p_{12}
 \]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(\hat \beta_1\)</span> indicates how body mass changes from Adelie to Chinstrap.</p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\hat \beta_2\)</span> indicates how body mass changes from Adelie to Gentoo.</p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\hat \beta_0\)</span> represents the baseline level, in this case the body mass of Adelie.</p>
 </div>
 </section>
-<section id="fitting-a-model-in-r-1" class="slide level2">
-<h2>Fitting a Model in R</h2>
+<section id="obtain-proportions-in-r" class="slide level2">
+<h2>Obtain Proportions in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">props_df</span>(DATA, GROUP, OUTCOME, VAL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
+<section id="obtain-difference-in-r" class="slide level2">
+<h2>Obtain Difference in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">props_df</span>(DATA, GROUP, OUTCOME, VAL, <span class="at">diff =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="bacteria-example" class="slide level2">
+<h2>Bacteria Example</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">props_df</span>(bacteria, ap, y, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ species, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt;      (Intercept)  speciesChinstrap     speciesGentoo  
-#&gt;          3706.16             26.92           1386.27</code></pre>
+<pre><code>#&gt;    p1    p2 
+#&gt; 0.750 0.875</code></pre>
 </div>
 </div>
+</section>
+<section id="bacteria-example-1" class="slide level2">
+<h2>Bacteria Example</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">props_df</span>(bacteria, ap, y, <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.125</code></pre>
+</div>
+</div>
+</section>
+<section id="hypotheis-test" class="slide level2">
+<h2>Hypotheis Test</h2>
+<p>We will test the following hypothesis:</p>
 <p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 D_{1i} + 1386.27 D_{2i}
+H_0:\ \Delta =  p_1-p_2 = 0
 \]</span></p>
-</section>
-<section id="finding-the-adelie-mass" class="slide level2">
-<h2>Finding the Adelie MASS</h2>
 <p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 (0) + 1386.27 (0)
+H_a:\ \Delta = p_1 - p_2 \neq 0
 \]</span></p>
-</section>
-<section id="finding-the-chinstrap-mass" class="slide level2">
-<h2>Finding the Chinstrap MASS</h2>
-<p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 (1) + 1386.27 (0)
-\]</span></p>
-</section>
-<section id="finding-the-gentoo-mass" class="slide level2">
-<h2>Finding the Gentoo MASS</h2>
-<p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 (0) + 1386.27 (1)
-\]</span></p>
-</section>
-<section id="intepreting-hat-beta_1" class="slide level2">
-<h2>Intepreting <span class="math inline">\(\hat \beta_1\)</span></h2>
-<p>On average, Chinstrap has a larger mass than Adelie by about 26.92 grams.</p>
-</section>
-<section id="intepreting-hat-beta_2" class="slide level2">
-<h2>Intepreting <span class="math inline">\(\hat \beta_2\)</span></h2>
-<p>On average, Gentoo has a larger mass than Adelie by about 1386.27 grams.</p>
 </section></section>
 <section>
-<section id="strength-and-correlation" class="title-slide slide level1 agenda-slide center">
-<h1>Strength and Correlation</h1>
+<section id="normal-distribution" class="title-slide slide level1 agenda-slide center">
+<h1>Normal Distribution</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Categorical Variables</p>
+<p>Motivation</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Strength and Correlation</p>
+<p>Normal Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Central Limit Theorem</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Inference in R</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="correlation" class="slide level2">
-<h2>Correlation</h2>
-<p>Correlation is a statistics that can be used to describe the strength of the relationship between 2 continuous variables.</p>
-<div class="fragment">
-<p><span class="math display">\[
-r = \frac{1}{n-1}\sum^n_{i=1}\frac{x_i - \bar x}{s_x}\frac{y_i - \bar y}{s_y}
-\]</span></p>
+<section id="normal-distribution-1" class="slide level2">
+<h2>Normal Distribution</h2>
+<p>The <strong>Normal Distribution</strong> is a probability distribution that is symmetric, with most of the data points clustering around the mean.</p>
 <ul>
-<li><span class="math inline">\(\bar x\)</span>, <span class="math inline">\(\bar y\)</span>: sample means</li>
-<li><span class="math inline">\(s_x\)</span>, <span class="math inline">\(s_y\)</span>: sample standard deviations</li>
+<li>It’s <strong>bell-shaped</strong> and is defined mathematically by two parameters:
+<ul>
+<li><strong>Mean (<span class="math inline">\(\mu\)</span>)</strong>: The center or peak of the distribution.</li>
+<li><strong>Standard Deviation (<span class="math inline">\(\sigma\)</span>)</strong>: Controls the spread of the distribution.</li>
+</ul></li>
+</ul>
+</section>
+<section id="normal-distribution-2" class="slide level2">
+<h2>Normal Distribution</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb7-2"><a></a><span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> <span class="fu">dnorm</span>(x)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="5_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="properties-of-the-normal-distribution" class="slide level2 scrollable">
+<h2>Properties of the Normal Distribution</h2>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Symmetry</strong>: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.</li>
+<li class="fragment"><strong>Unimodal</strong>: There is a single peak at the mean.</li>
+<li class="fragment"><strong>Mean, Median, and Mode are Equal</strong>: In a normal distribution, these three measures of central tendency are located at the same point.</li>
+<li class="fragment"><strong>68-95-99.7 Rule</strong> (Empirical Rule)</li>
+</ol>
+</div>
+</section>
+<section id="standard-normal-distribution" class="slide level2">
+<h2>Standard Normal Distribution</h2>
+<p>The <strong>Standard Normal Distribution</strong> is a special type of normal distribution with a mean of 0 and a standard deviation of 1. It’s often used as a reference to convert any normal distribution to a standard form.</p>
+</section>
+<section id="z-scores" class="slide level2">
+<h2>Z-Scores</h2>
+<p>A <strong>Z-score</strong> (or standard score) tells us how many standard deviations an individual data point is from the mean. It’s calculated as: <span class="math inline">\(Z = \frac{X - \mu}{\sigma}\)</span></p>
+<ul>
+<li>If <span class="math inline">\(Z\)</span> is positive, the data point is above the mean.</li>
+<li>If <span class="math inline">\(Z\)</span> is negative, the data point is below the mean.</li>
+<li>Using Z-scores, we can compare values across different normal distributions or find the probability associated with a particular score.</li>
+</ul>
+</section>
+<section id="empirical-rule" class="slide level2 scrollable">
+<h2>Empirical Rule</h2>
+<p>The <strong>Empirical Rule</strong> provides a way to understand the spread of data in a normal distribution by describing how data points cluster around the mean. According to this rule:</p>
+<ol type="1">
+<li>Approximately <strong>68%</strong> of data points fall within <strong>one standard deviation</strong> of the mean.</li>
+<li>Approximately <strong>95%</strong> of data points fall within <strong>two standard deviations</strong> of the mean.</li>
+<li>Approximately <strong>99.7%</strong> of data points fall within <strong>three standard deviations</strong> of the mean.</li>
+</ol>
+</section>
+<section id="empirical-rule-and-normal-distribution" class="slide level2">
+<h2>Empirical Rule and Normal Distribution</h2>
+<p>In a normal distribution:</p>
+<ul>
+<li><p><strong>68% of data</strong> lies between <span class="math inline">\((\mu - \sigma)\) and \((\mu + \sigma)\)</span>.</p></li>
+<li><p><strong>95% of data</strong> lies between <span class="math inline">\((\mu - 2\sigma)\) and \((\mu + 2\sigma)\)</span>.</p></li>
+<li><p><strong>99.7% of data</strong> lies between <span class="math inline">\((\mu - 3\sigma)\) and \((\mu + 3\sigma)\)</span>.</p></li>
+</ul>
+<p>These intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities.</p>
+</section>
+<section id="visualizing-the-empirical-rule" class="slide level2 scrollable">
+<h2>Visualizing the Empirical Rule</h2>
+<ol type="1">
+<li>The <strong>68% region</strong> represents the middle of the curve, starting one standard deviation left of the mean and ending one standard deviation right.</li>
+<li>The <strong>95% region</strong> stretches further out, covering almost the entire curve except for the outer tails.</li>
+<li>The <strong>99.7% region</strong> includes nearly all data points, covering the entire curve except for a tiny fraction at each extreme.</li>
+</ol>
+</section>
+<section id="empirical-rule-1" class="slide level2">
+<h2>Empirical Rule</h2>
+
+<img data-src="img/fig-er6895997-1.png" class="r-stretch"></section></section>
+<section>
+<section id="central-limit-theorem" class="title-slide slide level1 agenda-slide center">
+<h1>Central Limit Theorem</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Motivation</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Normal Distribution</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Central Limit Theorem</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Inference in R</p>
+</div></li>
 </ul>
 </div>
+</section>
+<section id="central-limit-theorem-1" class="slide level2 scrollable">
+<h2>Central Limit Theorem</h2>
+<p>What does the Central Limit Theorem (CLT) actually tell us?</p>
 <div class="fragment">
-<p><span class="math display">\[
--1 \leq r \leq 1
-\]</span></p>
+<p>The CLT states that:</p>
+<div>
+<ol type="1">
+<li class="fragment"><strong>If you take a sufficiently large number of samples from any population, the distribution of the sample means will be approximately normal.</strong></li>
+<li class="fragment">This approximation holds <strong>no matter the shape of the original population distribution</strong> (it could be normal, skewed, bimodal, etc.).</li>
+<li class="fragment">The mean of this sampling distribution will be equal to the <strong>population mean</strong>.</li>
+<li class="fragment">The standard deviation of this sampling distribution (often called the <strong>standard error</strong>) will be the population standard deviation divided by the square root of the sample size, ( _{} = ).</li>
+</ol>
+</div>
 </div>
 </section>
-<section id="correlations" class="slide level2">
-<h2>Correlations</h2>
-
-<img data-src="https://openintro-ims.netlify.app/model-slr_files/figure-html/fig-posNegCorPlots-1.png" class="r-stretch quarto-figure-center"><p class="caption">From IMS 2e</p></section>
-<section id="coefficient-of-determination" class="slide level2">
-<h2>Coefficient of Determination</h2>
-<p>The coefficient of determination evaluates the strength between an outcome <span class="math inline">\(Y\)</span> and the linear model, which includes <span class="math inline">\(X\)</span>.</p>
-<div class="fragment">
-<p><span class="math display">\[
-R^2 = r^2
-\]</span></p>
+<section id="why-the-central-limit-theorem-is-important" class="slide level2 scrollable">
+<h2>Why the Central Limit Theorem is Important</h2>
+<p>The CLT is powerful for several reasons:</p>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Predicting Sample Outcomes:</strong> Since we know the distribution of sample means will be approximately normal, we can make predictions about future samples.</li>
+<li class="fragment"><strong>Confidence Intervals and Hypothesis Testing:</strong> The normal distribution of sample means allows us to estimate population parameters (like the mean) with confidence and test hypotheses even if the population itself isn’t normally distributed.</li>
+<li class="fragment"><strong>Practical Applications in Various Fields:</strong> From quality control in manufacturing to political polling and medicine, the CLT lets us make inferences about population characteristics based on sample data.</li>
+</ol>
 </div>
-<div class="fragment">
-<p><span class="math display">\[
-0 \leq R^2 \leq 1
-\]</span></p>
-</div>
-<div class="fragment">
-<p>The coefficient of determination measures the total variation explained by the linear model. The closer to 1, the better the linear model.</p>
+</section></section>
+<section>
+<section id="inference" class="title-slide slide level1 agenda-slide center">
+<h1>Inference</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Motivation</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Normal Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Central Limit Theorem</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Inference in R</p>
+</div></li>
+</ul>
 </div>
 </section>
-<section id="correlation-in-r" class="slide level2">
-<h2>Correlation in R</h2>
+<section id="using-mathematical-models" class="slide level2">
+<h2>Using Mathematical Models</h2>
+<p>The inferential procedures, such as computing the p-value or confidence interval, can be constructed with mathematical models.</p>
+</section>
+<section id="advantages" class="slide level2">
+<h2>Advantages</h2>
+<div>
+<ul>
+<li class="fragment">Mathematical Models have been widely studied and implemented in several software packages.</li>
+<li class="fragment">These are not computationally intensive</li>
+<li class="fragment">Can work with smaller data set and provide more reliable results</li>
+</ul>
+</div>
+</section>
+<section id="disadvantages" class="slide level2">
+<h2>Disadvantages</h2>
+<div>
+<ul>
+<li class="fragment">If the mathematical model is wrong, results may be invalid.</li>
+<li class="fragment">Difficult to know what are the true mathematical models.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="inference-in-r" class="title-slide slide level1 agenda-slide center">
+<h1>Inference in R</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Motivation</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Normal Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Central Limit Theorem</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Inference</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Inference in R</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="inference-in-r-1" class="slide level2">
+<h2>Inference in R</h2>
+<p><span class="math display">\[
+H_0:\ \Delta =  p_1-p_2 = 0
+\]</span></p>
+<p><span class="math display">\[
+H_a:\ \Delta = p_1 - p_2 \neq 0
+\]</span></p>
+</section>
+<section id="proportions-test" class="slide level2">
+<h2>Proportions Test</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">cor</span>(DATA<span class="sc">$</span>Y, DATA<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(CAT_1, CAT_2), <span class="at">n =</span> <span class="fu">c</span>(N_1, N_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
+<section id="descriptives" class="slide level2">
+<h2>Descriptives</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">cor</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="proportions-test-in-r" class="slide level2">
+<h2>Proportions Test in R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">93</span>, <span class="dv">84</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">124</span>, <span class="dv">96</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.8729789</code></pre>
-</div>
-</div>
-</section>
-<section id="coefficient-of-determination-in-r" class="slide level2">
-<h2>Coefficient of Determination in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
-<span id="cb22-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="example-4" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span>
-<span id="cb23-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.6744887</code></pre>
+<pre><code>#&gt; 
+#&gt;  2-sample test for equality of proportions with continuity correction
+#&gt; 
+#&gt; data:  c(93, 84) out of c(124, 96)
+#&gt; X-squared = 4.6109, df = 1, p-value = 0.03177
+#&gt; alternative hypothesis: two.sided
+#&gt; 95 percent confidence interval:
+#&gt;  -0.23516294 -0.01483706
+#&gt; sample estimates:
+#&gt; prop 1 prop 2 
+#&gt;  0.750  0.875</code></pre>
 </div>
 </div>
 
@@ -1150,7 +808,7 @@ R^2 = r^2
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1200,
 
         height: 700,
 
@@ -1184,6 +842,44 @@ R^2 = r^2
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
