@@ -1,0 +1,370 @@
+---
+title: "Statistics"
+subtitle: "A Math? A Science? An Art? Or Something Else?"
+author: "Isaac Quintanilla Salinas"
+editor: source
+format: 
+  revealjs:
+    touch: false
+    controls: true
+    pointer:
+      pointerSize: 32
+    incremental: false
+    slide-number: true
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+revealjs-plugins:
+  - pointer
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+## Statistical Warning
+
+![](https://media.tenor.com/GexFRAjz9XcAAAAC/theres-no-guarantee-it-would-work-south-park.gif){fig-alt="south park scientist in laboratory saying: There's no  guarantee it would work" fig-align="center"}
+
+## 
+
+![](https://media.tenor.com/BCyqY6leyXcAAAAC/linkin-park-in-the-end.gif){fig-alt="Chester from Linkin Park in \"In the End\" video with text saying: but in the end it doesn't even matter" fig-align="center"}
+
+# Statistics
+
+## Statistics {.smaller}
+
+:::::: columns
+::: {.column width="50%"}
+![](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*VR-XNA60etBQj-r57knvKA.png){fig-alt="An image cloud of different statistical plots, the word statistics is in the middle with capital letters." fig-align="center"}
+:::
+
+:::: {.column width="50%"}
+::: incremental
+-   With an increasing use of data to make decisions, Statistics has been essential for processing large amounts of data to byte-size information
+
+-   Statistics is also known as
+
+    -   Data Science
+
+    -   Machine Learning
+
+    -   Artificial Intelligence
+
+-   So for today, we're asking: **what is Statistics?**
+:::
+::::
+::::::
+
+## What does Google say?
+
+::::: columns
+::: {.column width="50%"}
+### UC Irvine
+
+Statistics is the science concerned with developing and studying methods for collecting, analyzing, interpreting and presenting empirical data.
+:::
+
+::: {.column width="50%"}
+### Wikipedia
+
+Statistics is a mathematical body of science that pertains to the collection, analysis, interpretation or explanation, and presentation of data, or as a branch of mathematics.
+:::
+:::::
+
+## What does AI say?
+
+::::: columns
+::: {.column width="50%"}
+### ChatGPT
+
+Statistics is a branch of mathematics and a field of study that deals with the collection, analysis, interpretation, presentation, and organization of data.
+:::
+
+::: {.column width="50%"}
+### Google Gemini
+
+Statistics is the science of collecting, analyzing, interpreting, and presenting data.
+:::
+:::::
+
+## What do researchers say?
+
+::: panel-tabset
+## Anthropologist
+
+Objectively interpreting data to make meaningful inferences about our predictions.
+
+## Microbiologist
+
+Whatever the statistician says.
+
+## Sociologist
+
+Gathering the narratives of individuals, groups, or society and telling a story about their past, present, or future. The numbers paint a picture worth many words.
+
+## Political Scientist
+
+Using numbers to try to explain behaviors and/or patterns in our world.
+
+## Ecologist
+
+Statistics is the way to make sense of the natural world by taking data we collect to identify patterns between variables, and applying statistical theory to make sure we are taking the right approach to data collection and analysis. Also, assess patterns to see if they are reproducible and provide a logical explanation that makes biological sense.
+
+## Mathematician
+
+Statistics is the study of data, patterns, and trends.
+:::
+
+## What is it?
+
+::::: columns
+::: {.column width="50%"}
+### Math
+
+![](https://media.tenor.com/5ZfhdHdoK3UAAAAC/incredibles-the.gif){fig-alt="Mr. Incredible yelling. Text includes: Math is Math! Math is Math!" fig-align="center" width="498" height="380"}
+:::
+
+::: {.column width="50%"}
+### Science
+
+![](https://media.tenor.com/qWcKVwjtwAQAAAAC/bill-nye-mind-blown.gif){fig-alt="Bill Nye, waving up dramatically with words Science!!! on image." fig-align="center" width="494" height="380"}
+:::
+:::::
+
+## What does a Statistician say?
+
+It is the study of variation and randomness!
+
+::: fragment
+Using mathematics, we model randomness to characterizes commonality and variation!
+:::
+
+::: fragment
+Using science, we systematically refine models to better fit randomness in data!
+:::
+
+::: fragment
+Using art, when it all eventually fails!
+:::
+
+## When it fails?!?!
+
+::: fragment
+![](https://media.tenor.com/XtqAqClw6AAAAAAC/yes-yes-professor-farnsworth.gif){fig-alt="Professor Farmsworth from futurama doing a 'yes yes' motion with hand and looking away. Text include Yes, Yes" fig-align="center"}
+:::
+
+## Statistics Mantra - George Box
+
+::::: columns
+::: {.column width="50%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/GeorgeEPBox.jpg/400px-GeorgeEPBox.jpg){fig-alt="An image of George Box" fig-align="center" width="333"}
+:::
+
+::: {.column width="50%"}
+**All models are wrong,**
+
+**some are useful!**
+:::
+:::::
+
+## What is the formal definition of Statistics?
+
+Statistics is both the development of mathematical models to be used in real-world data and the analysis of data using existing models.
+
+## Probability Models
+
+::::: columns
+::: {.column width="50%"}
+![](https://media.tenor.com/h5dDA212OzMAAAAC/cat-catwalk.gif){fig-alt="A cat walking an wearing a tutu skirt. Cat walks like a model." fig-align="center"}
+:::
+
+::: {.column width="50%"}
+-   Model observations that follow a new data generating process
+
+-   Understand its properties
+
+-   Develop new probability distributions
+
+-   Known as Probability Theory
+
+-   Researcher is a Probabilist or Mathematical Statistician
+:::
+:::::
+
+## Data Analysis
+
+::::: columns
+::: {.column width="50%"}
+-   Model data with a known probability model
+
+-   Account for sources of variation and bias
+
+-   Account for violations of independence and randomness
+
+-   Known as Statistician or Data Scientist
+:::
+
+::: {.column width="50%"}
+![](https://media.tenor.com/ogsH7Ailje8AAAAd/cat-funny-cat.gif){fig-alt="A cat working on a laptop hissing angrily." fig-align="center"}
+:::
+:::::
+
+## What's the goal of a Statistician?
+
+::: {.fragment style="font-size: 2em; color: red;"}
+**INFERENCE**
+:::
+
+::: fragment
+Use our sample data to understand the larger population.
+:::
+
+::: fragment
+The data will tell us how the population generally behaves.
+:::
+
+::: fragment
+The data will guide us in the differences in units.
+:::
+
+::: fragment
+Data will tell us if there is a signal or just noise.
+:::
+
+
+## Word Cloud
+
+![](img/wordcloud.png){fig-alt="A word cloud about statistics. main words are data, variation, probability, and difficult" fig-align="center"}
+
+## Conducting Inference
+
+![](https://statsandr.com/blog/what-is-the-difference-between-population-and-sample_files/population-sample.png){fig-alt="A population of people is displayed. then pointing to a sample with individuals being sampled from population. Afterwards, there is an arrow pointing back to the population with the words inference." fig-align="center"}
+
+## Are we seeing something or is it just noise???
+
+Are we seeing something different from what was expected? Or is it due to random chance?
+
+## Hypothesis Testing
+
+::: incremental
+1.  Set up the Null and Alternative Hypothesis
+2.  Construct a test statistic based on the null hypothesis
+3.  Construct a distribution of the test statistic based on probability theory
+4.  Compute the probability of observing the test statistic
+5.  Make a decision based on the probability
+:::
+
+## What if we cannot construct the distribution?!?!
+
+::::::: columns
+:::: {.column width="50%"}
+::: fragment
+![](https://media.tenor.com/x5dpKrM1U6oAAAAd/vamonos-lets-go.gif){fig-alt="An image showing the Monte Carlo car pulling out from a garage." fig-align="center" width="339"}
+:::
+::::
+
+:::: {.column width="50%"}
+::: fragment
+We bring out the **Monte Carlo** methods!
+:::
+::::
+:::::::
+
+## Monte Carlo Methods
+
+-   Monte Carlo Methods are used to construct a distribution function of an obscure test statistic
+-   We simulate a large number of data sets based on the null hypothesis
+-   We construct a test statistic for each fake data set and the real one
+-   We count how many data sets produce a test statistic that is more extreme than the real test statistic
+-   $p=\#\ of\ extreme\ data\ sets\ /\ all\ data\ sets$
+
+## Overview of Research
+
+::: incremental
+1.  Ask a question about a population
+2.  Collect data from a sample
+3.  Construct and test a hypothesis
+4.  Draw conclusion about the population
+5.  Refine your question and methodology
+:::
+
+## So, what is Statistics?
+
+::: fragment
+![](https://media.tenor.com/P647Itj1axcAAAAC/puss-in-boots-cat.gif){fig-alt="Shows Puss in Boots from Shrek turning around" fig-align="center"}
+
+### For you, I'll be anything
+:::
+
+
+# But Wait! There's More!
+
+## What's Statistics without a little ...
+
+::: fragment
+![](https://media.tenor.com/RhAwIEGUEd4AAAAC/drama-top.gif){fig-alt="Shows a man in disgust with the words: DRAMA" fig-align="center"}
+:::
+
+## Train of Thoughts
+
+::: fragment
+There are two train of thoughts on how to interpret estimates and probability.
+:::
+
+::: fragment
+One approach is the Frequentist approach.
+:::
+
+::: fragment
+The other approach is the Bayesian approach.
+:::
+
+::: fragment
+Both sides hate each other.
+:::
+
+## Frequentists
+
+![](https://media.tenor.com/UfP_ixn3qlwAAAAC/valor-pokemon-go.gif){fig-alt="Symbol from Team Valor from Pokemon appearing" fig-align="center" width="515" height="675"}
+
+## Frequentists
+
+A frequentist, in the context of statistics, is an individual who adheres to the frequentist interpretation of probability and statistical inference.
+
+::: fragment
+Meaning probability is obtained by the repetition of multiple experiments.
+:::
+
+## Bayesians
+
+![](https://media.tenor.com/ncl2k1KRsQgAAAAC/mystic-team-mystic.gif){fig-alt="Symbol from Team Mystic From Pokemon appearing" fig-align="center"}
+
+## Bayesians
+
+A Bayesians, in the context of statistics, is an individual who adheres to the Bayesian interpretation of probability and statistical inference.
+
+::: fragment
+Probability is obtained by likelihood of an event to occur, given data and prior knowledge.
+:::
+
+## What am I (and people that have lives)? {.smaller}
+
+![](https://media.tenor.com/O_JvW8kZEIAAAAAd/the-simpsons-playing.gif){fig-alt="Bart Simpson and Nelson rolling bowling balls, then ralph places a banana. Words Appear in the following order: Go Team Mystic, Go Team Valor, then Go team Instinct." fig-align="center"}
+
+
+::: fragment
+### Whatever gets the job done!
+:::
+
+## There is more, much more, but I will say this, in my statistical journey
+
+::: fragment
+![](https://media.tenor.com/9O8vuQzirQMAAAAd/i-did-it-my-way-frank-sinatra.gif){fig-alt="Shows Frank Sinatra singing with the words: I did it my way" fig-align="center"}
+:::
+

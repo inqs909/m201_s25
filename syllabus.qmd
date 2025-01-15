@@ -44,7 +44,8 @@ Critical reasoning using a quantitative and statistical, problem-solving approac
 
 ### Textbook
 
-[Introduction to Modern Statistics](https://openintro-ims.netlify.app/)
+[Introduction to Modern Statistics](https://openintro-ims.netlify.app/) (IMS)
+[Statistical Modeling](https://statistical-modeling.netlify.app/) (SM)
 
 ### Embedded Peer Educator (EPE)
 
@@ -77,15 +78,19 @@ Participation is based on short writing assignments conducted in class. There wi
 
 #### Notebook Assignments
 
-Notebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. The notebook assignment will be due on Wednesday at 11:59 PM every week.
+Notebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. Notebook assignments will be due on Wednesday at 11:59 PM every week.
 
 #### Reading Assignments
 
-Reading assignments are designed to teach you different statistical concepts and R Programming. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Sunday night at 11:59 PM. The 3 lowest reading assignments will be dropped.
+Reading assignments are designed to teach you different statistical concepts. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Friday night at 11:59 PM. The 3 lowest reading assignments will be dropped.
 
-#### Video Lectures
+#### Video Assignments
 
-Videos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using PlayPosit, where questions are embedded in the video to check for understanding. The videos may require students to program and/or read research articles.
+Videos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using VoiceThreads. The 3 lowest video assignments will be dropped. Video assignments will be due every Sunday at 11:59 PM.
+
+#### Homework Assignments
+
+Homework assignmets are designed to give you an opportunity to practice what is viewed from the video assignments. The assignments will require you to program in R. The 3 lowest homework assignments will be dropped. Homework assignments will be due every Sunday at 11:59 PM.
 
 #### Exams
 
@@ -93,34 +98,35 @@ There will be three in exams. Exam #1 will be on Sept 30, Exam #2 will be on Nov
 
 #### Extra Credit
 
-There will be **3** extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found [here](ec.html).
+There will be **4** extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found [here](ec.html).
 
 ### Class Schedule
 
 The following outline may be subject to change. Any changes will be announced in class.
 
-| Week        | Topic                                   | Readings   | NB Due | Video Lecture Due |
-|:--------------|:--------------|:--------------|:--------------|---------------|
-| 8/26-8/30   | Welcome to College/Course               |            | 1       |                   |
-| 9/2-9/6     | Hello Data and Study Design             | Ch 1 and 2 | 2       | 1 and 2           |
-| 9/9-9/13    | Exploring Categorical Data              | Ch 4       | 3       | 3                 |
-| 9/16-9/20   | Exploring Numerical Data                | Ch 5       | 4       | 4                 |
-| 9/23-9/27   | Simple Linear Regression                | Ch 7       | 5       | 5                 |
-| 9/30-10/4   | Exam #1/Multivariable Linear Regression |            |         |                   |
-| 10/7-10/11  | Multivariable Linear Regression         | Ch 8       | 6       | 6                 |
-| 10/14-10/18 | Logistic Regression                     | Ch 9       | 7       | 7                 |
-| 10/21-10/25 | Hypothesis Testing                      | Ch 11      | 8       | 8                 |
-| 10/28-11/1  | Bootstrap-based Confidence Intervals    | Ch 12      | 9       | 9                 |
-| 11/4-11/9   | Mathematical Models                     | Ch 13      | 10      | 10                |
-| 11/11-11/15 | Exam #2                                 |            |         |                   |
-| 11/18-11/22 | Decision Errors                         | Ch 14      | 11      | 11                |
-| 11/25-11/29 | Linear Regression Inference             | Ch 24      |         |                   |
-| 12/2-12/6   | Logistic Regression Inference           | Ch 26      | 12      | 12                |
-| 12/9-12/13   | Exam #3                                 |            |         |                   |
+| Week      | Topic                            | Readings | NB Due | Video Due | HW Due |
+|:----------|:---------------------------------|:---------|:-------|-----------|--------|
+| 1/20-1/24 | Holiday/Welcome to the Course    | SM 2     |        | 1         |        |
+| 1/27-1/31 | Introduction to Statistics and R | SM 3     | 1      | 2         |        |
+| 2/3-2/7   | Data Generating Process          | IMS 4    | 2      | 3         | 1      |
+| 2/10-2/14 | Categorical Data                 | IMS 5    | 3      | 4         | 2      |
+| 2/17-2/21 | Numerical Data                   | SM 11    | 4      | 5         | 3      |
+| 2/24-2/28 | Distribution Functions           |          | 5      |           |        |
+| 3/3-3/7   | Exam 1/ Simple Linear Regression | IMS 7    |        | 6         |        |
+| 3/10-3/14 | Simple Linear Regression         | IMS 8    | 6      | 7         | 4      |
+| 3/17-3/21 | Spring Break                     |          |        |           |        |
+| 3/24-3/28 | Multi Linear Regression          | IMS 9    | 7      | 8         | 5      |
+| 3/31-4/4  | Holiday/ Logistic Regression     |          | 8      |           |        |
+| 4/7-4/11  | Exam 2/ Sampling Distribution    | SM 12    | 9      | 9         |        |
+| 4/14-4/18 | Sampling Distribution            | SM 13    | 10     | 10        | 6      |
+| 4/21-4/25 | Inference                        | ISM 24   | 11     | 11        | 7      |
+| 4/28-5/2  | Linear Regression Inference      | ISM 26   | 12     | 12        | 8      |
+| 5/5-5/9   | Logistic Regression Inference    |          | 13     |           |        |
+| 5/12-5/16 | Exam 3                           |          |        |           |        |
 
 ### Use of Generative Artificial Intelligence
 
-The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.  
+The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, Google Gemini.  
 
 
 ### University Policies

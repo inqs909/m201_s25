@@ -271,9 +271,6 @@ We are interesting in determine the proportion of having bacteria present is dif
 :::
 
 ## Crosstabulation
-linearia$y)
-```
-
 
 
 ## Comparing Proportions

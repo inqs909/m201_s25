@@ -198,8 +198,6 @@
       margin-right: 0; 
     }
   </style>
-  <link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-  <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -289,7 +287,7 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <section id="randomness-effect" class="slide level2">
 <h2>Randomness Effect</h2>
 
-<img data-src="12_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="12_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"></section></section>
 <section>
 <section id="simulating-unicorns" class="title-slide slide level1 agenda-slide center">
 <h1>Simulating Unicorns</h1>
@@ -333,12 +331,18 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">unicorns</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Unicorn_ID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Age"],"name":[2],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Color"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Type_of_Unicorn"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Type_of_Horn"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Horn_Length"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Horn_Strength"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Weight"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Health_Score"],"name":[10],"type":["int"],"align":["right"]},{"label":["Personality_Score"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Magical_Score"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Elusiveness_Score"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Gentleness_Score"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["Nature_Score"],"name":[15],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"4","3":"Non-binary","4":"Silver","5":"Ruvas","6":"Opal","7":"5.465307","8":"26.13338","9":"95.85981","10":"7","11":"1.2061077","12":"10817.36","13":"37.44063","14":"51.297276","15":"923.9821"},{"1":"2","2":"13","3":"Agender","4":"Silver","5":"Jewel","6":"Aquamarine","7":"5.144989","8":"31.40568","9":"176.50814","10":"3","11":"0.4774693","12":"11082.94","13":"37.97389","14":"87.019946","15":"957.1620"},{"1":"3","2":"4","3":"Genderfluid","4":"Black","5":"Jewel","6":"Aquamarine","7":"5.423439","8":"32.30349","9":"77.16563","10":"4","11":"0.4642751","12":"10850.49","13":"39.64838","14":"-20.991985","15":"928.2645"},{"1":"4","2":"19","3":"Male","4":"Black","5":"Ember","6":"Opal","7":"5.349964","8":"27.40067","9":"130.45634","10":"7","11":"0.4199198","12":"11236.69","13":"35.61400","14":"7.378667","15":"976.7927"},{"1":"5","2":"6","3":"Agender","4":"Gray","5":"Ruvas","6":"Aquamarine","7":"5.282165","8":"28.37068","9":"92.94959","10":"3","11":"1.1476177","12":"10856.23","13":"36.00368","14":"32.739294","15":"929.4471"},{"1":"6","2":"7","3":"Genderfluid","4":"Gold","5":"Rainbow","6":"Opal","7":"4.949724","8":"31.30961","9":"124.22204","10":"4","11":"1.5577022","12":"10886.64","13":"34.78133","14":"-14.308443","15":"932.8079"},{"1":"7","2":"4","3":"Female","4":"Brown","5":"Jewel","6":"Opal","7":"5.493783","8":"26.93429","9":"156.47388","10":"6","11":"0.1072272","12":"10852.16","13":"37.73113","14":"29.149792","15":"928.6527"},{"1":"8","2":"13","3":"Agender","4":"Pink","5":"Ember","6":"Aquamarine","7":"4.421251","8":"30.98700","9":"131.51968","10":"2","11":"0.2627573","12":"11056.36","13":"38.60596","14":"-3.548232","15":"954.0685"},{"1":"9","2":"1","3":"Agender","4":"Black","5":"Ruvas","6":"Opal","7":"5.147302","8":"27.98803","9":"158.27478","10":"10","11":"0.3855125","12":"10756.24","13":"30.37957","14":"41.427185","15":"916.6058"},{"1":"10","2":"18","3":"Agender","4":"Black","5":"Jewel","6":"Opal","7":"5.114381","8":"27.70868","9":"178.68549","10":"9","11":"1.9744132","12":"11249.06","13":"34.62187","14":"73.689385","15":"978.1388"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    Unicorn_ID Age      Gender  Color Type_of_Unicorn Type_of_Horn Horn_Length Horn_Strength    Weight Health_Score Personality_Score Magical_Score Elusiveness_Score Gentleness_Score Nature_Score
+#&gt; 1           1   3      Female  Brown           Ruvas         Opal    4.955346      28.16869 160.42118            7       1.330795501      10817.34          34.54175         28.21244     924.2221
+#&gt; 2           2   5        Male  White           Ember   Aquamarine    5.606366      28.68743 128.23893            1       1.369650652      10815.60          39.75906         27.90767     923.9906
+#&gt; 3           3   1 Genderfluid  Black         Rainbow   Aquamarine    4.962789      27.79517 150.50835            4       1.696095154      10700.52          32.93975         75.58993     909.4231
+#&gt; 4           4  17  Non-binary  White           Ruvas   Aquamarine    4.845561      32.10478 130.02290           10       2.661584907      11149.75          26.53849         22.15160     965.9308
+#&gt; 5           5   4  Non-binary Silver         Rainbow   Aquamarine    5.139583      28.59823  92.17478            1       0.551404390      10769.10          37.45529         13.43900     917.9776
+#&gt; 6           6  15      Female Silver           Ember   Aquamarine    4.845207      26.10208 142.18768            8       0.276208352      11108.32          37.80165         33.20928     960.9188
+#&gt; 7           7  11     Agender  Brown           Ruvas   Aquamarine    5.081011      27.89359 109.80280            7       0.486435385      10982.73          33.95463         37.83210     945.3008
+#&gt; 8           8  14     Agender Silver           Ember         Opal    5.095046      27.72001 157.70652            8       0.197006140      11109.75          33.78166         21.81121     960.6637
+#&gt; 9           9  14  Non-binary  Black         Rainbow   Aquamarine    5.025579      29.34926 155.46184            7       0.959826990      11061.74          36.85237        -11.21101     954.5279
+#&gt; 10         10  13     Agender   Gray           Ruvas   Aquamarine    5.247526      30.38675 129.54547            1       0.009503896      11040.12          33.89087         71.43780     952.3782</code></pre>
 </div>
 </div>
 </section>
@@ -347,7 +351,7 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">names</span>(<span class="fu">unicorns</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">names</span>(<span class="fu">unicorns</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;  [1] "Unicorn_ID"        "Age"               "Gender"            "Color"             "Type_of_Unicorn"   "Type_of_Horn"      "Horn_Length"       "Horn_Strength"     "Weight"            "Health_Score"     
@@ -370,10 +374,10 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">1.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">1.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -1.881814</code></pre>
+<pre><code>#&gt; [1] 0.6168518</code></pre>
 </div>
 </div>
 </section>
@@ -382,14 +386,20 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">unicorns</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(Nature_Score, Magical_Score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">unicorns</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(Nature_Score, Magical_Score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Nature_Score"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Magical_Score"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"959.7628","2":"11099.54"},{"1":"939.1152","2":"10932.62"},{"1":"976.0361","2":"11232.52"},{"1":"930.0296","2":"10862.89"},{"1":"936.5928","2":"10917.92"},{"1":"948.5210","2":"11009.67"},{"1":"969.9342","2":"11180.92"},{"1":"958.6468","2":"11096.24"},{"1":"916.0436","2":"10752.72"},{"1":"942.2980","2":"10961.88"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;    Nature_Score Magical_Score
+#&gt; 1      949.8655      11025.12
+#&gt; 2      971.2251      11192.06
+#&gt; 3      959.8663      11098.00
+#&gt; 4      927.1959      10842.51
+#&gt; 5      967.4691      11161.71
+#&gt; 6      918.7572      10770.08
+#&gt; 7      918.9238      10776.59
+#&gt; 8      964.7159      11139.25
+#&gt; 9      913.6342      10733.49
+#&gt; 10     930.5818      10865.76</code></pre>
 </div>
 </div>
 </section>
@@ -398,30 +408,30 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="12_files/figure-html/unnamed-chunk-7-1.png" width="672" class="r-stretch"></section>
 <section id="dgp-of-magical-score-2" class="slide level2">
 <h2>DGP of Magical Score 2</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="fu">unicorns</span>(<span class="dv">500</span>), <span class="fu">aes</span>(Magical_Score)) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="12_files/figure-html/unnamed-chunk-8-1.png" width="672" class="r-stretch"></section>
 <section id="estimating-beta_1-via-lm" class="slide level2">
 <h2>Estimating <span class="math inline">\(\beta_1\)</span> via <code>lm</code></h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>u1 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
-<span id="cb9-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>u1 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb11-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
@@ -430,7 +440,7 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 #&gt; 
 #&gt; Coefficients:
 #&gt;  (Intercept)  Nature_Score  
-#&gt;      3413.97          8.01</code></pre>
+#&gt;     3419.594         8.004</code></pre>
 </div>
 </div>
 </section>
@@ -439,8 +449,8 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>u2 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
-<span id="cb11-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>u2 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb13-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
@@ -449,7 +459,7 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 #&gt; 
 #&gt; Coefficients:
 #&gt;  (Intercept)  Nature_Score  
-#&gt;     3419.135         8.004</code></pre>
+#&gt;     3424.800         7.998</code></pre>
 </div>
 </div>
 </section>
@@ -458,8 +468,8 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>u3 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
-<span id="cb13-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>u3 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb15-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
@@ -468,7 +478,7 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 #&gt; 
 #&gt; Coefficients:
 #&gt;  (Intercept)  Nature_Score  
-#&gt;         3423             8</code></pre>
+#&gt;     3420.529         8.003</code></pre>
 </div>
 </div>
 </section>
@@ -477,8 +487,8 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>u4 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
-<span id="cb15-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>u4 <span class="ot">&lt;-</span> <span class="fu">unicorns</span>(<span class="dv">500</span>)</span>
+<span id="cb17-2"><a></a><span class="fu">lm</span>(Magical_Score <span class="sc">~</span> Nature_Score, u4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
@@ -487,7 +497,7 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 #&gt; 
 #&gt; Coefficients:
 #&gt;  (Intercept)  Nature_Score  
-#&gt;     3420.826         8.002</code></pre>
+#&gt;     3423.381         7.999</code></pre>
 </div>
 </div>
 </section>
@@ -496,56 +506,56 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>betas <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>,</span>
-<span id="cb17-2"><a></a>                   <span class="fu">b</span>(Magical_Score <span class="sc">~</span> Nature_Score, <span class="dv">1</span>, <span class="fu">unicorns</span>(<span class="dv">500</span>)))</span>
-<span id="cb17-3"><a></a></span>
-<span id="cb17-4"><a></a>betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>betas <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>,</span>
+<span id="cb19-2"><a></a>                   <span class="fu">b</span>(Magical_Score <span class="sc">~</span> Nature_Score, <span class="dv">1</span>, <span class="fu">unicorns</span>(<span class="dv">500</span>)))</span>
+<span id="cb19-3"><a></a></span>
+<span id="cb19-4"><a></a>betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;    [1] 8.002559 8.001210 7.999719 7.997580 8.005697 7.998003 7.996752 7.998871 7.997353 7.996345 8.003738 8.000084 7.996591 8.006174 7.998451 8.001871 8.000169 7.997779 8.001002 8.002043 8.002666 7.998262 7.999756
-#&gt;   [24] 7.999976 8.000253 8.002138 8.003373 8.004242 8.001345 8.001582 8.006285 7.996484 7.996776 7.995931 8.005799 7.993932 8.001782 8.007974 8.000993 8.001713 8.004310 7.998974 7.989814 7.998636 7.999904 8.003910
-#&gt;   [47] 7.997741 8.001589 8.000339 7.996925 8.005664 8.000203 8.000086 7.996876 7.995204 8.005304 7.998540 7.996220 7.997192 8.002216 7.994154 8.001541 7.996384 8.006159 8.006694 7.991873 8.005497 8.000119 7.997531
-#&gt;   [70] 8.003605 8.000045 8.004137 8.000115 8.002499 7.999681 7.996201 7.995270 7.996452 8.004151 7.990909 8.005366 7.998832 7.999423 8.000814 8.008168 7.999009 8.001772 8.004291 8.000907 8.008148 7.999991 8.001356
-#&gt;   [93] 7.993926 8.001404 8.002153 7.998701 7.997342 7.997878 8.000889 8.002647 7.997294 7.992935 8.001352 7.998036 7.998369 8.002194 8.001733 8.005639 8.002602 8.000069 8.001756 8.000174 7.999917 8.000242 7.996170
-#&gt;  [116] 8.004944 7.995111 8.001091 8.000211 8.005103 7.999590 7.997711 8.006950 8.003349 8.002366 8.000788 8.001913 8.000388 8.001648 8.009436 8.001799 8.001832 8.000754 8.001381 7.999142 7.999191 8.009143 8.003605
-#&gt;  [139] 8.004032 8.000857 8.005373 7.999321 8.003161 7.998503 8.004747 7.997305 7.996209 7.998225 8.000409 7.994674 8.003740 7.994391 8.005882 7.996472 8.003111 7.999202 7.997005 7.999119 7.994681 7.996457 7.998162
-#&gt;  [162] 7.996914 7.995750 7.998906 8.002716 7.994168 7.998282 7.999355 8.005399 7.996875 8.004286 8.002871 7.995528 8.000538 8.003522 8.003272 8.000963 7.997856 8.001604 8.004995 7.996637 7.995086 8.002075 7.998462
-#&gt;  [185] 8.006481 7.999517 7.993386 8.002347 8.007174 8.001248 7.999403 7.997378 7.996678 7.991755 8.009109 7.995801 7.995389 8.005238 7.995224 7.998858 7.995997 7.999514 7.992274 7.997385 7.996260 7.990768 8.005370
-#&gt;  [208] 7.991329 7.996939 7.999931 7.996748 8.003260 7.998625 8.006382 7.997927 7.997535 7.999956 8.002994 7.998858 7.994533 7.992939 7.997343 8.000728 7.997946 8.000384 8.004114 7.994312 8.001165 8.000019 7.996351
-#&gt;  [231] 7.997399 7.999792 8.004778 7.999745 7.991090 7.997899 7.999279 7.999654 8.000753 8.002116 7.998600 8.001295 7.993655 7.997801 8.004290 8.001378 7.998788 7.999998 8.001240 7.997597 8.001904 8.004191 8.003812
-#&gt;  [254] 8.002707 8.004207 8.003074 8.000706 8.000811 7.994398 8.007721 8.003233 8.002936 7.996500 7.999237 7.998089 7.995222 7.997836 8.002842 8.003269 7.993599 8.001220 7.997449 7.994720 7.998800 7.996425 7.997658
-#&gt;  [277] 8.001799 7.997423 8.003607 7.993266 8.001742 7.998977 8.004473 8.001207 8.003601 7.999764 8.005852 7.998922 7.996034 7.994789 7.999147 7.998847 7.998082 7.998253 7.993545 7.997368 7.999936 8.002419 7.994264
-#&gt;  [300] 7.999976 8.000681 8.006499 7.999484 7.993000 7.998032 8.003536 8.004421 8.010589 7.999454 7.999047 8.000452 8.003072 8.003189 7.997750 7.999903 7.992827 7.999426 7.996731 7.996950 7.996414 8.004439 7.991945
-#&gt;  [323] 7.996996 7.991578 7.999366 8.003012 7.991982 8.003174 8.008707 7.992550 7.999697 7.991799 8.002185 7.994026 7.999154 8.006291 7.999629 8.001319 8.006350 8.006016 8.007062 8.002106 7.997444 8.000061 7.991074
-#&gt;  [346] 7.992954 8.001744 8.005785 8.006603 8.004097 8.000947 8.005050 7.996086 7.992294 7.999754 8.006520 8.001919 7.999586 8.000501 8.003509 8.002017 8.007745 7.997321 8.004008 7.996939 7.998945 7.999032 8.001959
-#&gt;  [369] 8.001032 7.996760 7.995314 7.994943 7.998591 7.992687 7.999077 8.000316 8.004963 7.999075 7.996790 8.009446 7.997257 7.996482 8.004142 7.995776 8.005582 7.996013 7.996343 8.004679 7.995597 8.006937 8.002654
-#&gt;  [392] 8.002345 8.000037 7.993854 7.996350 8.002679 7.996545 8.005786 8.005095 8.001529 7.997383 7.999709 8.005030 7.997746 8.002311 7.999860 7.994205 7.996858 8.000687 7.999768 8.001810 8.004148 8.000920 7.998341
-#&gt;  [415] 7.995953 8.002494 8.007664 7.998744 7.997051 8.002023 7.993528 7.999046 8.000323 8.001781 7.997293 7.998417 8.001982 8.002691 8.002272 8.003619 8.002125 8.001542 7.997982 8.006601 8.000988 7.997503 7.997587
-#&gt;  [438] 7.999805 7.997858 7.998275 7.995029 8.002976 8.000294 8.004763 7.999315 7.997076 7.997801 7.999407 7.995155 8.001016 7.999854 8.000188 7.997064 7.995961 7.998574 8.006244 7.995339 7.999111 7.997261 8.003571
-#&gt;  [461] 7.994293 7.998917 7.997539 8.001340 8.002143 8.011987 8.001402 7.993099 8.005192 8.000770 7.994629 8.003563 7.997745 7.997195 8.005066 7.998133 8.002121 7.998543 8.005696 8.003452 7.997507 8.000372 8.000961
-#&gt;  [484] 7.992066 7.999448 8.000409 8.002129 7.991610 7.999634 7.999686 7.997428 7.999872 7.995010 8.008958 7.995518 8.000387 8.008497 8.001811 7.995745 8.006775 7.995084 8.002414 8.004997 8.004947 8.002277 7.998973
-#&gt;  [507] 7.999929 8.005156 8.003174 8.005391 7.995758 8.000642 7.996380 8.003385 8.000613 7.992941 8.004345 8.001425 7.999157 7.997692 7.994513 8.001789 7.996828 8.004512 7.996205 7.994094 8.002671 8.001364 7.994016
-#&gt;  [530] 7.994661 7.999039 8.002495 8.005555 7.995614 8.004868 7.994757 8.002020 8.004951 8.000061 8.002285 8.003931 8.007024 7.994198 7.997316 8.000451 7.999457 7.996139 8.000747 7.995718 8.001374 8.005372 7.996852
-#&gt;  [553] 7.998622 8.001771 8.002811 7.998998 7.998436 7.997706 7.995198 7.994723 7.999950 7.996382 7.999437 7.995102 7.990361 8.000791 8.003352 7.998379 8.005674 7.998352 8.001737 7.998933 8.001356 8.001625 7.995031
-#&gt;  [576] 7.997868 8.005451 8.003497 8.000349 8.003535 7.999419 7.994910 8.000823 8.000370 8.000953 7.998869 7.995768 8.001686 8.001465 7.998531 7.997098 7.998570 8.002118 8.003978 8.000734 7.996243 7.997860 7.998379
-#&gt;  [599] 8.006343 8.000878 7.990610 7.998367 8.005421 7.998657 7.997655 8.008660 7.997526 7.997252 7.992014 8.002625 8.007892 7.995570 7.998250 7.998016 8.002770 7.998107 7.995998 7.999936 7.998549 8.002362 7.999476
-#&gt;  [622] 8.004716 7.995087 7.996154 8.005206 7.994459 7.997749 7.998916 8.007323 7.995279 8.001595 7.995746 7.994033 8.001935 7.996049 7.995871 7.998403 8.003489 7.999362 7.996511 7.996767 8.001971 8.003641 7.994576
-#&gt;  [645] 7.999601 8.002471 7.996346 7.995505 8.004752 7.991839 7.999552 7.993431 8.006709 7.999535 8.003609 8.004266 7.995868 8.000931 7.996234 7.997547 7.998601 8.002255 7.999587 8.003079 7.999070 8.001896 8.003994
-#&gt;  [668] 8.004076 7.998512 8.003841 8.001463 8.000434 7.994000 7.992880 7.993083 8.000680 8.003047 8.004075 7.998599 8.000692 8.002535 8.000749 7.997467 8.008228 7.997902 7.997754 7.996971 7.991573 8.006755 7.993928
-#&gt;  [691] 8.006830 8.000854 7.995271 7.995833 8.001811 8.006640 8.001350 8.005468 7.996254 7.999607 7.997556 8.003699 8.002785 8.001751 8.001394 8.006417 7.999644 7.999888 7.997518 7.999344 8.000623 8.005343 7.995304
-#&gt;  [714] 8.001036 8.009956 8.001763 7.994949 8.002453 7.997324 7.999426 8.003685 7.999046 7.994291 7.994278 7.999226 8.000975 8.004208 8.001797 7.998102 8.001463 7.998136 8.006666 7.999068 8.006282 8.005806 7.998435
-#&gt;  [737] 7.997874 7.998813 8.005014 8.001735 8.004172 8.005599 8.000800 8.001329 8.004350 7.997178 7.998806 8.001269 7.994385 8.002690 8.005650 8.005659 7.996899 8.005783 7.995680 7.996703 8.002504 8.004277 7.999383
-#&gt;  [760] 8.002235 8.007275 7.996964 8.001082 7.993379 7.991831 8.002386 7.998039 7.999845 7.999074 7.995605 8.003162 8.002435 8.000345 8.011441 7.998710 8.000779 8.005444 8.005204 8.000697 8.000999 7.998821 8.002515
-#&gt;  [783] 8.004143 7.999553 7.997602 8.005919 8.006861 7.997732 7.999016 8.002491 7.998321 8.001222 8.005326 8.002691 8.006444 8.004438 7.996648 8.001428 7.994303 7.996798 7.999572 8.001350 8.005821 8.005233 7.999551
-#&gt;  [806] 8.005174 7.999796 8.003464 8.003820 7.999586 7.997091 8.000921 8.007345 7.994482 8.003295 8.003489 7.996297 8.004456 8.000653 8.002024 7.997637 7.998671 7.996692 7.995169 8.012406 8.003015 8.000459 8.006452
-#&gt;  [829] 8.003668 7.998635 8.006871 7.991880 8.002674 7.997235 8.000844 8.000815 7.995452 7.996377 7.998799 7.994443 7.996986 7.996199 7.999782 8.002297 8.002327 7.995609 8.000998 7.999222 8.001134 7.996399 7.998738
-#&gt;  [852] 7.991205 7.995892 7.998605 7.999816 8.000095 7.998146 7.999483 7.995967 7.998239 8.002500 7.994185 7.999325 8.001548 8.000076 7.994833 8.003686 8.001806 8.007569 7.992244 7.993215 8.004778 7.999979 7.996627
-#&gt;  [875] 7.998487 8.000214 8.002259 8.003985 7.995670 7.999754 8.000677 8.011740 7.997389 8.001288 8.002118 7.999542 8.001483 8.008904 7.998856 8.008448 8.002252 8.001675 7.994862 8.001975 7.996636 7.992657 8.003640
-#&gt;  [898] 8.000616 7.996708 7.998691 8.004296 7.994478 7.994160 7.999815 8.001000 7.997338 7.994738 8.002254 7.996981 8.001764 7.995680 8.001539 8.006739 8.000190 8.003136 8.009232 7.995800 7.997028 8.005169 8.000403
-#&gt;  [921] 8.002005 7.998966 8.002106 7.999544 7.995277 7.997833 7.995002 8.006291 8.000074 8.005309 7.987886 8.000895 7.997152 7.999831 7.997195 8.002962 8.001319 7.999686 8.004537 7.998417 8.003153 8.002784 8.002241
-#&gt;  [944] 8.003567 7.993320 8.004310 7.995731 8.010337 7.997149 7.998995 8.007352 8.007706 7.992334 8.003774 7.996538 8.002655 7.997536 7.994276 7.990073 8.002714 7.997566 8.005357 8.002183 7.997509 7.991135 8.004295
-#&gt;  [967] 8.001316 8.002159 8.005453 7.995710 7.994510 8.003936 8.001915 7.998300 8.002197 8.006301 7.995031 8.005237 8.001216 8.003793 7.993889 8.005024 8.000517 7.993968 8.005418 7.997435 7.999207 7.991804 8.004814
-#&gt;  [990] 7.998962 8.007677 8.003315 7.990481 7.995732 7.992684 7.995971 7.997424 8.003575 7.994101 7.998129</code></pre>
+<pre><code>#&gt;    [1] 7.996395 8.002595 7.992852 8.003773 7.994940 8.003263 7.999747 8.001033 8.009082 7.997921 7.999027 7.998819 7.995531 8.000857 8.005446 8.002371 8.010886 8.001843 8.006321 8.005566 7.995853 8.007061 7.999219
+#&gt;   [24] 8.007828 8.009847 7.999120 8.009246 7.996545 7.995994 7.998594 7.996209 8.006392 7.991582 8.006220 8.000797 8.003156 8.010276 7.997488 8.001987 7.993228 7.997457 8.001448 8.004025 8.005068 7.998158 8.000210
+#&gt;   [47] 8.007446 7.999759 7.998339 8.007216 8.000280 7.999143 7.995849 7.996584 8.001926 8.001687 8.000783 8.002954 8.000755 7.995123 8.001835 8.000360 8.003043 7.999251 7.998806 8.004948 7.992851 7.995299 8.005314
+#&gt;   [70] 8.001079 8.008864 7.999948 8.004279 7.997839 7.997682 7.999110 7.998857 7.998976 7.996634 7.998125 7.995562 8.002865 8.000548 8.005188 8.010414 8.002558 8.006165 8.002396 7.999564 7.992963 7.996670 7.996034
+#&gt;   [93] 8.008509 7.995526 8.000449 8.001012 7.995039 8.004327 8.001743 7.999565 7.999724 8.002380 8.001964 8.010581 8.003530 8.000306 7.996512 7.995630 7.996640 8.001857 8.000829 7.998170 8.002395 8.008293 7.997571
+#&gt;  [116] 8.001826 7.994891 7.994118 7.996718 8.004019 7.997162 7.998950 8.002202 8.004770 8.006185 7.999484 8.001881 8.005905 8.001964 8.003234 7.997504 8.005249 8.001112 8.000013 7.999382 8.000224 8.003828 8.007691
+#&gt;  [139] 8.003526 7.996903 7.999905 8.004238 8.002428 7.993809 8.000651 7.999860 7.999402 7.999589 8.002268 7.996670 8.000947 8.007427 7.997566 7.998658 7.997500 8.001751 7.995917 8.004642 8.003932 8.004948 8.000681
+#&gt;  [162] 7.995162 7.994973 7.998126 8.003732 8.006716 8.000722 8.007020 8.003324 7.992477 8.003686 8.002915 7.996773 8.004398 7.999241 7.997638 7.995879 8.005060 8.001817 8.000465 8.009234 8.003927 8.005189 8.003751
+#&gt;  [185] 8.002119 8.001042 7.993342 7.997742 7.999319 7.997104 7.996784 7.990642 7.992449 7.996185 7.988615 8.001243 8.001791 7.998290 8.002517 7.991113 8.005262 8.002148 8.003540 8.000842 8.000015 7.994350 7.995575
+#&gt;  [208] 7.995571 8.001247 7.999933 7.998569 7.995033 7.993264 7.993521 7.996047 8.002391 7.997752 7.998415 7.996009 7.996309 8.001327 7.999970 8.006330 7.990499 8.001675 7.998220 8.008282 8.003931 7.996994 7.998883
+#&gt;  [231] 8.000878 8.002391 7.993110 8.001178 7.997628 7.996762 7.995168 8.003605 8.008976 8.000291 7.995949 7.990040 8.000777 8.006017 7.996713 7.995939 8.003493 8.005735 8.004756 8.001645 8.003121 8.006821 8.000829
+#&gt;  [254] 8.001736 7.994692 7.999947 8.003016 8.003693 8.002860 8.000531 8.005263 8.001823 7.998053 7.999071 8.005201 7.999660 8.001091 7.996365 7.999279 7.999071 8.004912 7.996792 8.002591 7.998283 8.002021 8.005836
+#&gt;  [277] 8.002602 7.995843 7.997898 7.997233 7.999155 7.994012 8.000525 7.997925 8.004250 8.002573 8.001790 7.999744 8.001276 7.998108 7.997639 8.004241 8.000681 8.004129 7.999037 8.008219 7.999547 7.996709 8.008468
+#&gt;  [300] 7.997334 7.996210 8.006741 7.999436 8.002213 8.006425 8.000215 8.000625 8.001736 7.999179 8.002712 7.994101 8.001311 8.002877 8.011616 7.992720 8.003217 8.004247 8.008110 7.998926 8.001570 8.005306 7.993838
+#&gt;  [323] 8.002283 8.000435 8.000304 7.999795 7.997515 8.003996 7.996800 7.997829 8.003025 7.998593 8.003801 8.003806 8.002241 8.005085 7.996627 8.008981 7.999871 7.995131 7.994607 8.003376 8.000974 7.998229 7.996009
+#&gt;  [346] 7.999252 7.998662 7.999488 8.000837 7.991607 8.004663 8.003643 8.000505 7.997619 7.993649 8.006426 7.995102 7.996005 7.995479 7.995234 7.999735 8.011255 8.001940 7.999680 8.001512 8.002665 8.001484 7.997704
+#&gt;  [369] 8.004896 7.998087 8.004728 7.999491 8.001214 8.002564 8.001370 8.002933 7.998032 8.005061 7.998809 7.999249 8.005042 8.005509 8.004175 7.998367 7.998087 8.000522 7.991238 7.998317 8.003191 8.000428 8.001436
+#&gt;  [392] 7.998423 8.001643 7.997051 7.999545 7.996787 7.994228 8.000141 8.003421 7.999244 8.002259 7.998910 7.997052 7.991946 7.997752 8.000389 7.997096 8.002677 8.002320 7.999807 7.991977 7.996881 7.999741 7.998220
+#&gt;  [415] 8.000633 8.001071 7.998254 8.002271 7.996263 7.999064 8.003794 7.995288 8.001385 8.007497 7.998421 7.996865 8.000485 8.002709 8.001700 7.997114 7.996513 7.999666 8.006616 7.999665 7.998415 8.000870 8.005739
+#&gt;  [438] 8.001723 8.005095 7.996628 7.996955 8.004207 8.004656 8.000035 7.996744 8.001831 8.001039 8.000112 7.996478 8.000452 7.991128 8.000124 8.000143 7.991104 8.001236 7.997474 7.995550 7.997131 8.002532 8.005559
+#&gt;  [461] 7.999821 8.005184 7.999230 8.005183 8.003584 8.001592 7.988952 7.996712 7.999275 8.001888 7.999874 8.006212 8.000004 8.003814 7.998265 7.999684 8.002988 7.996046 8.000892 8.003804 8.000448 7.997364 8.003245
+#&gt;  [484] 7.996163 7.997512 8.003544 8.006369 7.994619 8.002720 8.001166 8.005166 8.000364 7.997399 7.995262 8.002766 8.002331 8.009390 7.994585 7.997928 7.998133 8.001699 7.997387 8.001177 8.001807 8.003056 8.005401
+#&gt;  [507] 7.998344 8.004841 7.998782 7.999352 7.999138 8.001205 8.001916 7.993447 8.000098 8.000649 7.999885 7.997135 7.993524 8.006730 7.999648 7.998081 8.004735 8.002574 7.995450 7.995921 8.003241 7.998494 8.003527
+#&gt;  [530] 8.000235 7.993771 7.999782 7.998714 7.998635 8.002561 7.991092 8.005125 7.998936 7.999075 7.995367 7.993644 7.996072 7.999967 8.000832 8.000952 7.998258 7.994809 8.001892 8.000012 8.001097 8.003178 8.000899
+#&gt;  [553] 8.001411 7.995317 7.999625 8.008050 7.995953 8.004065 7.995237 8.000381 8.003278 8.003987 8.004655 8.004860 8.000211 7.993957 7.998796 8.000062 8.002232 7.990863 8.000489 7.999380 7.996310 7.996566 7.998194
+#&gt;  [576] 8.003113 8.005048 8.005458 8.002057 8.000698 8.006377 8.001760 7.998332 8.002472 8.000654 7.997904 7.996154 8.009469 7.995845 8.003446 8.000760 7.998987 7.999088 7.998691 8.001376 8.000651 7.997043 7.992407
+#&gt;  [599] 7.997816 7.997090 8.003794 7.997626 8.004365 7.996053 7.999742 7.999751 7.996396 8.005694 8.002015 8.002773 8.001842 8.002534 7.996848 8.004890 7.989967 8.000376 7.994741 8.003465 7.995122 8.000353 7.999374
+#&gt;  [622] 7.993073 7.994106 7.997743 8.003707 8.002448 7.996060 8.000266 8.003167 7.998811 8.008131 7.998260 8.001778 7.992627 8.005402 7.999688 7.992580 8.001490 8.004957 8.001599 8.005279 8.005543 8.000739 7.999323
+#&gt;  [645] 8.002662 8.001456 7.997945 7.996049 8.008580 8.003106 7.993386 8.008014 8.008878 8.000284 8.002732 7.998713 7.997818 7.999204 7.998825 8.005476 8.003989 7.997239 8.008067 8.001244 8.004445 8.003197 8.003607
+#&gt;  [668] 8.000634 7.996759 8.003939 8.003648 8.000411 8.001351 7.997946 7.998765 8.004264 8.003307 7.998175 8.002372 8.005840 7.996804 8.000447 7.997362 7.998909 8.000512 8.002470 8.005428 7.996772 8.002331 8.003554
+#&gt;  [691] 7.996590 8.000939 8.004149 8.006828 7.994941 7.986871 8.000476 8.001377 7.995508 7.995739 8.003709 7.998893 8.003591 7.995792 7.997421 8.006038 7.996369 8.002542 8.000812 7.998803 8.003469 7.999089 7.994793
+#&gt;  [714] 7.999205 7.998944 7.997763 8.001855 7.999410 7.999680 8.000316 7.994470 8.000675 8.001793 7.993535 7.995653 7.993968 7.995349 7.993125 8.002382 7.999949 8.008460 8.006963 7.994967 8.000298 8.000603 8.003991
+#&gt;  [737] 8.000364 8.004117 8.001056 8.001458 7.997027 7.998348 8.005947 8.000926 7.998667 7.999230 7.995142 8.000554 7.998883 8.008055 8.009065 8.008874 7.998366 8.002554 8.001309 7.994967 8.008030 7.999373 7.999706
+#&gt;  [760] 8.000554 8.000220 7.999244 7.997893 8.000605 7.999938 7.997672 7.996080 7.999968 7.997739 7.994708 8.000285 7.998208 8.000469 8.003905 8.002425 8.000986 8.003098 8.002976 8.007995 8.004848 7.994079 8.003876
+#&gt;  [783] 7.995709 8.002883 8.002350 7.997950 7.997934 7.998868 8.001465 8.000550 7.995690 8.003646 7.994503 7.995954 8.001066 7.998361 8.003446 8.006839 7.998871 8.002912 7.998211 8.000092 7.996411 7.996950 7.997503
+#&gt;  [806] 7.997067 7.998148 8.004766 8.008867 7.994549 7.998865 7.997443 8.001622 8.000112 8.006959 7.996605 8.002187 8.001931 7.997383 7.999100 7.997986 8.003860 8.005590 8.008379 7.996076 8.000385 8.002576 7.999956
+#&gt;  [829] 7.998012 8.004046 8.001790 7.995405 7.995784 8.002609 7.999447 8.001462 8.000376 8.002294 8.001724 7.991567 7.998358 8.002220 8.005965 7.993428 7.994971 8.004477 7.994898 7.997145 8.002600 7.996452 7.999996
+#&gt;  [852] 7.997794 8.002106 7.999215 7.999717 8.005671 8.002328 8.004797 7.999014 7.998033 7.998573 8.003625 8.006330 7.995038 7.996879 8.003737 7.999019 7.997042 8.001159 7.998090 8.002774 8.010516 7.994788 8.005409
+#&gt;  [875] 8.001794 7.996650 8.001592 8.003533 8.004700 7.993114 8.001155 8.005139 8.005484 7.996526 8.001437 8.001648 7.996804 8.000893 7.995754 7.998014 7.995585 8.002121 8.002345 7.999997 8.004865 8.006317 7.996199
+#&gt;  [898] 8.008242 8.005924 7.997851 7.998076 7.994164 7.995449 8.001081 7.997842 8.007889 7.997429 8.002946 7.990916 8.004922 8.001345 8.000877 8.002308 8.007278 7.999007 8.000770 7.990466 8.000816 7.999398 8.001461
+#&gt;  [921] 8.004803 8.006545 8.007463 7.999960 7.999730 8.007633 7.995083 8.008741 7.997381 8.001467 7.998252 8.005191 8.000394 7.996061 7.997693 7.997387 7.997323 8.001673 8.000038 8.006180 7.995088 8.002583 7.998649
+#&gt;  [944] 8.000393 8.005828 7.999329 8.005084 7.997954 7.999236 7.999016 7.994083 8.001517 8.000203 8.004641 7.998718 7.997675 7.994367 8.001347 8.003654 8.006839 7.996830 8.000131 7.996320 7.992386 7.998226 8.004609
+#&gt;  [967] 7.996892 8.003928 8.002677 8.002500 7.992210 8.002721 8.002244 7.997574 7.997647 8.000337 8.003941 8.000177 8.002187 8.001104 7.998819 7.994684 7.991627 8.008381 8.003823 7.999493 8.000317 8.001792 7.995497
+#&gt;  [990] 7.994379 8.004372 8.001611 7.999162 8.002971 8.002958 7.997043 8.000303 7.991880 8.002295 7.995519</code></pre>
 </div>
 </div>
 </section>
@@ -554,12 +564,12 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> betas), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
-<span id="cb19-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> betas), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="12_files/figure-html/unnamed-chunk-14-1.png" width="672" class="r-stretch"></section></section>
 <section>
 <section id="hypothesis-testing" class="title-slide slide level1 agenda-slide center">
 <h1>Hypothesis Testing</h1>
@@ -690,58 +700,64 @@ Magical =  3423 + 8 \times Nature + \varepsilon
 </section>
 <section id="crosstabulation" class="slide level2">
 <h2>Crosstabulation</h2>
-<p>linearia$y)</p>
-<pre><code>
-
-
-## Comparing Proportions
-
-We are interesting in determining if different groups see different proportions of a binary outcome.
-
-We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
-
-## 2 by 2 Cross Tabulations
-
-|         |           |           |
-|---------|-----------|-----------|
-| Groups  | Outcome 1 | Outcome 2 |
-| Group 1 | $p_{11}$  | $p_{21}$  |
-| Group 2 | $p_{12}$  | $p_{22}$  |
-
-
-::: fragment
-We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
-
-:::
-
-## Test Statistic
-
-We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
-
-::: fragment
-However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
-:::
-
-::: fragment
-$$
+</section>
+<section id="comparing-proportions-1" class="slide level2">
+<h2>Comparing Proportions</h2>
+<p>We are interesting in determining if different groups see different proportions of a binary outcome.</p>
+<p>We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.</p>
+</section>
+<section id="by-2-cross-tabulations" class="slide level2">
+<h2>2 by 2 Cross Tabulations</h2>
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td>Groups</td>
+<td>Outcome 1</td>
+<td>Outcome 2</td>
+</tr>
+<tr class="even">
+<td>Group 1</td>
+<td><span class="math inline">\(p_{11}\)</span></td>
+<td><span class="math inline">\(p_{21}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Group 2</td>
+<td><span class="math inline">\(p_{12}\)</span></td>
+<td><span class="math inline">\(p_{22}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>We want to compare <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span>, to determine if the probability of outcome 1 are the same for both groups.</p>
+</div>
+</section>
+<section id="test-statistic" class="slide level2">
+<h2>Test Statistic</h2>
+<p>We can use both <span class="math inline">\(p_{11}\)</span> and <span class="math inline">\(p_{12}\)</span> to determine if there is a fundamental difference.</p>
+<div class="fragment">
+<p>However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
 T =  p_{11} - p_{12}
-$$
-:::
-
-## Obtain Proportion in R
-
-::: {.cell}
-
-```{.r .cell-code  code-fold="true"}
-props(DATA$GROUP, DATA$OUTCOME, VAL)</code></pre>
-<p>:::</p>
+\]</span></p>
+</div>
+</section>
+<section id="obtain-proportion-in-r" class="slide level2">
+<h2>Obtain Proportion in R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">props</span>(DATA<span class="sc">$</span>GROUP, DATA<span class="sc">$</span>OUTCOME, VAL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="obtain-difference-in-r" class="slide level2">
 <h2>Obtain Difference in R</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">props</span>(DATA<span class="sc">$</span>GROUP, DATA<span class="sc">$</span>OUTCOME, VAL, <span class="at">diff =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">props</span>(DATA<span class="sc">$</span>GROUP, DATA<span class="sc">$</span>OUTCOME, VAL, <span class="at">diff =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -750,7 +766,7 @@ props(DATA$GROUP, DATA$OUTCOME, VAL)</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;     a     p 
@@ -763,7 +779,7 @@ props(DATA$GROUP, DATA$OUTCOME, VAL)</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 0.125</code></pre>
@@ -824,23 +840,23 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
-<span id="cb26-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb26-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb26-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb26-7"><a></a></span>
-<span id="cb26-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
-<span id="cb26-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb26-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
-<span id="cb26-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb26-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb26-14"><a></a></span>
-<span id="cb26-15"><a></a></span>
-<span id="cb26-16"><a></a></span>
-<span id="cb26-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb28-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb28-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb28-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb28-7"><a></a></span>
+<span id="cb28-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(bacteria<span class="sc">$</span>y[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb28-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb28-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb28-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb28-14"><a></a></span>
+<span id="cb28-15"><a></a></span>
+<span id="cb28-16"><a></a></span>
+<span id="cb28-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -864,56 +880,6 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
-<span id="cb27-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb27-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb27-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb27-7"><a></a></span>
-<span id="cb27-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
-<span id="cb27-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb27-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
-<span id="cb27-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb27-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb27-14"><a></a></span>
-<span id="cb27-15"><a></a></span>
-<span id="cb27-16"><a></a></span>
-<span id="cb27-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="randomziation-2" class="slide level2">
-<h2>Randomziation 2</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
-<span id="cb28-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb28-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
-<span id="cb28-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb28-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb28-7"><a></a></span>
-<span id="cb28-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
-<span id="cb28-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb28-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
-<span id="cb28-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb28-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb28-14"><a></a></span>
-<span id="cb28-15"><a></a></span>
-<span id="cb28-16"><a></a></span>
-<span id="cb28-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="randomziation-3" class="slide level2">
-<h2>Randomziation 3</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb29-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
 <span id="cb29-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
@@ -934,8 +900,8 @@ H_a:\ p_1 - p_2 \neq 0
 </details>
 </div>
 </section>
-<section id="randomziation-4" class="slide level2">
-<h2>Randomziation 4</h2>
+<section id="randomziation-2" class="slide level2">
+<h2>Randomziation 2</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -956,6 +922,56 @@ H_a:\ p_1 - p_2 \neq 0
 <span id="cb30-15"><a></a></span>
 <span id="cb30-16"><a></a></span>
 <span id="cb30-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-3" class="slide level2">
+<h2>Randomziation 3</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb31-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb31-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb31-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb31-7"><a></a></span>
+<span id="cb31-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb31-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb31-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb31-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb31-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb31-14"><a></a></span>
+<span id="cb31-15"><a></a></span>
+<span id="cb31-16"><a></a></span>
+<span id="cb31-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="randomziation-4" class="slide level2">
+<h2>Randomziation 4</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>ab <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"a"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-2"><a></a>abp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ab, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb32-3"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb32-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Active Treatment"</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb32-6"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb32-7"><a></a></span>
+<span id="cb32-8"><a></a>pb <span class="ot">&lt;-</span> <span class="fu">cat_stats</span>(<span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)[bacteria<span class="sc">$</span>ap <span class="sc">==</span> <span class="st">"p"</span>], <span class="at">pie =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-9"><a></a>pbp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pb, <span class="fu">aes</span>(<span class="at">fill =</span> Category, <span class="at">values =</span> n)) <span class="sc">+</span></span>
+<span id="cb32-10"><a></a>  <span class="fu">geom_waffle</span>(<span class="at">make_proportional =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb32-11"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Placebo"</span>) <span class="sc">+</span></span>
+<span id="cb32-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb32-13"><a></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb32-14"><a></a></span>
+<span id="cb32-15"><a></a></span>
+<span id="cb32-16"><a></a></span>
+<span id="cb32-17"><a></a>abp <span class="sc">+</span> pbp <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -980,7 +996,7 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">shuffle</span>(VECTOR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">shuffle</span>(VECTOR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -989,7 +1005,7 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>bacteria<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>bacteria<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   [1] y y y y y y n y y y y y y y y y y y y y y y y y y y y y n n n y n y y y y y y y y y y y y y y y y y n n y y y y y y y y y n y y y y y y y n y y y y y n y y y n n n y y n y n y y y y y y y y y y y y y y n y n y n y
@@ -1001,12 +1017,12 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;   [1] y y y y y y y y y y y y y y y y y y y y y y n y n n y y n y y y n n n y y y y y y y n n y y y n y y y y n y n n y n y y y y y y y y y y n y y y y n y n y y n y y y y y n y y n y n n y y y y n y y y y y n y y y n y
-#&gt; [108] y y n y y y y y y y y y n y y y n y n y y y y y y y y y y y y y y y y n y y y y y y y y y y n y y y y n y y y y y y y y y y y y y y y y y y y y y y y n y n n y y y y n n y y y y y y y n n y y y n y n y n y y y y y
-#&gt; [215] n y y y y y
+<pre><code>#&gt;   [1] y n y n n y y y y n y y y y y n y y y y y y n n n y n n n y n n y n n y y y y y y n n y y n y y y y y y y y y n y n y y y y y y y n y y n y y y n y n y y y y y y y y y y y y y y y y y y y y y y y y n y y y y y y y
+#&gt; [108] n n y y n y y y y y y y y y y y y y y n n y y y y y y y y n y y y y y y y y y y y n y y y n y y y y y y n y y y y y y y y y y y y y y y y y y y y y y y y n n n y y y y y y y y y y y y y n n y n y y y y y y y y y y
+#&gt; [215] y n n y y n
 #&gt; Levels: n y</code></pre>
 </div>
 </div>
@@ -1016,10 +1032,10 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -0.00436828</code></pre>
+<pre><code>#&gt; [1] -0.02284946</code></pre>
 </div>
 </div>
 </section>
@@ -1028,52 +1044,52 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.03259409</code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -0.02284946</code></pre>
+<pre><code>#&gt; [1] 0.0141129</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -0.00436828</code></pre>
+<pre><code>#&gt; [1] -0.07829301</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -0.00436828</code></pre>
+<pre><code>#&gt; [1] 0.06955645</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.06955645</code></pre>
+<pre><code>#&gt; [1] -0.05981183</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.06955645</code></pre>
+<pre><code>#&gt; [1] -0.00436828</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -0.02284946</code></pre>
+<pre><code>#&gt; [1] 0.03259409</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.03259409</code></pre>
 </div>
 </div>
 </section>
@@ -1083,7 +1099,7 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">replicate</span>(N, FUN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">replicate</span>(N, FUN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -1096,69 +1112,69 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>sim_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T))</span>
-<span id="cb53-2"><a></a>sim_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>sim_stats <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, <span class="fu">shuffle</span>(bacteria<span class="sc">$</span>y), <span class="st">"y"</span>, T))</span>
+<span id="cb55-2"><a></a>sim_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;    [1]  0.01411290 -0.00436828  0.01411290 -0.04133065  0.01411290 -0.05981183 -0.04133065 -0.00436828  0.01411290  0.08803763  0.03259409 -0.07829301  0.06955645  0.03259409  0.03259409 -0.05981183  0.01411290
-#&gt;   [18] -0.00436828  0.05107527  0.08803763  0.03259409 -0.05981183  0.03259409  0.01411290  0.03259409 -0.04133065 -0.04133065  0.06955645 -0.04133065  0.01411290  0.03259409 -0.02284946  0.06955645 -0.05981183
-#&gt;   [35]  0.05107527 -0.02284946  0.01411290 -0.05981183  0.08803763 -0.07829301 -0.09677419  0.03259409 -0.02284946 -0.07829301  0.03259409  0.01411290 -0.05981183  0.01411290 -0.00436828 -0.02284946 -0.05981183
-#&gt;   [52]  0.03259409  0.05107527  0.03259409 -0.02284946 -0.04133065 -0.04133065 -0.09677419 -0.00436828 -0.02284946 -0.05981183 -0.05981183 -0.00436828 -0.00436828 -0.05981183  0.08803763 -0.04133065 -0.00436828
-#&gt;   [69] -0.00436828 -0.02284946  0.03259409 -0.02284946 -0.02284946  0.08803763 -0.02284946 -0.04133065 -0.09677419 -0.07829301 -0.07829301  0.03259409 -0.11525538 -0.02284946 -0.00436828 -0.00436828  0.01411290
-#&gt;   [86]  0.01411290 -0.00436828 -0.00436828 -0.09677419 -0.05981183  0.01411290  0.05107527  0.01411290 -0.02284946  0.03259409 -0.05981183  0.08803763 -0.00436828  0.03259409 -0.00436828  0.01411290 -0.05981183
-#&gt;  [103]  0.05107527 -0.02284946 -0.00436828 -0.00436828 -0.02284946  0.03259409  0.06955645 -0.05981183 -0.04133065  0.06955645 -0.00436828 -0.04133065 -0.02284946  0.05107527  0.05107527  0.01411290 -0.00436828
-#&gt;  [120] -0.04133065  0.06955645  0.05107527 -0.04133065 -0.05981183  0.06955645 -0.02284946 -0.00436828  0.06955645 -0.04133065 -0.04133065 -0.02284946 -0.07829301 -0.07829301  0.06955645 -0.00436828 -0.05981183
-#&gt;  [137] -0.00436828 -0.02284946 -0.00436828  0.01411290  0.01411290 -0.05981183  0.01411290  0.01411290 -0.02284946 -0.02284946  0.06955645 -0.00436828 -0.11525538 -0.09677419  0.01411290 -0.02284946  0.03259409
-#&gt;  [154] -0.07829301  0.01411290 -0.04133065 -0.05981183  0.06955645 -0.07829301  0.03259409  0.08803763  0.06955645 -0.04133065  0.05107527 -0.04133065 -0.02284946 -0.04133065 -0.05981183  0.03259409 -0.02284946
-#&gt;  [171]  0.01411290 -0.02284946 -0.02284946  0.05107527  0.03259409 -0.02284946  0.03259409 -0.04133065 -0.00436828  0.05107527  0.03259409 -0.05981183 -0.07829301  0.03259409 -0.00436828 -0.02284946 -0.04133065
-#&gt;  [188] -0.11525538  0.03259409  0.01411290 -0.04133065 -0.07829301  0.06955645 -0.05981183  0.19892473  0.01411290  0.06955645  0.01411290 -0.04133065  0.06955645  0.01411290  0.03259409  0.03259409 -0.07829301
-#&gt;  [205] -0.04133065 -0.00436828  0.01411290  0.03259409  0.01411290 -0.00436828  0.05107527  0.05107527 -0.00436828 -0.00436828 -0.04133065  0.08803763 -0.02284946  0.05107527  0.03259409  0.01411290  0.10651882
-#&gt;  [222]  0.05107527 -0.00436828  0.12500000  0.01411290 -0.04133065  0.06955645  0.03259409  0.06955645 -0.00436828 -0.00436828 -0.00436828 -0.00436828 -0.02284946 -0.00436828 -0.00436828 -0.05981183 -0.02284946
-#&gt;  [239]  0.01411290  0.14348118  0.06955645 -0.05981183 -0.02284946 -0.00436828 -0.00436828 -0.02284946  0.01411290  0.06955645 -0.04133065 -0.11525538 -0.04133065 -0.05981183 -0.00436828  0.03259409  0.05107527
-#&gt;  [256] -0.04133065  0.03259409  0.01411290 -0.02284946  0.01411290 -0.04133065 -0.02284946  0.03259409 -0.00436828  0.05107527  0.05107527  0.06955645 -0.00436828 -0.00436828 -0.04133065 -0.02284946 -0.05981183
-#&gt;  [273]  0.03259409  0.05107527  0.01411290 -0.05981183 -0.02284946  0.03259409 -0.09677419 -0.00436828 -0.05981183  0.06955645 -0.07829301 -0.05981183  0.01411290 -0.00436828 -0.00436828  0.03259409 -0.02284946
-#&gt;  [290]  0.03259409 -0.05981183 -0.00436828  0.03259409 -0.02284946 -0.11525538 -0.00436828  0.01411290 -0.09677419 -0.02284946  0.05107527 -0.09677419  0.01411290 -0.00436828  0.03259409 -0.00436828 -0.02284946
-#&gt;  [307]  0.01411290  0.08803763  0.10651882 -0.04133065 -0.07829301  0.10651882 -0.05981183  0.03259409  0.06955645  0.03259409  0.03259409  0.03259409 -0.07829301 -0.00436828  0.03259409  0.08803763 -0.02284946
-#&gt;  [324] -0.00436828 -0.05981183  0.03259409 -0.00436828  0.08803763  0.05107527 -0.02284946  0.05107527  0.03259409 -0.11525538  0.05107527 -0.13373656 -0.04133065 -0.02284946 -0.11525538 -0.04133065  0.06955645
-#&gt;  [341] -0.13373656 -0.02284946  0.05107527 -0.05981183 -0.00436828  0.01411290  0.01411290  0.08803763 -0.02284946 -0.04133065 -0.04133065 -0.00436828 -0.04133065 -0.04133065 -0.07829301 -0.04133065  0.05107527
-#&gt;  [358] -0.07829301  0.01411290  0.03259409  0.01411290  0.01411290 -0.02284946 -0.05981183  0.01411290  0.01411290 -0.00436828 -0.00436828 -0.02284946  0.03259409 -0.07829301  0.05107527  0.05107527 -0.04133065
-#&gt;  [375] -0.00436828 -0.02284946 -0.13373656 -0.04133065  0.01411290  0.03259409  0.03259409  0.03259409  0.01411290 -0.04133065  0.06955645 -0.02284946 -0.05981183 -0.00436828 -0.04133065  0.06955645  0.08803763
-#&gt;  [392]  0.01411290 -0.04133065  0.01411290  0.05107527  0.01411290  0.01411290  0.03259409 -0.05981183  0.03259409  0.03259409 -0.07829301  0.03259409 -0.04133065  0.01411290  0.05107527 -0.07829301 -0.02284946
-#&gt;  [409]  0.01411290 -0.04133065 -0.05981183 -0.00436828 -0.07829301  0.03259409  0.01411290  0.03259409 -0.02284946  0.12500000  0.01411290 -0.02284946 -0.05981183 -0.02284946 -0.05981183 -0.00436828  0.03259409
-#&gt;  [426]  0.03259409  0.03259409 -0.02284946 -0.00436828  0.01411290 -0.00436828  0.03259409  0.05107527 -0.07829301 -0.02284946  0.05107527 -0.09677419 -0.07829301 -0.00436828  0.01411290  0.10651882 -0.02284946
-#&gt;  [443] -0.05981183  0.05107527  0.03259409  0.05107527  0.03259409 -0.04133065  0.06955645 -0.02284946  0.01411290  0.01411290 -0.04133065 -0.07829301 -0.02284946 -0.00436828  0.06955645 -0.00436828 -0.00436828
-#&gt;  [460]  0.01411290 -0.00436828 -0.05981183 -0.05981183 -0.02284946 -0.02284946 -0.05981183 -0.02284946 -0.02284946 -0.04133065 -0.09677419 -0.00436828  0.05107527  0.03259409  0.01411290  0.06955645  0.08803763
-#&gt;  [477] -0.00436828  0.01411290  0.05107527  0.01411290  0.01411290 -0.04133065  0.01411290 -0.05981183 -0.09677419 -0.00436828 -0.02284946 -0.00436828 -0.02284946  0.05107527  0.05107527 -0.00436828  0.01411290
-#&gt;  [494] -0.00436828 -0.00436828  0.05107527  0.05107527 -0.07829301 -0.07829301 -0.07829301  0.05107527  0.01411290 -0.09677419  0.05107527  0.06955645 -0.07829301  0.10651882 -0.05981183  0.03259409  0.01411290
-#&gt;  [511]  0.03259409  0.01411290  0.12500000 -0.02284946  0.05107527 -0.02284946 -0.00436828 -0.00436828 -0.04133065  0.05107527  0.01411290 -0.00436828 -0.02284946 -0.04133065 -0.02284946  0.05107527  0.01411290
-#&gt;  [528] -0.07829301  0.06955645 -0.04133065  0.03259409 -0.04133065 -0.02284946 -0.04133065 -0.07829301  0.01411290  0.03259409  0.12500000 -0.02284946 -0.00436828  0.06955645  0.03259409 -0.09677419  0.08803763
-#&gt;  [545] -0.00436828 -0.00436828  0.03259409  0.03259409  0.01411290  0.05107527 -0.09677419 -0.00436828 -0.00436828 -0.09677419 -0.00436828 -0.09677419 -0.05981183 -0.00436828 -0.07829301  0.01411290 -0.07829301
-#&gt;  [562]  0.01411290  0.03259409  0.01411290  0.06955645  0.14348118  0.01411290  0.06955645 -0.02284946  0.01411290 -0.04133065 -0.00436828  0.03259409  0.01411290 -0.02284946  0.06955645  0.08803763  0.12500000
-#&gt;  [579]  0.05107527 -0.04133065 -0.02284946  0.05107527  0.03259409 -0.02284946 -0.00436828 -0.05981183  0.03259409 -0.00436828  0.03259409  0.01411290 -0.05981183  0.05107527  0.06955645 -0.04133065  0.03259409
-#&gt;  [596]  0.03259409  0.06955645  0.03259409 -0.04133065  0.10651882  0.01411290  0.03259409 -0.05981183 -0.02284946  0.03259409  0.01411290  0.03259409  0.01411290 -0.05981183  0.01411290 -0.04133065  0.01411290
-#&gt;  [613]  0.08803763  0.08803763 -0.04133065 -0.02284946  0.01411290 -0.02284946 -0.04133065 -0.04133065  0.01411290  0.01411290  0.05107527  0.05107527  0.03259409  0.08803763  0.05107527  0.08803763  0.01411290
-#&gt;  [630]  0.03259409  0.03259409 -0.05981183 -0.07829301 -0.11525538  0.03259409  0.10651882 -0.05981183 -0.02284946 -0.07829301  0.01411290 -0.00436828  0.01411290 -0.05981183 -0.07829301 -0.02284946 -0.00436828
-#&gt;  [647]  0.10651882 -0.05981183  0.08803763  0.01411290 -0.00436828 -0.04133065 -0.04133065 -0.00436828  0.01411290 -0.00436828  0.01411290 -0.00436828  0.05107527 -0.02284946  0.05107527  0.01411290  0.05107527
-#&gt;  [664] -0.00436828  0.03259409 -0.05981183 -0.00436828 -0.05981183 -0.04133065 -0.00436828 -0.02284946 -0.02284946  0.03259409 -0.04133065  0.06955645  0.03259409  0.01411290 -0.02284946 -0.02284946 -0.00436828
-#&gt;  [681] -0.00436828  0.01411290 -0.00436828  0.01411290 -0.00436828  0.05107527 -0.05981183 -0.04133065  0.01411290 -0.00436828  0.03259409  0.05107527 -0.04133065 -0.00436828  0.03259409 -0.02284946 -0.05981183
-#&gt;  [698]  0.01411290 -0.04133065 -0.04133065  0.10651882  0.10651882 -0.04133065  0.05107527 -0.11525538  0.03259409  0.08803763 -0.02284946 -0.05981183  0.05107527 -0.04133065  0.03259409  0.06955645 -0.09677419
-#&gt;  [715] -0.05981183  0.01411290 -0.05981183 -0.00436828  0.05107527  0.06955645 -0.04133065  0.08803763  0.06955645  0.10651882 -0.02284946  0.05107527 -0.00436828 -0.07829301 -0.00436828 -0.05981183 -0.02284946
-#&gt;  [732] -0.02284946  0.03259409 -0.04133065 -0.04133065  0.03259409 -0.02284946  0.06955645 -0.05981183  0.06955645 -0.05981183  0.06955645 -0.02284946 -0.07829301  0.05107527 -0.11525538 -0.00436828 -0.00436828
-#&gt;  [749] -0.07829301 -0.00436828  0.08803763  0.01411290  0.05107527  0.05107527 -0.02284946 -0.07829301 -0.02284946  0.01411290  0.03259409 -0.00436828 -0.00436828  0.01411290 -0.05981183 -0.04133065  0.03259409
-#&gt;  [766] -0.02284946  0.03259409 -0.00436828 -0.00436828  0.06955645 -0.04133065  0.01411290 -0.05981183  0.01411290  0.03259409 -0.02284946 -0.07829301  0.08803763 -0.02284946 -0.00436828 -0.00436828  0.03259409
-#&gt;  [783]  0.01411290 -0.04133065  0.06955645  0.14348118 -0.04133065  0.08803763 -0.05981183  0.03259409 -0.02284946 -0.09677419  0.05107527  0.03259409 -0.02284946  0.05107527  0.03259409  0.03259409  0.05107527
-#&gt;  [800]  0.05107527 -0.00436828 -0.00436828  0.10651882  0.05107527  0.03259409  0.03259409 -0.00436828  0.03259409 -0.00436828  0.05107527  0.01411290 -0.07829301 -0.00436828  0.01411290  0.03259409 -0.09677419
-#&gt;  [817] -0.05981183  0.05107527  0.01411290 -0.02284946  0.12500000  0.10651882 -0.00436828 -0.02284946  0.16196237  0.12500000 -0.05981183 -0.00436828 -0.04133065 -0.04133065 -0.09677419 -0.00436828  0.08803763
-#&gt;  [834] -0.11525538 -0.02284946 -0.00436828 -0.09677419  0.03259409 -0.00436828  0.08803763  0.08803763  0.05107527  0.10651882  0.01411290  0.18044355 -0.00436828  0.01411290 -0.00436828  0.05107527 -0.07829301
-#&gt;  [851]  0.05107527 -0.09677419  0.05107527 -0.00436828 -0.00436828  0.05107527  0.06955645 -0.02284946  0.06955645  0.05107527 -0.04133065 -0.07829301  0.05107527 -0.05981183  0.01411290 -0.02284946 -0.00436828
-#&gt;  [868]  0.01411290 -0.05981183 -0.00436828 -0.00436828  0.05107527  0.03259409 -0.04133065 -0.04133065 -0.13373656  0.01411290  0.05107527 -0.04133065 -0.04133065  0.01411290 -0.05981183  0.06955645 -0.05981183
-#&gt;  [885]  0.05107527 -0.05981183  0.03259409 -0.04133065  0.03259409  0.05107527  0.03259409 -0.09677419  0.03259409 -0.02284946 -0.04133065 -0.00436828  0.01411290 -0.00436828 -0.02284946 -0.02284946  0.08803763
-#&gt;  [902] -0.02284946 -0.02284946  0.05107527 -0.07829301 -0.11525538 -0.07829301 -0.02284946 -0.11525538  0.03259409  0.08803763  0.01411290 -0.07829301 -0.04133065 -0.04133065 -0.02284946  0.10651882 -0.07829301
-#&gt;  [919] -0.09677419 -0.02284946  0.06955645  0.06955645 -0.09677419 -0.04133065 -0.05981183 -0.02284946  0.05107527 -0.00436828 -0.00436828 -0.02284946  0.01411290  0.01411290  0.05107527  0.03259409  0.01411290
-#&gt;  [936]  0.01411290  0.05107527 -0.11525538 -0.05981183 -0.00436828  0.10651882 -0.00436828  0.03259409 -0.04133065 -0.05981183  0.03259409 -0.02284946 -0.00436828 -0.02284946  0.06955645 -0.00436828 -0.00436828
-#&gt;  [953] -0.02284946 -0.00436828  0.05107527  0.12500000 -0.04133065 -0.00436828  0.06955645 -0.05981183 -0.00436828  0.05107527  0.01411290 -0.02284946  0.03259409  0.05107527 -0.00436828  0.08803763  0.03259409
-#&gt;  [970] -0.02284946 -0.00436828 -0.04133065  0.03259409  0.05107527  0.03259409  0.01411290 -0.02284946 -0.07829301 -0.05981183  0.14348118  0.03259409  0.08803763 -0.05981183 -0.04133065  0.05107527 -0.02284946
-#&gt;  [987]  0.05107527 -0.02284946  0.01411290 -0.09677419  0.03259409 -0.04133065  0.01411290  0.03259409 -0.02284946  0.03259409 -0.02284946  0.08803763 -0.02284946  0.06955645</code></pre>
+<pre><code>#&gt;    [1] -0.00436828 -0.00436828  0.08803763  0.05107527  0.01411290 -0.07829301 -0.05981183 -0.00436828 -0.07829301 -0.00436828  0.03259409 -0.05981183 -0.00436828 -0.00436828 -0.05981183 -0.00436828  0.03259409
+#&gt;   [18]  0.08803763  0.08803763  0.01411290  0.01411290 -0.18918011 -0.05981183  0.01411290  0.10651882  0.05107527  0.08803763 -0.02284946  0.01411290  0.05107527 -0.02284946 -0.00436828 -0.00436828  0.06955645
+#&gt;   [35] -0.05981183 -0.05981183 -0.00436828  0.01411290 -0.04133065 -0.00436828  0.06955645 -0.11525538 -0.04133065  0.08803763  0.05107527  0.03259409 -0.00436828  0.06955645  0.10651882 -0.00436828 -0.04133065
+#&gt;   [52]  0.01411290  0.05107527  0.01411290  0.05107527 -0.07829301  0.06955645 -0.02284946 -0.07829301 -0.00436828 -0.05981183 -0.07829301  0.01411290  0.03259409  0.03259409 -0.02284946  0.03259409 -0.00436828
+#&gt;   [69]  0.01411290 -0.05981183  0.05107527 -0.02284946 -0.05981183 -0.04133065 -0.02284946  0.06955645  0.03259409 -0.07829301 -0.04133065 -0.00436828 -0.07829301 -0.02284946 -0.00436828 -0.00436828 -0.02284946
+#&gt;   [86] -0.04133065 -0.00436828 -0.09677419  0.12500000  0.05107527  0.01411290  0.01411290  0.01411290 -0.04133065  0.01411290  0.06955645  0.06955645 -0.04133065  0.01411290 -0.00436828  0.03259409 -0.05981183
+#&gt;  [103]  0.03259409  0.01411290 -0.00436828 -0.00436828 -0.00436828  0.01411290  0.03259409  0.05107527  0.05107527 -0.00436828 -0.00436828 -0.02284946  0.03259409 -0.02284946 -0.05981183 -0.00436828  0.06955645
+#&gt;  [120] -0.05981183  0.01411290 -0.00436828  0.03259409  0.06955645  0.01411290 -0.05981183  0.01411290 -0.00436828 -0.04133065  0.01411290 -0.09677419  0.03259409 -0.00436828  0.05107527 -0.02284946  0.10651882
+#&gt;  [137]  0.10651882 -0.13373656 -0.05981183  0.03259409  0.06955645  0.03259409  0.05107527  0.05107527 -0.05981183  0.05107527 -0.07829301  0.05107527  0.01411290  0.06955645  0.01411290 -0.02284946  0.01411290
+#&gt;  [154] -0.00436828  0.06955645  0.03259409  0.05107527  0.06955645 -0.02284946  0.08803763  0.03259409 -0.07829301  0.01411290  0.01411290 -0.07829301 -0.04133065  0.01411290  0.06955645 -0.00436828 -0.02284946
+#&gt;  [171] -0.04133065  0.01411290  0.06955645 -0.04133065  0.03259409  0.03259409 -0.00436828 -0.02284946 -0.00436828 -0.02284946  0.03259409 -0.00436828 -0.09677419 -0.04133065 -0.09677419  0.03259409 -0.09677419
+#&gt;  [188]  0.01411290  0.06955645 -0.05981183 -0.00436828  0.03259409 -0.13373656  0.06955645 -0.04133065  0.06955645  0.01411290 -0.02284946 -0.02284946 -0.04133065 -0.02284946 -0.02284946 -0.02284946 -0.00436828
+#&gt;  [205] -0.05981183 -0.02284946  0.03259409 -0.09677419  0.05107527  0.03259409  0.03259409 -0.02284946  0.03259409  0.03259409 -0.04133065  0.01411290 -0.02284946 -0.04133065  0.05107527 -0.00436828  0.01411290
+#&gt;  [222]  0.01411290 -0.02284946  0.03259409  0.10651882 -0.04133065 -0.09677419 -0.04133065 -0.02284946  0.01411290  0.08803763  0.05107527  0.05107527  0.14348118 -0.00436828  0.05107527 -0.00436828 -0.04133065
+#&gt;  [239] -0.00436828  0.05107527 -0.05981183 -0.00436828  0.03259409  0.08803763  0.05107527  0.10651882  0.03259409  0.03259409 -0.02284946 -0.02284946  0.01411290 -0.00436828  0.03259409  0.08803763  0.03259409
+#&gt;  [256] -0.00436828 -0.02284946  0.03259409  0.03259409  0.01411290 -0.07829301 -0.02284946 -0.04133065  0.06955645 -0.11525538 -0.02284946  0.03259409  0.01411290  0.08803763 -0.04133065 -0.04133065 -0.02284946
+#&gt;  [273]  0.05107527 -0.09677419 -0.07829301 -0.02284946  0.01411290  0.08803763  0.06955645  0.08803763 -0.02284946  0.05107527  0.05107527 -0.00436828 -0.09677419  0.05107527  0.01411290 -0.00436828  0.05107527
+#&gt;  [290]  0.06955645  0.01411290 -0.00436828  0.03259409 -0.09677419  0.03259409 -0.11525538 -0.09677419  0.03259409 -0.09677419  0.03259409 -0.07829301  0.03259409 -0.02284946 -0.00436828  0.05107527 -0.05981183
+#&gt;  [307] -0.02284946  0.05107527  0.06955645  0.06955645 -0.02284946 -0.02284946  0.01411290  0.05107527  0.10651882 -0.05981183  0.05107527  0.12500000  0.03259409 -0.02284946  0.06955645 -0.04133065 -0.09677419
+#&gt;  [324] -0.04133065 -0.00436828  0.06955645  0.05107527 -0.05981183 -0.00436828 -0.00436828  0.01411290  0.01411290  0.03259409  0.05107527  0.03259409  0.05107527  0.05107527  0.06955645  0.05107527 -0.05981183
+#&gt;  [341] -0.00436828  0.03259409  0.12500000 -0.00436828  0.01411290  0.10651882 -0.00436828  0.08803763 -0.00436828 -0.00436828 -0.09677419  0.03259409 -0.05981183 -0.00436828  0.03259409  0.03259409  0.03259409
+#&gt;  [358] -0.00436828 -0.02284946 -0.00436828  0.05107527 -0.00436828 -0.04133065 -0.02284946 -0.05981183  0.10651882  0.01411290 -0.00436828 -0.00436828  0.03259409 -0.02284946 -0.02284946  0.08803763 -0.00436828
+#&gt;  [375] -0.09677419 -0.04133065  0.01411290 -0.09677419  0.06955645 -0.05981183  0.01411290 -0.02284946 -0.04133065  0.01411290 -0.07829301  0.06955645 -0.02284946  0.05107527  0.01411290  0.05107527 -0.02284946
+#&gt;  [392]  0.03259409  0.12500000  0.08803763  0.06955645  0.01411290 -0.11525538  0.05107527 -0.09677419  0.05107527  0.01411290 -0.00436828 -0.09677419 -0.00436828 -0.04133065  0.10651882  0.03259409 -0.04133065
+#&gt;  [409]  0.03259409 -0.07829301 -0.07829301 -0.04133065 -0.02284946 -0.00436828  0.06955645 -0.00436828 -0.00436828  0.01411290  0.10651882  0.03259409 -0.09677419 -0.07829301  0.16196237  0.06955645 -0.00436828
+#&gt;  [426]  0.01411290  0.08803763 -0.04133065 -0.02284946 -0.02284946 -0.02284946  0.05107527  0.03259409 -0.07829301  0.10651882  0.05107527  0.08803763 -0.07829301  0.14348118 -0.00436828 -0.02284946  0.05107527
+#&gt;  [443] -0.05981183 -0.02284946 -0.02284946  0.01411290 -0.02284946 -0.02284946  0.10651882 -0.09677419 -0.04133065 -0.11525538  0.10651882 -0.02284946  0.01411290 -0.02284946 -0.04133065  0.03259409  0.10651882
+#&gt;  [460]  0.01411290  0.01411290  0.06955645  0.06955645  0.05107527  0.10651882  0.05107527 -0.11525538 -0.11525538  0.05107527 -0.04133065 -0.02284946  0.05107527 -0.05981183 -0.00436828 -0.00436828 -0.00436828
+#&gt;  [477]  0.06955645  0.08803763  0.05107527  0.01411290 -0.02284946  0.01411290 -0.04133065  0.03259409 -0.02284946 -0.04133065  0.01411290 -0.00436828 -0.04133065 -0.05981183  0.05107527 -0.00436828 -0.00436828
+#&gt;  [494]  0.05107527  0.03259409  0.01411290  0.05107527  0.01411290  0.03259409  0.03259409 -0.09677419 -0.05981183 -0.00436828 -0.15221774  0.01411290  0.06955645 -0.00436828 -0.05981183 -0.02284946  0.05107527
+#&gt;  [511] -0.00436828 -0.02284946  0.05107527  0.10651882  0.03259409  0.01411290 -0.05981183  0.08803763 -0.05981183 -0.02284946 -0.05981183 -0.00436828 -0.04133065  0.05107527  0.01411290  0.01411290 -0.05981183
+#&gt;  [528] -0.00436828  0.06955645 -0.02284946  0.06955645 -0.05981183 -0.02284946  0.05107527  0.05107527 -0.00436828  0.05107527 -0.09677419 -0.05981183  0.03259409 -0.00436828 -0.02284946  0.01411290  0.01411290
+#&gt;  [545]  0.01411290  0.08803763  0.01411290  0.06955645  0.03259409 -0.07829301 -0.02284946  0.05107527  0.03259409 -0.04133065 -0.00436828 -0.02284946 -0.02284946  0.08803763 -0.00436828 -0.04133065 -0.05981183
+#&gt;  [562] -0.00436828 -0.04133065 -0.09677419 -0.04133065 -0.02284946 -0.02284946  0.06955645  0.05107527  0.05107527 -0.04133065  0.01411290  0.03259409 -0.05981183 -0.17069892 -0.04133065 -0.00436828  0.01411290
+#&gt;  [579] -0.02284946 -0.02284946 -0.05981183  0.05107527  0.01411290 -0.02284946 -0.00436828  0.06955645  0.01411290 -0.04133065 -0.00436828 -0.05981183 -0.00436828  0.03259409  0.01411290  0.06955645 -0.02284946
+#&gt;  [596] -0.02284946 -0.00436828  0.05107527  0.01411290  0.12500000  0.10651882 -0.02284946 -0.05981183 -0.02284946 -0.05981183  0.05107527 -0.07829301  0.01411290 -0.09677419 -0.00436828  0.05107527  0.03259409
+#&gt;  [613]  0.10651882  0.05107527 -0.04133065 -0.05981183 -0.00436828 -0.02284946 -0.07829301 -0.07829301 -0.00436828  0.05107527 -0.02284946 -0.02284946 -0.07829301 -0.00436828 -0.04133065 -0.04133065  0.05107527
+#&gt;  [630] -0.02284946  0.01411290  0.01411290  0.03259409  0.03259409 -0.00436828 -0.07829301  0.01411290 -0.05981183 -0.02284946 -0.07829301  0.01411290 -0.04133065 -0.04133065 -0.04133065 -0.00436828 -0.00436828
+#&gt;  [647]  0.03259409 -0.09677419  0.03259409  0.01411290 -0.05981183 -0.02284946 -0.02284946  0.05107527 -0.07829301 -0.04133065  0.01411290 -0.04133065  0.10651882 -0.02284946  0.10651882  0.01411290  0.03259409
+#&gt;  [664] -0.05981183 -0.05981183 -0.00436828  0.06955645  0.08803763 -0.11525538  0.03259409 -0.04133065  0.10651882 -0.00436828 -0.09677419  0.03259409 -0.11525538  0.01411290  0.03259409  0.06955645  0.08803763
+#&gt;  [681] -0.09677419 -0.00436828  0.05107527  0.01411290 -0.09677419 -0.04133065  0.01411290  0.03259409 -0.02284946  0.03259409 -0.02284946  0.01411290 -0.05981183 -0.04133065 -0.02284946 -0.05981183 -0.09677419
+#&gt;  [698] -0.05981183 -0.02284946 -0.07829301 -0.00436828 -0.00436828 -0.11525538 -0.00436828  0.03259409 -0.04133065  0.05107527  0.05107527  0.01411290 -0.02284946  0.06955645  0.10651882  0.03259409 -0.05981183
+#&gt;  [715] -0.22614247  0.06955645  0.01411290  0.03259409  0.03259409 -0.04133065  0.01411290 -0.00436828  0.05107527 -0.04133065 -0.00436828  0.01411290 -0.02284946 -0.04133065  0.01411290  0.01411290 -0.05981183
+#&gt;  [732]  0.05107527  0.01411290 -0.05981183 -0.05981183 -0.11525538 -0.11525538  0.10651882 -0.04133065 -0.04133065 -0.02284946 -0.05981183 -0.02284946 -0.04133065 -0.00436828 -0.02284946  0.01411290 -0.05981183
+#&gt;  [749] -0.07829301  0.01411290  0.03259409  0.05107527  0.05107527 -0.02284946 -0.02284946  0.03259409 -0.00436828 -0.00436828  0.10651882  0.05107527 -0.02284946  0.06955645 -0.02284946 -0.02284946 -0.07829301
+#&gt;  [766]  0.05107527  0.05107527  0.05107527 -0.00436828  0.01411290  0.03259409  0.05107527 -0.11525538  0.03259409  0.05107527 -0.02284946 -0.04133065  0.01411290  0.03259409  0.03259409  0.01411290 -0.11525538
+#&gt;  [783]  0.01411290 -0.05981183 -0.05981183  0.05107527  0.03259409  0.10651882 -0.11525538 -0.04133065  0.01411290  0.05107527  0.01411290  0.08803763  0.06955645  0.03259409 -0.02284946  0.06955645  0.01411290
+#&gt;  [800]  0.05107527  0.03259409  0.05107527 -0.02284946 -0.04133065 -0.07829301  0.03259409 -0.04133065 -0.00436828  0.05107527  0.08803763 -0.04133065  0.01411290 -0.00436828  0.03259409 -0.04133065 -0.04133065
+#&gt;  [817] -0.00436828  0.06955645 -0.07829301  0.01411290  0.08803763  0.10651882  0.05107527 -0.15221774 -0.02284946  0.10651882 -0.05981183 -0.07829301 -0.05981183  0.01411290  0.06955645  0.01411290 -0.09677419
+#&gt;  [834]  0.03259409 -0.02284946  0.05107527 -0.05981183 -0.00436828 -0.04133065  0.03259409 -0.00436828 -0.00436828  0.01411290  0.12500000 -0.04133065 -0.09677419  0.05107527  0.03259409  0.06955645 -0.02284946
+#&gt;  [851]  0.05107527  0.01411290  0.05107527 -0.05981183 -0.05981183 -0.05981183  0.05107527  0.01411290  0.05107527  0.03259409 -0.04133065  0.05107527  0.01411290 -0.00436828  0.01411290  0.01411290  0.01411290
+#&gt;  [868]  0.05107527 -0.09677419 -0.02284946  0.03259409 -0.04133065  0.01411290 -0.00436828  0.01411290 -0.07829301 -0.05981183 -0.05981183 -0.02284946 -0.05981183 -0.02284946  0.05107527  0.06955645  0.06955645
+#&gt;  [885] -0.05981183 -0.07829301  0.03259409 -0.07829301 -0.07829301 -0.04133065  0.05107527 -0.00436828 -0.00436828  0.05107527  0.01411290 -0.05981183  0.05107527  0.03259409 -0.00436828  0.01411290 -0.07829301
+#&gt;  [902]  0.03259409 -0.04133065 -0.00436828 -0.00436828 -0.05981183 -0.00436828  0.05107527  0.05107527 -0.07829301  0.03259409  0.01411290 -0.04133065  0.05107527 -0.07829301  0.03259409 -0.07829301 -0.04133065
+#&gt;  [919]  0.03259409 -0.00436828  0.01411290  0.05107527  0.01411290  0.10651882 -0.00436828  0.01411290  0.05107527 -0.00436828  0.05107527 -0.02284946 -0.02284946  0.05107527 -0.02284946 -0.09677419 -0.13373656
+#&gt;  [936] -0.05981183  0.08803763 -0.00436828  0.05107527 -0.00436828 -0.00436828  0.03259409  0.08803763  0.14348118 -0.02284946 -0.02284946 -0.00436828  0.05107527  0.05107527  0.05107527  0.05107527  0.03259409
+#&gt;  [953]  0.01411290 -0.09677419 -0.05981183 -0.04133065  0.05107527 -0.00436828 -0.04133065  0.03259409  0.03259409 -0.05981183  0.01411290 -0.00436828 -0.02284946 -0.05981183  0.03259409  0.03259409 -0.02284946
+#&gt;  [970]  0.03259409  0.01411290  0.03259409  0.12500000  0.05107527  0.06955645  0.01411290 -0.02284946  0.05107527 -0.00436828  0.03259409 -0.02284946  0.06955645 -0.00436828  0.03259409 -0.09677419 -0.04133065
+#&gt;  [987]  0.06955645  0.01411290 -0.04133065 -0.00436828 -0.04133065  0.03259409 -0.04133065  0.01411290 -0.04133065  0.01411290 -0.00436828  0.01411290  0.05107527  0.12500000</code></pre>
 </div>
 </div>
 </section>
@@ -1167,18 +1183,18 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<img data-src="12_files/figure-html/unnamed-chunk-31-1.png" width="672" class="r-stretch"></section>
 <section id="compute-data-propoortion" class="slide level2">
 <h2>Compute Data Propoortion</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>test_stat <span class="ot">&lt;-</span> <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, T)</span>
-<span id="cb56-2"><a></a>test_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>test_stat <span class="ot">&lt;-</span> <span class="fu">props</span>(bacteria<span class="sc">$</span>ap, bacteria<span class="sc">$</span>y, <span class="st">"y"</span>, T)</span>
+<span id="cb58-2"><a></a>test_stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 0.125</code></pre>
@@ -1190,13 +1206,13 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
-<span id="cb58-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb58-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb60-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb60-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="12_files/figure-html/unnamed-chunk-33-1.png" width="672" class="r-stretch"></section></section>
 <section>
 <section id="p-value" class="title-slide slide level1 agenda-slide center">
 <h1>P-Value</h1>
@@ -1245,13 +1261,13 @@ H_a:\ p_1 - p_2 \neq 0
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
-<span id="cb59-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb59-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span>test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> sim_stats), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb61-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb61-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span>test_stat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="12_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
+<img data-src="12_files/figure-html/unnamed-chunk-34-1.png" width="672" class="r-stretch"></section>
 <section id="computing-the-p-value" class="slide level2">
 <h2>Computing the p-value</h2>
 <p>We will count how many simulated <span class="math inline">\(p_{active}-p_{placebo}\)</span>’s are more extreme than our test statistic and divided by the number of simulations plus one.</p>
@@ -1271,7 +1287,7 @@ p = \frac{m +1}{N + 1}
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>(<span class="fu">sum</span>(<span class="fu">abs</span>(SIM_VECTOR) <span class="sc">&gt;</span> <span class="fu">abs</span>(TEST_STAT)) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (N <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>(<span class="fu">sum</span>(<span class="fu">abs</span>(SIM_VECTOR) <span class="sc">&gt;</span> <span class="fu">abs</span>(TEST_STAT)) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (N <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1280,10 +1296,10 @@ p = \frac{m +1}{N + 1}
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">sum</span>(<span class="fu">abs</span>(sim_stats) <span class="sc">&gt;</span> <span class="fu">abs</span>(test_stat)) <span class="sc">/</span> <span class="dv">1001</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">sum</span>(<span class="fu">abs</span>(sim_stats) <span class="sc">&gt;</span> <span class="fu">abs</span>(test_stat)) <span class="sc">/</span> <span class="dv">1001</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.01098901</code></pre>
+<pre><code>#&gt; [1] 0.01198801</code></pre>
 </div>
 </div>
 </section></section>
@@ -1576,44 +1592,6 @@ p = \frac{m +1}{N + 1}
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
