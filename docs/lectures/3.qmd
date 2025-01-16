@@ -229,27 +229,40 @@ ggplot(coffee, aes(caffeine, after_stat(prop), group = 1)) +
 
 # Cross-Tabulation
 
-## Cross-Tabulation
-
-Cross Tabulations allow you to see how data points are divided when looking at 2 different categorical variables.
-
 ## Data
 
 The variable `taste` indicates if the participants like the taste of coffee.
 
 ```{r}
-#| echo: false
-#| eval: true
-
-coffee$caffeine
-coffee$taste
+cat_stats(coffee$taste)
 ```
 
-## Cross Tabulations
+## Cross-Tabulation
 
-```{r}
-cat_stats(coffee$caffeine, coffee$taste)
-```
+**Cross-tabulations**, also known as **contingency tables**, are statistical tools used to analyze the relationship between two or more categorical variables by displaying their frequency distribution in a table format. Each cell in the table represents the count or frequency of observations that fall into a particular combination of categories for the variables.
+
+## Key Features of Cross-Tabulations
+
+1. **Rows and Columns**: 
+   - Rows represent the categories of one variable.
+   - Columns represent the categories of another variable.
+2. **Cells**:
+   - Each cell displays the frequency or count of data points that belong to the intersection of a row and column category.
+3. **Margins**:
+   - Row and column totals provide summaries for each variable.
+   - The grand total shows the overall sample size.
+
+
+## Types of Proportions in Cross-Tabulations
+
+1. **Row Proportions**: Show the percentage of each row total represented by a cell.
+2. **Column Proportions**: Show the percentage of each column total represented by a cell.
+3. **Table Proportions**: Show the percentage of the overall total represented by a cell.
+
+
+## Table Proportions
+
+Table proportions in cross-tabulations refer to the relative frequency or percentage of counts within the entire table, calculated by dividing each cell’s count by the total sum of all counts in the table. These proportions allow you to examine the contribution of each cell to the overall data set.
 
 ## Table Proportions
 
@@ -259,9 +272,17 @@ cat_stats(coffee$caffeine, coffee$taste, prop = "table")
 
 ## Row Proportions
 
+Row proportions refer to the relative frequency or percentage of counts within each row of a contingency table. In a cross-tabulation, row proportions allow you to compare how the distribution of one variable varies within each category of another variable, within a row.
+
+## Row Proportions
+
 ```{r}
 cat_stats(coffee$caffeine, coffee$taste, prop = "row")
 ```
+
+## Column Proportions
+
+Column proportions refer to the relative frequency or percentage of counts within each column of a contingency table. These proportions allow you to compare how the distribution of one variable varies across different categories of another variable, within a column.
 
 ## Column Proportions
 
@@ -304,15 +325,26 @@ ggplot(coffee, aes(y = caffeine, x = after_stat(count), fill = taste)) +
 
 ## Pie Charts
 
-Pie charts are useful methods to show how a categories are related to each other in a sample.
+A **pie chart** is a circular statistical graphic divided into slices, where each slice represents a proportion or percentage of the whole. The size of each slice is proportional to the relative frequency or magnitude of the category it represents.
+
+## Pie Charts
 
 ```{r}
 #| echo: false
 #| eval: false
-coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+coffee_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
 ggplot(coffee_pie, aes(cat = Category, val = n, fill = Category)) +
   geom_pie()
 ```
+
+
+## Key Features of Pie Charts
+1. **Circular Format**: 
+   - The chart is shaped like a circle, symbolizing a whole (100% or 1).
+2. **Slices**:
+   - Each slice corresponds to a category and its size represents the contribution of that category to the total.
+3. **Labels**:
+   - Slices are often labeled with the category name and the percentage or value they represent.
 
 
 ## Pie Chart in R
@@ -320,7 +352,7 @@ ggplot(coffee_pie, aes(cat = Category, val = n, fill = Category)) +
 ```{r}
 #| echo: true
 #| eval: false
-df_pie <- cat_stats(DATA$VARIABLE, pie = TRUE)
+df_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
 ggplot(df_pie, aes(cat = Category, val = n, fill = Category)) +
   geom_pie()
 ```
@@ -330,17 +362,28 @@ ggplot(df_pie, aes(cat = Category, val = n, fill = Category)) +
 ```{r}
 #| echo: true
 #| eval: false
-coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+coffee_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
 ggplot(coffee_pie, aes(cat = Category, val = n, fill = Category)) +
   geom_pie()
 ```
 
+## Mosaic Plots
+
+A **mosaic plot** is a graphical representation of two categorical variables. It uses rectangles to visualize the proportions of data categories while simultaneously showing the relationships between multiple variables. The size of each rectangle corresponds to the relative frequency or proportion of the data in a particular category combination.
+
+## Key Features of Mosaic Plots
+1. **Rectangular Tiles**:
+   - The plot is divided into rectangles, with each tile representing a unique combination of categories.
+2. **Proportional Areas**:
+   - The area of each rectangle is proportional to the frequency or proportion of the data it represents.
+3. **Hierarchical Arrangement**:
+   - Variables are arranged hierarchically along the axes, with the tiles subdivided to represent relationships between variables.
+4. **Color Coding (Optional)**:
+   - Different colors can be used to highlight specific patterns, emphasize groups, or indicate significance.
 
 
 ## Mosiac Plots 
 
-Mosiac Plots are usful in visualizing two categorical variables with its relative proportions.
-
 ```{r}
 #| echo: false
 #| eval: true
@@ -355,14 +398,8 @@ ggplot(coffee) +
 #| echo: true
 #| eval: false
 
-ggplot(DATA) +
-  geom_mosaic(aes(x = product(VARIABLE), fill = VARIABLE))
-```
+ggplot(DATA) +Waffle Charts is similar to the pie charts where you can visualize the proportions.
 
-
-## Mosiac Plots in R
-
-```{r}
 #| echo: true
 #| eval: true
 ggplot(coffee) +
@@ -372,15 +409,24 @@ ggplot(coffee) +
 
 ## Waffle Charts
 
-## Waffle Charts
+A **waffle chart** is a grid-based visualization used to display proportions or percentages in a dataset. It represents parts of a whole by dividing a grid into small squares, where each square corresponds to a specific percentage or unit of the total.
 
-Waffle Charts is similar to the pie charts where you can visualize the proportions.
+## Key Features of Waffle Charts
+1. **Grid Structure**:
+   - Composed of small squares arranged in rows and columns, typically forming a 10x10 grid (100 squares for 100%).
+2. **Proportional Representation**:
+   - Each square represents an equal portion of the total, such as 1% in a 10x10 grid.
+3. **Color Coding**:
+   - Different colors are used to represent different categories or groups.
+
+
+## Waffle Charts
 
 ```{r}
 #| echo: false
 #| eval: false
 
-coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+coffee_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
 ggplot(coffee_pie, aes(fill = Category, values = n)) +
   geom_waffle(make_proportional = TRUE)
 ```
@@ -392,7 +438,7 @@ ggplot(coffee_pie, aes(fill = Category, values = n)) +
 #| echo: true
 #| eval: false
 
-df_pie <- cat_stats(DATA$VARIABLE, pie = TRUE)
+df_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
 ggplot(df_pie, aes(cat = Category, values = n)) +
   geom_waffle(make_proportional = TRUE)
 
@@ -407,7 +453,7 @@ ggplot(df_pie, aes(cat = Category, values = n)) +
 #| echo: true
 #| eval: false
 
-coffee_pie <- cat_stats(coffee$caffeine, pie = TRUE)
+coffee_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
 ggplot(coffee_pie, aes(fill = Category, values = n)) +
   geom_waffle(make_proportional = TRUE)
 ```

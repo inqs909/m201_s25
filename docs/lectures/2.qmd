@@ -106,20 +106,6 @@ This is designed by conducting a research projects that systematically answers t
 The study design is the procedure in which data is collected to answer the question, while reducing any potential bias while conducting the study.
 :::
 
-## Case Study: Epidemiological Model in Politics
-
-[An Epidemiological Math Model Approach to a Political System with Three Parties](https://scholarship.claremont.edu/cgi/viewcontent.cgi?article=1046&context=codee)
-
-::: columns
-::: {.column width="50%"}
-![](https://math.csuci.edu/about/img/faculty/selenne-banuelos.jpg){fig-align="center"}
-:::
-
-::: {.column width="50%"}
-[![](https://math.csuci.edu/about/img/faculty/cynthia-flores.jpg){fig-align="center"}](https://cynthia.cikeys.com/)
-:::
-:::
-
 ## Study Design
 
 This is the procedure designed to answer a research question.
@@ -203,7 +189,7 @@ When inspecting data:
 
 -   Do not focus on one individual data point.
 
--   See how data points interact with each other
+-   See how data points is in relation to other data points.
 
 -   See what is common
 
@@ -272,11 +258,47 @@ We can use a sample to understand the DGP.
 We can use the DGP to understand the sample.
 :::
 
-## Example
+## Visualizing a DGP
 
 ```{r}
 #| echo: false
 library(tidyverse)
+seq(0, 1, length.out = 1000) |> 
+  dbeta(shape1 = 2, shape2 = 5) |> 
+  tibble(x = seq(0, 1, length.out = 1000), y = _) |>
+  ggplot(aes(x, y)) + geom_line() + 
+  ggtitle("DGP") + ylab("Density") +
+  theme(plot.title = element_text(size = 48),
+        axis.title.x = element_text(size = 36),
+        axis.title.y = element_text(size = 36),
+        axis.text.x = element_text(size = 24),
+        axis.text.y = element_text(size = 24)) +
+  theme_bw()
+
+```
+
+## Visualizing DGP
+
+```{r}
+#| echo: false
+library(tidyverse)
+rbinom(200000, size = 20, prob = 1/5) |> 
+  tibble(y = _) |>
+  ggplot(aes(y)) + geom_bar() + 
+  ggtitle("DGP") + ylab("Frequency") +
+  theme(plot.title = element_text(size = 48),
+        axis.title.x = element_text(size = 36),
+        axis.title.y = element_text(size = 36),
+        axis.text.x = element_text(size = 24),
+        axis.text.y = element_text(size = 24)) +
+  theme_bw()
+```
+
+## Example
+
+```{r}
+#| echo: false
+
 library(ThemePark)
 library(patchwork)
 g1 <- seq(0, 1, length.out = 1000) |> 
@@ -305,3 +327,50 @@ g2 <- rbeta(100, shape1 = 2, shape2 = 5) |>
 g1 + g2 
 ```
 
+# Statistical Model
+
+## Statistical Model
+
+$$
+Y \sim F(\theta)
+$$
+
+- $Y$: A data value generated for DGP
+- $F$: A generic mathematical model that describes the DGP
+- $\theta$: Parameter controlling the shape and form of the DGP
+
+## Statistical Model
+
+$$
+Y = \mu + \varepsilon 
+$$
+
+
+- $\mu$: The average value we expect to see
+- $\varepsilon \sim F(\cdot)$: Error Term
+
+## Statistical Model
+$$
+Y = \mu + \varepsilon 
+$$
+
+::: columns
+
+::: column
+$\mu$: Explained Part
+
+- This is what we expect to see if we took an educated guess
+- The educated guess can incorporate information that is related to $Y$
+
+:::
+::: column
+$\varepsilon$: Unexplained Part
+
+- Randomness
+- Incorporates several types of variation
+  - Measurement Error
+  - Biological Error
+  - Environmental Error
+
+:::
+:::
