@@ -32,6 +32,7 @@ filters:
   - reveal-header
   - code-fullscreen
   - reveal-auto-agenda
+
 editor: source
 ---
 
@@ -54,102 +55,320 @@ theme_set(theme_bw() +
 
 ```
 
+# Probability Theory
+
+## What is Probability?
+
+**Probability** is the measure of how likely an event is to occur. It ranges from 0 to 1:
+- $P(A) = 0$: The event $A$ will definitely not happen.
+- $P(A) = 1$: The event $A$ will definitely happen.
+- Values between 0 and 1 represent varying degrees of likelihood.
+
+## Everyday Examples
+- What’s the probability it will rain tomorrow?
+- What are the chances of rolling a 6 on a standard die?
+- How likely is it that a randomly chosen student has a GPA above 3.0?
 
 
-# Motivation
+## Key Terms and Definitions
 
-## Motivation
+::: panel-tabset
 
-The `bacteria` data set contians information on whether bacteria (`y`: y or n) is present after utilizing treatments (`ap`: **a**ctive or **p**lacebo).
+### **Experiment**
+An action or process that generates outcomes.  
+- Example: Rolling a die.
 
-::: fragment
-We are interesting in determine the proportion of having bacteria present is different for those taking an "active" or "placebo".
+### **Sample Space**
+The set of all possible outcomes of an experiment.  
+- Example: For rolling a die, $S = \{1, 2, 3, 4, 5, 6\}$.
+
+### **Event**
+A subset of the sample space, representing outcomes of interest.  
+- Example: Rolling an even number ($A = \{2, 4, 6\}$).
+
+### **Prob. of an Event**
+The proportion of times an event is expected to occur if the experiment is repeated many times.
+
 :::
 
-## Comparing Proportions
+## The Probability Formula
 
-We are interesting in determining if different groups see different proportions of a binary outcome.
+The probability of an event $A$ is defined as:
 
-We compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other.
+$$
+P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of possible outcomes}}
+$$
 
-## 2 by 2 Cross Tabulations
+## Example
+If we roll a die, what is the probability of rolling a 4?
 
-|         |           |           |
-|---------|-----------|-----------|
-| Groups  | Outcome 1 | Outcome 2 |
-| Group 1 | $p_{11}$  | $p_{21}$  |
-| Group 2 | $p_{12}$  | $p_{22}$  |
+- **Favorable outcomes**: 1 (rolling a 4).
+- **Total outcomes**: 6 (since $S = \{1, 2, 3, 4, 5, 6\}$).
+
+$$
+P(\text{rolling a 4}) = \frac{1}{6} \approx 0.167
+$$
 
 
-::: fragment
-We want to compare $p_{11}$ and $p_{12}$, to determine if the probability of outcome 1 are the same for both groups.
+## Rules of Probability
+
+::: panel-tabset
+
+### Rule 1
+
+**Probability of the Sample Space**
+
+The probability of the sample space is always 1:
+$$
+P(S) = 1
+$$
+
+### Rule 2 
+
+**Probability of Impossible Events**
+
+The probability of an event that cannot happen is 0:
+$$
+P(\emptyset) = 0
+$$
+
+### Rule 3
+
+**Complement Rule**
+
+The probability of the complement of an event $A$ (not $A$) is:
+
+$$
+P(A^c) = 1 - P(A)
+$$
+- Example: If $P(\text{rain}) = 0.3$, then $P(\text{no rain}) = 1 - 0.3 = 0.7$.
+
+### Rule 4
+
+**Addition Rule**
+
+For two events $A$ and $B$:
+- If $A$ and $B$ are **mutually exclusive** (cannot happen at the same time):
+$$
+P(A \cup B) = P(A) + P(B)
+$$
+
+- If $A$ and $B$ are **not mutually exclusive**:
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+### Rule 5
+
+**Multiplication Rule**
+
+For two events $A$ and $B$:
+- If $A$ and $B$ are **independent**:
+
+$$
+P(A \cap B) = P(A) \cdot P(B)
+$$
 
 :::
 
-## Test Statistic
+## Applications
 
-We can use both $p_{11}$ and $p_{12}$ to determine if there is a fundamental difference.
+::: panel-tabset
 
-::: fragment
-However, it will be more beneficial to utilize one statistic to contruct the sampling distribution.
+### Drawing a Card
+If you draw a card from a standard deck of 52 cards, what is the probability of drawing:
+
+1. A heart?  
+  $$
+   P(\text{heart}) = \frac{13}{52} = 0.25
+  $$
+
+2. A red card (heart or diamond)?  
+  $$
+   P(\text{red card}) = \frac{26}{52} = 0.5
+  $$
+
+### Tossing a Coin Twice
+What is the probability of getting:
+
+1. Exactly one head?  
+   Sample space: $S = \{\text{HH, HT, TH, TT}\}$.  
+   Event: $A = \{\text{HT, TH}\}$.  
+   $$
+   P(A) = \frac{2}{4} = 0.5
+   $$
+
+2. At least one head?  
+   Event: $B = \{\text{HH, HT, TH}\}$.  
+   $$
+   P(B) = \frac{3}{4} = 0.75
+   $$
+
+### Traffic Lights
+A commuter encounters three traffic lights, each with a 70% chance of being green. Assuming independence, what is the probability that all three lights are green?
+
+$$
+P(\text{all green}) = 0.7 \cdot 0.7 \cdot 0.7 = 0.343
+$$
+
 :::
 
-::: fragment
-$$
-T =  \hat p_{11} - \hat p_{12}
-$$
+# Distribution Functions
+
+## Distribution Functions
+
+A **distribution function** describes the probabilities of a random variable across its possible values. It answers questions like:
+
+- How likely is a random variable to take on a specific value or fall within a range?
+- What is the overall "shape" of the distribution of outcomes?
+
+## Types of Distribution Functions
+
+::: panel-tabset
+
+### **Discrete Distribution**
+
+Used for **discrete random variables**, which can take on countable values (e.g., integers). Examples include:
+
+- Number of heads in coin tosses.
+- Number of customers in a store.
+
+### **Continuous Distribution**
+Used for **continuous random variables**, which can take on any value within a range (e.g., real numbers). Examples include:
+
+- Heights of people.
+- Time it takes to complete a task.
+
 :::
 
-## Obtain Proportions in R
+## Cumulative Distribution Function (CDF)
 
-```{r}
-#| echo: true
-#| eval: false
-#| code-fold: show
-
-props_df(DATA, GROUP, OUTCOME, VAL)
-```
-
-## Obtain Difference in R
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-fold: show
-
-
-props_df(DATA, GROUP, OUTCOME, VAL, diff = TRUE)
-```
-
-## Bacteria Example
-
-```{r}
-#| code-fold: show
-
-
-props_df(bacteria, ap, y, "y")
-```
-
-## Bacteria Example
-
-```{r}
-#| code-fold: show
-
-
-props_df(bacteria, ap, y, "y", TRUE)
-```
-
-## Hypotheis Test
-
-We will test the following hypothesis:
-
+The **Cumulative Distribution Function (CDF)** describes the probability that a random variable $X$ is less than or equal to a certain value $x$:
 $$
-H_0:\ \Delta =  p_1-p_2 = 0
+F_X(x) = P(X \leq x)
 $$
 
+## Properties of the CDF
+
+1. **Range**: The CDF is always between 0 and 1:
+   $$
+   0 \leq F_X(x) \leq 1
+   $$
+2. **Non-Decreasing**: The CDF never decreases as $x$ increases.
+3. **Limits**:
+   - $\lim_{x \to -\infty} F_X(x) = 0$
+   - $\lim_{x \to \infty} F_X(x) = 1$
+
+## CDF Example
+
+For a die roll (discrete case):
+
+- $F_X(2) = P(X \leq 2) = P(X = 1) + P(X = 2) = \frac{1}{6} + \frac{1}{6} = \frac{2}{6}$.
+
+For a normal distribution (continuous case):
+
+- Use the CDF to find probabilities, typically provided via tables or software.
+
+
+## Probability Density Function (PDF)
+
+The **Probability Density Function (PDF)** is used for **continuous random variables** and describes the likelihood of the variable falling within a small interval.
+
 $$
-H_a:\ \Delta = p_1 - p_2 \neq 0
+P(a \leq X \leq b) = \int_a^b f_X(x) \, dx
 $$
+
+## Properties of the PDF:
+
+1. **Non-Negative**:
+   $$
+   f_X(x) \geq 0 \quad \forall x
+   $$
+
+2. **Total Area Under Curve**:
+   $$
+   \int_{-\infty}^\infty f_X(x) \, dx = 1
+   $$
+
+## PDF Examples
+
+The PDF of the normal distribution is:
+$$
+f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+Here, $\mu$ is the mean and $\sigma$ is the standard deviation.
+
+
+
+## Probability Mass Function (PMF)
+
+The **Probability Mass Function (PMF)** is used for **discrete random variables** and gives the probability of each possible value:
+$$
+P(X = x) = p_X(x)
+$$
+
+## Properties of the PMF
+1. **Non-Negative**:
+   $$
+   p_X(x) \geq 0 \quad \forall x
+   $$
+
+2. **Sum of Probabilities**:
+   $$
+   \sum_x p_X(x) = 1
+   $$
+
+## PMF Example
+
+For a fair die, the PMF is:
+$$
+p_X(x) = \frac{1}{6}, \quad x \in \{1, 2, 3, 4, 5, 6\}
+$$
+
+
+## Applications
+
+::: panel-tabset
+
+### PMF of a Coin Toss
+For a fair coin tossed once:
+- $ X = 0 $: Tails, $ P(X = 0) = 0.5 $
+- $ X = 1 $: Heads, $ P(X = 1) = 0.5 $
+
+The PMF is:
+$$
+p_X(x) = 
+\begin{cases} 
+0.5 & x = 0 \text{ or } x = 1 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+
+### CDF of an Exponential Distribution
+An exponential random variable with rate $ \lambda > 0 $ has a CDF:
+$$
+F_X(x) = 
+\begin{cases} 
+1 - e^{-\lambda x}, & x \geq 0 \\
+0, & x < 0
+\end{cases}
+$$
+
+This can be used to model waiting times between events.
+
+### Applications in Real Life
+1. **PMF**:
+   - Number of emails received per hour.
+2. **PDF**:
+   - Heights of students in a class.
+3. **CDF**:
+   - The likelihood of completing a task within a certain time frame.
+
+:::
+
 
 # Normal Distribution
 
@@ -162,41 +381,73 @@ The **Normal Distribution** is a probability distribution that is symmetric, wit
   - **Standard Deviation ($\sigma$)**: Controls the spread of the distribution.
 
 
-## Normal Distribution
+::: fragment
+::: callout-important
+For any normally distributed data, the highest probability density is at the mean, and as you move away from the mean, the probability density gradually decreases.
+:::
+:::
 
-```{r}
-x <- seq(-4, 4, length.out = 1000)
-data.frame(x = x, y = dnorm(x)) |> 
-  ggplot(aes(x, y)) +
-  geom_line()
-```
+## Properties
 
-
-
-## Properties of the Normal Distribution
-
-::: incremental
 
 1. **Symmetry**: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.
 2. **Unimodal**: There is a single peak at the mean.
 3. **Mean, Median, and Mode are Equal**: In a normal distribution, these three measures of central tendency are located at the same point.
-4. **68-95-99.7 Rule** (Empirical Rule)
- 
+4. **68-95-99.7 Rule** (Empirical Rule): 
+   - About **68%** of data falls within **one standard deviation** of the mean.
+   - About **95%** of data falls within **two standard deviations**.
+   - About **99.7%** of data falls within **three standard deviations**.
+
+::: notes
+
+This rule helps us understand how data is distributed in a normal curve and provides a quick way to estimate probabilities for normally distributed data.
+
 :::
 
-## Standard Normal Distribution
+## Normal Distribution
+
+## The Standard Normal Distribution
+
 The **Standard Normal Distribution** is a special type of normal distribution with a mean of 0 and a standard deviation of 1. It's often used as a reference to convert any normal distribution to a standard form.
 
 ## Z-Scores
-A **Z-score** (or standard score) tells us how many standard deviations an individual data point is from the mean. It’s calculated as: $Z = \frac{X - \mu}{\sigma}$
+A **Z-score** (or standard score) tells us how many standard deviations an individual data point is from the mean. It’s calculated as:
+
+$$
+Z = \frac{X - \mu}{\sigma}
+$$
 
 - If $Z$ is positive, the data point is above the mean.
 - If $Z$ is negative, the data point is below the mean.
 - Using Z-scores, we can compare values across different normal distributions or find the probability associated with a particular score.
 
 
+## Why the Normal Distribution is Important
 
-## Empirical Rule
+
+1. **It Describes Many Natural Phenomena**: Heights, weights, test scores, measurement errors, and countless other variables follow a normal distribution, especially when influenced by many small, random factors.
+2. **Predictive Power**: With normally distributed data, we can make predictions and infer probabilities, thanks to the 68-95-99.7 rule.
+3. **Central Limit Theorem**: The normal distribution is foundational to the Central Limit Theorem, which tells us that, regardless of the original data distribution, the sampling distribution of the sample mean will approach a normal distribution as sample size increases.
+4. **Ease of Use in Statistical Methods**: Many statistical tests and methods assume normality, allowing for simplified calculations and reliable inferences.
+
+
+## Applications of the Normal Distribution
+
+::: panel-tabset
+
+### Standardized Testing
+Scores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.
+
+### Finance
+In finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions.
+
+:::
+
+
+# Empirical Rule
+
+
+## What is the Empirical Rule?
 
 The **Empirical Rule** provides a way to understand the spread of data in a normal distribution by describing how data points cluster around the mean. According to this rule:
 
@@ -204,118 +455,301 @@ The **Empirical Rule** provides a way to understand the spread of data in a norm
 2. Approximately **95%** of data points fall within **two standard deviations** of the mean.
 3. Approximately **99.7%** of data points fall within **three standard deviations** of the mean.
 
+The empirical rule is very helpful because, with just the mean and standard deviation, we can quickly estimate how data is distributed within a normal curve.
 
 
-## Empirical Rule and Normal Distribution
+## Applying the Empirical Rule to the Normal Distribution
+
+Let’s define the key terms and apply the empirical rule to the normal distribution.
+
+- **Mean (μ)**: This is the central point of the normal distribution where the data clusters around.
+- **Standard Deviation (σ)**: This is a measure of how spread out the data points are from the mean.
 
 In a normal distribution:
-
-- **68% of data** lies between $(\mu - \sigma)\) and \((\mu + \sigma)$.
-
-- **95% of data** lies between $(\mu - 2\sigma)\) and \((\mu + 2\sigma)$.
-
-- **99.7% of data** lies between $(\mu - 3\sigma)\) and \((\mu + 3\sigma)$.
+- **68% of data** lies between $(\mu - \sigma)$ and $(\mu + \sigma)$.
+- **95% of data** lies between $(\mu - 2\sigma)$ and $(\mu + 2\sigma)$.
+- **99.7% of data** lies between $(\mu - 3\sigma)$ and $(\mu + 3\sigma)$.
 
 These intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities.
 
 
 ## Visualizing the Empirical Rule
 
+To better understand the empirical rule, imagine a symmetric, bell-shaped normal curve. Here’s how it would look based on the empirical rule:
+
 1. The **68% region** represents the middle of the curve, starting one standard deviation left of the mean and ending one standard deviation right.
 2. The **95% region** stretches further out, covering almost the entire curve except for the outer tails.
 3. The **99.7% region** includes nearly all data points, covering the entire curve except for a tiny fraction at each extreme.
 
-## Empirical Rule
-
-![](img/fig-er6895997-1.png)
-
-# Central Limit Theorem
-
-## Central Limit Theorem
-What does the Central Limit Theorem (CLT) actually tell us?
-
-::: fragment
-
-The CLT states that:
-
-::: incremental
-
-1. **If you take a sufficiently large number of samples from any population, the distribution of the sample means will be approximately normal.**
-2. This approximation holds **no matter the shape of the original population distribution** (it could be normal, skewed, bimodal, etc.).
-3. The mean of this sampling distribution will be equal to the **population mean**.
-4. The standard deviation of this sampling distribution (often called the **standard error**) will be the population standard deviation divided by the square root of the sample size, \( \sigma_{\text{sample mean}} = \frac{\sigma}{\sqrt{n}} \).
-
-:::
-
-:::
+This visualization shows how the data is most concentrated around the mean, with less data appearing as we move further away.
 
 
-## Why the Central Limit Theorem is Important
+## Using the Empirical Rule for Probabilities
+
+The empirical rule helps us answer questions like:
+
+- **What percentage of data points fall within a certain range?**
+- **How unusual is a data point located far from the mean?**
+
+For example:
+- If we know that a data point lies more than two standard deviations away from the mean, we know it’s in the outer 5% of the distribution, making it relatively rare.
+- Using the rule, we can estimate that around 95% of values should lie within two standard deviations of the mean. If we observe data points outside of this range, we might consider them outliers.
 
 
-The CLT is powerful for several reasons:
+## Examples
 
-::: incremental
+::: panel-tabset
 
-1. **Predicting Sample Outcomes:** Since we know the distribution of sample means will be approximately normal, we can make predictions about future samples.
-2. **Confidence Intervals and Hypothesis Testing:** The normal distribution of sample means allows us to estimate population parameters (like the mean) with confidence and test hypotheses even if the population itself isn’t normally distributed.
-3. **Practical Applications in Various Fields:** From quality control in manufacturing to political polling and medicine, the CLT lets us make inferences about population characteristics based on sample data.
+### Exam Scores
+Suppose exam scores are normally distributed with a mean of 70 and a standard deviation of 10.
+- **68% of students** scored between **60 and 80** (70 ± 10).
+- **95% of students** scored between **50 and 90** (70 ± 20).
+- **99.7% of students** scored between **40 and 100** (70 ± 30).
+
+### Heights of Adults
+Assume that adult heights follow a normal distribution with a mean height of 170 cm and a standard deviation of 8 cm.
+- **68% of adults** have heights between **162 cm and 178 cm** (170 ± 8).
+- **95% of adults** have heights between **154 cm and 186 cm** (170 ± 16).
+- **99.7% of adults** have heights between **146 cm and 194 cm** (170 ± 24).
+
+Using the empirical rule, we can see how most adult heights fall within predictable ranges around the mean.
 
 :::
 
-# Inference
+# Binomial Distribution
 
-## Using Mathematical Models
+## Binomial Distribution
 
-The inferential procedures, such as computing the p-value or confidence interval, can be constructed with mathematical models.
+The **Binomial Distribution** is a probability distribution that models the number of successes in a fixed number of trials, where each trial has:
+- **Two possible outcomes**: typically called "success" and "failure."
+- A constant probability of success, $ p $, on each trial.
 
-## Advantages
+### Real-World Examples:
+- Tossing a coin $ n $ times and counting how many heads you get.
+- Rolling a die $ n $ times and counting how many times you roll a 6.
+- Administering a medical treatment to $ n $ patients and recording how many recover.
 
-::: incremental
+The binomial distribution answers questions like:
+- "What is the probability of getting exactly 3 heads in 5 coin tosses?"
+- "What is the likelihood of at least 4 successes in 10 trials?"
 
--   Mathematical Models have been widely studied and implemented in several software packages.
--   These are not computationally intensive
--   Can work with smaller data set and provide more reliable results
 
-:::
+## Conditions for a Binomial Experiment
 
-## Disadvantages
+A binomial experiment must satisfy these four conditions:
 
-::: incremental
--   If the mathematical model is wrong, results may be invalid.
--   Difficult to know what are the true mathematical models.
-:::
+1. **Fixed Number of Trials** ($ n $):
+   - The experiment consists of a set number of trials.
 
-# Inference in R
+2. **Two Possible Outcomes**:
+   - Each trial results in either a success (e.g., heads) or a failure (e.g., tails).
 
-## Inference in R
+3. **Constant Probability of Success** ($ p $):
+   - The probability of success remains the same for each trial.
+
+4. **Independence**:
+   - The outcome of one trial does not affect the outcomes of other trials.
+
+If these conditions are met, the binomial distribution is the right model to use.
+
+
+## The Binomial Probability Formula
+
+The probability of observing exactly $ k $ successes in $ n $ trials is given by the **binomial probability formula**:
 
 $$
-H_0:\ \Delta =  p_1-p_2 = 0
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
 $$
 
+Where:
+- $ P(X = k) $: Probability of exactly $ k $ successes.
+- $ n $: Number of trials.
+- $ k $: Number of successes.
+- $ p $: Probability of success on a single trial.
+- $ 1-p $: Probability of failure.
+- $ \binom{n}{k} $: Binomial coefficient, which represents the number of ways to choose $ k $ successes from $ n $ trials. It’s calculated as:
+
 $$
-H_a:\ \Delta = p_1 - p_2 \neq 0
+\binom{n}{k} = \frac{n!}{k!(n-k)!}
 $$
 
-## Proportions Test
 
-```{r}
-#| eval: false
-#| code-fold: show
-prop.test(x = c(CAT_1, CAT_2), n = c(N_1, N_2))
-```
+### Example Calculation
+Suppose you flip a fair coin 5 times ($ n = 5, p = 0.5 $) and want to know the probability of getting exactly 3 heads ($ k = 3 $).
+
+Using the formula:
+
+$$
+P(X = 3) = \binom{5}{3} (0.5)^3 (1-0.5)^{5-3}
+$$
+
+1. Calculate $ \binom{5}{3} $:
+$$
+\binom{5}{3} = \frac{5!}{3!(5-3)!} = \frac{120}{6 \cdot 2} = 10
+$$
+
+2. Plug into the formula:
+$$
+P(X = 3) = 10 (0.5)^3 (0.5)^2 = 10 (0.125)(0.25) = 0.3125
+$$
+Examples and 
+So, the probability of getting exactly 3 heads is **0.3125**, or 31.25%.
+
+## Key Properties of the Binomial Distribution
+
+### Mean and Variance
+For a binomial random variable $ X $:
+- **Mean (Expected Value)**: $ \mu = n \cdot p $
+- **Variance**: $ \sigma^2 = n \cdot p \cdot (1-p) $
+- **Standard Deviation**: $ \sigma = \sqrt{n \cdot p \cdot (1-p)} $
+
+### Shape of the Distribution
+- If $ p = 0.5 $, the distribution is symmetric.
+- If $ p > 0.5 $, the distribution is skewed left.
+- If $ p < 0.5 $, the distribution is skewed right.
 
 
-## Descriptives
+## Applications
 
-```{r}
-cat_stats(bacteria$ap, bacteria$y)
-```
+::: panel-tabset
 
-## Proportions Test in R
+### Quality Control
+A factory produces lightbulbs, and 95% of them meet quality standards. If you randomly test 10 bulbs, what is the probability that exactly 8 bulbs pass the test?
 
-```{r}
-prop.test(x = c(93, 84), n = c(124, 96))
-```
+Here:
+- $ n = 10 $, $ p = 0.95 $, $ k = 8 $.
 
+Using the formula, calculate:
+$$
+P(X = 8) = \binom{10}{8} (0.95)^8 (0.05)^2
+$$
+
+### Sports
+A basketball player has a 60% chance of making a free throw. If they take 5 shots, what is the probability of making at least 3 shots?
+
+Here:
+- $ n = 5 $, $ p = 0.6 $.
+- We calculate $ P(X \geq 3) = P(X = 3) + P(X = 4) + P(X = 5) $.
+
+### Clinical Trials
+In a clinical trial, a new drug has a 70% success rate. If 15 patients are treated, what is the probability that exactly 10 respond positively to the treatment?
+
+:::
+
+# Poisson Distribution
+
+
+## Poisson Distribution
+
+The **Poisson Distribution** is a discrete probability distribution that models the number of events occurring within a fixed interval. These events must happen independently and at a constant average rate. 
+
+### Real-World Examples:
+- The number of emails you receive in an hour.
+- The number of cars passing through a toll booth in 10 minutes.
+- The number of defects in a square meter of fabric.
+
+The Poisson distribution helps us answer questions like:
+- "What is the probability of receiving 5 emails in the next hour?"
+- "How likely is it to have 2 defects in a single square meter?"
+
+
+## Conditions for Using the Poisson Distribution
+
+To use the Poisson distribution, the following conditions must be met:
+
+1. **Events Occur Randomly**:
+   - The events are random and unpredictable.
+
+2. **Independence**:
+   - The occurrence of one event does not affect the probability of another event occurring.
+
+3. **Constant Average Rate** ($ \lambda $):
+   - The average number of events ($ \lambda $) over a fixed interval remains constant.
+
+4. **Non-Overlapping Intervals**:
+   - Events in one interval do not influence events in another.
+
+
+## The Poisson Probability Formula
+
+The probability of observing exactly $ k $ events in a fixed interval is given by the **Poisson probability formula**:
+
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+
+Where:
+- $ P(X = k) $: Probability of $ k $ events occurring.
+- $ \lambda $: Average number of events in the interval.
+- $ e $: Euler's number ($ \approx 2.718 $).
+- $ k! $: Factorial of $ k $, calculated as $ k \times (k-1) \times \dots \times 1 $.
+
+### Example Calculation
+Suppose a call center receives an average of 10 calls per hour ($ \lambda = 10 $). What is the probability of receiving exactly 7 calls in the next hour ($ k = 7 $)?
+
+Using the formula:
+
+$$
+P(X = 7) = \frac{10^7 e^{-10}}{7!}
+$$
+
+1. Calculate $ e^{-10} \approx 0.0000454 $.
+2. Compute $ 10^7 = 10,000,000 $.
+3. Find $ 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040 $.
+4. Plug in the values:
+$$
+P(X = 7) = \frac{10,000,000 \cdot 0.0000454}{5040} \approx 0.0902
+$$
+
+So, the probability of receiving exactly 7 calls is approximately **9.02%**.
+
+
+## Poisson Distribution Properties
+
+### Mean and Variance
+For a Poisson random variable $ X $:
+- **Mean**: $ \mu = \lambda $
+- **Variance**: $ \sigma^2 = \lambda $
+- **Standard Deviation**: $ \sigma = \sqrt{\lambda} $
+
+### Shape of the Distribution
+- When $ \lambda $ is small, the distribution is highly skewed to the right.
+- As $ \lambda $ increases, the distribution becomes more symmetric and resembles a normal distribution.
+
+
+## Applications
+
+::: panel-tabset
+
+### Traffic Flow
+A toll booth observes an average of 3 cars passing through every 5 minutes ($ \lambda = 3 $). What is the probability of seeing exactly 5 cars in the next 5 minutes?
+
+Using the formula:
+$$
+P(X = 5) = \frac{3^5 e^{-3}}{5!} = \frac{243 \cdot 0.0498}{120} \approx 0.1008
+$$
+
+So, the probability is approximately **10.08%**.
+
+
+### Defective Products
+A factory produces an average of 2 defective items per day ($ \lambda = 2 $). What is the probability of finding no defective items in a day ($ k = 0 $)?
+
+$$
+P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
+$$
+
+So, there’s a **13.53% chance** of finding no defective items.
+
+
+
+### Hospital Arrivals
+On average, 4 patients arrive at an emergency room every hour ($ \lambda = 4 $). What is the probability of seeing more than 6 patients in an hour?
+
+This is a cumulative probability:
+$$
+P(X > 6) = 1 - P(X \leq 6)
+$$
+You would calculate $ P(X \leq 6) $ by summing probabilities for $ P(X = 0) $ through $ P(X = 6) $ using the formula.
+
+:::

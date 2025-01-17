@@ -4,14 +4,14 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Term: Spring 2025\nInstructor: Isaac Quintanilla Salinas\nEmail: isaac.qs@csuci.edu\nOffice Location: BTE 2840\nOffice Hours: TBD\nOr by Zoom appointment.\nLecture: TBD\n\n\n\nCritical reasoning using a quantitative and statistical, problem-solving approach to solving real-world problems. Topics include: probability and statistics, sample data, probability and empirical data distributions, sampling techniques, estimation and hypothesis testing, ANOVA, and correlation and regression analysis. Students will use standard statistical software to analyze real-world and simulated data. GenEd: B4\n\n\n\n\nPrepare students for advanced courses in data-management and statistics\nReason both inductively and deductively with quantitative information and data\nUse statistical software for complex statistical analysis of real-world and simulated data\nEmpower students to apply computational and inferential thinking to address real-world problems\nWrite the results of a statistical study and draw conclusion in reports\n\n\n\n\nIntroduction to Modern Statistics (IMS) Statistical Modeling (SM)\n\n\n\nTBD\n\n\n\n\n\n\nCategory\nPercentage\n\n\n\n\nParticipation\n5%\n\n\nReading Assignments\n10%\n\n\nVideo Assignments\n10%\n\n\nHomework\n15%\n\n\nNotebook Assignments\n15%\n\n\nExam 1\n15%\n\n\nExam 2\n15%\n\n\nExam 3\n15%\n\n\n\nAt the end of the quarter, course grades will be assigned according to the following scale:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA+\n98 – 100\nB+\n87 – &lt;90\nC+\n77 – &lt;80\nD+\n67 – &lt;70\n\n\n\n\nA\n93 – &lt;98\nB\n83 – &lt;87\nC\n73 – &lt;77\nD\n63 – &lt;67\nF\n&lt; 60\n\n\nA–\n90 - &lt;93\nB-\n80 – &lt;83\nC–\n70 – &lt;73\nD–\n60 – &lt;63\n\n\n\n\n\n\n\nParticipation is based on short writing assignments conducted in class. There will be no make ups for these writing prompts.\n\n\n\nNotebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. Notebook assignments will be due on Wednesday at 11:59 PM every week.\n\n\n\nReading assignments are designed to teach you different statistical concepts. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Friday night at 11:59 PM. The 3 lowest reading assignments will be dropped.\n\n\n\nVideos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using VoiceThreads. The 3 lowest video assignments will be dropped. Video assignments will be due every Sunday at 11:59 PM.\n\n\n\nHomework assignmets are designed to give you an opportunity to practice what is viewed from the video assignments. The assignments will require you to program in R. The 3 lowest homework assignments will be dropped. Homework assignments will be due every Sunday at 11:59 PM.\n\n\n\nThere will be three in exams. Exam #1 will be on Sept 30, Exam #2 will be on Nov 13, and Exam #3 will be on Dec 11 at 8-10 AM (Sec 01) or Dec 9 1-3 PM (Sec 02). While the exams are not considered cumulative, the material builds on each other. Developing a strong understanding of the material through out the course is important for your success. At the end of the semester, your lowest exam grade will be replaced by your median average exam grade. This course will operate under a zero-tolerance policy. Talking during the time of the exam, sharing materials, looking at another students’ exam, or not following directions given will be subject to the University’s academic integrity policy.\n\n\n\nThere will be 4 extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found here.\n\n\n\n\nThe following outline may be subject to change. Any changes will be announced in class.\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTopic\nReadings\nNB Due\nVideo Due\nHW Due\n\n\n\n\n1/20-1/24\nHoliday/Welcome to the Course\nSM 2\n\n1\n\n\n\n1/27-1/31\nIntroduction to Statistics and R\nSM 3\n1\n2\n\n\n\n2/3-2/7\nData Generating Process\nIMS 4\n2\n3\n1\n\n\n2/10-2/14\nCategorical Data\nIMS 5\n3\n4\n2\n\n\n2/17-2/21\nNumerical Data\nSM 11\n4\n5\n3\n\n\n2/24-2/28\nDistribution Functions\n\n5\n\n\n\n\n3/3-3/7\nExam 1/ Simple Linear Regression\nIMS 7\n\n6\n\n\n\n3/10-3/14\nSimple Linear Regression\nIMS 8\n6\n7\n4\n\n\n3/17-3/21\nSpring Break\n\n\n\n\n\n\n3/24-3/28\nMulti Linear Regression\nIMS 9\n7\n8\n5\n\n\n3/31-4/4\nHoliday/ Logistic Regression\n\n8\n\n\n\n\n4/7-4/11\nExam 2/ Sampling Distribution\nSM 12\n9\n9\n\n\n\n4/14-4/18\nSampling Distribution\nSM 13\n10\n10\n6\n\n\n4/21-4/25\nInference\nISM 24\n11\n11\n7\n\n\n4/28-5/2\nLinear Regression Inference\nISM 26\n12\n12\n8\n\n\n5/5-5/9\nLogistic Regression Inference\n\n13\n\n\n\n\n5/12-5/16\nExam 3\n\n\n\n\n\n\n\n\n\n\nThe use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, Google Gemini.\n\n\n\n\nAcademic Honesty:\nConduct yourself with honesty and integrity. Do not submit others’ work as your own. For assignments and quizzes that allow you to work with a group, only put your name on what the group submits if you genuinely contributed to the work. Work completely independently on exams, using only the materials that are indicated as allowed. Failure to observe academic honesty results in substantial penalties that can include failing the course.\nDisabilities:\nIf you are a student with a disability requesting reasonable accommodations in this course, you need to contact Disability Accommodations and Support Services (DASS) located on the second floor of Arroyo Hall, via email accommodations@csuci.edu or call 805-437-3331. All requests for reasonable accommodations require registration with DASS in advance of need: https://www.csuci.edu/dass/students/apply-for-services.htm. Faculty, students and DASS will work together regarding classroom accommodations. You are encouraged to discuss approved.\nEmergency Procedure Notice to Students:\nCSUCI is following guidelines and public orders from the California Department of Public Health and Ventura County Public Health for the COVID-19 pandemic as it pertains to CSUCI students, employees and visitors on the campus. Students are expected to adhere to all health and safety requirements as noted on the University’s Spring 2023 Semester website or they may be subject to removal from the classroom."
+    "text": "Term: Spring 2025\nInstructor: Isaac Quintanilla Salinas\nEmail: isaac.qs@csuci.edu\nOffice Location: BTE 2840\nOffice Hours:\n\nMon/Wed 4-5 PM\nTues 10 AM - 12 PM\n\nOr by Zoom appointment.\nLecture:\n\nSec 01: MW 12-1:15 PM (BT 1642)\nSec 02: MW 1:30-3 PM (BT 1642)\n\n\n\n\nCritical reasoning using a quantitative and statistical, problem-solving approach to solving real-world problems. Topics include: probability and statistics, sample data, probability and empirical data distributions, sampling techniques, estimation and hypothesis testing, ANOVA, and correlation and regression analysis. Students will use standard statistical software to analyze real-world and simulated data. GenEd: B4\n\n\n\n\nPrepare students for advanced courses in data-management and statistics\nReason both inductively and deductively with quantitative information and data\nUse statistical software for complex statistical analysis of real-world and simulated data\nEmpower students to apply computational and inferential thinking to address real-world problems\nWrite the results of a statistical study and draw conclusion in reports\n\n\n\n\nIntroduction to Modern Statistics (IMS)\nStatistical Modeling (SM)\n\n\n\n\n\n\nCategory\nPercentage\n\n\n\n\nParticipation\n5%\n\n\nReading Assignments\n10%\n\n\nVideo Assignments\n10%\n\n\nHomework\n15%\n\n\nNotebook Assignments\n15%\n\n\nExam 1\n15%\n\n\nExam 2\n15%\n\n\nExam 3\n15%\n\n\n\nAt the end of the quarter, course grades will be assigned according to the following scale:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA+\n98 – 100\nB+\n87 – &lt;90\nC+\n77 – &lt;80\nD+\n67 – &lt;70\n\n\n\n\nA\n93 – &lt;98\nB\n83 – &lt;87\nC\n73 – &lt;77\nD\n63 – &lt;67\nF\n&lt; 60\n\n\nA–\n90 - &lt;93\nB-\n80 – &lt;83\nC–\n70 – &lt;73\nD–\n60 – &lt;63\n\n\n\n\n\n\n\nParticipation is based on short writing assignments conducted in class. There will be no make ups for these writing prompts.\n\n\n\nNotebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. Notebook assignments will be due on Wednesday at 11:59 PM every week.\n\n\n\nReading assignments are designed to teach you different statistical concepts. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Friday night at 11:59 PM. The 3 lowest reading assignments will be dropped.\n\n\n\nVideos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using VoiceThreads. The 3 lowest video assignments will be dropped. Video assignments will be due every Sunday at 11:59 PM.\n\n\n\nHomework assignmets are designed to give you an opportunity to practice what is viewed from the video assignments. The assignments will require you to program in R. The 3 lowest homework assignments will be dropped. Homework assignments will be due every Sunday at 11:59 PM.\n\n\n\nThere will be three in exams. Exam #1 will be on March 3, Exam #2 will be on April 7, and Exam #3 will be on May 12 at 10:30 AM to 12:30 PM (Sec 01) or May 14 1-3 PM (Sec 02). While the exams are not considered cumulative, the material builds on each other. Developing a strong understanding of the material through out the course is important for your success. At the end of the semester, your lowest exam grade will be replaced by your median average exam grade. This course will operate under a zero-tolerance policy. Talking during the time of the exam, sharing materials, looking at another students’ exam, or not following directions given will be subject to the University’s academic integrity policy.\n\n\n\nThere will be 4 extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found here.\n\n\n\n\nThe following outline may be subject to change. Any changes will be announced in class.\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTopic\nReadings\nNB Due\nVideo Due\nHW Due\n\n\n\n\n1/20-1/24\nHoliday/Welcome to the Course\nSM 2\n\n1\n\n\n\n1/27-1/31\nIntroduction to Statistics and R\nSM 3\n1\n2\n\n\n\n2/3-2/7\nData Generating Process\nIMS 4\n2\n3\n1\n\n\n2/10-2/14\nCategorical Data\nIMS 5\n3\n4\n2\n\n\n2/17-2/21\nNumerical Data\nSM 11\n4\n5\n3\n\n\n2/24-2/28\nDistribution Functions\n\n5\n\n\n\n\n3/3-3/7\nExam 1/ Simple Linear Regression\nIMS 7\n\n6\n\n\n\n3/10-3/14\nSimple Linear Regression\nIMS 8\n6\n7\n4\n\n\n3/17-3/21\nSpring Break\n\n\n\n\n\n\n3/24-3/28\nMulti Linear Regression\nIMS 9\n7\n8\n5\n\n\n3/31-4/4\nHoliday/ Logistic Regression\n\n8\n\n\n\n\n4/7-4/11\nExam 2/ Sampling Distribution\nSM 12\n9\n9\n\n\n\n4/14-4/18\nSampling Distribution\nSM 13\n10\n10\n6\n\n\n4/21-4/25\nInference\nISM 24\n11\n11\n7\n\n\n4/28-5/2\nLinear Regression Inference\nISM 26\n12\n12\n8\n\n\n5/5-5/9\nLogistic Regression Inference\n\n13\n\n\n\n\n5/12-5/16\nExam 3\n\n\n\n\n\n\n\n\n\n\nThe use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, Google Gemini.\n\n\n\n\nAcademic Honesty:\nConduct yourself with honesty and integrity. Do not submit others’ work as your own. For assignments and quizzes that allow you to work with a group, only put your name on what the group submits if you genuinely contributed to the work. Work completely independently on exams, using only the materials that are indicated as allowed. Failure to observe academic honesty results in substantial penalties that can include failing the course.\nDisabilities:\nIf you are a student with a disability requesting reasonable accommodations in this course, you need to contact Disability Accommodations and Support Services (DASS) located on the second floor of Arroyo Hall, via email accommodations@csuci.edu or call 805-437-3331. All requests for reasonable accommodations require registration with DASS in advance of need: https://www.csuci.edu/dass/students/apply-for-services.htm. Faculty, students and DASS will work together regarding classroom accommodations. You are encouraged to discuss approved.\nEmergency Procedure Notice to Students:\nCSUCI is following guidelines and public orders from the California Department of Public Health and Ventura County Public Health for the COVID-19 pandemic as it pertains to CSUCI students, employees and visitors on the campus. Students are expected to adhere to all health and safety requirements as noted on the University’s Spring 2023 Semester website or they may be subject to removal from the classroom."
   },
   {
     "objectID": "syllabus.html#math-201-elementary-statistics",
     "href": "syllabus.html#math-201-elementary-statistics",
     "title": "Syllabus",
     "section": "",
-    "text": "Term: Spring 2025\nInstructor: Isaac Quintanilla Salinas\nEmail: isaac.qs@csuci.edu\nOffice Location: BTE 2840\nOffice Hours: TBD\nOr by Zoom appointment.\nLecture: TBD\n\n\n\nCritical reasoning using a quantitative and statistical, problem-solving approach to solving real-world problems. Topics include: probability and statistics, sample data, probability and empirical data distributions, sampling techniques, estimation and hypothesis testing, ANOVA, and correlation and regression analysis. Students will use standard statistical software to analyze real-world and simulated data. GenEd: B4\n\n\n\n\nPrepare students for advanced courses in data-management and statistics\nReason both inductively and deductively with quantitative information and data\nUse statistical software for complex statistical analysis of real-world and simulated data\nEmpower students to apply computational and inferential thinking to address real-world problems\nWrite the results of a statistical study and draw conclusion in reports\n\n\n\n\nIntroduction to Modern Statistics (IMS) Statistical Modeling (SM)\n\n\n\nTBD\n\n\n\n\n\n\nCategory\nPercentage\n\n\n\n\nParticipation\n5%\n\n\nReading Assignments\n10%\n\n\nVideo Assignments\n10%\n\n\nHomework\n15%\n\n\nNotebook Assignments\n15%\n\n\nExam 1\n15%\n\n\nExam 2\n15%\n\n\nExam 3\n15%\n\n\n\nAt the end of the quarter, course grades will be assigned according to the following scale:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA+\n98 – 100\nB+\n87 – &lt;90\nC+\n77 – &lt;80\nD+\n67 – &lt;70\n\n\n\n\nA\n93 – &lt;98\nB\n83 – &lt;87\nC\n73 – &lt;77\nD\n63 – &lt;67\nF\n&lt; 60\n\n\nA–\n90 - &lt;93\nB-\n80 – &lt;83\nC–\n70 – &lt;73\nD–\n60 – &lt;63\n\n\n\n\n\n\n\nParticipation is based on short writing assignments conducted in class. There will be no make ups for these writing prompts.\n\n\n\nNotebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. Notebook assignments will be due on Wednesday at 11:59 PM every week.\n\n\n\nReading assignments are designed to teach you different statistical concepts. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Friday night at 11:59 PM. The 3 lowest reading assignments will be dropped.\n\n\n\nVideos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using VoiceThreads. The 3 lowest video assignments will be dropped. Video assignments will be due every Sunday at 11:59 PM.\n\n\n\nHomework assignmets are designed to give you an opportunity to practice what is viewed from the video assignments. The assignments will require you to program in R. The 3 lowest homework assignments will be dropped. Homework assignments will be due every Sunday at 11:59 PM.\n\n\n\nThere will be three in exams. Exam #1 will be on Sept 30, Exam #2 will be on Nov 13, and Exam #3 will be on Dec 11 at 8-10 AM (Sec 01) or Dec 9 1-3 PM (Sec 02). While the exams are not considered cumulative, the material builds on each other. Developing a strong understanding of the material through out the course is important for your success. At the end of the semester, your lowest exam grade will be replaced by your median average exam grade. This course will operate under a zero-tolerance policy. Talking during the time of the exam, sharing materials, looking at another students’ exam, or not following directions given will be subject to the University’s academic integrity policy.\n\n\n\nThere will be 4 extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found here.\n\n\n\n\nThe following outline may be subject to change. Any changes will be announced in class.\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTopic\nReadings\nNB Due\nVideo Due\nHW Due\n\n\n\n\n1/20-1/24\nHoliday/Welcome to the Course\nSM 2\n\n1\n\n\n\n1/27-1/31\nIntroduction to Statistics and R\nSM 3\n1\n2\n\n\n\n2/3-2/7\nData Generating Process\nIMS 4\n2\n3\n1\n\n\n2/10-2/14\nCategorical Data\nIMS 5\n3\n4\n2\n\n\n2/17-2/21\nNumerical Data\nSM 11\n4\n5\n3\n\n\n2/24-2/28\nDistribution Functions\n\n5\n\n\n\n\n3/3-3/7\nExam 1/ Simple Linear Regression\nIMS 7\n\n6\n\n\n\n3/10-3/14\nSimple Linear Regression\nIMS 8\n6\n7\n4\n\n\n3/17-3/21\nSpring Break\n\n\n\n\n\n\n3/24-3/28\nMulti Linear Regression\nIMS 9\n7\n8\n5\n\n\n3/31-4/4\nHoliday/ Logistic Regression\n\n8\n\n\n\n\n4/7-4/11\nExam 2/ Sampling Distribution\nSM 12\n9\n9\n\n\n\n4/14-4/18\nSampling Distribution\nSM 13\n10\n10\n6\n\n\n4/21-4/25\nInference\nISM 24\n11\n11\n7\n\n\n4/28-5/2\nLinear Regression Inference\nISM 26\n12\n12\n8\n\n\n5/5-5/9\nLogistic Regression Inference\n\n13\n\n\n\n\n5/12-5/16\nExam 3\n\n\n\n\n\n\n\n\n\n\nThe use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, Google Gemini.\n\n\n\n\nAcademic Honesty:\nConduct yourself with honesty and integrity. Do not submit others’ work as your own. For assignments and quizzes that allow you to work with a group, only put your name on what the group submits if you genuinely contributed to the work. Work completely independently on exams, using only the materials that are indicated as allowed. Failure to observe academic honesty results in substantial penalties that can include failing the course.\nDisabilities:\nIf you are a student with a disability requesting reasonable accommodations in this course, you need to contact Disability Accommodations and Support Services (DASS) located on the second floor of Arroyo Hall, via email accommodations@csuci.edu or call 805-437-3331. All requests for reasonable accommodations require registration with DASS in advance of need: https://www.csuci.edu/dass/students/apply-for-services.htm. Faculty, students and DASS will work together regarding classroom accommodations. You are encouraged to discuss approved.\nEmergency Procedure Notice to Students:\nCSUCI is following guidelines and public orders from the California Department of Public Health and Ventura County Public Health for the COVID-19 pandemic as it pertains to CSUCI students, employees and visitors on the campus. Students are expected to adhere to all health and safety requirements as noted on the University’s Spring 2023 Semester website or they may be subject to removal from the classroom."
+    "text": "Term: Spring 2025\nInstructor: Isaac Quintanilla Salinas\nEmail: isaac.qs@csuci.edu\nOffice Location: BTE 2840\nOffice Hours:\n\nMon/Wed 4-5 PM\nTues 10 AM - 12 PM\n\nOr by Zoom appointment.\nLecture:\n\nSec 01: MW 12-1:15 PM (BT 1642)\nSec 02: MW 1:30-3 PM (BT 1642)\n\n\n\n\nCritical reasoning using a quantitative and statistical, problem-solving approach to solving real-world problems. Topics include: probability and statistics, sample data, probability and empirical data distributions, sampling techniques, estimation and hypothesis testing, ANOVA, and correlation and regression analysis. Students will use standard statistical software to analyze real-world and simulated data. GenEd: B4\n\n\n\n\nPrepare students for advanced courses in data-management and statistics\nReason both inductively and deductively with quantitative information and data\nUse statistical software for complex statistical analysis of real-world and simulated data\nEmpower students to apply computational and inferential thinking to address real-world problems\nWrite the results of a statistical study and draw conclusion in reports\n\n\n\n\nIntroduction to Modern Statistics (IMS)\nStatistical Modeling (SM)\n\n\n\n\n\n\nCategory\nPercentage\n\n\n\n\nParticipation\n5%\n\n\nReading Assignments\n10%\n\n\nVideo Assignments\n10%\n\n\nHomework\n15%\n\n\nNotebook Assignments\n15%\n\n\nExam 1\n15%\n\n\nExam 2\n15%\n\n\nExam 3\n15%\n\n\n\nAt the end of the quarter, course grades will be assigned according to the following scale:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA+\n98 – 100\nB+\n87 – &lt;90\nC+\n77 – &lt;80\nD+\n67 – &lt;70\n\n\n\n\nA\n93 – &lt;98\nB\n83 – &lt;87\nC\n73 – &lt;77\nD\n63 – &lt;67\nF\n&lt; 60\n\n\nA–\n90 - &lt;93\nB-\n80 – &lt;83\nC–\n70 – &lt;73\nD–\n60 – &lt;63\n\n\n\n\n\n\n\nParticipation is based on short writing assignments conducted in class. There will be no make ups for these writing prompts.\n\n\n\nNotebook assignments are designed to expand your statistical knowledge. These will be completed in Google Colab which can be accessed from Canvas. There is one notebook assignments every week that you can be completed during class time. Notebook assignments will be due on Wednesday at 11:59 PM every week.\n\n\n\nReading assignments are designed to teach you different statistical concepts. As the course progresses, many of the concepts build on each other. Therefore, the assignments encourage you to read each chapter in an appropriate amount of time. You must read the chapter and answer the questions by the Friday night at 11:59 PM. The 3 lowest reading assignments will be dropped.\n\n\n\nVideos are used to teach statistical concepts related to the course. Students are expected to watch at least one video a week. The videos are implemented using VoiceThreads. The 3 lowest video assignments will be dropped. Video assignments will be due every Sunday at 11:59 PM.\n\n\n\nHomework assignmets are designed to give you an opportunity to practice what is viewed from the video assignments. The assignments will require you to program in R. The 3 lowest homework assignments will be dropped. Homework assignments will be due every Sunday at 11:59 PM.\n\n\n\nThere will be three in exams. Exam #1 will be on March 3, Exam #2 will be on April 7, and Exam #3 will be on May 12 at 10:30 AM to 12:30 PM (Sec 01) or May 14 1-3 PM (Sec 02). While the exams are not considered cumulative, the material builds on each other. Developing a strong understanding of the material through out the course is important for your success. At the end of the semester, your lowest exam grade will be replaced by your median average exam grade. This course will operate under a zero-tolerance policy. Talking during the time of the exam, sharing materials, looking at another students’ exam, or not following directions given will be subject to the University’s academic integrity policy.\n\n\n\nThere will be 4 extra credit opportunities worth a total of 10% of your overall grade. (There are no make-ups for missed extra credit assignments!) More information will be provided on the extra credit assignments on a later date. Information on the extra credit can be found here.\n\n\n\n\nThe following outline may be subject to change. Any changes will be announced in class.\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTopic\nReadings\nNB Due\nVideo Due\nHW Due\n\n\n\n\n1/20-1/24\nHoliday/Welcome to the Course\nSM 2\n\n1\n\n\n\n1/27-1/31\nIntroduction to Statistics and R\nSM 3\n1\n2\n\n\n\n2/3-2/7\nData Generating Process\nIMS 4\n2\n3\n1\n\n\n2/10-2/14\nCategorical Data\nIMS 5\n3\n4\n2\n\n\n2/17-2/21\nNumerical Data\nSM 11\n4\n5\n3\n\n\n2/24-2/28\nDistribution Functions\n\n5\n\n\n\n\n3/3-3/7\nExam 1/ Simple Linear Regression\nIMS 7\n\n6\n\n\n\n3/10-3/14\nSimple Linear Regression\nIMS 8\n6\n7\n4\n\n\n3/17-3/21\nSpring Break\n\n\n\n\n\n\n3/24-3/28\nMulti Linear Regression\nIMS 9\n7\n8\n5\n\n\n3/31-4/4\nHoliday/ Logistic Regression\n\n8\n\n\n\n\n4/7-4/11\nExam 2/ Sampling Distribution\nSM 12\n9\n9\n\n\n\n4/14-4/18\nSampling Distribution\nSM 13\n10\n10\n6\n\n\n4/21-4/25\nInference\nISM 24\n11\n11\n7\n\n\n4/28-5/2\nLinear Regression Inference\nISM 26\n12\n12\n8\n\n\n5/5-5/9\nLogistic Regression Inference\n\n13\n\n\n\n\n5/12-5/16\nExam 3\n\n\n\n\n\n\n\n\n\n\nThe use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, Google Gemini.\n\n\n\n\nAcademic Honesty:\nConduct yourself with honesty and integrity. Do not submit others’ work as your own. For assignments and quizzes that allow you to work with a group, only put your name on what the group submits if you genuinely contributed to the work. Work completely independently on exams, using only the materials that are indicated as allowed. Failure to observe academic honesty results in substantial penalties that can include failing the course.\nDisabilities:\nIf you are a student with a disability requesting reasonable accommodations in this course, you need to contact Disability Accommodations and Support Services (DASS) located on the second floor of Arroyo Hall, via email accommodations@csuci.edu or call 805-437-3331. All requests for reasonable accommodations require registration with DASS in advance of need: https://www.csuci.edu/dass/students/apply-for-services.htm. Faculty, students and DASS will work together regarding classroom accommodations. You are encouraged to discuss approved.\nEmergency Procedure Notice to Students:\nCSUCI is following guidelines and public orders from the California Department of Public Health and Ventura County Public Health for the COVID-19 pandemic as it pertains to CSUCI students, employees and visitors on the campus. Students are expected to adhere to all health and safety requirements as noted on the University’s Spring 2023 Semester website or they may be subject to removal from the classroom."
   },
   {
     "objectID": "lectures/9.html#melanoma",
@@ -718,7 +718,7 @@
     "href": "lectures/4.html#mean",
     "title": "Numerical Data",
     "section": "Mean",
-    "text": "Mean\nDescribe how you will find the mean of these numbers:\n\n\n#&gt; [1] 12 19 14  7  7"
+    "text": "Mean\nDescribe how you will find the mean of these numbers:\n\n\n#&gt; [1] 15 14 17  9 14"
   },
   {
     "objectID": "lectures/4.html#mean-1",
@@ -809,7 +809,7 @@
     "href": "lectures/4.html#mr.-trash-wheel",
     "title": "Numerical Data",
     "section": "Mr. Trash Wheel",
-    "text": "Mr. Trash Wheel\n\nnum_stats(trashwheel$PlasticBottles)\n\n#&gt; # A tibble: 1 × 10\n#&gt;     min   q25  mean median   q75   max    sd      var   iqr missing\n#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n#&gt; 1     0  988. 2219.   1900  2900  9830 1650. 2723984. 1912.       1"
+    "text": "Mr. Trash Wheel\n\nnum_stats(trashwheel$PlasticBottles)\n\n#&gt;   min   q25     mean median  q75  max       sd     var    iqr missing\n#&gt; 1   0 987.5 2219.331   1900 2900 9830 1650.449 2723984 1912.5       1"
   },
   {
     "objectID": "lectures/4.html#histogram",
@@ -3339,193 +3339,291 @@
     "text": "Themes\nThe R packages ThemePark and ggthemes allows you to change the overall look of a plot.\n\nAll you need to do is add the theme to the plot."
   },
   {
-    "objectID": "lectures/5.html#motivation-1",
-    "href": "lectures/5.html#motivation-1",
+    "objectID": "lectures/5.html#what-is-probability",
+    "href": "lectures/5.html#what-is-probability",
     "title": "Distribution Functions",
-    "section": "Motivation",
-    "text": "Motivation\nThe bacteria data set contians information on whether bacteria (y: y or n) is present after utilizing treatments (ap: active or placebo).\n\nWe are interesting in determine the proportion of having bacteria present is different for those taking an “active” or “placebo”."
+    "section": "What is Probability?",
+    "text": "What is Probability?\nProbability is the measure of how likely an event is to occur. It ranges from 0 to 1: - \\(P(A) = 0\\): The event \\(A\\) will definitely not happen. - \\(P(A) = 1\\): The event \\(A\\) will definitely happen. - Values between 0 and 1 represent varying degrees of likelihood."
   },
   {
-    "objectID": "lectures/5.html#comparing-proportions",
-    "href": "lectures/5.html#comparing-proportions",
+    "objectID": "lectures/5.html#everyday-examples",
+    "href": "lectures/5.html#everyday-examples",
     "title": "Distribution Functions",
-    "section": "Comparing Proportions",
-    "text": "Comparing Proportions\nWe are interesting in determining if different groups see different proportions of a binary outcome.\nWe compute the proportions of observing the binary outcome in Group 1 and Group 2 and see if they are fundamentally different from each other."
+    "section": "Everyday Examples",
+    "text": "Everyday Examples\n\nWhat’s the probability it will rain tomorrow?\nWhat are the chances of rolling a 6 on a standard die?\nHow likely is it that a randomly chosen student has a GPA above 3.0?"
   },
   {
-    "objectID": "lectures/5.html#by-2-cross-tabulations",
-    "href": "lectures/5.html#by-2-cross-tabulations",
+    "objectID": "lectures/5.html#key-terms-and-definitions",
+    "href": "lectures/5.html#key-terms-and-definitions",
     "title": "Distribution Functions",
-    "section": "2 by 2 Cross Tabulations",
-    "text": "2 by 2 Cross Tabulations\n\n\n\nGroups\nOutcome 1\nOutcome 2\n\n\nGroup 1\n\\(p_{11}\\)\n\\(p_{21}\\)\n\n\nGroup 2\n\\(p_{12}\\)\n\\(p_{22}\\)\n\n\n\n\nWe want to compare \\(p_{11}\\) and \\(p_{12}\\), to determine if the probability of outcome 1 are the same for both groups."
+    "section": "Key Terms and Definitions",
+    "text": "Key Terms and Definitions\n\nExperimentSample SpaceEventProb. of an Event\n\n\nAn action or process that generates outcomes.\n- Example: Rolling a die.\n\n\nThe set of all possible outcomes of an experiment.\n- Example: For rolling a die, \\(S = \\{1, 2, 3, 4, 5, 6\\}\\).\n\n\nA subset of the sample space, representing outcomes of interest.\n- Example: Rolling an even number (\\(A = \\{2, 4, 6\\}\\)).\n\n\nThe proportion of times an event is expected to occur if the experiment is repeated many times."
   },
   {
-    "objectID": "lectures/5.html#test-statistic",
-    "href": "lectures/5.html#test-statistic",
+    "objectID": "lectures/5.html#the-probability-formula",
+    "href": "lectures/5.html#the-probability-formula",
     "title": "Distribution Functions",
-    "section": "Test Statistic",
-    "text": "Test Statistic\nWe can use both \\(p_{11}\\) and \\(p_{12}\\) to determine if there is a fundamental difference.\n\nHowever, it will be more beneficial to utilize one statistic to contruct the sampling distribution.\n\n\n\\[\nT =  \\hat p_{11} - \\hat p_{12}\n\\]"
+    "section": "The Probability Formula",
+    "text": "The Probability Formula\nThe probability of an event \\(A\\) is defined as:\n\\[\nP(A) = \\frac{\\text{Number of favorable outcomes}}{\\text{Total number of possible outcomes}}\n\\]"
   },
   {
-    "objectID": "lectures/5.html#obtain-proportions-in-r",
-    "href": "lectures/5.html#obtain-proportions-in-r",
+    "objectID": "lectures/5.html#example",
+    "href": "lectures/5.html#example",
     "title": "Distribution Functions",
-    "section": "Obtain Proportions in R",
-    "text": "Obtain Proportions in R\n\n\nCode\nprops_df(DATA, GROUP, OUTCOME, VAL)"
+    "section": "Example",
+    "text": "Example\nIf we roll a die, what is the probability of rolling a 4?\n\nFavorable outcomes: 1 (rolling a 4).\nTotal outcomes: 6 (since \\(S = \\{1, 2, 3, 4, 5, 6\\}\\)).\n\n\\[\nP(\\text{rolling a 4}) = \\frac{1}{6} \\approx 0.167\n\\]"
   },
   {
-    "objectID": "lectures/5.html#obtain-difference-in-r",
-    "href": "lectures/5.html#obtain-difference-in-r",
+    "objectID": "lectures/5.html#rules-of-probability",
+    "href": "lectures/5.html#rules-of-probability",
     "title": "Distribution Functions",
-    "section": "Obtain Difference in R",
-    "text": "Obtain Difference in R\n\n\nCode\nprops_df(DATA, GROUP, OUTCOME, VAL, diff = TRUE)"
+    "section": "Rules of Probability",
+    "text": "Rules of Probability\n\nRule 1Rule 2Rule 3Rule 4Rule 5\n\n\nProbability of the Sample Space\nThe probability of the sample space is always 1: \\[\nP(S) = 1\n\\]\n\n\nProbability of Impossible Events\nThe probability of an event that cannot happen is 0: \\[\nP(\\emptyset) = 0\n\\]\n\n\nComplement Rule\nThe probability of the complement of an event \\(A\\) (not \\(A\\)) is:\n\\[\nP(A^c) = 1 - P(A)\n\\] - Example: If \\(P(\\text{rain}) = 0.3\\), then \\(P(\\text{no rain}) = 1 - 0.3 = 0.7\\).\n\n\nAddition Rule\nFor two events \\(A\\) and \\(B\\): - If \\(A\\) and \\(B\\) are mutually exclusive (cannot happen at the same time): \\[\nP(A \\cup B) = P(A) + P(B)\n\\]\n\nIf \\(A\\) and \\(B\\) are not mutually exclusive:\n\n\\[\nP(A \\cup B) = P(A) + P(B) - P(A \\cap B)\n\\]\n\n\nMultiplication Rule\nFor two events \\(A\\) and \\(B\\): - If \\(A\\) and \\(B\\) are independent:\n\\[\nP(A \\cap B) = P(A) \\cdot P(B)\n\\]"
   },
   {
-    "objectID": "lectures/5.html#bacteria-example",
-    "href": "lectures/5.html#bacteria-example",
+    "objectID": "lectures/5.html#applications",
+    "href": "lectures/5.html#applications",
     "title": "Distribution Functions",
-    "section": "Bacteria Example",
-    "text": "Bacteria Example\n\n\nCode\nprops_df(bacteria, ap, y, \"y\")\n\n\n#&gt;    p1    p2 \n#&gt; 0.750 0.875"
+    "section": "Applications",
+    "text": "Applications\n\nDrawing a CardTossing a Coin TwiceTraffic Lights\n\n\nIf you draw a card from a standard deck of 52 cards, what is the probability of drawing:\n\nA heart?\n\\[\nP(\\text{heart}) = \\frac{13}{52} = 0.25\n  \\]\nA red card (heart or diamond)?\n\\[\nP(\\text{red card}) = \\frac{26}{52} = 0.5\n  \\]\n\n\n\nWhat is the probability of getting:\n\nExactly one head?\nSample space: \\(S = \\{\\text{HH, HT, TH, TT}\\}\\).\nEvent: \\(A = \\{\\text{HT, TH}\\}\\).\n\\[\nP(A) = \\frac{2}{4} = 0.5\n\\]\nAt least one head?\nEvent: \\(B = \\{\\text{HH, HT, TH}\\}\\).\n\\[\nP(B) = \\frac{3}{4} = 0.75\n\\]\n\n\n\nA commuter encounters three traffic lights, each with a 70% chance of being green. Assuming independence, what is the probability that all three lights are green?\n\\[\nP(\\text{all green}) = 0.7 \\cdot 0.7 \\cdot 0.7 = 0.343\n\\]"
   },
   {
-    "objectID": "lectures/5.html#bacteria-example-1",
-    "href": "lectures/5.html#bacteria-example-1",
+    "objectID": "lectures/5.html#distribution-functions-1",
+    "href": "lectures/5.html#distribution-functions-1",
     "title": "Distribution Functions",
-    "section": "Bacteria Example",
-    "text": "Bacteria Example\n\n\nCode\nprops_df(bacteria, ap, y, \"y\", TRUE)\n\n\n#&gt; [1] 0.125"
+    "section": "Distribution Functions",
+    "text": "Distribution Functions\nA distribution function describes the probabilities of a random variable across its possible values. It answers questions like:\n\nHow likely is a random variable to take on a specific value or fall within a range?\nWhat is the overall “shape” of the distribution of outcomes?"
   },
   {
-    "objectID": "lectures/5.html#hypotheis-test",
-    "href": "lectures/5.html#hypotheis-test",
+    "objectID": "lectures/5.html#types-of-distribution-functions",
+    "href": "lectures/5.html#types-of-distribution-functions",
     "title": "Distribution Functions",
-    "section": "Hypotheis Test",
-    "text": "Hypotheis Test\nWe will test the following hypothesis:\n\\[\nH_0:\\ \\Delta =  p_1-p_2 = 0\n\\]\n\\[\nH_a:\\ \\Delta = p_1 - p_2 \\neq 0\n\\]"
+    "section": "Types of Distribution Functions",
+    "text": "Types of Distribution Functions\n\nDiscrete DistributionContinuous Distribution\n\n\nUsed for discrete random variables, which can take on countable values (e.g., integers). Examples include:\n\nNumber of heads in coin tosses.\nNumber of customers in a store.\n\n\n\nUsed for continuous random variables, which can take on any value within a range (e.g., real numbers). Examples include:\n\nHeights of people.\nTime it takes to complete a task."
+  },
+  {
+    "objectID": "lectures/5.html#cumulative-distribution-function-cdf",
+    "href": "lectures/5.html#cumulative-distribution-function-cdf",
+    "title": "Distribution Functions",
+    "section": "Cumulative Distribution Function (CDF)",
+    "text": "Cumulative Distribution Function (CDF)\nThe Cumulative Distribution Function (CDF) describes the probability that a random variable \\(X\\) is less than or equal to a certain value \\(x\\): \\[\nF_X(x) = P(X \\leq x)\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#properties-of-the-cdf",
+    "href": "lectures/5.html#properties-of-the-cdf",
+    "title": "Distribution Functions",
+    "section": "Properties of the CDF",
+    "text": "Properties of the CDF\n\nRange: The CDF is always between 0 and 1: \\[\n0 \\leq F_X(x) \\leq 1\n\\]\nNon-Decreasing: The CDF never decreases as \\(x\\) increases.\nLimits:\n\n\\(\\lim_{x \\to -\\infty} F_X(x) = 0\\)\n\\(\\lim_{x \\to \\infty} F_X(x) = 1\\)"
+  },
+  {
+    "objectID": "lectures/5.html#cdf-example",
+    "href": "lectures/5.html#cdf-example",
+    "title": "Distribution Functions",
+    "section": "CDF Example",
+    "text": "CDF Example\nFor a die roll (discrete case):\n\n\\(F_X(2) = P(X \\leq 2) = P(X = 1) + P(X = 2) = \\frac{1}{6} + \\frac{1}{6} = \\frac{2}{6}\\).\n\nFor a normal distribution (continuous case):\n\nUse the CDF to find probabilities, typically provided via tables or software."
+  },
+  {
+    "objectID": "lectures/5.html#probability-density-function-pdf",
+    "href": "lectures/5.html#probability-density-function-pdf",
+    "title": "Distribution Functions",
+    "section": "Probability Density Function (PDF)",
+    "text": "Probability Density Function (PDF)\nThe Probability Density Function (PDF) is used for continuous random variables and describes the likelihood of the variable falling within a small interval.\n\\[\nP(a \\leq X \\leq b) = \\int_a^b f_X(x) \\, dx\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#properties-of-the-pdf",
+    "href": "lectures/5.html#properties-of-the-pdf",
+    "title": "Distribution Functions",
+    "section": "Properties of the PDF:",
+    "text": "Properties of the PDF:\n\nNon-Negative: \\[\nf_X(x) \\geq 0 \\quad \\forall x\n\\]\nTotal Area Under Curve: \\[\n\\int_{-\\infty}^\\infty f_X(x) \\, dx = 1\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#pdf-examples",
+    "href": "lectures/5.html#pdf-examples",
+    "title": "Distribution Functions",
+    "section": "PDF Examples",
+    "text": "PDF Examples\nThe PDF of the normal distribution is: \\[\nf_X(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}\n\\]\nHere, \\(\\mu\\) is the mean and \\(\\sigma\\) is the standard deviation."
+  },
+  {
+    "objectID": "lectures/5.html#probability-mass-function-pmf",
+    "href": "lectures/5.html#probability-mass-function-pmf",
+    "title": "Distribution Functions",
+    "section": "Probability Mass Function (PMF)",
+    "text": "Probability Mass Function (PMF)\nThe Probability Mass Function (PMF) is used for discrete random variables and gives the probability of each possible value: \\[\nP(X = x) = p_X(x)\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#properties-of-the-pmf",
+    "href": "lectures/5.html#properties-of-the-pmf",
+    "title": "Distribution Functions",
+    "section": "Properties of the PMF",
+    "text": "Properties of the PMF\n\nNon-Negative: \\[\np_X(x) \\geq 0 \\quad \\forall x\n\\]\nSum of Probabilities: \\[\n\\sum_x p_X(x) = 1\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#pmf-example",
+    "href": "lectures/5.html#pmf-example",
+    "title": "Distribution Functions",
+    "section": "PMF Example",
+    "text": "PMF Example\nFor a fair die, the PMF is: \\[\np_X(x) = \\frac{1}{6}, \\quad x \\in \\{1, 2, 3, 4, 5, 6\\}\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#applications-1",
+    "href": "lectures/5.html#applications-1",
+    "title": "Distribution Functions",
+    "section": "Applications",
+    "text": "Applications\n\nPMF of a Coin TossCDF of an Exponential DistributionApplications in Real Life\n\n\nFor a fair coin tossed once: - $ X = 0 $: Tails, $ P(X = 0) = 0.5 $ - $ X = 1 $: Heads, $ P(X = 1) = 0.5 $\nThe PMF is: \\[\np_X(x) =\n\\begin{cases}\n0.5 & x = 0 \\text{ or } x = 1 \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\n\nAn exponential random variable with rate $ &gt; 0 $ has a CDF: \\[\nF_X(x) =\n\\begin{cases}\n1 - e^{-\\lambda x}, & x \\geq 0 \\\\\n0, & x &lt; 0\n\\end{cases}\n\\]\nThis can be used to model waiting times between events.\n\n\n\nPMF:\n\nNumber of emails received per hour.\n\nPDF:\n\nHeights of students in a class.\n\nCDF:\n\nThe likelihood of completing a task within a certain time frame."
   },
   {
     "objectID": "lectures/5.html#normal-distribution-1",
     "href": "lectures/5.html#normal-distribution-1",
     "title": "Distribution Functions",
     "section": "Normal Distribution",
-    "text": "Normal Distribution\nThe Normal Distribution is a probability distribution that is symmetric, with most of the data points clustering around the mean.\n\nIt’s bell-shaped and is defined mathematically by two parameters:\n\nMean (\\(\\mu\\)): The center or peak of the distribution.\nStandard Deviation (\\(\\sigma\\)): Controls the spread of the distribution."
+    "text": "Normal Distribution\nThe Normal Distribution is a probability distribution that is symmetric, with most of the data points clustering around the mean.\n\nIt’s bell-shaped and is defined mathematically by two parameters:\n\nMean (\\(\\mu\\)): The center or peak of the distribution.\nStandard Deviation (\\(\\sigma\\)): Controls the spread of the distribution.\n\n\n\n\n\n\n\n\n\nImportant\n\n\nFor any normally distributed data, the highest probability density is at the mean, and as you move away from the mean, the probability density gradually decreases."
+  },
+  {
+    "objectID": "lectures/5.html#properties",
+    "href": "lectures/5.html#properties",
+    "title": "Distribution Functions",
+    "section": "Properties",
+    "text": "Properties\n\nSymmetry: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.\nUnimodal: There is a single peak at the mean.\nMean, Median, and Mode are Equal: In a normal distribution, these three measures of central tendency are located at the same point.\n68-95-99.7 Rule (Empirical Rule):\n\nAbout 68% of data falls within one standard deviation of the mean.\nAbout 95% of data falls within two standard deviations.\nAbout 99.7% of data falls within three standard deviations.\n\n\n\nThis rule helps us understand how data is distributed in a normal curve and provides a quick way to estimate probabilities for normally distributed data."
   },
   {
     "objectID": "lectures/5.html#normal-distribution-2",
     "href": "lectures/5.html#normal-distribution-2",
     "title": "Distribution Functions",
     "section": "Normal Distribution",
-    "text": "Normal Distribution\n\n\nCode\nx &lt;- seq(-4, 4, length.out = 1000)\ndata.frame(x = x, y = dnorm(x)) |&gt; \n  ggplot(aes(x, y)) +\n  geom_line()"
+    "text": "Normal Distribution"
   },
   {
-    "objectID": "lectures/5.html#properties-of-the-normal-distribution",
-    "href": "lectures/5.html#properties-of-the-normal-distribution",
+    "objectID": "lectures/5.html#the-standard-normal-distribution",
+    "href": "lectures/5.html#the-standard-normal-distribution",
     "title": "Distribution Functions",
-    "section": "Properties of the Normal Distribution",
-    "text": "Properties of the Normal Distribution\n\n\nSymmetry: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.\nUnimodal: There is a single peak at the mean.\nMean, Median, and Mode are Equal: In a normal distribution, these three measures of central tendency are located at the same point.\n68-95-99.7 Rule (Empirical Rule)"
-  },
-  {
-    "objectID": "lectures/5.html#standard-normal-distribution",
-    "href": "lectures/5.html#standard-normal-distribution",
-    "title": "Distribution Functions",
-    "section": "Standard Normal Distribution",
-    "text": "Standard Normal Distribution\nThe Standard Normal Distribution is a special type of normal distribution with a mean of 0 and a standard deviation of 1. It’s often used as a reference to convert any normal distribution to a standard form."
+    "section": "The Standard Normal Distribution",
+    "text": "The Standard Normal Distribution\nThe Standard Normal Distribution is a special type of normal distribution with a mean of 0 and a standard deviation of 1. It’s often used as a reference to convert any normal distribution to a standard form."
   },
   {
     "objectID": "lectures/5.html#z-scores",
     "href": "lectures/5.html#z-scores",
     "title": "Distribution Functions",
     "section": "Z-Scores",
-    "text": "Z-Scores\nA Z-score (or standard score) tells us how many standard deviations an individual data point is from the mean. It’s calculated as: \\(Z = \\frac{X - \\mu}{\\sigma}\\)\n\nIf \\(Z\\) is positive, the data point is above the mean.\nIf \\(Z\\) is negative, the data point is below the mean.\nUsing Z-scores, we can compare values across different normal distributions or find the probability associated with a particular score."
+    "text": "Z-Scores\nA Z-score (or standard score) tells us how many standard deviations an individual data point is from the mean. It’s calculated as:\n\\[\nZ = \\frac{X - \\mu}{\\sigma}\n\\]\n\nIf \\(Z\\) is positive, the data point is above the mean.\nIf \\(Z\\) is negative, the data point is below the mean.\nUsing Z-scores, we can compare values across different normal distributions or find the probability associated with a particular score."
   },
   {
-    "objectID": "lectures/5.html#empirical-rule",
-    "href": "lectures/5.html#empirical-rule",
+    "objectID": "lectures/5.html#why-the-normal-distribution-is-important",
+    "href": "lectures/5.html#why-the-normal-distribution-is-important",
     "title": "Distribution Functions",
-    "section": "Empirical Rule",
-    "text": "Empirical Rule\nThe Empirical Rule provides a way to understand the spread of data in a normal distribution by describing how data points cluster around the mean. According to this rule:\n\nApproximately 68% of data points fall within one standard deviation of the mean.\nApproximately 95% of data points fall within two standard deviations of the mean.\nApproximately 99.7% of data points fall within three standard deviations of the mean."
+    "section": "Why the Normal Distribution is Important",
+    "text": "Why the Normal Distribution is Important\n\nIt Describes Many Natural Phenomena: Heights, weights, test scores, measurement errors, and countless other variables follow a normal distribution, especially when influenced by many small, random factors.\nPredictive Power: With normally distributed data, we can make predictions and infer probabilities, thanks to the 68-95-99.7 rule.\nCentral Limit Theorem: The normal distribution is foundational to the Central Limit Theorem, which tells us that, regardless of the original data distribution, the sampling distribution of the sample mean will approach a normal distribution as sample size increases.\nEase of Use in Statistical Methods: Many statistical tests and methods assume normality, allowing for simplified calculations and reliable inferences."
   },
   {
-    "objectID": "lectures/5.html#empirical-rule-and-normal-distribution",
-    "href": "lectures/5.html#empirical-rule-and-normal-distribution",
+    "objectID": "lectures/5.html#applications-of-the-normal-distribution",
+    "href": "lectures/5.html#applications-of-the-normal-distribution",
     "title": "Distribution Functions",
-    "section": "Empirical Rule and Normal Distribution",
-    "text": "Empirical Rule and Normal Distribution\nIn a normal distribution:\n\n68% of data lies between \\((\\mu - \\sigma)\\) and \\((\\mu + \\sigma)\\).\n95% of data lies between \\((\\mu - 2\\sigma)\\) and \\((\\mu + 2\\sigma)\\).\n99.7% of data lies between \\((\\mu - 3\\sigma)\\) and \\((\\mu + 3\\sigma)\\).\n\nThese intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities."
+    "section": "Applications of the Normal Distribution",
+    "text": "Applications of the Normal Distribution\n\nStandardized TestingFinance\n\n\nScores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.\n\n\nIn finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions."
+  },
+  {
+    "objectID": "lectures/5.html#what-is-the-empirical-rule",
+    "href": "lectures/5.html#what-is-the-empirical-rule",
+    "title": "Distribution Functions",
+    "section": "What is the Empirical Rule?",
+    "text": "What is the Empirical Rule?\nThe Empirical Rule provides a way to understand the spread of data in a normal distribution by describing how data points cluster around the mean. According to this rule:\n\nApproximately 68% of data points fall within one standard deviation of the mean.\nApproximately 95% of data points fall within two standard deviations of the mean.\nApproximately 99.7% of data points fall within three standard deviations of the mean.\n\nThe empirical rule is very helpful because, with just the mean and standard deviation, we can quickly estimate how data is distributed within a normal curve."
+  },
+  {
+    "objectID": "lectures/5.html#applying-the-empirical-rule-to-the-normal-distribution",
+    "href": "lectures/5.html#applying-the-empirical-rule-to-the-normal-distribution",
+    "title": "Distribution Functions",
+    "section": "Applying the Empirical Rule to the Normal Distribution",
+    "text": "Applying the Empirical Rule to the Normal Distribution\nLet’s define the key terms and apply the empirical rule to the normal distribution.\n\nMean (μ): This is the central point of the normal distribution where the data clusters around.\nStandard Deviation (σ): This is a measure of how spread out the data points are from the mean.\n\nIn a normal distribution: - 68% of data lies between \\((\\mu - \\sigma)\\) and \\((\\mu + \\sigma)\\). - 95% of data lies between \\((\\mu - 2\\sigma)\\) and \\((\\mu + 2\\sigma)\\). - 99.7% of data lies between \\((\\mu - 3\\sigma)\\) and \\((\\mu + 3\\sigma)\\).\nThese intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities."
   },
   {
     "objectID": "lectures/5.html#visualizing-the-empirical-rule",
     "href": "lectures/5.html#visualizing-the-empirical-rule",
     "title": "Distribution Functions",
     "section": "Visualizing the Empirical Rule",
-    "text": "Visualizing the Empirical Rule\n\nThe 68% region represents the middle of the curve, starting one standard deviation left of the mean and ending one standard deviation right.\nThe 95% region stretches further out, covering almost the entire curve except for the outer tails.\nThe 99.7% region includes nearly all data points, covering the entire curve except for a tiny fraction at each extreme."
+    "text": "Visualizing the Empirical Rule\nTo better understand the empirical rule, imagine a symmetric, bell-shaped normal curve. Here’s how it would look based on the empirical rule:\n\nThe 68% region represents the middle of the curve, starting one standard deviation left of the mean and ending one standard deviation right.\nThe 95% region stretches further out, covering almost the entire curve except for the outer tails.\nThe 99.7% region includes nearly all data points, covering the entire curve except for a tiny fraction at each extreme.\n\nThis visualization shows how the data is most concentrated around the mean, with less data appearing as we move further away."
   },
   {
-    "objectID": "lectures/5.html#empirical-rule-1",
-    "href": "lectures/5.html#empirical-rule-1",
+    "objectID": "lectures/5.html#using-the-empirical-rule-for-probabilities",
+    "href": "lectures/5.html#using-the-empirical-rule-for-probabilities",
     "title": "Distribution Functions",
-    "section": "Empirical Rule",
-    "text": "Empirical Rule"
+    "section": "Using the Empirical Rule for Probabilities",
+    "text": "Using the Empirical Rule for Probabilities\nThe empirical rule helps us answer questions like:\n\nWhat percentage of data points fall within a certain range?\nHow unusual is a data point located far from the mean?\n\nFor example: - If we know that a data point lies more than two standard deviations away from the mean, we know it’s in the outer 5% of the distribution, making it relatively rare. - Using the rule, we can estimate that around 95% of values should lie within two standard deviations of the mean. If we observe data points outside of this range, we might consider them outliers."
   },
   {
-    "objectID": "lectures/5.html#central-limit-theorem-1",
-    "href": "lectures/5.html#central-limit-theorem-1",
+    "objectID": "lectures/5.html#examples",
+    "href": "lectures/5.html#examples",
     "title": "Distribution Functions",
-    "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\nWhat does the Central Limit Theorem (CLT) actually tell us?\n\nThe CLT states that:\n\n\nIf you take a sufficiently large number of samples from any population, the distribution of the sample means will be approximately normal.\nThis approximation holds no matter the shape of the original population distribution (it could be normal, skewed, bimodal, etc.).\nThe mean of this sampling distribution will be equal to the population mean.\nThe standard deviation of this sampling distribution (often called the standard error) will be the population standard deviation divided by the square root of the sample size, ( _{} = )."
+    "section": "Examples",
+    "text": "Examples\n\nExam ScoresHeights of Adults\n\n\nSuppose exam scores are normally distributed with a mean of 70 and a standard deviation of 10. - 68% of students scored between 60 and 80 (70 ± 10). - 95% of students scored between 50 and 90 (70 ± 20). - 99.7% of students scored between 40 and 100 (70 ± 30).\n\n\nAssume that adult heights follow a normal distribution with a mean height of 170 cm and a standard deviation of 8 cm. - 68% of adults have heights between 162 cm and 178 cm (170 ± 8). - 95% of adults have heights between 154 cm and 186 cm (170 ± 16). - 99.7% of adults have heights between 146 cm and 194 cm (170 ± 24).\nUsing the empirical rule, we can see how most adult heights fall within predictable ranges around the mean."
   },
   {
-    "objectID": "lectures/5.html#why-the-central-limit-theorem-is-important",
-    "href": "lectures/5.html#why-the-central-limit-theorem-is-important",
+    "objectID": "lectures/5.html#binomial-distribution-1",
+    "href": "lectures/5.html#binomial-distribution-1",
     "title": "Distribution Functions",
-    "section": "Why the Central Limit Theorem is Important",
-    "text": "Why the Central Limit Theorem is Important\nThe CLT is powerful for several reasons:\n\n\nPredicting Sample Outcomes: Since we know the distribution of sample means will be approximately normal, we can make predictions about future samples.\nConfidence Intervals and Hypothesis Testing: The normal distribution of sample means allows us to estimate population parameters (like the mean) with confidence and test hypotheses even if the population itself isn’t normally distributed.\nPractical Applications in Various Fields: From quality control in manufacturing to political polling and medicine, the CLT lets us make inferences about population characteristics based on sample data."
+    "section": "Binomial Distribution",
+    "text": "Binomial Distribution\nThe Binomial Distribution is a probability distribution that models the number of successes in a fixed number of trials, where each trial has: - Two possible outcomes: typically called “success” and “failure.” - A constant probability of success, $ p $, on each trial.\nReal-World Examples:\n\nTossing a coin $ n $ times and counting how many heads you get.\nRolling a die $ n $ times and counting how many times you roll a 6.\nAdministering a medical treatment to $ n $ patients and recording how many recover.\n\nThe binomial distribution answers questions like: - “What is the probability of getting exactly 3 heads in 5 coin tosses?” - “What is the likelihood of at least 4 successes in 10 trials?”"
   },
   {
-    "objectID": "lectures/5.html#using-mathematical-models",
-    "href": "lectures/5.html#using-mathematical-models",
+    "objectID": "lectures/5.html#conditions-for-a-binomial-experiment",
+    "href": "lectures/5.html#conditions-for-a-binomial-experiment",
     "title": "Distribution Functions",
-    "section": "Using Mathematical Models",
-    "text": "Using Mathematical Models\nThe inferential procedures, such as computing the p-value or confidence interval, can be constructed with mathematical models."
+    "section": "Conditions for a Binomial Experiment",
+    "text": "Conditions for a Binomial Experiment\nA binomial experiment must satisfy these four conditions:\n\nFixed Number of Trials ($ n $):\n\nThe experiment consists of a set number of trials.\n\nTwo Possible Outcomes:\n\nEach trial results in either a success (e.g., heads) or a failure (e.g., tails).\n\nConstant Probability of Success ($ p $):\n\nThe probability of success remains the same for each trial.\n\nIndependence:\n\nThe outcome of one trial does not affect the outcomes of other trials.\n\n\nIf these conditions are met, the binomial distribution is the right model to use."
   },
   {
-    "objectID": "lectures/5.html#advantages",
-    "href": "lectures/5.html#advantages",
+    "objectID": "lectures/5.html#the-binomial-probability-formula",
+    "href": "lectures/5.html#the-binomial-probability-formula",
     "title": "Distribution Functions",
-    "section": "Advantages",
-    "text": "Advantages\n\n\nMathematical Models have been widely studied and implemented in several software packages.\nThese are not computationally intensive\nCan work with smaller data set and provide more reliable results"
+    "section": "The Binomial Probability Formula",
+    "text": "The Binomial Probability Formula\nThe probability of observing exactly $ k $ successes in $ n $ trials is given by the binomial probability formula:\n\\[\nP(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}\n\\]\nWhere: - $ P(X = k) $: Probability of exactly $ k $ successes. - $ n $: Number of trials. - $ k $: Number of successes. - $ p $: Probability of success on a single trial. - $ 1-p $: Probability of failure. - $ $: Binomial coefficient, which represents the number of ways to choose $ k $ successes from $ n $ trials. It’s calculated as:\n\\[\n\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\n\\]\nExample Calculation\nSuppose you flip a fair coin 5 times ($ n = 5, p = 0.5 \\() and want to know the probability of getting exactly 3 heads (\\) k = 3 $).\nUsing the formula:\n\\[\nP(X = 3) = \\binom{5}{3} (0.5)^3 (1-0.5)^{5-3}\n\\]\n\nCalculate $ \\(:\\)$ = = = 10 $$\nPlug into the formula: \\[\nP(X = 3) = 10 (0.5)^3 (0.5)^2 = 10 (0.125)(0.25) = 0.3125\n\\] Examples and So, the probability of getting exactly 3 heads is 0.3125, or 31.25%."
   },
   {
-    "objectID": "lectures/5.html#disadvantages",
-    "href": "lectures/5.html#disadvantages",
+    "objectID": "lectures/5.html#key-properties-of-the-binomial-distribution",
+    "href": "lectures/5.html#key-properties-of-the-binomial-distribution",
     "title": "Distribution Functions",
-    "section": "Disadvantages",
-    "text": "Disadvantages\n\n\nIf the mathematical model is wrong, results may be invalid.\nDifficult to know what are the true mathematical models."
+    "section": "Key Properties of the Binomial Distribution",
+    "text": "Key Properties of the Binomial Distribution\nMean and Variance\nFor a binomial random variable $ X $: - Mean (Expected Value): $ = n p $ - Variance: $ ^2 = n p (1-p) $ - Standard Deviation: $ = $\nShape of the Distribution\n\nIf $ p = 0.5 $, the distribution is symmetric.\nIf $ p &gt; 0.5 $, the distribution is skewed left.\nIf $ p &lt; 0.5 $, the distribution is skewed right."
   },
   {
-    "objectID": "lectures/5.html#inference-in-r-1",
-    "href": "lectures/5.html#inference-in-r-1",
+    "objectID": "lectures/5.html#applications-2",
+    "href": "lectures/5.html#applications-2",
     "title": "Distribution Functions",
-    "section": "Inference in R",
-    "text": "Inference in R\n\\[\nH_0:\\ \\Delta =  p_1-p_2 = 0\n\\]\n\\[\nH_a:\\ \\Delta = p_1 - p_2 \\neq 0\n\\]"
+    "section": "Applications",
+    "text": "Applications\n\nQuality ControlSportsClinical Trials\n\n\nA factory produces lightbulbs, and 95% of them meet quality standards. If you randomly test 10 bulbs, what is the probability that exactly 8 bulbs pass the test?\nHere: - $ n = 10 $, $ p = 0.95 $, $ k = 8 $.\nUsing the formula, calculate: \\[\nP(X = 8) = \\binom{10}{8} (0.95)^8 (0.05)^2\n\\]\n\n\nA basketball player has a 60% chance of making a free throw. If they take 5 shots, what is the probability of making at least 3 shots?\nHere: - $ n = 5 $, $ p = 0.6 $. - We calculate $ P(X ) = P(X = 3) + P(X = 4) + P(X = 5) $.\n\n\nIn a clinical trial, a new drug has a 70% success rate. If 15 patients are treated, what is the probability that exactly 10 respond positively to the treatment?"
   },
   {
-    "objectID": "lectures/5.html#proportions-test",
-    "href": "lectures/5.html#proportions-test",
+    "objectID": "lectures/5.html#poisson-distribution-1",
+    "href": "lectures/5.html#poisson-distribution-1",
     "title": "Distribution Functions",
-    "section": "Proportions Test",
-    "text": "Proportions Test\n\n\nCode\nprop.test(x = c(CAT_1, CAT_2), n = c(N_1, N_2))"
+    "section": "Poisson Distribution",
+    "text": "Poisson Distribution\nThe Poisson Distribution is a discrete probability distribution that models the number of events occurring within a fixed interval. These events must happen independently and at a constant average rate.\nReal-World Examples:\n\nThe number of emails you receive in an hour.\nThe number of cars passing through a toll booth in 10 minutes.\nThe number of defects in a square meter of fabric.\n\nThe Poisson distribution helps us answer questions like: - “What is the probability of receiving 5 emails in the next hour?” - “How likely is it to have 2 defects in a single square meter?”"
   },
   {
-    "objectID": "lectures/5.html#descriptives",
-    "href": "lectures/5.html#descriptives",
+    "objectID": "lectures/5.html#conditions-for-using-the-poisson-distribution",
+    "href": "lectures/5.html#conditions-for-using-the-poisson-distribution",
     "title": "Distribution Functions",
-    "section": "Descriptives",
-    "text": "Descriptives\n\n\nCode\ncat_stats(bacteria$ap, bacteria$y)"
+    "section": "Conditions for Using the Poisson Distribution",
+    "text": "Conditions for Using the Poisson Distribution\nTo use the Poisson distribution, the following conditions must be met:\n\nEvents Occur Randomly:\n\nThe events are random and unpredictable.\n\nIndependence:\n\nThe occurrence of one event does not affect the probability of another event occurring.\n\nConstant Average Rate ($ \\():\n- The average number of events (\\) $) over a fixed interval remains constant.\nNon-Overlapping Intervals:\n\nEvents in one interval do not influence events in another."
   },
   {
-    "objectID": "lectures/5.html#proportions-test-in-r",
-    "href": "lectures/5.html#proportions-test-in-r",
+    "objectID": "lectures/5.html#the-poisson-probability-formula",
+    "href": "lectures/5.html#the-poisson-probability-formula",
     "title": "Distribution Functions",
-    "section": "Proportions Test in R",
-    "text": "Proportions Test in R\n\n\nCode\nprop.test(x = c(93, 84), n = c(124, 96))\n\n\n#&gt; \n#&gt;  2-sample test for equality of proportions with continuity correction\n#&gt; \n#&gt; data:  c(93, 84) out of c(124, 96)\n#&gt; X-squared = 4.6109, df = 1, p-value = 0.03177\n#&gt; alternative hypothesis: two.sided\n#&gt; 95 percent confidence interval:\n#&gt;  -0.23516294 -0.01483706\n#&gt; sample estimates:\n#&gt; prop 1 prop 2 \n#&gt;  0.750  0.875"
+    "section": "The Poisson Probability Formula",
+    "text": "The Poisson Probability Formula\nThe probability of observing exactly $ k $ events in a fixed interval is given by the Poisson probability formula:\n\\[\nP(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}\n\\]\nWhere: - $ P(X = k) $: Probability of $ k $ events occurring. - $ $: Average number of events in the interval. - $ e \\(: Euler's number (\\) $). - $ k! $: Factorial of $ k $, calculated as $ k (k-1) $.\nExample Calculation\nSuppose a call center receives an average of 10 calls per hour ($ = 10 \\(). What is the probability of receiving exactly 7 calls in the next hour (\\) k = 7 $)?\nUsing the formula:\n\\[\nP(X = 7) = \\frac{10^7 e^{-10}}{7!}\n\\]\n\nCalculate $ e^{-10} $.\nCompute $ 10^7 = 10,000,000 $.\nFind $ 7! = 7 = 5040 $.\nPlug in the values: \\[\nP(X = 7) = \\frac{10,000,000 \\cdot 0.0000454}{5040} \\approx 0.0902\n\\]\n\nSo, the probability of receiving exactly 7 calls is approximately 9.02%."
+  },
+  {
+    "objectID": "lectures/5.html#poisson-distribution-properties",
+    "href": "lectures/5.html#poisson-distribution-properties",
+    "title": "Distribution Functions",
+    "section": "Poisson Distribution Properties",
+    "text": "Poisson Distribution Properties\nMean and Variance\nFor a Poisson random variable $ X $: - Mean: $ = $ - Variance: $ ^2 = $ - Standard Deviation: $ = $\nShape of the Distribution\n\nWhen $ $ is small, the distribution is highly skewed to the right.\nAs $ $ increases, the distribution becomes more symmetric and resembles a normal distribution."
+  },
+  {
+    "objectID": "lectures/5.html#applications-3",
+    "href": "lectures/5.html#applications-3",
+    "title": "Distribution Functions",
+    "section": "Applications",
+    "text": "Applications\n\nTraffic FlowDefective ProductsHospital Arrivals\n\n\nA toll booth observes an average of 3 cars passing through every 5 minutes ($ = 3 $). What is the probability of seeing exactly 5 cars in the next 5 minutes?\nUsing the formula: \\[\nP(X = 5) = \\frac{3^5 e^{-3}}{5!} = \\frac{243 \\cdot 0.0498}{120} \\approx 0.1008\n\\]\nSo, the probability is approximately 10.08%.\n\n\nA factory produces an average of 2 defective items per day ($ = 2 \\(). What is the probability of finding no defective items in a day (\\) k = 0 $)?\n\\[\nP(X = 0) = \\frac{2^0 e^{-2}}{0!} = e^{-2} \\approx 0.1353\n\\]\nSo, there’s a 13.53% chance of finding no defective items.\n\n\nOn average, 4 patients arrive at an emergency room every hour ($ = 4 $). What is the probability of seeing more than 6 patients in an hour?\nThis is a cumulative probability: \\[\nP(X &gt; 6) = 1 - P(X \\leq 6)\n\\] You would calculate $ P(X ) $ by summing probabilities for $ P(X = 0) $ through $ P(X = 6) $ using the formula."
   },
   {
     "objectID": "lectures/8.html#explaining-variation",
