@@ -19,9 +19,17 @@ format:
 ### Visit a Lunch and/or Research Talk
 
 
-Candidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 4 candidates visiting campus, where they will interact with each students during lunch (free for students) and their research talk. This means there is a total of 8 opportunities to visit a candidate. 
+Candidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with each students during lunch (free for students) and their research talk. This means there is a total of 6 opportunities to visit a candidate. 
 
 To obtain credit, you must visit one cancdidate during their lunch or research talk, and provide feedback and sign in.
+
+| Candidate | Day | Lunch | Research |
+|:-|:-|:-|:-|
+| 1 | Monday (1/27) | 12-1 PM | TBD |
+| 2 | Monday (2/3) | 12-1 PM | TBD |
+| 3 | Tuesday (2/4) | 12-1 PM | TBD |
+
+**Note: you may attend more than one talk or lunch!**
 
 ### Write a Wellness Plan
 

@@ -80,7 +80,7 @@ editor: source
 
 # Embedded Peer Educator
 
-## EPE - Louis Heer
+## EPE - Connor Stevenson
 
 :::: {.columns}
 
@@ -91,12 +91,8 @@ editor: source
 ::: {.column width="50%"}
 -   3rd Year
 
--   Political Science Major
+-   Math/Computer Science Major
 
--   Course
-  -   Elementary Statistics
-  -   Statistics for Biologists
-  -   Statistics Application for Political Science
 :::
 
 ::::
@@ -111,7 +107,6 @@ editor: source
 :::: {.columns}
 
 ::: {.column width="50%"}
--   Attendance
 -   Selfie at profesor's door and Introduction
 -   Selfie at the LRC
 -   Learner Info Survey
@@ -136,10 +131,11 @@ editor: source
 -   Reading Assignments
 -   Notebook Assignments
 -   Video Assignments
+-   Homework Assignments
 -   Exams
 -   Extra Credit
 
-## Study Expectations.
+## Study Expectations
 
 For every 1 unit of class you take, you are expected to spend ~3 hours outside of class for the course.
 
@@ -160,13 +156,7 @@ Learning R is difficult, but it is the best teacher to teach you how to overcome
 ## When do you use statistics?
 
 ## What is the difference between math and stats?
-
-## What is variation?
-
-# Generative AI
-
-## Generative AI
-
+Monday
 The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.
 
 ## Educational Mislearning
@@ -179,13 +169,11 @@ You will not develop the skills needed to problem solve a challenge. Additionall
 
 
 ::: fragment
-To learn something, it requires hours of work!
+To learn something, it requires hours of work! If not years!
 :::
 
 
-## Stolen Work
-
-Generative AI models were developed with the data from the works by authors, artists, researchers, and many more, who did not consent to have their work to be used this way.
+## Stolen WorkMonday have their work to be used this way.
 
 ::: fragment
 Additionally, all these individuals are not receiving any royalties for the work to be used in creating generative AI models.
@@ -226,8 +214,7 @@ Dr. Isaac Quintanilla Salinas consents in you sharing course material to your fr
 ::: fragment
 Dr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for [DASS](https://www.csuci.edu/dass/)-approved services.
 :::
-
-## Negative Environmental Impact
+Monday
 
 In order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model. 
 
@@ -275,14 +262,37 @@ NO
 What we should do is demand companies to develop these tools in an ethical manner!
 :::
 
+# Surveys
 
-# Final Slide
+## Intro Form
 
-## Complete Survey
+https://forms.gle/JWaUdgKB6qui98yz5
 
-https://forms.gle/EdYK1sGZpDEibaHK7
+![](img/frame.png){fig-align="center"}
 
-![](https://www.inqs.info/m201_f24/files/img/frame.png){fig-align="center"}
+## Survey
 
-## Field Trip
+https://forms.gle/BCMDgB3pDHJ1MmSYA
+
+![](img/frame.png){fig-align="center"}
+
+
+# Extra Credits
+
+## Extra Credit 1
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_1.html" width="1100" height="700"></iframe></p>
+
+## Extra Credit 2
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_2.html" width="1100" height="700"></iframe></p>
+
+## Extra Credit 3
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_3.html" width="1100" height="700"></iframe></p>
+
+## Extra Credit 4
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_4.html" width="1100" height="700"></iframe></p>
+
 
