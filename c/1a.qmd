@@ -148,6 +148,8 @@ Learning R is difficult, but it is the best teacher to teach you how to overcome
 Monday
 The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.
 
+# Use of Generative AI
+
 ## Educational Mislearning
 
 The purpose of this class, and college, is for you to learn about critical thinking skills and perseverance. Using AI will only teach you how to get an answer, which may or may not be correct. 
