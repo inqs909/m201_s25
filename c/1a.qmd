@@ -5,15 +5,12 @@ format:
   revealjs:
     scrollable: true
     theme: [default, styles.scss]
-    navigation-mode: vertical
     controls-layout: bottom-right
     controls-tutorial: true
-    incremental: true 
-    chalkboard:
-      src: chalkboard.json
-      storage: chalkboard_pres
-      theme: whiteboard
-      chalk-width: 4
+    incremental: false
+    chalkboard: true
+
+
 knitr:
   opts_chunk: 
     echo: true
@@ -27,8 +24,8 @@ revealjs-plugins:
   - verticator
   
 filters: 
-  - reveal-header
   - code-fullscreen
+  - reveal-auto-agenda
 
 editor: source
 ---
@@ -37,14 +34,6 @@ editor: source
 
 [m201.inqs.info/c/1a](https://m201.inqs.info/c/1a#/title-slide)
 
-## Learning Outcomes
-
--   Introductions
--   Embedded Peer Educator
--   Syllabus
--   Important Announcements
--   Statistics Activity
--   Access to Coursekata
 
 # Introductions
 
@@ -85,7 +74,7 @@ editor: source
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](img/Headshot.jpg)
+![](img/mePic.jpg)
 :::
 
 ::: {.column width="50%"}
@@ -214,7 +203,8 @@ Dr. Isaac Quintanilla Salinas consents in you sharing course material to your fr
 ::: fragment
 Dr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for [DASS](https://www.csuci.edu/dass/)-approved services.
 :::
-Monday
+
+## Environmental Impact
 
 In order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model. 
 
@@ -266,15 +256,15 @@ What we should do is demand companies to develop these tools in an ethical manne
 
 ## Intro Form
 
-https://forms.gle/JWaUdgKB6qui98yz5
+<https://forms.gle/JWaUdgKB6qui98yz5>
 
 ![](img/frame.png){fig-align="center"}
 
 ## Survey
 
-https://forms.gle/BCMDgB3pDHJ1MmSYA
+<https://forms.gle/BCMDgB3pDHJ1MmSYA>
 
-![](img/frame.png){fig-align="center"}
+![](img/frame (1).png){fig-align="center"}
 
 
 # Extra Credits
@@ -295,4 +285,12 @@ https://forms.gle/BCMDgB3pDHJ1MmSYA
 
 <p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_4.html" width="1100" height="700"></iframe></p>
 
+# Class Schedule
 
+## Class Cancelled
+
+- Monday 1/27/25
+
+- Monday 2/3/25
+
+# Field Trip

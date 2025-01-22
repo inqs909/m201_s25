@@ -2198,13 +2198,6 @@
     "text": "Slides\nm201.inqs.info/c/1a"
   },
   {
-    "objectID": "c/1a.html#learning-outcomes",
-    "href": "c/1a.html#learning-outcomes",
-    "title": "Welcome!",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\n\nIntroductions\nEmbedded Peer Educator\nSyllabus\nImportant Announcements\nStatistics Activity\nAccess to Coursekata"
-  },
-  {
     "objectID": "c/1a.html#introductions-1",
     "href": "c/1a.html#introductions-1",
     "title": "Welcome!",
@@ -2307,7 +2300,14 @@
     "href": "c/1a.html#math-201-consent",
     "title": "Welcome!",
     "section": "Math 201 Consent",
-    "text": "Math 201 Consent\n\nDr. Isaac Quintanilla Salinas consents in you sharing course material to your friends and family for learning purposes. Use the material to educate and uplift your community.\n\n\nDr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for DASS-approved services.\n\nMonday\nIn order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model.\n\nThe LA Times reports the potential impact that running AI models in California.\n\n\nAdditionally, Time reports that a ChatGPT query uses ten times more energy than a Google search query, and global AI demands can consume of 1 trillion gallons of water by 2027.\n\n\nThere are also environmental justice questions about where these data centers are constructed."
+    "text": "Math 201 Consent\n\nDr. Isaac Quintanilla Salinas consents in you sharing course material to your friends and family for learning purposes. Use the material to educate and uplift your community.\n\n\nDr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for DASS-approved services."
+  },
+  {
+    "objectID": "c/1a.html#environmental-impact",
+    "href": "c/1a.html#environmental-impact",
+    "title": "Welcome!",
+    "section": "Environmental Impact",
+    "text": "Environmental Impact\nIn order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model.\n\nThe LA Times reports the potential impact that running AI models in California.\n\n\nAdditionally, Time reports that a ChatGPT query uses ten times more energy than a Google search query, and global AI demands can consume of 1 trillion gallons of water by 2027.\n\n\nThere are also environmental justice questions about where these data centers are constructed."
   },
   {
     "objectID": "c/1a.html#worker-exploitation",
@@ -2371,6 +2371,13 @@
     "title": "Welcome!",
     "section": "Extra Credit 4",
     "text": "Extra Credit 4"
+  },
+  {
+    "objectID": "c/1a.html#class-cancelled",
+    "href": "c/1a.html#class-cancelled",
+    "title": "Welcome!",
+    "section": "Class Cancelled",
+    "text": "Class Cancelled\n\nMonday 1/27/25\nMonday 2/3/25"
   },
   {
     "objectID": "c/15b.html#traditional-statistics",
