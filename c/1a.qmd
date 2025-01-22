@@ -145,10 +145,13 @@ Learning R is difficult, but it is the best teacher to teach you how to overcome
 ## When do you use statistics?
 
 ## What is the difference between math and stats?
-Monday
-The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.
+
 
 # Use of Generative AI
+
+## Use of Generative AI
+
+The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.
 
 ## Educational Mislearning
 
