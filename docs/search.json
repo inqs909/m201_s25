@@ -3098,7 +3098,7 @@
     "href": "lectures/3.html#frequencey",
     "title": "Categorical Data",
     "section": "Frequencey",
-    "text": "Frequencey\nFrequency represents the count of observing a specific category in your sample.\n\n\n#&gt;  [1] \"Less than 1\" \"Less than 1\" \"3\"           \"2\"           \"1\"           \"Less than 1\" \"3\"           \"1\"           \"3\"           \"2\""
+    "text": "Frequencey\nFrequency represents the count of observing a specific category in your sample.\n\n\n#&gt;  [1] \"1\"           \"1\"           \"2\"           \"Less than 1\" \"1\"           \"2\"           \"1\"           \"2\"           \"4\"           \"2\""
   },
   {
     "objectID": "lectures/3.html#proportions-relative-frequencey",
