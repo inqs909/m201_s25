@@ -7,12 +7,9 @@ format:
   revealjs:
     scrollable: true
     theme: [default, styles.scss]
-    navigation-mode: vertical
-    controls-layout: bottom-right
     controls-tutorial: true
     incremental: false 
     chalkboard:
-      src: notes/chalkboard_1a.json
       storage: chalkboard_pres
       theme: whiteboard
       chalk-width: 4
