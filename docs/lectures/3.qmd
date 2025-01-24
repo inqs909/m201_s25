@@ -396,8 +396,14 @@ ggplot(coffee) +
 #| echo: true
 #| eval: false
 
-ggplot(DATA) +Waffle Charts is similar to the pie charts where you can visualize the proportions.
+ggplot(DATA) +
+  geom_mosaic(aes(x = product(VAR1, VAR2), fill = VAR2))
+```
 
+
+## Mosaic Example
+
+```{r}
 #| echo: true
 #| eval: true
 ggplot(coffee) +
@@ -436,8 +442,9 @@ ggplot(coffee_pie, aes(fill = Category, values = n)) +
 #| echo: true
 #| eval: false
 
-df_pie <- cat_stats(coffee$caffeine, tbl_df = TRUE)$table
-ggplot(df_pie, aes(cat = Category, values = n)) +
+
+df <- cat_stats(DF$VAR, tbl_df = TRUE)$table
+ggplot(df, aes(fill = Category, values = n)) +
   geom_waffle(make_proportional = TRUE)
 
 

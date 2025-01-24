@@ -3098,7 +3098,7 @@
     "href": "lectures/3.html#frequencey",
     "title": "Categorical Data",
     "section": "Frequencey",
-    "text": "Frequencey\nFrequency represents the count of observing a specific category in your sample.\n\n\n#&gt;  [1] \"1\"           \"1\"           \"2\"           \"Less than 1\" \"1\"           \"2\"           \"1\"           \"2\"           \"4\"           \"2\""
+    "text": "Frequencey\nFrequency represents the count of observing a specific category in your sample.\n\n\n#&gt;  [1] \"1\"           \"1\"           \"2\"           \"More than 4\" \"2\"           \"2\"           \"2\"           \"1\"           \"More than 4\" \"2\""
   },
   {
     "objectID": "lectures/3.html#proportions-relative-frequencey",
@@ -3315,7 +3315,14 @@
     "href": "lectures/3.html#mosiac-plots-in-r",
     "title": "Categorical Data",
     "section": "Mosiac Plots in R",
-    "text": "Mosiac Plots in R\n\nggplot(DATA) +Waffle Charts is similar to the pie charts where you can visualize the proportions.\n\n#| echo: true\n#| eval: true\nggplot(coffee) +\n  geom_mosaic(aes(x = product(caffeine, taste), fill = taste))"
+    "text": "Mosiac Plots in R\n\nggplot(DATA) +\n  geom_mosaic(aes(x = product(VAR1, VAR2), fill = VAR2))"
+  },
+  {
+    "objectID": "lectures/3.html#mosaic-example",
+    "href": "lectures/3.html#mosaic-example",
+    "title": "Categorical Data",
+    "section": "Mosaic Example",
+    "text": "Mosaic Example\n\nggplot(coffee) +\n  geom_mosaic(aes(x = product(caffeine, taste), fill = taste))"
   },
   {
     "objectID": "lectures/3.html#waffle-charts",
@@ -3343,7 +3350,7 @@
     "href": "lectures/3.html#waffle-charts-in-r",
     "title": "Categorical Data",
     "section": "Waffle Charts in R",
-    "text": "Waffle Charts in R\n\ndf_pie &lt;- cat_stats(coffee$caffeine, tbl_df = TRUE)$table\nggplot(df_pie, aes(cat = Category, values = n)) +\n  geom_waffle(make_proportional = TRUE)"
+    "text": "Waffle Charts in R\n\ndf &lt;- cat_stats(DF$VAR, tbl_df = TRUE)$table\nggplot(df, aes(fill = Category, values = n)) +\n  geom_waffle(make_proportional = TRUE)"
   },
   {
     "objectID": "lectures/3.html#waffle-charts-in-r-1",
