@@ -19,17 +19,17 @@ format:
 ### Visit a Lunch and/or Research Talk
 
 
-Candidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with each students during lunch (free for students) and their research talk. This means there is a total of 6 opportunities to visit a candidate. 
+Candidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with students community time, during lunch, and their research talk. This means there is a total of 9 opportunities to visit a candidate. 
 
 To obtain credit, you must visit one cancdidate during their lunch or research talk, and provide feedback and sign in.
 
-| Candidate | Day | Lunch | Research |
+| Candidate | Day | Community Time Lunch | Research |
 |:-|:-|:-|:-|
-| 1 | Monday (1/27) | 12-1 PM | TBD |
-| 2 | Monday (2/3) | 12-1 PM | TBD |
-| 3 | Tuesday (2/4) | 12-1 PM | TBD |
+| 1 | Monday (1/27) | 9:30-10 AM (BTE 2810) | 12:10-1:15 PM (Island's Cafe; 10 Students Max) | 2-3 PM (Broome 1710) |
+| 2 | Monday (2/3) | TBD | 12-1 PM | TBD |
+| 3 | Tuesday (2/4) | TBD | 12-1 PM | TBD |
 
-**Note: you may attend more than one talk or lunch!**
+**Note: you can attend more than one meeting.**
 
 ### Write a Wellness Plan
 
@@ -37,7 +37,7 @@ Write a welness plan to ensure you will maintain your overall well being.
 
 Report guidelines
 
--   2-3 Pages
+-   1-2 Pages
 
 -   Double Spaced
 
