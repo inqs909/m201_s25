@@ -41,7 +41,6 @@ editor: source
 library(MASS)
 library(tidyverse)
 library(csucistats)
-library(waffle)
 library(patchwork)
 
 theme_set(theme_bw() + 
@@ -60,6 +59,7 @@ theme_set(theme_bw() +
 ## What is Probability?
 
 **Probability** is the measure of how likely an event is to occur. It ranges from 0 to 1:
+
 - $P(A) = 0$: The event $A$ will definitely not happen.
 - $P(A) = 1$: The event $A$ will definitely happen.
 - Values between 0 and 1 represent varying degrees of likelihood.
@@ -148,6 +148,7 @@ $$
 **Addition Rule**
 
 For two events $A$ and $B$:
+
 - If $A$ and $B$ are **mutually exclusive** (cannot happen at the same time):
 $$
 P(A \cup B) = P(A) + P(B)
@@ -164,6 +165,7 @@ $$
 **Multiplication Rule**
 
 For two events $A$ and $B$:
+
 - If $A$ and $B$ are **independent**:
 
 $$
@@ -216,6 +218,41 @@ $$
 
 # Distribution Functions
 
+## Random Variable
+
+A **random variable** is a variable whose value is a numerical outcome of a random phenomenon. It's a way to map the outcomes of a probabilistic event to numbers. This allows us to analyze these outcomes mathematically.
+
+## RV: Key Concepts
+
+* **Random Phenomenon:** This is any process or experiment whose outcome is uncertain. 
+
+* **Outcomes:** The possible results of a random phenomenon are called outcomes. 
+
+* **Numerical Value:** A random variable assigns a numerical value to each outcome. 
+
+## Types of Random Variables
+
+::: panel-tabset
+
+### Discrete Random Variable 
+
+A discrete random variable can only take on a finite number of values or a countably infinite number of values. The values are often integers. Examples:
+
+- The number of heads in three coin flips (0, 1, 2, or 3).
+- The number of defective light bulbs in a box of 100.
+- The number of customers entering a store in an hour.
+
+### Continuous Random Variable
+
+ A continuous random variable can take on any value within a given range. Examples:
+
+- The height of a person.
+- The temperature of a room.
+- The time it takes to complete a task.
+
+:::
+
+
 ## Distribution Functions
 
 A **distribution function** describes the probabilities of a random variable across its possible values. It answers questions like:
@@ -223,26 +260,7 @@ A **distribution function** describes the probabilities of a random variable acr
 - How likely is a random variable to take on a specific value or fall within a range?
 - What is the overall "shape" of the distribution of outcomes?
 
-## Types of Distribution Functions
-
-::: panel-tabset
-
-### **Discrete Distribution**
-
-Used for **discrete random variables**, which can take on countable values (e.g., integers). Examples include:
-
-- Number of heads in coin tosses.
-- Number of customers in a store.
-
-### **Continuous Distribution**
-Used for **continuous random variables**, which can take on any value within a range (e.g., real numbers). Examples include:
-
-- Heights of people.
-- Time it takes to complete a task.
-
-:::
-
-## Cumulative Distribution Function (CDF)
+## Cumulative Distribution Function
 
 The **Cumulative Distribution Function (CDF)** describes the probability that a random variable $X$ is less than or equal to a certain value $x$:
 $$
@@ -278,6 +296,17 @@ The **Probability Density Function (PDF)** is used for **continuous random varia
 $$
 P(a \leq X \leq b) = \int_a^b f_X(x) \, dx
 $$
+
+
+::: fragment
+::: callout-important
+$$
+P(X = a) = P(a \leq X \leq a) = \int_a^a f_X(x) \, dx = 0
+$$
+
+:::
+:::
+
 
 ## Properties of the PDF:
 
@@ -327,6 +356,30 @@ $$
 p_X(x) = \frac{1}{6}, \quad x \in \{1, 2, 3, 4, 5, 6\}
 $$
 
+## Percentiles
+
+A **percentile** is a measure indicating the value below which a given percentage of observations in a group of observations falls. It is used in statistics to provide information about the relative standing of a particular value within a dataset.
+
+## Precentile Example
+
+Suppose we have a random variable X representing the height of adults in a population. If the 90th percentile of X is 180 cm, it means that the probability of a randomly selected adult being 180 cm or shorter is 90%.
+
+## Precentile
+
+```{r}
+data <- rnorm(500000, mean = 100, sd = 15) |> data.frame(x = _)  # Example: normally distributed data
+
+# Calculate the 75th percentile
+percentile_75 <- qnorm(0.75, 100, 15)
+
+ggplot(data = data, aes(x = x)) +
+  geom_density(fill = "skyblue", alpha = 0.5) +  # Density curve
+  geom_vline(xintercept = percentile_75, color = "red", linetype = "dashed", size = 1) +
+  labs(title = "Density Plot with 75th Percentile Highlighted", x = "Data Value", y = "Density") +
+  theme_bw()
+
+```
+
 
 ## Applications
 
@@ -334,8 +387,9 @@ $$
 
 ### PMF of a Coin Toss
 For a fair coin tossed once:
-- $ X = 0 $: Tails, $ P(X = 0) = 0.5 $
-- $ X = 1 $: Heads, $ P(X = 1) = 0.5 $
+
+- $X = 0$: Tails, $P(X = 0) = 0.5$
+- $X = 1$: Heads, $P(X = 1) = 0.5$
 
 The PMF is:
 $$
@@ -347,8 +401,8 @@ p_X(x) =
 $$
 
 
-### CDF of an Exponential Distribution
-An exponential random variable with rate $ \lambda > 0 $ has a CDF:
+### CDF of an Exp. Dist.
+An exponential random variable with rate $\lambda > 0$ has a CDF:
 $$
 F_X(x) = 
 \begin{cases} 
@@ -359,13 +413,87 @@ $$
 
 This can be used to model waiting times between events.
 
-### Applications in Real Life
+### Apps. in Real Life
 1. **PMF**:
    - Number of emails received per hour.
 2. **PDF**:
    - Heights of students in a class.
 3. **CDF**:
    - The likelihood of completing a task within a certain time frame.
+
+:::
+
+
+## Common Contisuous RV
+
+| Continuous RV | Parameters | Notation | Support |
+|---|---|---|---|
+| Uniform | a (minimum), b (maximum) | Unif(a, b) | [a, b] |
+| Normal (Gaussian) | μ (mean), σ (standard deviation) | N(μ, σ²) | (-∞, ∞) |
+| Exponential | λ (rate) | Exp(λ) | [0, ∞) | 
+| Gamma | k (shape), θ (scale) | Γ(k, θ) | [0, ∞) | 
+| Beta | α (shape 1), β (shape 2) | Beta(α, β) | [0,1] | 
+| Chi-Squared | k (degrees of freedom) | χ²(k) | [0, ∞) | 
+| t-distribution | ν (degrees of freedom) | t(ν) | (-∞, ∞) | 
+| F-distribution | ν₁ (degrees of freedom 1), ν₂ (degrees of freedom 2) | F(ν₁, ν₂) | [0, ∞) | 
+| Weibull | k (shape), λ (scale) | Weibull(k, λ) | [0, ∞) | 
+| Lognormal | μ (location), σ (scale) | Lognormal(μ, σ) | [0, ∞) | 
+
+## Common Discrete RV
+
+| Discrete RV | Parameters | Notation | Support |
+|---|---|---|---|
+| Bernoulli | p (probability of success) | Bernoulli(p) | {0, 1} |
+| Binomial | n (number of trials), p (probability of success) | Bin(n, p) | {0, 1, 2, ..., n} |
+| Geometric | p (probability of success) | Geo(p) | {1, 2, 3, ...} |
+| Poisson | λ (average rate of events) | Pois(λ) | {0, 1, 2, ...} |
+| Negative Binomial | r (number of successes), p (probability of success) | NB(r, p) | {r, r+1, r+2, ...} |
+| Discrete Uniform | n (number of possible outcomes) | DUnif(1, n) | {1, 2, ..., n} or a set of n values |
+
+## Probability and PD/MF
+
+::: panel-tabset
+
+### Continuous
+
+```{r}
+mean <- 0  # Mean of the distribution
+sd <- 1   # Standard deviation of the distribution
+
+# Generate data points for the curve (more points = smoother curve)
+x <- seq(mean - 3*sd, mean + 3*sd, length.out = 100)  # Range covering most of the distribution
+y <- dnorm(x, mean = mean, sd = sd)  # Calculate the density at each x value
+
+# Create the plot
+ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
+  geom_line(color = "blue", size = 1) +  # Line for the distribution curve
+  labs(x = "X",
+       y = "Probability Density") +
+  theme_bw() + # A clean theme
+  scale_x_continuous(breaks = seq(mean - 3*sd, mean + 3*sd, by = sd)) # Ticks at standard deviations
+
+```
+
+
+### Discrete
+
+```{r}
+n <- 10   # Number of trials
+p <- 0.3  # Probability of success on each trial
+
+# Generate the data for the plot
+x <- 0:n  # Possible values for the random variable (number of successes)
+y <- dbinom(x, size = n, prob = p)  # Calculate the probabilities
+
+# Create the plot using geom_col (for discrete data)
+ggplot(data = data.frame(x, y), aes(x = factor(x), y = y)) +  # x as factor for discrete bars
+  geom_col(fill = "skyblue", color = "black") +
+  labs(title = paste("Binomial Distribution (n =", n, ", p =", p, ")"),
+       x = "Number of Successes (x)",
+       y = "Probability P(X = x)") +
+  theme_bw()
+
+```
 
 :::
 
@@ -394,9 +522,6 @@ For any normally distributed data, the highest probability density is at the mea
 2. **Unimodal**: There is a single peak at the mean.
 3. **Mean, Median, and Mode are Equal**: In a normal distribution, these three measures of central tendency are located at the same point.
 4. **68-95-99.7 Rule** (Empirical Rule): 
-   - About **68%** of data falls within **one standard deviation** of the mean.
-   - About **95%** of data falls within **two standard deviations**.
-   - About **99.7%** of data falls within **three standard deviations**.
 
 ::: notes
 
@@ -431,7 +556,7 @@ $$
 4. **Ease of Use in Statistical Methods**: Many statistical tests and methods assume normality, allowing for simplified calculations and reliable inferences.
 
 
-## Applications of the Normal Distribution
+## Apps of the Normal Dist,
 
 ::: panel-tabset
 
@@ -440,6 +565,20 @@ Scores on standardized tests, such as IQ tests or the SAT, are often designed to
 
 ### Finance
 In finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions.
+
+:::
+
+## Finding Probability
+
+$$ 
+X \sim N(\mu, \sigma)
+$$
+
+::: fragment
+
+$$
+P(a \leq X \leq b) = P(a < X < b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx
+$$
 
 :::
 
@@ -458,14 +597,17 @@ The **Empirical Rule** provides a way to understand the spread of data in a norm
 The empirical rule is very helpful because, with just the mean and standard deviation, we can quickly estimate how data is distributed within a normal curve.
 
 
-## Applying the Empirical Rule to the Normal Distribution
+## Empirical Rule to the Normal Dist.
 
 Let’s define the key terms and apply the empirical rule to the normal distribution.
 
 - **Mean (μ)**: This is the central point of the normal distribution where the data clusters around.
 - **Standard Deviation (σ)**: This is a measure of how spread out the data points are from the mean.
 
+## Empirical Rule to the Normal Dist.
+
 In a normal distribution:
+
 - **68% of data** lies between $(\mu - \sigma)$ and $(\mu + \sigma)$.
 - **95% of data** lies between $(\mu - 2\sigma)$ and $(\mu + 2\sigma)$.
 - **99.7% of data** lies between $(\mu - 3\sigma)$ and $(\mu + 3\sigma)$.
@@ -491,28 +633,30 @@ The empirical rule helps us answer questions like:
 - **What percentage of data points fall within a certain range?**
 - **How unusual is a data point located far from the mean?**
 
-For example:
+## Examples
+
 - If we know that a data point lies more than two standard deviations away from the mean, we know it’s in the outer 5% of the distribution, making it relatively rare.
 - Using the rule, we can estimate that around 95% of values should lie within two standard deviations of the mean. If we observe data points outside of this range, we might consider them outliers.
 
 
-## Examples
+## More Examples
 
 ::: panel-tabset
 
 ### Exam Scores
 Suppose exam scores are normally distributed with a mean of 70 and a standard deviation of 10.
+
 - **68% of students** scored between **60 and 80** (70 ± 10).
 - **95% of students** scored between **50 and 90** (70 ± 20).
 - **99.7% of students** scored between **40 and 100** (70 ± 30).
 
 ### Heights of Adults
 Assume that adult heights follow a normal distribution with a mean height of 170 cm and a standard deviation of 8 cm.
+
 - **68% of adults** have heights between **162 cm and 178 cm** (170 ± 8).
 - **95% of adults** have heights between **154 cm and 186 cm** (170 ± 16).
 - **99.7% of adults** have heights between **146 cm and 194 cm** (170 ± 24).
 
-Using the empirical rule, we can see how most adult heights fall within predictable ranges around the mean.
 
 :::
 
@@ -521,93 +665,87 @@ Using the empirical rule, we can see how most adult heights fall within predicta
 ## Binomial Distribution
 
 The **Binomial Distribution** is a probability distribution that models the number of successes in a fixed number of trials, where each trial has:
-- **Two possible outcomes**: typically called "success" and "failure."
-- A constant probability of success, $ p $, on each trial.
 
-### Real-World Examples:
-- Tossing a coin $ n $ times and counting how many heads you get.
-- Rolling a die $ n $ times and counting how many times you roll a 6.
-- Administering a medical treatment to $ n $ patients and recording how many recover.
+- **Two possible outcomes**: typically called "success" and "failure."
+- A constant probability of success, $p$, on each trial.
+
+## Real-World Examples:
+
+- Tossing a coin $n$ times and counting how many heads you get.
+- Rolling a die $n$ times and counting how many times you roll a 6.
+- Administering a medical treatment to $n$ patients and recording how many recover.
+
+::: fragment
 
 The binomial distribution answers questions like:
+
 - "What is the probability of getting exactly 3 heads in 5 coin tosses?"
 - "What is the likelihood of at least 4 successes in 10 trials?"
 
+:::
 
 ## Conditions for a Binomial Experiment
 
-A binomial experiment must satisfy these four conditions:
 
-1. **Fixed Number of Trials** ($ n $):
+1. **Fixed Number of Trials** ($n$):
    - The experiment consists of a set number of trials.
 
 2. **Two Possible Outcomes**:
    - Each trial results in either a success (e.g., heads) or a failure (e.g., tails).
 
-3. **Constant Probability of Success** ($ p $):
+3. **Constant Probability of Success** ($p$):
    - The probability of success remains the same for each trial.
 
 4. **Independence**:
    - The outcome of one trial does not affect the outcomes of other trials.
 
-If these conditions are met, the binomial distribution is the right model to use.
 
 
 ## The Binomial Probability Formula
-
-The probability of observing exactly $ k $ successes in $ n $ trials is given by the **binomial probability formula**:
 
 $$
 P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
 $$
 
 Where:
-- $ P(X = k) $: Probability of exactly $ k $ successes.
-- $ n $: Number of trials.
-- $ k $: Number of successes.
-- $ p $: Probability of success on a single trial.
-- $ 1-p $: Probability of failure.
-- $ \binom{n}{k} $: Binomial coefficient, which represents the number of ways to choose $ k $ successes from $ n $ trials. It’s calculated as:
 
-$$
-\binom{n}{k} = \frac{n!}{k!(n-k)!}
-$$
+- $P(X = k)$: Probability of exactly $k$ successes.
+- $n$: Number of trials.
+- $k$: Number of successes.
+- $p$: Probability of success on a single trial.
+- $1-p$: Probability of failure.
+- $\binom{n}{k} = \frac{n!}{k!(n-k)!}$: Represents the number of ways to choose $k$ successes from $n$ trials
 
 
-### Example Calculation
-Suppose you flip a fair coin 5 times ($ n = 5, p = 0.5 $) and want to know the probability of getting exactly 3 heads ($ k = 3 $).
 
-Using the formula:
+## Example Calculation
+Suppose you flip a fair coin 5 times ($n = 5, p = 0.5$) and want to know the probability of getting exactly 3 heads ($k = 3$).
 
+::: fragment
 $$
 P(X = 3) = \binom{5}{3} (0.5)^3 (1-0.5)^{5-3}
 $$
 
-1. Calculate $ \binom{5}{3} $:
-$$
-\binom{5}{3} = \frac{5!}{3!(5-3)!} = \frac{120}{6 \cdot 2} = 10
-$$
+:::
 
-2. Plug into the formula:
-$$
-P(X = 3) = 10 (0.5)^3 (0.5)^2 = 10 (0.125)(0.25) = 0.3125
-$$
-Examples and 
-So, the probability of getting exactly 3 heads is **0.3125**, or 31.25%.
+## Properties of the Binomial Dist.
 
-## Key Properties of the Binomial Distribution
+::: panel-tabset
 
 ### Mean and Variance
-For a binomial random variable $ X $:
-- **Mean (Expected Value)**: $ \mu = n \cdot p $
-- **Variance**: $ \sigma^2 = n \cdot p \cdot (1-p) $
-- **Standard Deviation**: $ \sigma = \sqrt{n \cdot p \cdot (1-p)} $
+For a binomial random variable $X$:
+
+- **Mean (Expected Value)**: $\mu = n \cdot p$
+- **Variance**: $\sigma^2 = n \cdot p \cdot (1-p)$
+- **Standard Deviation**: $\sigma = \sqrt{n \cdot p \cdot (1-p)}$
 
 ### Shape of the Distribution
-- If $ p = 0.5 $, the distribution is symmetric.
-- If $ p > 0.5 $, the distribution is skewed left.
-- If $ p < 0.5 $, the distribution is skewed right.
 
+- If $p = 0.5$, the distribution is symmetric.
+- If $p > 0.5$, the distribution is skewed left.
+- If $p < 0.5$, the distribution is skewed right.
+
+:::
 
 ## Applications
 
@@ -617,9 +755,10 @@ For a binomial random variable $ X $:
 A factory produces lightbulbs, and 95% of them meet quality standards. If you randomly test 10 bulbs, what is the probability that exactly 8 bulbs pass the test?
 
 Here:
-- $ n = 10 $, $ p = 0.95 $, $ k = 8 $.
 
-Using the formula, calculate:
+- $n = 10$, $p = 0.95$, $k = 8$.
+
+
 $$
 P(X = 8) = \binom{10}{8} (0.95)^8 (0.05)^2
 $$
@@ -628,10 +767,14 @@ $$
 A basketball player has a 60% chance of making a free throw. If they take 5 shots, what is the probability of making at least 3 shots?
 
 Here:
-- $ n = 5 $, $ p = 0.6 $.
-- We calculate $ P(X \geq 3) = P(X = 3) + P(X = 4) + P(X = 5) $.
+- $n = 5$, $p = 0.6$.
+
+$$ 
+P(X \geq 3) = P(X = 3) + P(X = 4) + P(X = 5) 
+$$
 
 ### Clinical Trials
+
 In a clinical trial, a new drug has a 70% success rate. If 15 patients are treated, what is the probability that exactly 10 respond positively to the treatment?
 
 :::
@@ -643,19 +786,22 @@ In a clinical trial, a new drug has a 70% success rate. If 15 patients are treat
 
 The **Poisson Distribution** is a discrete probability distribution that models the number of events occurring within a fixed interval. These events must happen independently and at a constant average rate. 
 
-### Real-World Examples:
+## Real-World Examples
+
 - The number of emails you receive in an hour.
 - The number of cars passing through a toll booth in 10 minutes.
 - The number of defects in a square meter of fabric.
 
+::: fragment
+
 The Poisson distribution helps us answer questions like:
+
 - "What is the probability of receiving 5 emails in the next hour?"
 - "How likely is it to have 2 defects in a single square meter?"
 
+:::
 
-## Conditions for Using the Poisson Distribution
-
-To use the Poisson distribution, the following conditions must be met:
+## Conditions for the Poisson Dist.
 
 1. **Events Occur Randomly**:
    - The events are random and unpredictable.
@@ -663,8 +809,8 @@ To use the Poisson distribution, the following conditions must be met:
 2. **Independence**:
    - The occurrence of one event does not affect the probability of another event occurring.
 
-3. **Constant Average Rate** ($ \lambda $):
-   - The average number of events ($ \lambda $) over a fixed interval remains constant.
+3. **Constant Average Rate** ($\lambda$):
+   - The average number of events ($\lambda$) over a fixed interval remains constant.
 
 4. **Non-Overlapping Intervals**:
    - Events in one interval do not influence events in another.
@@ -672,49 +818,32 @@ To use the Poisson distribution, the following conditions must be met:
 
 ## The Poisson Probability Formula
 
-The probability of observing exactly $ k $ events in a fixed interval is given by the **Poisson probability formula**:
-
 $$
 P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
 $$
 
 Where:
-- $ P(X = k) $: Probability of $ k $ events occurring.
-- $ \lambda $: Average number of events in the interval.
-- $ e $: Euler's number ($ \approx 2.718 $).
-- $ k! $: Factorial of $ k $, calculated as $ k \times (k-1) \times \dots \times 1 $.
 
-### Example Calculation
-Suppose a call center receives an average of 10 calls per hour ($ \lambda = 10 $). What is the probability of receiving exactly 7 calls in the next hour ($ k = 7 $)?
+- $P(X = k)$: Probability of $k$ events occurring.
+- $\lambda$: Average number of events in the interval.
+- $e \approx 2.718$
+- $k!$: Factorial of $k$, calculated as $k \times (k-1) \times \dots \times 1$.
 
-Using the formula:
+## Example Calculation
+
+Suppose a call center receives an average of 10 calls per hour ($\lambda = 10$). What is the probability of receiving exactly 7 calls in the next hour ($ k = 7 $)?
+
 
 $$
 P(X = 7) = \frac{10^7 e^{-10}}{7!}
 $$
 
-1. Calculate $ e^{-10} \approx 0.0000454 $.
-2. Compute $ 10^7 = 10,000,000 $.
-3. Find $ 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040 $.
-4. Plug in the values:
-$$
-P(X = 7) = \frac{10,000,000 \cdot 0.0000454}{5040} \approx 0.0902
-$$
-
-So, the probability of receiving exactly 7 calls is approximately **9.02%**.
-
-
 ## Poisson Distribution Properties
 
-### Mean and Variance
-For a Poisson random variable $ X $:
-- **Mean**: $ \mu = \lambda $
-- **Variance**: $ \sigma^2 = \lambda $
-- **Standard Deviation**: $ \sigma = \sqrt{\lambda} $
+- **Mean**: $\mu = \lambda$
+- **Variance**: $\sigma^2 = \lambda$
+- **Standard Deviation**: $\sigma = \sqrt{\lambda}$
 
-### Shape of the Distribution
-- When $ \lambda $ is small, the distribution is highly skewed to the right.
-- As $ \lambda $ increases, the distribution becomes more symmetric and resembles a normal distribution.
 
 
 ## Applications
@@ -722,34 +851,170 @@ For a Poisson random variable $ X $:
 ::: panel-tabset
 
 ### Traffic Flow
-A toll booth observes an average of 3 cars passing through every 5 minutes ($ \lambda = 3 $). What is the probability of seeing exactly 5 cars in the next 5 minutes?
+A toll booth observes an average of 3 cars passing through every 5 minutes ($\lambda = 3$). What is the probability of seeing exactly 5 cars in the next 5 minutes?
 
 Using the formula:
 $$
 P(X = 5) = \frac{3^5 e^{-3}}{5!} = \frac{243 \cdot 0.0498}{120} \approx 0.1008
 $$
 
-So, the probability is approximately **10.08%**.
-
 
 ### Defective Products
-A factory produces an average of 2 defective items per day ($ \lambda = 2 $). What is the probability of finding no defective items in a day ($ k = 0 $)?
+
+A factory produces an average of 2 defective items per day ($\lambda = 2$). What is the probability of finding no defective items in a day ($k = 0$)?
 
 $$
 P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 $$
+|Letter|Functionality|
+|:-|:-|
+|"d"|returns the height of the probability density function|
+|"p"|returns the cummulative density function value|
+|"q"|returns the inverse cummulative density function (percentiles) |
+|"r"|returns a randomly generated number|
 
-So, there’s a **13.53% chance** of finding no defective items.
 
-
-
-### Hospital Arrivals
-On average, 4 patients arrive at an emergency room every hour ($ \lambda = 4 $). What is the probability of seeing more than 6 patients in an hour?
-
-This is a cumulative probability:
-$$
-P(X > 6) = 1 - P(X \leq 6)
-$$
-You would calculate $ P(X \leq 6) $ by summing probabilities for $ P(X = 0) $ through $ P(X = 6) $ using the formula.
 
 :::
+
+# Probability in R
+
+## Distributions in R
+
+```{r}
+#| code-fold: false
+?Distributions
+```
+
+
+## Function Structure
+
+|Letter|Functionality|
+|:-|:-|
+|"d"|returns the height of the probability density function|
+|"p"|returns the cummulative density function value|
+|"q"|returns the inverse cummulative density function (percentiles) |
+|"r"|returns a randomly generated number|
+
+
+## Probabilities
+
+R can compute the probabilities of a distribution given the correct parameters:
+
+-  Cummulative probability: `p` is used in front of the distribution R function 
+-  Probability for a discrete distribution: `d` is used in front of the distribution R function
+      - Note: Continuous Distribution Functions will not yield a valid probability value.
+
+
+## Examples
+
+::: panel-tabset
+
+### 1
+
+Find $P(X \leq 5 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()` and we set `q = 5`, `mean = 6` and `sd = sqrt(2)`.
+
+### 2
+
+Find $P(X \geq 7 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()` and we set `q = 5`, `mean = 6`, `sd = sqrt(2)` and `lower.tail = F`.
+
+### 3
+
+Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. Here we will use the `dbinom()` and we set `x = 20`, `size = 30` and `prob = 0.8`.
+
+:::
+
+## More Examples
+
+::: panel-tabset
+
+### 1
+
+### 2
+
+### 3
+
+
+:::
+
+## Percentiles
+
+Finding the values (percentiles) for any distributions can be found by using the q-based distribution R function such as `qnorm()`, `qpois()`, and `qbinom()` functions.
+
+
+## Examples
+
+::: panel-tabset
+
+### 1
+
+Finding the $95^{th}$ percentile from $N(0,1)$, we will use the `qnorm()`. We will set `mean=0`, `sd=1`, and `p=0.95`.
+
+```{r}
+#| eval: false
+qnorm(.95,0,1)
+```
+
+### 2
+
+Finding the $95^{th}$ percentile from a Poisson distribution with $\lambda = 9.5$, we will use the `qpois()`. We will set `lambda=9` and `p=0.95`.
+
+
+```{r}
+#| eval: false
+qpois(.95,9)
+```
+
+### 3
+
+Finding the $95^{th}$ percentile for $F(3,4)$, we will use the `qt()`. We will set `df1=3`, `df2=4` and `p=0.95`.
+
+```{r}
+#| eval: false
+qf(.95,3,4)
+```
+
+:::
+
+## Random Number Generator
+
+R is capable of generating random numbers. For example if we want to generate a random sample of size fifty from a normal distribution with mean eight and variance three, we will use the `rnorm()`. If we want to generate a random sample from any distribution, use the distribution function with `r` in front of it. 
+
+## Examples
+
+::: panel-tabset
+
+### 1
+
+Let's first generate the random sample of fifty from $X \sim N(8,3)$. This is done with the `rnorm()` and setting `n = 50`, `mean = 8` and `sd = sqrt(3)`.
+
+```{r}
+#| eval: false
+rnorm(50,8,sqrt(3))
+```
+
+### 2
+
+Generate a random sample of 100 form an `X \sim \Gamma (2,3)`. This is done by using the `rgamma()` and setting `n = 100`, `shape = 2`, and `rate = 3`.
+
+```{r}
+#| eval: false
+rgamma(100,2,3)
+```
+
+### 3
+
+```{r}
+#| eval: false
+rbinom(n = 10, size  = 25, prob = 0.23)
+```
+
+### 4
+
+```{r}
+#| eval: false
+rpois(n = 20, lambda = 34.4)
+```
+
+:::
+

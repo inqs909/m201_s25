@@ -2188,7 +2188,7 @@
     "href": "ec/ec_1.html",
     "title": "Extra Credit 1",
     "section": "",
-    "text": "Complete One of the Following Assignments\nDue 2/13/2024\nWorth 1 final grade percentage points.\n\nVisit a Lunch and/or Research Talk\nCandidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with students community time, during lunch, and their research talk. This means there is a total of 9 opportunities to visit a candidate.\nTo obtain credit, you must visit one cancdidate during their lunch or research talk, and provide feedback and sign in.\n\n\n\n\n\n\n\n\n\n\nCandidate\nDay\nCommunity Time\nLunch\nResearch\n\n\n\n\n1\nMonday (1/27)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe; 10 Students Max)\n2-3 PM (Broome 1710)\n\n\n2\nMonday (2/3)\nTBD\n12-1 PM\nTBD\n\n\n3\nTuesday (2/4)\nTBD\n12-1 PM\nTBD\n\n\n\nNote: you can attend more than one meeting.\n\n\nWrite a Wellness Plan\nWrite a welness plan to ensure you will maintain your overall well being.\nReport guidelines\n\n1-2 Pages\nDouble Spaced\n12 point font"
+    "text": "Complete One of the Following Assignments\nDue 2/14/2024\nWorth 1 final grade percentage points.\n\nVisit a Lunch and/or Research Talk\nCandidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with students community time, during lunch, and their research talk. This means there is a total of 9 opportunities to visit a candidate.\nTo obtain credit, you must visit one cancdidate during their lunch or research talk, and provide feedback and sign in.\n\n\n\n\n\n\n\n\n\n\nCandidate\nDay\nCommunity Time\nLunch\nResearch\n\n\n\n\n1\nMonday (1/27)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe; 10 Students Max)\n2-3 PM (Broome 1710)\n\n\n2\nMonday (2/3)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe)\n2-3 PM (BT 1642)\n\n\n3\nTuesday (2/4)\n9:30-10 & 11-11:20 (BTE 2810)\n11:30-12:15 PM (Island’s Cafe)\n1-2 PM (BT 1462)\n\n\n\nNote: you can attend more than one meeting.\n\n\nWrite a Wellness Plan\nWrite a welness plan to ensure you will maintain your overall well being.\nReport guidelines\n\n1-2 Pages\nDouble Spaced\n12 point font"
   },
   {
     "objectID": "c/1a.html#slides",
@@ -3371,7 +3371,7 @@
     "href": "lectures/5.html#what-is-probability",
     "title": "Distribution Functions",
     "section": "What is Probability?",
-    "text": "What is Probability?\nProbability is the measure of how likely an event is to occur. It ranges from 0 to 1: - \\(P(A) = 0\\): The event \\(A\\) will definitely not happen. - \\(P(A) = 1\\): The event \\(A\\) will definitely happen. - Values between 0 and 1 represent varying degrees of likelihood."
+    "text": "What is Probability?\nProbability is the measure of how likely an event is to occur. It ranges from 0 to 1:\n\n\\(P(A) = 0\\): The event \\(A\\) will definitely not happen.\n\\(P(A) = 1\\): The event \\(A\\) will definitely happen.\nValues between 0 and 1 represent varying degrees of likelihood."
   },
   {
     "objectID": "lectures/5.html#everyday-examples",
@@ -3406,7 +3406,7 @@
     "href": "lectures/5.html#rules-of-probability",
     "title": "Distribution Functions",
     "section": "Rules of Probability",
-    "text": "Rules of Probability\n\nRule 1Rule 2Rule 3Rule 4Rule 5\n\n\nProbability of the Sample Space\nThe probability of the sample space is always 1: \\[\nP(S) = 1\n\\]\n\n\nProbability of Impossible Events\nThe probability of an event that cannot happen is 0: \\[\nP(\\emptyset) = 0\n\\]\n\n\nComplement Rule\nThe probability of the complement of an event \\(A\\) (not \\(A\\)) is:\n\\[\nP(A^c) = 1 - P(A)\n\\] - Example: If \\(P(\\text{rain}) = 0.3\\), then \\(P(\\text{no rain}) = 1 - 0.3 = 0.7\\).\n\n\nAddition Rule\nFor two events \\(A\\) and \\(B\\): - If \\(A\\) and \\(B\\) are mutually exclusive (cannot happen at the same time): \\[\nP(A \\cup B) = P(A) + P(B)\n\\]\n\nIf \\(A\\) and \\(B\\) are not mutually exclusive:\n\n\\[\nP(A \\cup B) = P(A) + P(B) - P(A \\cap B)\n\\]\n\n\nMultiplication Rule\nFor two events \\(A\\) and \\(B\\): - If \\(A\\) and \\(B\\) are independent:\n\\[\nP(A \\cap B) = P(A) \\cdot P(B)\n\\]"
+    "text": "Rules of Probability\n\nRule 1Rule 2Rule 3Rule 4Rule 5\n\n\nProbability of the Sample Space\nThe probability of the sample space is always 1: \\[\nP(S) = 1\n\\]\n\n\nProbability of Impossible Events\nThe probability of an event that cannot happen is 0: \\[\nP(\\emptyset) = 0\n\\]\n\n\nComplement Rule\nThe probability of the complement of an event \\(A\\) (not \\(A\\)) is:\n\\[\nP(A^c) = 1 - P(A)\n\\] - Example: If \\(P(\\text{rain}) = 0.3\\), then \\(P(\\text{no rain}) = 1 - 0.3 = 0.7\\).\n\n\nAddition Rule\nFor two events \\(A\\) and \\(B\\):\n\nIf \\(A\\) and \\(B\\) are mutually exclusive (cannot happen at the same time): \\[\nP(A \\cup B) = P(A) + P(B)\n\\]\nIf \\(A\\) and \\(B\\) are not mutually exclusive:\n\n\\[\nP(A \\cup B) = P(A) + P(B) - P(A \\cap B)\n\\]\n\n\nMultiplication Rule\nFor two events \\(A\\) and \\(B\\):\n\nIf \\(A\\) and \\(B\\) are independent:\n\n\\[\nP(A \\cap B) = P(A) \\cdot P(B)\n\\]"
   },
   {
     "objectID": "lectures/5.html#applications",
@@ -3416,6 +3416,27 @@
     "text": "Applications\n\nDrawing a CardTossing a Coin TwiceTraffic Lights\n\n\nIf you draw a card from a standard deck of 52 cards, what is the probability of drawing:\n\nA heart?\n\\[\nP(\\text{heart}) = \\frac{13}{52} = 0.25\n  \\]\nA red card (heart or diamond)?\n\\[\nP(\\text{red card}) = \\frac{26}{52} = 0.5\n  \\]\n\n\n\nWhat is the probability of getting:\n\nExactly one head?\nSample space: \\(S = \\{\\text{HH, HT, TH, TT}\\}\\).\nEvent: \\(A = \\{\\text{HT, TH}\\}\\).\n\\[\nP(A) = \\frac{2}{4} = 0.5\n\\]\nAt least one head?\nEvent: \\(B = \\{\\text{HH, HT, TH}\\}\\).\n\\[\nP(B) = \\frac{3}{4} = 0.75\n\\]\n\n\n\nA commuter encounters three traffic lights, each with a 70% chance of being green. Assuming independence, what is the probability that all three lights are green?\n\\[\nP(\\text{all green}) = 0.7 \\cdot 0.7 \\cdot 0.7 = 0.343\n\\]"
   },
   {
+    "objectID": "lectures/5.html#random-variable",
+    "href": "lectures/5.html#random-variable",
+    "title": "Distribution Functions",
+    "section": "Random Variable",
+    "text": "Random Variable\nA random variable is a variable whose value is a numerical outcome of a random phenomenon. It’s a way to map the outcomes of a probabilistic event to numbers. This allows us to analyze these outcomes mathematically."
+  },
+  {
+    "objectID": "lectures/5.html#rv-key-concepts",
+    "href": "lectures/5.html#rv-key-concepts",
+    "title": "Distribution Functions",
+    "section": "RV: Key Concepts",
+    "text": "RV: Key Concepts\n\nRandom Phenomenon: This is any process or experiment whose outcome is uncertain.\nOutcomes: The possible results of a random phenomenon are called outcomes.\nNumerical Value: A random variable assigns a numerical value to each outcome."
+  },
+  {
+    "objectID": "lectures/5.html#types-of-random-variables",
+    "href": "lectures/5.html#types-of-random-variables",
+    "title": "Distribution Functions",
+    "section": "Types of Random Variables",
+    "text": "Types of Random Variables\n\nDiscrete Random VariableContinuous Random Variable\n\n\nA discrete random variable can only take on a finite number of values or a countably infinite number of values. The values are often integers. Examples:\n\nThe number of heads in three coin flips (0, 1, 2, or 3).\nThe number of defective light bulbs in a box of 100.\nThe number of customers entering a store in an hour.\n\n\n\nA continuous random variable can take on any value within a given range. Examples:\n\nThe height of a person.\nThe temperature of a room.\nThe time it takes to complete a task."
+  },
+  {
     "objectID": "lectures/5.html#distribution-functions-1",
     "href": "lectures/5.html#distribution-functions-1",
     "title": "Distribution Functions",
@@ -3423,18 +3444,11 @@
     "text": "Distribution Functions\nA distribution function describes the probabilities of a random variable across its possible values. It answers questions like:\n\nHow likely is a random variable to take on a specific value or fall within a range?\nWhat is the overall “shape” of the distribution of outcomes?"
   },
   {
-    "objectID": "lectures/5.html#types-of-distribution-functions",
-    "href": "lectures/5.html#types-of-distribution-functions",
+    "objectID": "lectures/5.html#cumulative-distribution-function",
+    "href": "lectures/5.html#cumulative-distribution-function",
     "title": "Distribution Functions",
-    "section": "Types of Distribution Functions",
-    "text": "Types of Distribution Functions\n\nDiscrete DistributionContinuous Distribution\n\n\nUsed for discrete random variables, which can take on countable values (e.g., integers). Examples include:\n\nNumber of heads in coin tosses.\nNumber of customers in a store.\n\n\n\nUsed for continuous random variables, which can take on any value within a range (e.g., real numbers). Examples include:\n\nHeights of people.\nTime it takes to complete a task."
-  },
-  {
-    "objectID": "lectures/5.html#cumulative-distribution-function-cdf",
-    "href": "lectures/5.html#cumulative-distribution-function-cdf",
-    "title": "Distribution Functions",
-    "section": "Cumulative Distribution Function (CDF)",
-    "text": "Cumulative Distribution Function (CDF)\nThe Cumulative Distribution Function (CDF) describes the probability that a random variable \\(X\\) is less than or equal to a certain value \\(x\\): \\[\nF_X(x) = P(X \\leq x)\n\\]"
+    "section": "Cumulative Distribution Function",
+    "text": "Cumulative Distribution Function\nThe Cumulative Distribution Function (CDF) describes the probability that a random variable \\(X\\) is less than or equal to a certain value \\(x\\): \\[\nF_X(x) = P(X \\leq x)\n\\]"
   },
   {
     "objectID": "lectures/5.html#properties-of-the-cdf",
@@ -3455,7 +3469,7 @@
     "href": "lectures/5.html#probability-density-function-pdf",
     "title": "Distribution Functions",
     "section": "Probability Density Function (PDF)",
-    "text": "Probability Density Function (PDF)\nThe Probability Density Function (PDF) is used for continuous random variables and describes the likelihood of the variable falling within a small interval.\n\\[\nP(a \\leq X \\leq b) = \\int_a^b f_X(x) \\, dx\n\\]"
+    "text": "Probability Density Function (PDF)\nThe Probability Density Function (PDF) is used for continuous random variables and describes the likelihood of the variable falling within a small interval.\n\\[\nP(a \\leq X \\leq b) = \\int_a^b f_X(x) \\, dx\n\\]\n\n\n\n\n\n\n\nImportant\n\n\n\\[\nP(X = a) = P(a \\leq X \\leq a) = \\int_a^a f_X(x) \\, dx = 0\n\\]"
   },
   {
     "objectID": "lectures/5.html#properties-of-the-pdf",
@@ -3493,11 +3507,53 @@
     "text": "PMF Example\nFor a fair die, the PMF is: \\[\np_X(x) = \\frac{1}{6}, \\quad x \\in \\{1, 2, 3, 4, 5, 6\\}\n\\]"
   },
   {
+    "objectID": "lectures/5.html#percentiles",
+    "href": "lectures/5.html#percentiles",
+    "title": "Distribution Functions",
+    "section": "Percentiles",
+    "text": "Percentiles\nA percentile is a measure indicating the value below which a given percentage of observations in a group of observations falls. It is used in statistics to provide information about the relative standing of a particular value within a dataset."
+  },
+  {
+    "objectID": "lectures/5.html#precentile-example",
+    "href": "lectures/5.html#precentile-example",
+    "title": "Distribution Functions",
+    "section": "Precentile Example",
+    "text": "Precentile Example\nSuppose we have a random variable X representing the height of adults in a population. If the 90th percentile of X is 180 cm, it means that the probability of a randomly selected adult being 180 cm or shorter is 90%."
+  },
+  {
+    "objectID": "lectures/5.html#precentile",
+    "href": "lectures/5.html#precentile",
+    "title": "Distribution Functions",
+    "section": "Precentile",
+    "text": "Precentile\n\n\nCode\ndata &lt;- rnorm(500000, mean = 100, sd = 15) |&gt; data.frame(x = _)  # Example: normally distributed data\n\n# Calculate the 75th percentile\npercentile_75 &lt;- qnorm(0.75, 100, 15)\n\nggplot(data = data, aes(x = x)) +\n  geom_density(fill = \"skyblue\", alpha = 0.5) +  # Density curve\n  geom_vline(xintercept = percentile_75, color = \"red\", linetype = \"dashed\", size = 1) +\n  labs(title = \"Density Plot with 75th Percentile Highlighted\", x = \"Data Value\", y = \"Density\") +\n  theme_bw()"
+  },
+  {
     "objectID": "lectures/5.html#applications-1",
     "href": "lectures/5.html#applications-1",
     "title": "Distribution Functions",
     "section": "Applications",
-    "text": "Applications\n\nPMF of a Coin TossCDF of an Exponential DistributionApplications in Real Life\n\n\nFor a fair coin tossed once: - $ X = 0 $: Tails, $ P(X = 0) = 0.5 $ - $ X = 1 $: Heads, $ P(X = 1) = 0.5 $\nThe PMF is: \\[\np_X(x) =\n\\begin{cases}\n0.5 & x = 0 \\text{ or } x = 1 \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\n\nAn exponential random variable with rate $ &gt; 0 $ has a CDF: \\[\nF_X(x) =\n\\begin{cases}\n1 - e^{-\\lambda x}, & x \\geq 0 \\\\\n0, & x &lt; 0\n\\end{cases}\n\\]\nThis can be used to model waiting times between events.\n\n\n\nPMF:\n\nNumber of emails received per hour.\n\nPDF:\n\nHeights of students in a class.\n\nCDF:\n\nThe likelihood of completing a task within a certain time frame."
+    "text": "Applications\n\nPMF of a Coin TossCDF of an Exp. Dist.Apps. in Real Life\n\n\nFor a fair coin tossed once:\n\n\\(X = 0\\): Tails, \\(P(X = 0) = 0.5\\)\n\\(X = 1\\): Heads, \\(P(X = 1) = 0.5\\)\n\nThe PMF is: \\[\np_X(x) =\n\\begin{cases}\n0.5 & x = 0 \\text{ or } x = 1 \\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\n\nAn exponential random variable with rate \\(\\lambda &gt; 0\\) has a CDF: \\[\nF_X(x) =\n\\begin{cases}\n1 - e^{-\\lambda x}, & x \\geq 0 \\\\\n0, & x &lt; 0\n\\end{cases}\n\\]\nThis can be used to model waiting times between events.\n\n\n\nPMF:\n\nNumber of emails received per hour.\n\nPDF:\n\nHeights of students in a class.\n\nCDF:\n\nThe likelihood of completing a task within a certain time frame."
+  },
+  {
+    "objectID": "lectures/5.html#common-contisuous-rv",
+    "href": "lectures/5.html#common-contisuous-rv",
+    "title": "Distribution Functions",
+    "section": "Common Contisuous RV",
+    "text": "Common Contisuous RV\n\n\n\n\n\n\n\n\n\nContinuous RV\nParameters\nNotation\nSupport\n\n\n\n\nUniform\na (minimum), b (maximum)\nUnif(a, b)\n[a, b]\n\n\nNormal (Gaussian)\nμ (mean), σ (standard deviation)\nN(μ, σ²)\n(-∞, ∞)\n\n\nExponential\nλ (rate)\nExp(λ)\n[0, ∞)\n\n\nGamma\nk (shape), θ (scale)\nΓ(k, θ)\n[0, ∞)\n\n\nBeta\nα (shape 1), β (shape 2)\nBeta(α, β)\n[0,1]\n\n\nChi-Squared\nk (degrees of freedom)\nχ²(k)\n[0, ∞)\n\n\nt-distribution\nν (degrees of freedom)\nt(ν)\n(-∞, ∞)\n\n\nF-distribution\nν₁ (degrees of freedom 1), ν₂ (degrees of freedom 2)\nF(ν₁, ν₂)\n[0, ∞)\n\n\nWeibull\nk (shape), λ (scale)\nWeibull(k, λ)\n[0, ∞)\n\n\nLognormal\nμ (location), σ (scale)\nLognormal(μ, σ)\n[0, ∞)"
+  },
+  {
+    "objectID": "lectures/5.html#common-discrete-rv",
+    "href": "lectures/5.html#common-discrete-rv",
+    "title": "Distribution Functions",
+    "section": "Common Discrete RV",
+    "text": "Common Discrete RV\n\n\n\n\n\n\n\n\n\nDiscrete RV\nParameters\nNotation\nSupport\n\n\n\n\nBernoulli\np (probability of success)\nBernoulli(p)\n{0, 1}\n\n\nBinomial\nn (number of trials), p (probability of success)\nBin(n, p)\n{0, 1, 2, …, n}\n\n\nGeometric\np (probability of success)\nGeo(p)\n{1, 2, 3, …}\n\n\nPoisson\nλ (average rate of events)\nPois(λ)\n{0, 1, 2, …}\n\n\nNegative Binomial\nr (number of successes), p (probability of success)\nNB(r, p)\n{r, r+1, r+2, …}\n\n\nDiscrete Uniform\nn (number of possible outcomes)\nDUnif(1, n)\n{1, 2, …, n} or a set of n values"
+  },
+  {
+    "objectID": "lectures/5.html#probability-and-pdmf",
+    "href": "lectures/5.html#probability-and-pdmf",
+    "title": "Distribution Functions",
+    "section": "Probability and PD/MF",
+    "text": "Probability and PD/MF\n\nContinuousDiscrete\n\n\n\n\nCode\nmean &lt;- 0  # Mean of the distribution\nsd &lt;- 1   # Standard deviation of the distribution\n\n# Generate data points for the curve (more points = smoother curve)\nx &lt;- seq(mean - 3*sd, mean + 3*sd, length.out = 100)  # Range covering most of the distribution\ny &lt;- dnorm(x, mean = mean, sd = sd)  # Calculate the density at each x value\n\n# Create the plot\nggplot(data = data.frame(x, y), aes(x = x, y = y)) +\n  geom_line(color = \"blue\", size = 1) +  # Line for the distribution curve\n  labs(x = \"X\",\n       y = \"Probability Density\") +\n  theme_bw() + # A clean theme\n  scale_x_continuous(breaks = seq(mean - 3*sd, mean + 3*sd, by = sd)) # Ticks at standard deviations\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nn &lt;- 10   # Number of trials\np &lt;- 0.3  # Probability of success on each trial\n\n# Generate the data for the plot\nx &lt;- 0:n  # Possible values for the random variable (number of successes)\ny &lt;- dbinom(x, size = n, prob = p)  # Calculate the probabilities\n\n# Create the plot using geom_col (for discrete data)\nggplot(data = data.frame(x, y), aes(x = factor(x), y = y)) +  # x as factor for discrete bars\n  geom_col(fill = \"skyblue\", color = \"black\") +\n  labs(title = paste(\"Binomial Distribution (n =\", n, \", p =\", p, \")\"),\n       x = \"Number of Successes (x)\",\n       y = \"Probability P(X = x)\") +\n  theme_bw()"
   },
   {
     "objectID": "lectures/5.html#normal-distribution-1",
@@ -3511,7 +3567,7 @@
     "href": "lectures/5.html#properties",
     "title": "Distribution Functions",
     "section": "Properties",
-    "text": "Properties\n\nSymmetry: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.\nUnimodal: There is a single peak at the mean.\nMean, Median, and Mode are Equal: In a normal distribution, these three measures of central tendency are located at the same point.\n68-95-99.7 Rule (Empirical Rule):\n\nAbout 68% of data falls within one standard deviation of the mean.\nAbout 95% of data falls within two standard deviations.\nAbout 99.7% of data falls within three standard deviations.\n\n\n\nThis rule helps us understand how data is distributed in a normal curve and provides a quick way to estimate probabilities for normally distributed data."
+    "text": "Properties\n\nSymmetry: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.\nUnimodal: There is a single peak at the mean.\nMean, Median, and Mode are Equal: In a normal distribution, these three measures of central tendency are located at the same point.\n68-95-99.7 Rule (Empirical Rule):\n\n\nThis rule helps us understand how data is distributed in a normal curve and provides a quick way to estimate probabilities for normally distributed data."
   },
   {
     "objectID": "lectures/5.html#normal-distribution-2",
@@ -3542,11 +3598,18 @@
     "text": "Why the Normal Distribution is Important\n\nIt Describes Many Natural Phenomena: Heights, weights, test scores, measurement errors, and countless other variables follow a normal distribution, especially when influenced by many small, random factors.\nPredictive Power: With normally distributed data, we can make predictions and infer probabilities, thanks to the 68-95-99.7 rule.\nCentral Limit Theorem: The normal distribution is foundational to the Central Limit Theorem, which tells us that, regardless of the original data distribution, the sampling distribution of the sample mean will approach a normal distribution as sample size increases.\nEase of Use in Statistical Methods: Many statistical tests and methods assume normality, allowing for simplified calculations and reliable inferences."
   },
   {
-    "objectID": "lectures/5.html#applications-of-the-normal-distribution",
-    "href": "lectures/5.html#applications-of-the-normal-distribution",
+    "objectID": "lectures/5.html#apps-of-the-normal-dist",
+    "href": "lectures/5.html#apps-of-the-normal-dist",
     "title": "Distribution Functions",
-    "section": "Applications of the Normal Distribution",
-    "text": "Applications of the Normal Distribution\n\nStandardized TestingFinance\n\n\nScores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.\n\n\nIn finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions."
+    "section": "Apps of the Normal Dist,",
+    "text": "Apps of the Normal Dist,\n\nStandardized TestingFinance\n\n\nScores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.\n\n\nIn finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions."
+  },
+  {
+    "objectID": "lectures/5.html#finding-probability",
+    "href": "lectures/5.html#finding-probability",
+    "title": "Distribution Functions",
+    "section": "Finding Probability",
+    "text": "Finding Probability\n\\[\nX \\sim N(\\mu, \\sigma)\n\\]\n\n\\[\nP(a \\leq X \\leq b) = P(a &lt; X &lt; b) = \\int_a^b \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}} dx\n\\]"
   },
   {
     "objectID": "lectures/5.html#what-is-the-empirical-rule",
@@ -3556,11 +3619,18 @@
     "text": "What is the Empirical Rule?\nThe Empirical Rule provides a way to understand the spread of data in a normal distribution by describing how data points cluster around the mean. According to this rule:\n\nApproximately 68% of data points fall within one standard deviation of the mean.\nApproximately 95% of data points fall within two standard deviations of the mean.\nApproximately 99.7% of data points fall within three standard deviations of the mean.\n\nThe empirical rule is very helpful because, with just the mean and standard deviation, we can quickly estimate how data is distributed within a normal curve."
   },
   {
-    "objectID": "lectures/5.html#applying-the-empirical-rule-to-the-normal-distribution",
-    "href": "lectures/5.html#applying-the-empirical-rule-to-the-normal-distribution",
+    "objectID": "lectures/5.html#empirical-rule-to-the-normal-dist.",
+    "href": "lectures/5.html#empirical-rule-to-the-normal-dist.",
     "title": "Distribution Functions",
-    "section": "Applying the Empirical Rule to the Normal Distribution",
-    "text": "Applying the Empirical Rule to the Normal Distribution\nLet’s define the key terms and apply the empirical rule to the normal distribution.\n\nMean (μ): This is the central point of the normal distribution where the data clusters around.\nStandard Deviation (σ): This is a measure of how spread out the data points are from the mean.\n\nIn a normal distribution: - 68% of data lies between \\((\\mu - \\sigma)\\) and \\((\\mu + \\sigma)\\). - 95% of data lies between \\((\\mu - 2\\sigma)\\) and \\((\\mu + 2\\sigma)\\). - 99.7% of data lies between \\((\\mu - 3\\sigma)\\) and \\((\\mu + 3\\sigma)\\).\nThese intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities."
+    "section": "Empirical Rule to the Normal Dist.",
+    "text": "Empirical Rule to the Normal Dist.\nLet’s define the key terms and apply the empirical rule to the normal distribution.\n\nMean (μ): This is the central point of the normal distribution where the data clusters around.\nStandard Deviation (σ): This is a measure of how spread out the data points are from the mean."
+  },
+  {
+    "objectID": "lectures/5.html#empirical-rule-to-the-normal-dist.-1",
+    "href": "lectures/5.html#empirical-rule-to-the-normal-dist.-1",
+    "title": "Distribution Functions",
+    "section": "Empirical Rule to the Normal Dist.",
+    "text": "Empirical Rule to the Normal Dist.\nIn a normal distribution:\n\n68% of data lies between \\((\\mu - \\sigma)\\) and \\((\\mu + \\sigma)\\).\n95% of data lies between \\((\\mu - 2\\sigma)\\) and \\((\\mu + 2\\sigma)\\).\n99.7% of data lies between \\((\\mu - 3\\sigma)\\) and \\((\\mu + 3\\sigma)\\).\n\nThese intervals allow us to estimate probabilities for data within each range without needing to calculate exact probabilities."
   },
   {
     "objectID": "lectures/5.html#visualizing-the-empirical-rule",
@@ -3574,84 +3644,182 @@
     "href": "lectures/5.html#using-the-empirical-rule-for-probabilities",
     "title": "Distribution Functions",
     "section": "Using the Empirical Rule for Probabilities",
-    "text": "Using the Empirical Rule for Probabilities\nThe empirical rule helps us answer questions like:\n\nWhat percentage of data points fall within a certain range?\nHow unusual is a data point located far from the mean?\n\nFor example: - If we know that a data point lies more than two standard deviations away from the mean, we know it’s in the outer 5% of the distribution, making it relatively rare. - Using the rule, we can estimate that around 95% of values should lie within two standard deviations of the mean. If we observe data points outside of this range, we might consider them outliers."
+    "text": "Using the Empirical Rule for Probabilities\nThe empirical rule helps us answer questions like:\n\nWhat percentage of data points fall within a certain range?\nHow unusual is a data point located far from the mean?"
   },
   {
     "objectID": "lectures/5.html#examples",
     "href": "lectures/5.html#examples",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\nExam ScoresHeights of Adults\n\n\nSuppose exam scores are normally distributed with a mean of 70 and a standard deviation of 10. - 68% of students scored between 60 and 80 (70 ± 10). - 95% of students scored between 50 and 90 (70 ± 20). - 99.7% of students scored between 40 and 100 (70 ± 30).\n\n\nAssume that adult heights follow a normal distribution with a mean height of 170 cm and a standard deviation of 8 cm. - 68% of adults have heights between 162 cm and 178 cm (170 ± 8). - 95% of adults have heights between 154 cm and 186 cm (170 ± 16). - 99.7% of adults have heights between 146 cm and 194 cm (170 ± 24).\nUsing the empirical rule, we can see how most adult heights fall within predictable ranges around the mean."
+    "text": "Examples\n\nIf we know that a data point lies more than two standard deviations away from the mean, we know it’s in the outer 5% of the distribution, making it relatively rare.\nUsing the rule, we can estimate that around 95% of values should lie within two standard deviations of the mean. If we observe data points outside of this range, we might consider them outliers."
+  },
+  {
+    "objectID": "lectures/5.html#more-examples",
+    "href": "lectures/5.html#more-examples",
+    "title": "Distribution Functions",
+    "section": "More Examples",
+    "text": "More Examples\n\nExam ScoresHeights of Adults\n\n\nSuppose exam scores are normally distributed with a mean of 70 and a standard deviation of 10.\n\n68% of students scored between 60 and 80 (70 ± 10).\n95% of students scored between 50 and 90 (70 ± 20).\n99.7% of students scored between 40 and 100 (70 ± 30).\n\n\n\nAssume that adult heights follow a normal distribution with a mean height of 170 cm and a standard deviation of 8 cm.\n\n68% of adults have heights between 162 cm and 178 cm (170 ± 8).\n95% of adults have heights between 154 cm and 186 cm (170 ± 16).\n99.7% of adults have heights between 146 cm and 194 cm (170 ± 24)."
   },
   {
     "objectID": "lectures/5.html#binomial-distribution-1",
     "href": "lectures/5.html#binomial-distribution-1",
     "title": "Distribution Functions",
     "section": "Binomial Distribution",
-    "text": "Binomial Distribution\nThe Binomial Distribution is a probability distribution that models the number of successes in a fixed number of trials, where each trial has: - Two possible outcomes: typically called “success” and “failure.” - A constant probability of success, $ p $, on each trial.\nReal-World Examples:\n\nTossing a coin $ n $ times and counting how many heads you get.\nRolling a die $ n $ times and counting how many times you roll a 6.\nAdministering a medical treatment to $ n $ patients and recording how many recover.\n\nThe binomial distribution answers questions like: - “What is the probability of getting exactly 3 heads in 5 coin tosses?” - “What is the likelihood of at least 4 successes in 10 trials?”"
+    "text": "Binomial Distribution\nThe Binomial Distribution is a probability distribution that models the number of successes in a fixed number of trials, where each trial has:\n\nTwo possible outcomes: typically called “success” and “failure.”\nA constant probability of success, \\(p\\), on each trial."
+  },
+  {
+    "objectID": "lectures/5.html#real-world-examples",
+    "href": "lectures/5.html#real-world-examples",
+    "title": "Distribution Functions",
+    "section": "Real-World Examples:",
+    "text": "Real-World Examples:\n\nTossing a coin \\(n\\) times and counting how many heads you get.\nRolling a die \\(n\\) times and counting how many times you roll a 6.\nAdministering a medical treatment to \\(n\\) patients and recording how many recover.\n\n\nThe binomial distribution answers questions like:\n\n“What is the probability of getting exactly 3 heads in 5 coin tosses?”\n“What is the likelihood of at least 4 successes in 10 trials?”"
   },
   {
     "objectID": "lectures/5.html#conditions-for-a-binomial-experiment",
     "href": "lectures/5.html#conditions-for-a-binomial-experiment",
     "title": "Distribution Functions",
     "section": "Conditions for a Binomial Experiment",
-    "text": "Conditions for a Binomial Experiment\nA binomial experiment must satisfy these four conditions:\n\nFixed Number of Trials ($ n $):\n\nThe experiment consists of a set number of trials.\n\nTwo Possible Outcomes:\n\nEach trial results in either a success (e.g., heads) or a failure (e.g., tails).\n\nConstant Probability of Success ($ p $):\n\nThe probability of success remains the same for each trial.\n\nIndependence:\n\nThe outcome of one trial does not affect the outcomes of other trials.\n\n\nIf these conditions are met, the binomial distribution is the right model to use."
+    "text": "Conditions for a Binomial Experiment\n\nFixed Number of Trials (\\(n\\)):\n\nThe experiment consists of a set number of trials.\n\nTwo Possible Outcomes:\n\nEach trial results in either a success (e.g., heads) or a failure (e.g., tails).\n\nConstant Probability of Success (\\(p\\)):\n\nThe probability of success remains the same for each trial.\n\nIndependence:\n\nThe outcome of one trial does not affect the outcomes of other trials."
   },
   {
     "objectID": "lectures/5.html#the-binomial-probability-formula",
     "href": "lectures/5.html#the-binomial-probability-formula",
     "title": "Distribution Functions",
     "section": "The Binomial Probability Formula",
-    "text": "The Binomial Probability Formula\nThe probability of observing exactly $ k $ successes in $ n $ trials is given by the binomial probability formula:\n\\[\nP(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}\n\\]\nWhere: - $ P(X = k) $: Probability of exactly $ k $ successes. - $ n $: Number of trials. - $ k $: Number of successes. - $ p $: Probability of success on a single trial. - $ 1-p $: Probability of failure. - $ $: Binomial coefficient, which represents the number of ways to choose $ k $ successes from $ n $ trials. It’s calculated as:\n\\[\n\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\n\\]\nExample Calculation\nSuppose you flip a fair coin 5 times ($ n = 5, p = 0.5 \\() and want to know the probability of getting exactly 3 heads (\\) k = 3 $).\nUsing the formula:\n\\[\nP(X = 3) = \\binom{5}{3} (0.5)^3 (1-0.5)^{5-3}\n\\]\n\nCalculate $ \\(:\\)$ = = = 10 $$\nPlug into the formula: \\[\nP(X = 3) = 10 (0.5)^3 (0.5)^2 = 10 (0.125)(0.25) = 0.3125\n\\] Examples and So, the probability of getting exactly 3 heads is 0.3125, or 31.25%."
+    "text": "The Binomial Probability Formula\n\\[\nP(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}\n\\]\nWhere:\n\n\\(P(X = k)\\): Probability of exactly \\(k\\) successes.\n\\(n\\): Number of trials.\n\\(k\\): Number of successes.\n\\(p\\): Probability of success on a single trial.\n\\(1-p\\): Probability of failure.\n\\(\\binom{n}{k} = \\frac{n!}{k!(n-k)!}\\): Represents the number of ways to choose \\(k\\) successes from \\(n\\) trials"
   },
   {
-    "objectID": "lectures/5.html#key-properties-of-the-binomial-distribution",
-    "href": "lectures/5.html#key-properties-of-the-binomial-distribution",
+    "objectID": "lectures/5.html#example-calculation",
+    "href": "lectures/5.html#example-calculation",
     "title": "Distribution Functions",
-    "section": "Key Properties of the Binomial Distribution",
-    "text": "Key Properties of the Binomial Distribution\nMean and Variance\nFor a binomial random variable $ X $: - Mean (Expected Value): $ = n p $ - Variance: $ ^2 = n p (1-p) $ - Standard Deviation: $ = $\nShape of the Distribution\n\nIf $ p = 0.5 $, the distribution is symmetric.\nIf $ p &gt; 0.5 $, the distribution is skewed left.\nIf $ p &lt; 0.5 $, the distribution is skewed right."
+    "section": "Example Calculation",
+    "text": "Example Calculation\nSuppose you flip a fair coin 5 times (\\(n = 5, p = 0.5\\)) and want to know the probability of getting exactly 3 heads (\\(k = 3\\)).\n\n\\[\nP(X = 3) = \\binom{5}{3} (0.5)^3 (1-0.5)^{5-3}\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#properties-of-the-binomial-dist.",
+    "href": "lectures/5.html#properties-of-the-binomial-dist.",
+    "title": "Distribution Functions",
+    "section": "Properties of the Binomial Dist.",
+    "text": "Properties of the Binomial Dist.\n\nMean and VarianceShape of the Distribution\n\n\nFor a binomial random variable \\(X\\):\n\nMean (Expected Value): \\(\\mu = n \\cdot p\\)\nVariance: \\(\\sigma^2 = n \\cdot p \\cdot (1-p)\\)\nStandard Deviation: \\(\\sigma = \\sqrt{n \\cdot p \\cdot (1-p)}\\)\n\n\n\n\nIf \\(p = 0.5\\), the distribution is symmetric.\nIf \\(p &gt; 0.5\\), the distribution is skewed left.\nIf \\(p &lt; 0.5\\), the distribution is skewed right."
   },
   {
     "objectID": "lectures/5.html#applications-2",
     "href": "lectures/5.html#applications-2",
     "title": "Distribution Functions",
     "section": "Applications",
-    "text": "Applications\n\nQuality ControlSportsClinical Trials\n\n\nA factory produces lightbulbs, and 95% of them meet quality standards. If you randomly test 10 bulbs, what is the probability that exactly 8 bulbs pass the test?\nHere: - $ n = 10 $, $ p = 0.95 $, $ k = 8 $.\nUsing the formula, calculate: \\[\nP(X = 8) = \\binom{10}{8} (0.95)^8 (0.05)^2\n\\]\n\n\nA basketball player has a 60% chance of making a free throw. If they take 5 shots, what is the probability of making at least 3 shots?\nHere: - $ n = 5 $, $ p = 0.6 $. - We calculate $ P(X ) = P(X = 3) + P(X = 4) + P(X = 5) $.\n\n\nIn a clinical trial, a new drug has a 70% success rate. If 15 patients are treated, what is the probability that exactly 10 respond positively to the treatment?"
+    "text": "Applications\n\nQuality ControlSportsClinical Trials\n\n\nA factory produces lightbulbs, and 95% of them meet quality standards. If you randomly test 10 bulbs, what is the probability that exactly 8 bulbs pass the test?\nHere:\n\n\\(n = 10\\), \\(p = 0.95\\), \\(k = 8\\).\n\n\\[\nP(X = 8) = \\binom{10}{8} (0.95)^8 (0.05)^2\n\\]\n\n\nA basketball player has a 60% chance of making a free throw. If they take 5 shots, what is the probability of making at least 3 shots?\nHere: - \\(n = 5\\), \\(p = 0.6\\).\n\\[\nP(X \\geq 3) = P(X = 3) + P(X = 4) + P(X = 5)\n\\]\n\n\nIn a clinical trial, a new drug has a 70% success rate. If 15 patients are treated, what is the probability that exactly 10 respond positively to the treatment?"
   },
   {
     "objectID": "lectures/5.html#poisson-distribution-1",
     "href": "lectures/5.html#poisson-distribution-1",
     "title": "Distribution Functions",
     "section": "Poisson Distribution",
-    "text": "Poisson Distribution\nThe Poisson Distribution is a discrete probability distribution that models the number of events occurring within a fixed interval. These events must happen independently and at a constant average rate.\nReal-World Examples:\n\nThe number of emails you receive in an hour.\nThe number of cars passing through a toll booth in 10 minutes.\nThe number of defects in a square meter of fabric.\n\nThe Poisson distribution helps us answer questions like: - “What is the probability of receiving 5 emails in the next hour?” - “How likely is it to have 2 defects in a single square meter?”"
+    "text": "Poisson Distribution\nThe Poisson Distribution is a discrete probability distribution that models the number of events occurring within a fixed interval. These events must happen independently and at a constant average rate."
   },
   {
-    "objectID": "lectures/5.html#conditions-for-using-the-poisson-distribution",
-    "href": "lectures/5.html#conditions-for-using-the-poisson-distribution",
+    "objectID": "lectures/5.html#real-world-examples-1",
+    "href": "lectures/5.html#real-world-examples-1",
     "title": "Distribution Functions",
-    "section": "Conditions for Using the Poisson Distribution",
-    "text": "Conditions for Using the Poisson Distribution\nTo use the Poisson distribution, the following conditions must be met:\n\nEvents Occur Randomly:\n\nThe events are random and unpredictable.\n\nIndependence:\n\nThe occurrence of one event does not affect the probability of another event occurring.\n\nConstant Average Rate ($ \\():\n- The average number of events (\\) $) over a fixed interval remains constant.\nNon-Overlapping Intervals:\n\nEvents in one interval do not influence events in another."
+    "section": "Real-World Examples",
+    "text": "Real-World Examples\n\nThe number of emails you receive in an hour.\nThe number of cars passing through a toll booth in 10 minutes.\nThe number of defects in a square meter of fabric.\n\n\nThe Poisson distribution helps us answer questions like:\n\n“What is the probability of receiving 5 emails in the next hour?”\n“How likely is it to have 2 defects in a single square meter?”"
+  },
+  {
+    "objectID": "lectures/5.html#conditions-for-the-poisson-dist.",
+    "href": "lectures/5.html#conditions-for-the-poisson-dist.",
+    "title": "Distribution Functions",
+    "section": "Conditions for the Poisson Dist.",
+    "text": "Conditions for the Poisson Dist.\n\nEvents Occur Randomly:\n\nThe events are random and unpredictable.\n\nIndependence:\n\nThe occurrence of one event does not affect the probability of another event occurring.\n\nConstant Average Rate (\\(\\lambda\\)):\n\nThe average number of events (\\(\\lambda\\)) over a fixed interval remains constant.\n\nNon-Overlapping Intervals:\n\nEvents in one interval do not influence events in another."
   },
   {
     "objectID": "lectures/5.html#the-poisson-probability-formula",
     "href": "lectures/5.html#the-poisson-probability-formula",
     "title": "Distribution Functions",
     "section": "The Poisson Probability Formula",
-    "text": "The Poisson Probability Formula\nThe probability of observing exactly $ k $ events in a fixed interval is given by the Poisson probability formula:\n\\[\nP(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}\n\\]\nWhere: - $ P(X = k) $: Probability of $ k $ events occurring. - $ $: Average number of events in the interval. - $ e \\(: Euler's number (\\) $). - $ k! $: Factorial of $ k $, calculated as $ k (k-1) $.\nExample Calculation\nSuppose a call center receives an average of 10 calls per hour ($ = 10 \\(). What is the probability of receiving exactly 7 calls in the next hour (\\) k = 7 $)?\nUsing the formula:\n\\[\nP(X = 7) = \\frac{10^7 e^{-10}}{7!}\n\\]\n\nCalculate $ e^{-10} $.\nCompute $ 10^7 = 10,000,000 $.\nFind $ 7! = 7 = 5040 $.\nPlug in the values: \\[\nP(X = 7) = \\frac{10,000,000 \\cdot 0.0000454}{5040} \\approx 0.0902\n\\]\n\nSo, the probability of receiving exactly 7 calls is approximately 9.02%."
+    "text": "The Poisson Probability Formula\n\\[\nP(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}\n\\]\nWhere:\n\n\\(P(X = k)\\): Probability of \\(k\\) events occurring.\n\\(\\lambda\\): Average number of events in the interval.\n\\(e \\approx 2.718\\)\n\\(k!\\): Factorial of \\(k\\), calculated as \\(k \\times (k-1) \\times \\dots \\times 1\\)."
+  },
+  {
+    "objectID": "lectures/5.html#example-calculation-1",
+    "href": "lectures/5.html#example-calculation-1",
+    "title": "Distribution Functions",
+    "section": "Example Calculation",
+    "text": "Example Calculation\nSuppose a call center receives an average of 10 calls per hour (\\(\\lambda = 10\\)). What is the probability of receiving exactly 7 calls in the next hour ($ k = 7 $)?\n\\[\nP(X = 7) = \\frac{10^7 e^{-10}}{7!}\n\\]"
   },
   {
     "objectID": "lectures/5.html#poisson-distribution-properties",
     "href": "lectures/5.html#poisson-distribution-properties",
     "title": "Distribution Functions",
     "section": "Poisson Distribution Properties",
-    "text": "Poisson Distribution Properties\nMean and Variance\nFor a Poisson random variable $ X $: - Mean: $ = $ - Variance: $ ^2 = $ - Standard Deviation: $ = $\nShape of the Distribution\n\nWhen $ $ is small, the distribution is highly skewed to the right.\nAs $ $ increases, the distribution becomes more symmetric and resembles a normal distribution."
+    "text": "Poisson Distribution Properties\n\nMean: \\(\\mu = \\lambda\\)\nVariance: \\(\\sigma^2 = \\lambda\\)\nStandard Deviation: \\(\\sigma = \\sqrt{\\lambda}\\)"
   },
   {
     "objectID": "lectures/5.html#applications-3",
     "href": "lectures/5.html#applications-3",
     "title": "Distribution Functions",
     "section": "Applications",
-    "text": "Applications\n\nTraffic FlowDefective ProductsHospital Arrivals\n\n\nA toll booth observes an average of 3 cars passing through every 5 minutes ($ = 3 $). What is the probability of seeing exactly 5 cars in the next 5 minutes?\nUsing the formula: \\[\nP(X = 5) = \\frac{3^5 e^{-3}}{5!} = \\frac{243 \\cdot 0.0498}{120} \\approx 0.1008\n\\]\nSo, the probability is approximately 10.08%.\n\n\nA factory produces an average of 2 defective items per day ($ = 2 \\(). What is the probability of finding no defective items in a day (\\) k = 0 $)?\n\\[\nP(X = 0) = \\frac{2^0 e^{-2}}{0!} = e^{-2} \\approx 0.1353\n\\]\nSo, there’s a 13.53% chance of finding no defective items.\n\n\nOn average, 4 patients arrive at an emergency room every hour ($ = 4 $). What is the probability of seeing more than 6 patients in an hour?\nThis is a cumulative probability: \\[\nP(X &gt; 6) = 1 - P(X \\leq 6)\n\\] You would calculate $ P(X ) $ by summing probabilities for $ P(X = 0) $ through $ P(X = 6) $ using the formula."
+    "text": "Applications\n\nTraffic FlowDefective Products\n\n\nA toll booth observes an average of 3 cars passing through every 5 minutes (\\(\\lambda = 3\\)). What is the probability of seeing exactly 5 cars in the next 5 minutes?\nUsing the formula: \\[\nP(X = 5) = \\frac{3^5 e^{-3}}{5!} = \\frac{243 \\cdot 0.0498}{120} \\approx 0.1008\n\\]\n\n\nA factory produces an average of 2 defective items per day (\\(\\lambda = 2\\)). What is the probability of finding no defective items in a day (\\(k = 0\\))?\n\\[\nP(X = 0) = \\frac{2^0 e^{-2}}{0!} = e^{-2} \\approx 0.1353\n\\] |Letter|Functionality| |:-|:-| |“d”|returns the height of the probability density function| |“p”|returns the cummulative density function value| |“q”|returns the inverse cummulative density function (percentiles) | |“r”|returns a randomly generated number|"
+  },
+  {
+    "objectID": "lectures/5.html#distributions-in-r",
+    "href": "lectures/5.html#distributions-in-r",
+    "title": "Distribution Functions",
+    "section": "Distributions in R",
+    "text": "Distributions in R\n\n?Distributions"
+  },
+  {
+    "objectID": "lectures/5.html#function-structure",
+    "href": "lectures/5.html#function-structure",
+    "title": "Distribution Functions",
+    "section": "Function Structure",
+    "text": "Function Structure\n\n\n\nLetter\nFunctionality\n\n\n\n\n“d”\nreturns the height of the probability density function\n\n\n“p”\nreturns the cummulative density function value\n\n\n“q”\nreturns the inverse cummulative density function (percentiles)\n\n\n“r”\nreturns a randomly generated number"
+  },
+  {
+    "objectID": "lectures/5.html#probabilities",
+    "href": "lectures/5.html#probabilities",
+    "title": "Distribution Functions",
+    "section": "Probabilities",
+    "text": "Probabilities\nR can compute the probabilities of a distribution given the correct parameters:\n\nCummulative probability: p is used in front of the distribution R function\nProbability for a discrete distribution: d is used in front of the distribution R function\n\nNote: Continuous Distribution Functions will not yield a valid probability value."
+  },
+  {
+    "objectID": "lectures/5.html#examples-1",
+    "href": "lectures/5.html#examples-1",
+    "title": "Distribution Functions",
+    "section": "Examples",
+    "text": "Examples\n\n123\n\n\nFind \\(P(X \\leq 5 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm() and we set q = 5, mean = 6 and sd = sqrt(2).\n\n\nFind \\(P(X \\geq 7 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm() and we set q = 5, mean = 6, sd = sqrt(2) and lower.tail = F.\n\n\nFind \\(P(X = 20 )\\) where \\(X \\sim Bin(30,0.8)\\). Here we will use the dbinom() and we set x = 20, size = 30 and prob = 0.8."
+  },
+  {
+    "objectID": "lectures/5.html#more-examples-1",
+    "href": "lectures/5.html#more-examples-1",
+    "title": "Distribution Functions",
+    "section": "More Examples",
+    "text": "More Examples\n\n123"
+  },
+  {
+    "objectID": "lectures/5.html#percentiles-1",
+    "href": "lectures/5.html#percentiles-1",
+    "title": "Distribution Functions",
+    "section": "Percentiles",
+    "text": "Percentiles\nFinding the values (percentiles) for any distributions can be found by using the q-based distribution R function such as qnorm(), qpois(), and qbinom() functions."
+  },
+  {
+    "objectID": "lectures/5.html#examples-2",
+    "href": "lectures/5.html#examples-2",
+    "title": "Distribution Functions",
+    "section": "Examples",
+    "text": "Examples\n\n123\n\n\nFinding the \\(95^{th}\\) percentile from \\(N(0,1)\\), we will use the qnorm(). We will set mean=0, sd=1, and p=0.95.\n\n\nCode\nqnorm(.95,0,1)\n\n\n\n\nFinding the \\(95^{th}\\) percentile from a Poisson distribution with \\(\\lambda = 9.5\\), we will use the qpois(). We will set lambda=9 and p=0.95.\n\n\nCode\nqpois(.95,9)\n\n\n\n\nFinding the \\(95^{th}\\) percentile for \\(F(3,4)\\), we will use the qt(). We will set df1=3, df2=4 and p=0.95.\n\n\nCode\nqf(.95,3,4)"
+  },
+  {
+    "objectID": "lectures/5.html#random-number-generator",
+    "href": "lectures/5.html#random-number-generator",
+    "title": "Distribution Functions",
+    "section": "Random Number Generator",
+    "text": "Random Number Generator\nR is capable of generating random numbers. For example if we want to generate a random sample of size fifty from a normal distribution with mean eight and variance three, we will use the rnorm(). If we want to generate a random sample from any distribution, use the distribution function with r in front of it."
+  },
+  {
+    "objectID": "lectures/5.html#examples-3",
+    "href": "lectures/5.html#examples-3",
+    "title": "Distribution Functions",
+    "section": "Examples",
+    "text": "Examples\n\n1234\n\n\nLet’s first generate the random sample of fifty from \\(X \\sim N(8,3)\\). This is done with the rnorm() and setting n = 50, mean = 8 and sd = sqrt(3).\n\n\nCode\nrnorm(50,8,sqrt(3))\n\n\n\n\nGenerate a random sample of 100 form an X \\sim \\Gamma (2,3). This is done by using the rgamma() and setting n = 100, shape = 2, and rate = 3.\n\n\nCode\nrgamma(100,2,3)\n\n\n\n\n\n\nCode\nrbinom(n = 10, size  = 25, prob = 0.23)\n\n\n\n\n\n\nCode\nrpois(n = 20, lambda = 34.4)"
   },
   {
     "objectID": "lectures/8.html#explaining-variation",
