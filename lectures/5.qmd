@@ -521,7 +521,7 @@ For any normally distributed data, the highest probability density is at the mea
 1. **Symmetry**: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.
 2. **Unimodal**: There is a single peak at the mean.
 3. **Mean, Median, and Mode are Equal**: In a normal distribution, these three measures of central tendency are located at the same point.
-4. **68-95-99.7 Rule** (Empirical Rule): 
+4. **68-95-99.7 Rule** (Empirical Rule)
 
 ::: notes
 
@@ -530,6 +530,27 @@ This rule helps us understand how data is distributed in a normal curve and prov
 :::
 
 ## Normal Distribution
+
+
+::: {.column}
+
+$$
+X\sim N(\mu, \sigma)
+$$
+
+$$
+-\infty < X < \infty
+$$
+
+:::
+::: {.column}
+
+$$
+f_X(x) = \frac{1}{\sqrt{2\pi \sigma}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+:::
+
 
 ## The Standard Normal Distribution
 
@@ -556,7 +577,7 @@ $$
 4. **Ease of Use in Statistical Methods**: Many statistical tests and methods assume normality, allowing for simplified calculations and reliable inferences.
 
 
-## Apps of the Normal Dist,
+## Apps of the Normal Dist.
 
 ::: panel-tabset
 
@@ -656,7 +677,6 @@ Assume that adult heights follow a normal distribution with a mean height of 170
 - **68% of adults** have heights between **162 cm and 178 cm** (170 ± 8).
 - **95% of adults** have heights between **154 cm and 186 cm** (170 ± 16).
 - **99.7% of adults** have heights between **146 cm and 194 cm** (170 ± 24).
-
 
 :::
 

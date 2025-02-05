@@ -3567,14 +3567,14 @@
     "href": "lectures/5.html#properties",
     "title": "Distribution Functions",
     "section": "Properties",
-    "text": "Properties\n\nSymmetry: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.\nUnimodal: There is a single peak at the mean.\nMean, Median, and Mode are Equal: In a normal distribution, these three measures of central tendency are located at the same point.\n68-95-99.7 Rule (Empirical Rule):\n\n\nThis rule helps us understand how data is distributed in a normal curve and provides a quick way to estimate probabilities for normally distributed data."
+    "text": "Properties\n\nSymmetry: It is perfectly symmetric about the mean, meaning the left side is a mirror image of the right.\nUnimodal: There is a single peak at the mean.\nMean, Median, and Mode are Equal: In a normal distribution, these three measures of central tendency are located at the same point.\n68-95-99.7 Rule (Empirical Rule)\n\n\nThis rule helps us understand how data is distributed in a normal curve and provides a quick way to estimate probabilities for normally distributed data."
   },
   {
     "objectID": "lectures/5.html#normal-distribution-2",
     "href": "lectures/5.html#normal-distribution-2",
     "title": "Distribution Functions",
     "section": "Normal Distribution",
-    "text": "Normal Distribution"
+    "text": "Normal Distribution\n\n\\[\nX\\sim N(\\mu, \\sigma)\n\\]\n\\[\n-\\infty &lt; X &lt; \\infty\n\\]\n\n\\[\nf_X(x) = \\frac{1}{\\sqrt{2\\pi \\sigma}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}\n\\]"
   },
   {
     "objectID": "lectures/5.html#the-standard-normal-distribution",
@@ -3598,11 +3598,11 @@
     "text": "Why the Normal Distribution is Important\n\nIt Describes Many Natural Phenomena: Heights, weights, test scores, measurement errors, and countless other variables follow a normal distribution, especially when influenced by many small, random factors.\nPredictive Power: With normally distributed data, we can make predictions and infer probabilities, thanks to the 68-95-99.7 rule.\nCentral Limit Theorem: The normal distribution is foundational to the Central Limit Theorem, which tells us that, regardless of the original data distribution, the sampling distribution of the sample mean will approach a normal distribution as sample size increases.\nEase of Use in Statistical Methods: Many statistical tests and methods assume normality, allowing for simplified calculations and reliable inferences."
   },
   {
-    "objectID": "lectures/5.html#apps-of-the-normal-dist",
-    "href": "lectures/5.html#apps-of-the-normal-dist",
+    "objectID": "lectures/5.html#apps-of-the-normal-dist.",
+    "href": "lectures/5.html#apps-of-the-normal-dist.",
     "title": "Distribution Functions",
-    "section": "Apps of the Normal Dist,",
-    "text": "Apps of the Normal Dist,\n\nStandardized TestingFinance\n\n\nScores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.\n\n\nIn finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions."
+    "section": "Apps of the Normal Dist.",
+    "text": "Apps of the Normal Dist.\n\nStandardized TestingFinance\n\n\nScores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.\n\n\nIn finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions."
   },
   {
     "objectID": "lectures/5.html#finding-probability",
