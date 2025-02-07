@@ -143,34 +143,6 @@ P(A^c) = 1 - P(A)
 $$
 - Example: If $P(\text{rain}) = 0.3$, then $P(\text{no rain}) = 1 - 0.3 = 0.7$.
 
-### Rule 4
-
-**Addition Rule**
-
-For two events $A$ and $B$:
-
-- If $A$ and $B$ are **mutually exclusive** (cannot happen at the same time):
-$$
-P(A \cup B) = P(A) + P(B)
-$$
-
-- If $A$ and $B$ are **not mutually exclusive**:
-
-$$
-P(A \cup B) = P(A) + P(B) - P(A \cap B)
-$$
-
-### Rule 5
-
-**Multiplication Rule**
-
-For two events $A$ and $B$:
-
-- If $A$ and $B$ are **independent**:
-
-$$
-P(A \cap B) = P(A) \cdot P(B)
-$$
 
 :::
 
@@ -215,6 +187,176 @@ P(\text{all green}) = 0.7 \cdot 0.7 \cdot 0.7 = 0.343
 $$
 
 :::
+
+
+## More Problems
+
+::: panel-tabset
+
+### Rolling a Die
+
+|1 | 2 | 3 | 4 | 5 | 6 |
+|-|-|-|-|-|-|
+|1/6| 1/6 | 1/6 | 1/6 | 1/6 | 1/6 |
+
+
+### 1
+
+$$
+P(X = 2)
+$$
+
+### 2
+
+
+$$
+P(1 \le X \le 3)
+$$
+
+
+### 3
+
+$$
+P(1 < X < 3)
+$$
+
+### 4
+
+$$
+P(X > 1)
+$$
+
+:::
+
+
+# Joint Probability
+
+## Joint Probability
+
+*   Often, we're interested in the probabilities of multiple events occurring.
+*   This presentation focuses on calculating probabilities involving two events.
+*   We'll explore key concepts like:
+    *   Joint Probability
+    *   Union of Events
+    *   Conditional Probability
+    *   Independence
+
+
+## Joint Probability
+
+*   The probability of *both* events A and B occurring.
+*   Denoted as P(A and B) or P(A ∩ B).
+*   Examples:
+    *   Drawing a King *and* a Heart from a deck of cards.
+    *   Flipping two coins and getting heads on both.
+
+## Joint Probability
+
+Calculating Union Probability
+
+*   **General Case:** P(A or B) = P(A) + P(B) - P(A and B)  (Inclusion-Exclusion Principle)
+*   **Mutually Exclusive Events:** If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)
+
+
+## Union of Events
+
+*   The probability of *either* event A *or* event B (or both) occurring.
+*   Denoted as P(A or B) or P(A ∪ B).
+*   Examples:
+    *   Rolling a 3 or a 5 on a die.
+    *   Drawing a red card or a face card.
+
+
+## Calculating Union Probability
+
+*   **General Case:** P(A or B) = P(A) + P(B) - P(A and B)  (Inclusion-Exclusion Principle)
+*   **Mutually Exclusive Events:** If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)
+
+
+## Example: Union Probability
+
+*   What is the probability of rolling a number greater than 4 or an even number on a six-sided die?
+
+    *   Event A: Rolling a number greater than 4 (5 or 6).
+    *   Event B: Rolling an even number (2, 4, or 6).
+
+*   P(A) = 2/6
+*   P(B) = 3/6
+*   P(A and B) = 1/6 (rolling a 6)
+*   P(A or B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3
+
+
+## Conditional Probability
+
+*   The conditional probability of event A occurring *given* that event B has occurred:  **P(A|B)** (read as "the probability of A given B").
+
+*   Formula:  **P(A|B) = P(A and B) / P(B)**
+
+    *   P(A|B): Conditional probability of A given B.
+    *   P(A and B): Probability of both A and B occurring.
+    *   P(B): Probability of B occurring.
+
+
+## Independence
+
+*   Two events are independent if the occurrence of one does not affect the probability of the other.
+*   If A and B are independent:
+    *   P(A|B) = P(A)
+    *   P(B|A) = P(B)
+    *   P(A and B) = P(A) * P(B)
+
+## Bayes' Theorem
+
+*   Reverses the conditioning:  Relates P(A|B) to P(B|A).
+*   **P(A|B) = [P(B|A) * P(A)] / P(B)**
+*   Useful when we know P(B|A) but want P(A|B).
+
+# Case Study: Covid-19 Tests
+
+## Introduction
+
+*   When evaluating diagnostic tests, we need metrics beyond just "accuracy."
+*   Sensitivity, Specificity, Positive Predictive Value (PPV), and Negative Predictive Value (NPV) provide a more nuanced understanding of a test's performance.
+*   These metrics help us understand how well a test identifies those with and without a condition.
+
+
+## The 2x2 Contingency Table
+
+|                 | Condition Present | Condition Absent  |
+|-----------------|-----------------------------------|-----------------------------------|
+| Test Positive   | True Positive (TP)                | False Positive (FP)               |
+| Test Negative   | False Negative (FN)               | True Negative (TN)                |
+
+
+## Sensitivity (True Positive Rate)
+
+*   The proportion of people *with* the condition who test positive.
+*   "How well does the test identify those who *have* the condition?"
+
+
+## Specificity (True Negative Rate)
+
+*   The proportion of people *without* the condition who test negative.
+*   Answers: "How well does the test identify those who *do not have* the condition?"
+
+
+
+## Positive Predictive Value (PPV)
+
+*   The proportion of people who test positive who *actually have* the condition.
+*   "If someone tests positive, what's the probability they truly have the condition?"
+
+
+## Negative Predictive Value (NPV)
+
+*   The proportion of people who test negative who *actually do not have* the condition.
+*   "If someone tests negative, what's the probability they truly do not have the condition?"
+
+
+## 
+
+
+
 
 # Distribution Functions
 
@@ -360,7 +502,7 @@ $$
 
 A **percentile** is a measure indicating the value below which a given percentage of observations in a group of observations falls. It is used in statistics to provide information about the relative standing of a particular value within a dataset.
 
-## Precentile Example
+## Percentile Example
 
 Suppose we have a random variable X representing the height of adults in a population. If the 90th percentile of X is 180 cm, it means that the probability of a randomly selected adult being 180 cm or shorter is 90%.
 
@@ -886,12 +1028,6 @@ A factory produces an average of 2 defective items per day ($\lambda = 2$). What
 $$
 P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 $$
-|Letter|Functionality|
-|:-|:-|
-|"d"|returns the height of the probability density function|
-|"p"|returns the cummulative density function value|
-|"q"|returns the inverse cummulative density function (percentiles) |
-|"r"|returns a randomly generated number|
 
 
 
@@ -932,15 +1068,15 @@ R can compute the probabilities of a distribution given the correct parameters:
 
 ### 1
 
-Find $P(X \leq 5 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()` and we set `q = 5`, `mean = 6` and `sd = sqrt(2)`.
+Find $P(X \leq 5 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()`.
 
 ### 2
 
-Find $P(X \geq 7 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()` and we set `q = 5`, `mean = 6`, `sd = sqrt(2)` and `lower.tail = F`.
+Find $P(X \geq 7 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()`.
 
 ### 3
 
-Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. Here we will use the `dbinom()` and we set `x = 20`, `size = 30` and `prob = 0.8`.
+Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. Here we will use the `dbinom()`.
 
 :::
 
@@ -950,10 +1086,15 @@ Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. Here we will use the `dbinom()` an
 
 ### 1
 
+Find $P(2 \lew X \leq 5 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()`.
+
 ### 2
+
+Find $P(14 < X < 20)$ where $X \sim Pois(16)$. Here we will use the `dpois()`.
 
 ### 3
 
+Find $P(23 < X)$ where $X \sim Pois(12)$. Here we will use the `dpois()`.
 
 :::
 

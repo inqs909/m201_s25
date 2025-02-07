@@ -3406,7 +3406,7 @@
     "href": "lectures/5.html#rules-of-probability",
     "title": "Distribution Functions",
     "section": "Rules of Probability",
-    "text": "Rules of Probability\n\nRule 1Rule 2Rule 3Rule 4Rule 5\n\n\nProbability of the Sample Space\nThe probability of the sample space is always 1: \\[\nP(S) = 1\n\\]\n\n\nProbability of Impossible Events\nThe probability of an event that cannot happen is 0: \\[\nP(\\emptyset) = 0\n\\]\n\n\nComplement Rule\nThe probability of the complement of an event \\(A\\) (not \\(A\\)) is:\n\\[\nP(A^c) = 1 - P(A)\n\\] - Example: If \\(P(\\text{rain}) = 0.3\\), then \\(P(\\text{no rain}) = 1 - 0.3 = 0.7\\).\n\n\nAddition Rule\nFor two events \\(A\\) and \\(B\\):\n\nIf \\(A\\) and \\(B\\) are mutually exclusive (cannot happen at the same time): \\[\nP(A \\cup B) = P(A) + P(B)\n\\]\nIf \\(A\\) and \\(B\\) are not mutually exclusive:\n\n\\[\nP(A \\cup B) = P(A) + P(B) - P(A \\cap B)\n\\]\n\n\nMultiplication Rule\nFor two events \\(A\\) and \\(B\\):\n\nIf \\(A\\) and \\(B\\) are independent:\n\n\\[\nP(A \\cap B) = P(A) \\cdot P(B)\n\\]"
+    "text": "Rules of Probability\n\nRule 1Rule 2Rule 3\n\n\nProbability of the Sample Space\nThe probability of the sample space is always 1: \\[\nP(S) = 1\n\\]\n\n\nProbability of Impossible Events\nThe probability of an event that cannot happen is 0: \\[\nP(\\emptyset) = 0\n\\]\n\n\nComplement Rule\nThe probability of the complement of an event \\(A\\) (not \\(A\\)) is:\n\\[\nP(A^c) = 1 - P(A)\n\\] - Example: If \\(P(\\text{rain}) = 0.3\\), then \\(P(\\text{no rain}) = 1 - 0.3 = 0.7\\)."
   },
   {
     "objectID": "lectures/5.html#applications",
@@ -3414,6 +3414,118 @@
     "title": "Distribution Functions",
     "section": "Applications",
     "text": "Applications\n\nDrawing a CardTossing a Coin TwiceTraffic Lights\n\n\nIf you draw a card from a standard deck of 52 cards, what is the probability of drawing:\n\nA heart?\n\\[\nP(\\text{heart}) = \\frac{13}{52} = 0.25\n  \\]\nA red card (heart or diamond)?\n\\[\nP(\\text{red card}) = \\frac{26}{52} = 0.5\n  \\]\n\n\n\nWhat is the probability of getting:\n\nExactly one head?\nSample space: \\(S = \\{\\text{HH, HT, TH, TT}\\}\\).\nEvent: \\(A = \\{\\text{HT, TH}\\}\\).\n\\[\nP(A) = \\frac{2}{4} = 0.5\n\\]\nAt least one head?\nEvent: \\(B = \\{\\text{HH, HT, TH}\\}\\).\n\\[\nP(B) = \\frac{3}{4} = 0.75\n\\]\n\n\n\nA commuter encounters three traffic lights, each with a 70% chance of being green. Assuming independence, what is the probability that all three lights are green?\n\\[\nP(\\text{all green}) = 0.7 \\cdot 0.7 \\cdot 0.7 = 0.343\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#more-problems",
+    "href": "lectures/5.html#more-problems",
+    "title": "Distribution Functions",
+    "section": "More Problems",
+    "text": "More Problems\n\nRolling a Die1234\n\n\n\n\n\n1\n2\n3\n4\n5\n6\n\n\n\n\n1/6\n1/6\n1/6\n1/6\n1/6\n1/6\n\n\n\n\n\n\\[\nP(X = 2)\n\\]\n\n\n\\[\nP(1 \\le X \\le 3)\n\\]\n\n\n\\[\nP(1 &lt; X &lt; 3)\n\\]\n\n\n\\[\nP(X &gt; 1)\n\\]"
+  },
+  {
+    "objectID": "lectures/5.html#joint-probability-1",
+    "href": "lectures/5.html#joint-probability-1",
+    "title": "Distribution Functions",
+    "section": "Joint Probability",
+    "text": "Joint Probability\n\nOften, we’re interested in the probabilities of multiple events occurring.\nThis presentation focuses on calculating probabilities involving two events.\nWe’ll explore key concepts like:\n\nJoint Probability\nUnion of Events\nConditional Probability\nIndependence"
+  },
+  {
+    "objectID": "lectures/5.html#joint-probability-2",
+    "href": "lectures/5.html#joint-probability-2",
+    "title": "Distribution Functions",
+    "section": "Joint Probability",
+    "text": "Joint Probability\n\nThe probability of both events A and B occurring.\nDenoted as P(A and B) or P(A ∩ B).\nExamples:\n\nDrawing a King and a Heart from a deck of cards.\nFlipping two coins and getting heads on both."
+  },
+  {
+    "objectID": "lectures/5.html#joint-probability-3",
+    "href": "lectures/5.html#joint-probability-3",
+    "title": "Distribution Functions",
+    "section": "Joint Probability",
+    "text": "Joint Probability\nCalculating Union Probability\n\nGeneral Case: P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)\nMutually Exclusive Events: If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)"
+  },
+  {
+    "objectID": "lectures/5.html#union-of-events",
+    "href": "lectures/5.html#union-of-events",
+    "title": "Distribution Functions",
+    "section": "Union of Events",
+    "text": "Union of Events\n\nThe probability of either event A or event B (or both) occurring.\nDenoted as P(A or B) or P(A ∪ B).\nExamples:\n\nRolling a 3 or a 5 on a die.\nDrawing a red card or a face card."
+  },
+  {
+    "objectID": "lectures/5.html#calculating-union-probability",
+    "href": "lectures/5.html#calculating-union-probability",
+    "title": "Distribution Functions",
+    "section": "Calculating Union Probability",
+    "text": "Calculating Union Probability\n\nGeneral Case: P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)\nMutually Exclusive Events: If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)"
+  },
+  {
+    "objectID": "lectures/5.html#example-union-probability",
+    "href": "lectures/5.html#example-union-probability",
+    "title": "Distribution Functions",
+    "section": "Example: Union Probability",
+    "text": "Example: Union Probability\n\nWhat is the probability of rolling a number greater than 4 or an even number on a six-sided die?\n\nEvent A: Rolling a number greater than 4 (5 or 6).\nEvent B: Rolling an even number (2, 4, or 6).\n\nP(A) = 2/6\nP(B) = 3/6\nP(A and B) = 1/6 (rolling a 6)\nP(A or B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3"
+  },
+  {
+    "objectID": "lectures/5.html#conditional-probability",
+    "href": "lectures/5.html#conditional-probability",
+    "title": "Distribution Functions",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\n\nThe conditional probability of event A occurring given that event B has occurred: P(A|B) (read as “the probability of A given B”).\nFormula: P(A|B) = P(A and B) / P(B)\n\nP(A|B): Conditional probability of A given B.\nP(A and B): Probability of both A and B occurring.\nP(B): Probability of B occurring."
+  },
+  {
+    "objectID": "lectures/5.html#independence",
+    "href": "lectures/5.html#independence",
+    "title": "Distribution Functions",
+    "section": "Independence",
+    "text": "Independence\n\nTwo events are independent if the occurrence of one does not affect the probability of the other.\nIf A and B are independent:\n\nP(A|B) = P(A)\nP(B|A) = P(B)\nP(A and B) = P(A) * P(B)"
+  },
+  {
+    "objectID": "lectures/5.html#bayes-theorem",
+    "href": "lectures/5.html#bayes-theorem",
+    "title": "Distribution Functions",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\n\nReverses the conditioning: Relates P(A|B) to P(B|A).\nP(A|B) = [P(B|A) * P(A)] / P(B)\nUseful when we know P(B|A) but want P(A|B)."
+  },
+  {
+    "objectID": "lectures/5.html#introduction",
+    "href": "lectures/5.html#introduction",
+    "title": "Distribution Functions",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhen evaluating diagnostic tests, we need metrics beyond just “accuracy.”\nSensitivity, Specificity, Positive Predictive Value (PPV), and Negative Predictive Value (NPV) provide a more nuanced understanding of a test’s performance.\nThese metrics help us understand how well a test identifies those with and without a condition."
+  },
+  {
+    "objectID": "lectures/5.html#the-2x2-contingency-table",
+    "href": "lectures/5.html#the-2x2-contingency-table",
+    "title": "Distribution Functions",
+    "section": "The 2x2 Contingency Table",
+    "text": "The 2x2 Contingency Table\n\n\n\n\n\n\n\n\n\nCondition Present\nCondition Absent\n\n\n\n\nTest Positive\nTrue Positive (TP)\nFalse Positive (FP)\n\n\nTest Negative\nFalse Negative (FN)\nTrue Negative (TN)"
+  },
+  {
+    "objectID": "lectures/5.html#sensitivity-true-positive-rate",
+    "href": "lectures/5.html#sensitivity-true-positive-rate",
+    "title": "Distribution Functions",
+    "section": "Sensitivity (True Positive Rate)",
+    "text": "Sensitivity (True Positive Rate)\n\nThe proportion of people with the condition who test positive.\n“How well does the test identify those who have the condition?”"
+  },
+  {
+    "objectID": "lectures/5.html#specificity-true-negative-rate",
+    "href": "lectures/5.html#specificity-true-negative-rate",
+    "title": "Distribution Functions",
+    "section": "Specificity (True Negative Rate)",
+    "text": "Specificity (True Negative Rate)\n\nThe proportion of people without the condition who test negative.\nAnswers: “How well does the test identify those who do not have the condition?”"
+  },
+  {
+    "objectID": "lectures/5.html#positive-predictive-value-ppv",
+    "href": "lectures/5.html#positive-predictive-value-ppv",
+    "title": "Distribution Functions",
+    "section": "Positive Predictive Value (PPV)",
+    "text": "Positive Predictive Value (PPV)\n\nThe proportion of people who test positive who actually have the condition.\n“If someone tests positive, what’s the probability they truly have the condition?”"
+  },
+  {
+    "objectID": "lectures/5.html#negative-predictive-value-npv",
+    "href": "lectures/5.html#negative-predictive-value-npv",
+    "title": "Distribution Functions",
+    "section": "Negative Predictive Value (NPV)",
+    "text": "Negative Predictive Value (NPV)\n\nThe proportion of people who test negative who actually do not have the condition.\n“If someone tests negative, what’s the probability they truly do not have the condition?”"
   },
   {
     "objectID": "lectures/5.html#random-variable",
@@ -3514,11 +3626,11 @@
     "text": "Percentiles\nA percentile is a measure indicating the value below which a given percentage of observations in a group of observations falls. It is used in statistics to provide information about the relative standing of a particular value within a dataset."
   },
   {
-    "objectID": "lectures/5.html#precentile-example",
-    "href": "lectures/5.html#precentile-example",
+    "objectID": "lectures/5.html#percentile-example",
+    "href": "lectures/5.html#percentile-example",
     "title": "Distribution Functions",
-    "section": "Precentile Example",
-    "text": "Precentile Example\nSuppose we have a random variable X representing the height of adults in a population. If the 90th percentile of X is 180 cm, it means that the probability of a randomly selected adult being 180 cm or shorter is 90%."
+    "section": "Percentile Example",
+    "text": "Percentile Example\nSuppose we have a random variable X representing the height of adults in a population. If the 90th percentile of X is 180 cm, it means that the probability of a randomly selected adult being 180 cm or shorter is 90%."
   },
   {
     "objectID": "lectures/5.html#precentile",
@@ -3756,7 +3868,7 @@
     "href": "lectures/5.html#applications-3",
     "title": "Distribution Functions",
     "section": "Applications",
-    "text": "Applications\n\nTraffic FlowDefective Products\n\n\nA toll booth observes an average of 3 cars passing through every 5 minutes (\\(\\lambda = 3\\)). What is the probability of seeing exactly 5 cars in the next 5 minutes?\nUsing the formula: \\[\nP(X = 5) = \\frac{3^5 e^{-3}}{5!} = \\frac{243 \\cdot 0.0498}{120} \\approx 0.1008\n\\]\n\n\nA factory produces an average of 2 defective items per day (\\(\\lambda = 2\\)). What is the probability of finding no defective items in a day (\\(k = 0\\))?\n\\[\nP(X = 0) = \\frac{2^0 e^{-2}}{0!} = e^{-2} \\approx 0.1353\n\\] |Letter|Functionality| |:-|:-| |“d”|returns the height of the probability density function| |“p”|returns the cummulative density function value| |“q”|returns the inverse cummulative density function (percentiles) | |“r”|returns a randomly generated number|"
+    "text": "Applications\n\nTraffic FlowDefective Products\n\n\nA toll booth observes an average of 3 cars passing through every 5 minutes (\\(\\lambda = 3\\)). What is the probability of seeing exactly 5 cars in the next 5 minutes?\nUsing the formula: \\[\nP(X = 5) = \\frac{3^5 e^{-3}}{5!} = \\frac{243 \\cdot 0.0498}{120} \\approx 0.1008\n\\]\n\n\nA factory produces an average of 2 defective items per day (\\(\\lambda = 2\\)). What is the probability of finding no defective items in a day (\\(k = 0\\))?\n\\[\nP(X = 0) = \\frac{2^0 e^{-2}}{0!} = e^{-2} \\approx 0.1353\n\\]"
   },
   {
     "objectID": "lectures/5.html#distributions-in-r",
@@ -3784,14 +3896,14 @@
     "href": "lectures/5.html#examples-1",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\n123\n\n\nFind \\(P(X \\leq 5 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm() and we set q = 5, mean = 6 and sd = sqrt(2).\n\n\nFind \\(P(X \\geq 7 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm() and we set q = 5, mean = 6, sd = sqrt(2) and lower.tail = F.\n\n\nFind \\(P(X = 20 )\\) where \\(X \\sim Bin(30,0.8)\\). Here we will use the dbinom() and we set x = 20, size = 30 and prob = 0.8."
+    "text": "Examples\n\n123\n\n\nFind \\(P(X \\leq 5 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm().\n\n\nFind \\(P(X \\geq 7 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm().\n\n\nFind \\(P(X = 20 )\\) where \\(X \\sim Bin(30,0.8)\\). Here we will use the dbinom()."
   },
   {
     "objectID": "lectures/5.html#more-examples-1",
     "href": "lectures/5.html#more-examples-1",
     "title": "Distribution Functions",
     "section": "More Examples",
-    "text": "More Examples\n\n123"
+    "text": "More Examples\n\n123\n\n\nFind \\(P(2 \\lew X \\leq 5 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm().\n\n\nFind \\(P(14 &lt; X &lt; 20)\\) where \\(X \\sim Pois(16)\\). Here we will use the dpois().\n\n\nFind \\(P(23 &lt; X)\\) where \\(X \\sim Pois(12)\\). Here we will use the dpois()."
   },
   {
     "objectID": "lectures/5.html#percentiles-1",

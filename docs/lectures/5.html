@@ -220,6 +220,12 @@
 <p>Probability Theory</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Case Study: Covid-19 Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
 <p>Distribution Functions</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
@@ -301,7 +307,7 @@ P(\text{rolling a 4}) = \frac{1}{6} \approx 0.167
 <section id="rules-of-probability" class="slide level2">
 <h2>Rules of Probability</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Rule 1</a></li><li><a href="#tabset-2-2">Rule 2</a></li><li><a href="#tabset-2-3">Rule 3</a></li><li><a href="#tabset-2-4">Rule 4</a></li><li><a href="#tabset-2-5">Rule 5</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Rule 1</a></li><li><a href="#tabset-2-2">Rule 2</a></li><li><a href="#tabset-2-3">Rule 3</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <p><strong>Probability of the Sample Space</strong></p>
@@ -321,29 +327,6 @@ P(\emptyset) = 0
 <p><span class="math display">\[
 P(A^c) = 1 - P(A)
 \]</span> - Example: If <span class="math inline">\(P(\text{rain}) = 0.3\)</span>, then <span class="math inline">\(P(\text{no rain}) = 1 - 0.3 = 0.7\)</span>.</p>
-</div>
-<div id="tabset-2-4">
-<p><strong>Addition Rule</strong></p>
-<p>For two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:</p>
-<ul>
-<li><p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>mutually exclusive</strong> (cannot happen at the same time): <span class="math display">\[
-P(A \cup B) = P(A) + P(B)
-\]</span></p></li>
-<li><p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>not mutually exclusive</strong>:</p></li>
-</ul>
-<p><span class="math display">\[
-P(A \cup B) = P(A) + P(B) - P(A \cap B)
-\]</span></p>
-</div>
-<div id="tabset-2-5">
-<p><strong>Multiplication Rule</strong></p>
-<p>For two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:</p>
-<ul>
-<li>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent</strong>:</li>
-</ul>
-<p><span class="math display">\[
-P(A \cap B) = P(A) \cdot P(B)
-\]</span></p>
 </div>
 </div>
 </div>
@@ -390,6 +373,295 @@ P(\text{all green}) = 0.7 \cdot 0.7 \cdot 0.7 = 0.343
 </div>
 </div>
 </div>
+</section>
+<section id="more-problems" class="slide level2">
+<h2>More Problems</h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Rolling a Die</a></li><li><a href="#tabset-4-2">1</a></li><li><a href="#tabset-4-3">2</a></li><li><a href="#tabset-4-4">3</a></li><li><a href="#tabset-4-5">4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-4-2">
+<p><span class="math display">\[
+P(X = 2)
+\]</span></p>
+</div>
+<div id="tabset-4-3">
+<p><span class="math display">\[
+P(1 \le X \le 3)
+\]</span></p>
+</div>
+<div id="tabset-4-4">
+<p><span class="math display">\[
+P(1 &lt; X &lt; 3)
+\]</span></p>
+</div>
+<div id="tabset-4-5">
+<p><span class="math display">\[
+P(X &gt; 1)
+\]</span></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="joint-probability" class="title-slide slide level1 agenda-slide center">
+<h1>Joint Probability</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Case Study: Covid-19 Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Distribution Functions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Normal Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Empirical Rule</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Binomial Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Poisson Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Probability in R</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="joint-probability-1" class="slide level2">
+<h2>Joint Probability</h2>
+<ul>
+<li>Often, we’re interested in the probabilities of multiple events occurring.</li>
+<li>This presentation focuses on calculating probabilities involving two events.</li>
+<li>We’ll explore key concepts like:
+<ul>
+<li>Joint Probability</li>
+<li>Union of Events</li>
+<li>Conditional Probability</li>
+<li>Independence</li>
+</ul></li>
+</ul>
+</section>
+<section id="joint-probability-2" class="slide level2">
+<h2>Joint Probability</h2>
+<ul>
+<li>The probability of <em>both</em> events A and B occurring.</li>
+<li>Denoted as P(A and B) or P(A ∩ B).</li>
+<li>Examples:
+<ul>
+<li>Drawing a King <em>and</em> a Heart from a deck of cards.</li>
+<li>Flipping two coins and getting heads on both.</li>
+</ul></li>
+</ul>
+</section>
+<section id="joint-probability-3" class="slide level2">
+<h2>Joint Probability</h2>
+<p>Calculating Union Probability</p>
+<ul>
+<li><strong>General Case:</strong> P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)</li>
+<li><strong>Mutually Exclusive Events:</strong> If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)</li>
+</ul>
+</section>
+<section id="union-of-events" class="slide level2">
+<h2>Union of Events</h2>
+<ul>
+<li>The probability of <em>either</em> event A <em>or</em> event B (or both) occurring.</li>
+<li>Denoted as P(A or B) or P(A ∪ B).</li>
+<li>Examples:
+<ul>
+<li>Rolling a 3 or a 5 on a die.</li>
+<li>Drawing a red card or a face card.</li>
+</ul></li>
+</ul>
+</section>
+<section id="calculating-union-probability" class="slide level2">
+<h2>Calculating Union Probability</h2>
+<ul>
+<li><strong>General Case:</strong> P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)</li>
+<li><strong>Mutually Exclusive Events:</strong> If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)</li>
+</ul>
+</section>
+<section id="example-union-probability" class="slide level2">
+<h2>Example: Union Probability</h2>
+<ul>
+<li><p>What is the probability of rolling a number greater than 4 or an even number on a six-sided die?</p>
+<ul>
+<li>Event A: Rolling a number greater than 4 (5 or 6).</li>
+<li>Event B: Rolling an even number (2, 4, or 6).</li>
+</ul></li>
+<li><p>P(A) = 2/6</p></li>
+<li><p>P(B) = 3/6</p></li>
+<li><p>P(A and B) = 1/6 (rolling a 6)</p></li>
+<li><p>P(A or B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3</p></li>
+</ul>
+</section>
+<section id="conditional-probability" class="slide level2">
+<h2>Conditional Probability</h2>
+<ul>
+<li><p>The conditional probability of event A occurring <em>given</em> that event B has occurred: <strong>P(A|B)</strong> (read as “the probability of A given B”).</p></li>
+<li><p>Formula: <strong>P(A|B) = P(A and B) / P(B)</strong></p>
+<ul>
+<li>P(A|B): Conditional probability of A given B.</li>
+<li>P(A and B): Probability of both A and B occurring.</li>
+<li>P(B): Probability of B occurring.</li>
+</ul></li>
+</ul>
+</section>
+<section id="independence" class="slide level2">
+<h2>Independence</h2>
+<ul>
+<li>Two events are independent if the occurrence of one does not affect the probability of the other.</li>
+<li>If A and B are independent:
+<ul>
+<li>P(A|B) = P(A)</li>
+<li>P(B|A) = P(B)</li>
+<li>P(A and B) = P(A) * P(B)</li>
+</ul></li>
+</ul>
+</section>
+<section id="bayes-theorem" class="slide level2">
+<h2>Bayes’ Theorem</h2>
+<ul>
+<li>Reverses the conditioning: Relates P(A|B) to P(B|A).</li>
+<li><strong>P(A|B) = [P(B|A) * P(A)] / P(B)</strong></li>
+<li>Useful when we know P(B|A) but want P(A|B).</li>
+</ul>
+</section></section>
+<section>
+<section id="case-study-covid-19-tests" class="title-slide slide level1 agenda-slide center">
+<h1>Case Study: Covid-19 Tests</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Case Study: Covid-19 Tests</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Distribution Functions</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Normal Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Empirical Rule</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Binomial Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Poisson Distribution</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Probability in R</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li>When evaluating diagnostic tests, we need metrics beyond just “accuracy.”</li>
+<li>Sensitivity, Specificity, Positive Predictive Value (PPV), and Negative Predictive Value (NPV) provide a more nuanced understanding of a test’s performance.</li>
+<li>These metrics help us understand how well a test identifies those with and without a condition.</li>
+</ul>
+</section>
+<section id="the-2x2-contingency-table" class="slide level2">
+<h2>The 2x2 Contingency Table</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 40%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Condition Present</th>
+<th>Condition Absent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Test Positive</td>
+<td>True Positive (TP)</td>
+<td>False Positive (FP)</td>
+</tr>
+<tr class="even">
+<td>Test Negative</td>
+<td>False Negative (FN)</td>
+<td>True Negative (TN)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sensitivity-true-positive-rate" class="slide level2">
+<h2>Sensitivity (True Positive Rate)</h2>
+<ul>
+<li>The proportion of people <em>with</em> the condition who test positive.</li>
+<li>“How well does the test identify those who <em>have</em> the condition?”</li>
+</ul>
+</section>
+<section id="specificity-true-negative-rate" class="slide level2">
+<h2>Specificity (True Negative Rate)</h2>
+<ul>
+<li>The proportion of people <em>without</em> the condition who test negative.</li>
+<li>Answers: “How well does the test identify those who <em>do not have</em> the condition?”</li>
+</ul>
+</section>
+<section id="positive-predictive-value-ppv" class="slide level2">
+<h2>Positive Predictive Value (PPV)</h2>
+<ul>
+<li>The proportion of people who test positive who <em>actually have</em> the condition.</li>
+<li>“If someone tests positive, what’s the probability they truly have the condition?”</li>
+</ul>
+</section>
+<section id="negative-predictive-value-npv" class="slide level2">
+<h2>Negative Predictive Value (NPV)</h2>
+<ul>
+<li>The proportion of people who test negative who <em>actually do not have</em> the condition.</li>
+<li>“If someone tests negative, what’s the probability they truly do not have the condition?”</li>
+</ul>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
 </section></section>
 <section>
 <section id="distribution-functions" class="title-slide slide level1 agenda-slide center">
@@ -398,6 +670,12 @@ P(\text{all green}) = 0.7 \cdot 0.7 \cdot 0.7 = 0.343
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case Study: Covid-19 Tests</p>
 </div></li>
 <li><div class="agenda-active">
 <p>Distribution Functions</p>
@@ -435,9 +713,9 @@ P(\text{all green}) = 0.7 \cdot 0.7 \cdot 0.7 = 0.343
 <section id="types-of-random-variables" class="slide level2">
 <h2>Types of Random Variables</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Discrete Random Variable</a></li><li><a href="#tabset-4-2">Continuous Random Variable</a></li></ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Discrete Random Variable</a></li><li><a href="#tabset-5-2">Continuous Random Variable</a></li></ul>
 <div class="tab-content">
-<div id="tabset-4-1">
+<div id="tabset-5-1">
 <p>A discrete random variable can only take on a finite number of values or a countably infinite number of values. The values are often integers. Examples:</p>
 <ul>
 <li>The number of heads in three coin flips (0, 1, 2, or 3).</li>
@@ -445,7 +723,7 @@ P(\text{all green}) = 0.7 \cdot 0.7 \cdot 0.7 = 0.343
 <li>The number of customers entering a store in an hour.</li>
 </ul>
 </div>
-<div id="tabset-4-2">
+<div id="tabset-5-2">
 <p>A continuous random variable can take on any value within a given range. Examples:</p>
 <ul>
 <li>The height of a person.</li>
@@ -564,8 +842,8 @@ p_X(x) = \frac{1}{6}, \quad x \in \{1, 2, 3, 4, 5, 6\}
 <h2>Percentiles</h2>
 <p>A <strong>percentile</strong> is a measure indicating the value below which a given percentage of observations in a group of observations falls. It is used in statistics to provide information about the relative standing of a particular value within a dataset.</p>
 </section>
-<section id="precentile-example" class="slide level2">
-<h2>Precentile Example</h2>
+<section id="percentile-example" class="slide level2">
+<h2>Percentile Example</h2>
 <p>Suppose we have a random variable X representing the height of adults in a population. If the 90th percentile of X is 180 cm, it means that the probability of a randomly selected adult being 180 cm or shorter is 90%.</p>
 </section>
 <section id="precentile" class="slide level2">
@@ -590,9 +868,9 @@ p_X(x) = \frac{1}{6}, \quad x \in \{1, 2, 3, 4, 5, 6\}
 <section id="applications-1" class="slide level2 scrollable">
 <h2>Applications</h2>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">PMF of a Coin Toss</a></li><li><a href="#tabset-5-2">CDF of an Exp. Dist.</a></li><li><a href="#tabset-5-3">Apps. in Real Life</a></li></ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">PMF of a Coin Toss</a></li><li><a href="#tabset-6-2">CDF of an Exp. Dist.</a></li><li><a href="#tabset-6-3">Apps. in Real Life</a></li></ul>
 <div class="tab-content">
-<div id="tabset-5-1">
+<div id="tabset-6-1">
 <p>For a fair coin tossed once:</p>
 <ul>
 <li><span class="math inline">\(X = 0\)</span>: Tails, <span class="math inline">\(P(X = 0) = 0.5\)</span></li>
@@ -606,7 +884,7 @@ p_X(x) =
 \end{cases}
 \]</span></p>
 </div>
-<div id="tabset-5-2">
+<div id="tabset-6-2">
 <p>An exponential random variable with rate <span class="math inline">\(\lambda &gt; 0\)</span> has a CDF: <span class="math display">\[
 F_X(x) =
 \begin{cases}
@@ -616,7 +894,7 @@ F_X(x) =
 \]</span></p>
 <p>This can be used to model waiting times between events.</p>
 </div>
-<div id="tabset-5-3">
+<div id="tabset-6-3">
 <ol type="1">
 <li><strong>PMF</strong>:
 <ul>
@@ -776,9 +1054,9 @@ F_X(x) =
 <section id="probability-and-pdmf" class="slide level2">
 <h2>Probability and PD/MF</h2>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Continuous</a></li><li><a href="#tabset-6-2">Discrete</a></li></ul>
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Continuous</a></li><li><a href="#tabset-7-2">Discrete</a></li></ul>
 <div class="tab-content">
-<div id="tabset-6-1">
+<div id="tabset-7-1">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -806,7 +1084,7 @@ F_X(x) =
 </div>
 </div>
 </div>
-<div id="tabset-6-2">
+<div id="tabset-7-2">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -844,6 +1122,12 @@ F_X(x) =
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case Study: Covid-19 Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
@@ -956,12 +1240,12 @@ Z = \frac{X - \mu}{\sigma}
 <section id="apps-of-the-normal-dist." class="slide level2">
 <h2>Apps of the Normal Dist.</h2>
 <div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Standardized Testing</a></li><li><a href="#tabset-7-2">Finance</a></li></ul>
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Standardized Testing</a></li><li><a href="#tabset-8-2">Finance</a></li></ul>
 <div class="tab-content">
-<div id="tabset-7-1">
+<div id="tabset-8-1">
 <p>Scores on standardized tests, such as IQ tests or the SAT, are often designed to follow a normal distribution. By knowing a student’s score in terms of Z-scores, we can determine their percentile or how they compare to other test-takers.</p>
 </div>
-<div id="tabset-7-2">
+<div id="tabset-8-2">
 <p>In finance, stock returns and other economic factors are often modeled with a normal distribution to estimate risk, forecast trends, and make informed investment decisions.</p>
 </div>
 </div>
@@ -985,6 +1269,12 @@ P(a \leq X \leq b) = P(a &lt; X &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}}
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case Study: Covid-19 Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
@@ -1063,9 +1353,9 @@ P(a \leq X \leq b) = P(a &lt; X &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}}
 <section id="more-examples" class="slide level2">
 <h2>More Examples</h2>
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Exam Scores</a></li><li><a href="#tabset-8-2">Heights of Adults</a></li></ul>
+<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">Exam Scores</a></li><li><a href="#tabset-9-2">Heights of Adults</a></li></ul>
 <div class="tab-content">
-<div id="tabset-8-1">
+<div id="tabset-9-1">
 <p>Suppose exam scores are normally distributed with a mean of 70 and a standard deviation of 10.</p>
 <ul>
 <li><strong>68% of students</strong> scored between <strong>60 and 80</strong> (70 ± 10).</li>
@@ -1073,7 +1363,7 @@ P(a \leq X \leq b) = P(a &lt; X &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}}
 <li><strong>99.7% of students</strong> scored between <strong>40 and 100</strong> (70 ± 30).</li>
 </ul>
 </div>
-<div id="tabset-8-2">
+<div id="tabset-9-2">
 <p>Assume that adult heights follow a normal distribution with a mean height of 170 cm and a standard deviation of 8 cm.</p>
 <ul>
 <li><strong>68% of adults</strong> have heights between <strong>162 cm and 178 cm</strong> (170 ± 8).</li>
@@ -1091,6 +1381,12 @@ P(a \leq X \leq b) = P(a &lt; X &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}}
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case Study: Covid-19 Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
@@ -1184,9 +1480,9 @@ P(X = 3) = \binom{5}{3} (0.5)^3 (1-0.5)^{5-3}
 <section id="properties-of-the-binomial-dist." class="slide level2">
 <h2>Properties of the Binomial Dist.</h2>
 <div class="panel-tabset">
-<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">Mean and Variance</a></li><li><a href="#tabset-9-2">Shape of the Distribution</a></li></ul>
+<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Mean and Variance</a></li><li><a href="#tabset-10-2">Shape of the Distribution</a></li></ul>
 <div class="tab-content">
-<div id="tabset-9-1">
+<div id="tabset-10-1">
 <p>For a binomial random variable <span class="math inline">\(X\)</span>:</p>
 <ul>
 <li><strong>Mean (Expected Value)</strong>: <span class="math inline">\(\mu = n \cdot p\)</span></li>
@@ -1194,7 +1490,7 @@ P(X = 3) = \binom{5}{3} (0.5)^3 (1-0.5)^{5-3}
 <li><strong>Standard Deviation</strong>: <span class="math inline">\(\sigma = \sqrt{n \cdot p \cdot (1-p)}\)</span></li>
 </ul>
 </div>
-<div id="tabset-9-2">
+<div id="tabset-10-2">
 <ul>
 <li>If <span class="math inline">\(p = 0.5\)</span>, the distribution is symmetric.</li>
 <li>If <span class="math inline">\(p &gt; 0.5\)</span>, the distribution is skewed left.</li>
@@ -1207,9 +1503,9 @@ P(X = 3) = \binom{5}{3} (0.5)^3 (1-0.5)^{5-3}
 <section id="applications-2" class="slide level2">
 <h2>Applications</h2>
 <div class="panel-tabset">
-<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Quality Control</a></li><li><a href="#tabset-10-2">Sports</a></li><li><a href="#tabset-10-3">Clinical Trials</a></li></ul>
+<ul id="tabset-11" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-11-1">Quality Control</a></li><li><a href="#tabset-11-2">Sports</a></li><li><a href="#tabset-11-3">Clinical Trials</a></li></ul>
 <div class="tab-content">
-<div id="tabset-10-1">
+<div id="tabset-11-1">
 <p>A factory produces lightbulbs, and 95% of them meet quality standards. If you randomly test 10 bulbs, what is the probability that exactly 8 bulbs pass the test?</p>
 <p>Here:</p>
 <ul>
@@ -1219,14 +1515,14 @@ P(X = 3) = \binom{5}{3} (0.5)^3 (1-0.5)^{5-3}
 P(X = 8) = \binom{10}{8} (0.95)^8 (0.05)^2
 \]</span></p>
 </div>
-<div id="tabset-10-2">
+<div id="tabset-11-2">
 <p>A basketball player has a 60% chance of making a free throw. If they take 5 shots, what is the probability of making at least 3 shots?</p>
 <p>Here: - <span class="math inline">\(n = 5\)</span>, <span class="math inline">\(p = 0.6\)</span>.</p>
 <p><span class="math display">\[
 P(X \geq 3) = P(X = 3) + P(X = 4) + P(X = 5)
 \]</span></p>
 </div>
-<div id="tabset-10-3">
+<div id="tabset-11-3">
 <p>In a clinical trial, a new drug has a 70% success rate. If 15 patients are treated, what is the probability that exactly 10 respond positively to the treatment?</p>
 </div>
 </div>
@@ -1239,6 +1535,12 @@ P(X \geq 3) = P(X = 3) + P(X = 4) + P(X = 5)
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case Study: Covid-19 Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
@@ -1332,19 +1634,19 @@ P(X = 7) = \frac{10^7 e^{-10}}{7!}
 <section id="applications-3" class="slide level2">
 <h2>Applications</h2>
 <div class="panel-tabset">
-<ul id="tabset-11" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-11-1">Traffic Flow</a></li><li><a href="#tabset-11-2">Defective Products</a></li></ul>
+<ul id="tabset-12" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-12-1">Traffic Flow</a></li><li><a href="#tabset-12-2">Defective Products</a></li></ul>
 <div class="tab-content">
-<div id="tabset-11-1">
+<div id="tabset-12-1">
 <p>A toll booth observes an average of 3 cars passing through every 5 minutes (<span class="math inline">\(\lambda = 3\)</span>). What is the probability of seeing exactly 5 cars in the next 5 minutes?</p>
 <p>Using the formula: <span class="math display">\[
 P(X = 5) = \frac{3^5 e^{-3}}{5!} = \frac{243 \cdot 0.0498}{120} \approx 0.1008
 \]</span></p>
 </div>
-<div id="tabset-11-2">
+<div id="tabset-12-2">
 <p>A factory produces an average of 2 defective items per day (<span class="math inline">\(\lambda = 2\)</span>). What is the probability of finding no defective items in a day (<span class="math inline">\(k = 0\)</span>)?</p>
 <p><span class="math display">\[
 P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
-\]</span> |Letter|Functionality| |:-|:-| |“d”|returns the height of the probability density function| |“p”|returns the cummulative density function value| |“q”|returns the inverse cummulative density function (percentiles) | |“r”|returns a randomly generated number|</p>
+\]</span></p>
 </div>
 </div>
 </div>
@@ -1356,6 +1658,12 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Probability Theory</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Joint Probability</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Case Study: Covid-19 Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
@@ -1427,16 +1735,16 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <section id="examples-1" class="slide level2">
 <h2>Examples</h2>
 <div class="panel-tabset">
-<ul id="tabset-12" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-12-1">1</a></li><li><a href="#tabset-12-2">2</a></li><li><a href="#tabset-12-3">3</a></li></ul>
+<ul id="tabset-13" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-13-1">1</a></li><li><a href="#tabset-13-2">2</a></li><li><a href="#tabset-13-3">3</a></li></ul>
 <div class="tab-content">
-<div id="tabset-12-1">
-<p>Find <span class="math inline">\(P(X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code> and we set <code>q = 5</code>, <code>mean = 6</code> and <code>sd = sqrt(2)</code>.</p>
+<div id="tabset-13-1">
+<p>Find <span class="math inline">\(P(X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code>.</p>
 </div>
-<div id="tabset-12-2">
-<p>Find <span class="math inline">\(P(X \geq 7 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code> and we set <code>q = 5</code>, <code>mean = 6</code>, <code>sd = sqrt(2)</code> and <code>lower.tail = F</code>.</p>
+<div id="tabset-13-2">
+<p>Find <span class="math inline">\(P(X \geq 7 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code>.</p>
 </div>
-<div id="tabset-12-3">
-<p>Find <span class="math inline">\(P(X = 20 )\)</span> where <span class="math inline">\(X \sim Bin(30,0.8)\)</span>. Here we will use the <code>dbinom()</code> and we set <code>x = 20</code>, <code>size = 30</code> and <code>prob = 0.8</code>.</p>
+<div id="tabset-13-3">
+<p>Find <span class="math inline">\(P(X = 20 )\)</span> where <span class="math inline">\(X \sim Bin(30,0.8)\)</span>. Here we will use the <code>dbinom()</code>.</p>
 </div>
 </div>
 </div>
@@ -1444,16 +1752,16 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <section id="more-examples-1" class="slide level2">
 <h2>More Examples</h2>
 <div class="panel-tabset">
-<ul id="tabset-13" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-13-1">1</a></li><li><a href="#tabset-13-2">2</a></li><li><a href="#tabset-13-3">3</a></li></ul>
+<ul id="tabset-14" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-14-1">1</a></li><li><a href="#tabset-14-2">2</a></li><li><a href="#tabset-14-3">3</a></li></ul>
 <div class="tab-content">
-<div id="tabset-13-1">
-
+<div id="tabset-14-1">
+<p>Find <span class="math inline">\(P(2 \lew X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code>.</p>
 </div>
-<div id="tabset-13-2">
-
+<div id="tabset-14-2">
+<p>Find <span class="math inline">\(P(14 &lt; X &lt; 20)\)</span> where <span class="math inline">\(X \sim Pois(16)\)</span>. Here we will use the <code>dpois()</code>.</p>
 </div>
-<div id="tabset-13-3">
-
+<div id="tabset-14-3">
+<p>Find <span class="math inline">\(P(23 &lt; X)\)</span> where <span class="math inline">\(X \sim Pois(12)\)</span>. Here we will use the <code>dpois()</code>.</p>
 </div>
 </div>
 </div>
@@ -1465,9 +1773,9 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <section id="examples-2" class="slide level2">
 <h2>Examples</h2>
 <div class="panel-tabset">
-<ul id="tabset-14" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-14-1">1</a></li><li><a href="#tabset-14-2">2</a></li><li><a href="#tabset-14-3">3</a></li></ul>
+<ul id="tabset-15" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-15-1">1</a></li><li><a href="#tabset-15-2">2</a></li><li><a href="#tabset-15-3">3</a></li></ul>
 <div class="tab-content">
-<div id="tabset-14-1">
+<div id="tabset-15-1">
 <p>Finding the <span class="math inline">\(95^{th}\)</span> percentile from <span class="math inline">\(N(0,1)\)</span>, we will use the <code>qnorm()</code>. We will set <code>mean=0</code>, <code>sd=1</code>, and <code>p=0.95</code>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1476,7 +1784,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </details>
 </div>
 </div>
-<div id="tabset-14-2">
+<div id="tabset-15-2">
 <p>Finding the <span class="math inline">\(95^{th}\)</span> percentile from a Poisson distribution with <span class="math inline">\(\lambda = 9.5\)</span>, we will use the <code>qpois()</code>. We will set <code>lambda=9</code> and <code>p=0.95</code>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1485,7 +1793,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </details>
 </div>
 </div>
-<div id="tabset-14-3">
+<div id="tabset-15-3">
 <p>Finding the <span class="math inline">\(95^{th}\)</span> percentile for <span class="math inline">\(F(3,4)\)</span>, we will use the <code>qt()</code>. We will set <code>df1=3</code>, <code>df2=4</code> and <code>p=0.95</code>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1504,9 +1812,9 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <section id="examples-3" class="slide level2">
 <h2>Examples</h2>
 <div class="panel-tabset">
-<ul id="tabset-15" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-15-1">1</a></li><li><a href="#tabset-15-2">2</a></li><li><a href="#tabset-15-3">3</a></li><li><a href="#tabset-15-4">4</a></li></ul>
+<ul id="tabset-16" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-16-1">1</a></li><li><a href="#tabset-16-2">2</a></li><li><a href="#tabset-16-3">3</a></li><li><a href="#tabset-16-4">4</a></li></ul>
 <div class="tab-content">
-<div id="tabset-15-1">
+<div id="tabset-16-1">
 <p>Let’s first generate the random sample of fifty from <span class="math inline">\(X \sim N(8,3)\)</span>. This is done with the <code>rnorm()</code> and setting <code>n = 50</code>, <code>mean = 8</code> and <code>sd = sqrt(3)</code>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1515,7 +1823,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </details>
 </div>
 </div>
-<div id="tabset-15-2">
+<div id="tabset-16-2">
 <p>Generate a random sample of 100 form an <code>X \sim \Gamma (2,3)</code>. This is done by using the <code>rgamma()</code> and setting <code>n = 100</code>, <code>shape = 2</code>, and <code>rate = 3</code>.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1524,7 +1832,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </details>
 </div>
 </div>
-<div id="tabset-15-3">
+<div id="tabset-16-3">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1532,7 +1840,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </details>
 </div>
 </div>
-<div id="tabset-15-4">
+<div id="tabset-16-4">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
