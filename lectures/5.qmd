@@ -311,7 +311,7 @@ Calculating Union Probability
 *   **P(A|B) = [P(B|A) * P(A)] / P(B)**
 *   Useful when we know P(B|A) but want P(A|B).
 
-# Case Study: Covid-19 Tests
+# Case Study: Diagnosis Tests
 
 ## Introduction
 
