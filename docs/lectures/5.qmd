@@ -1071,7 +1071,7 @@ Finding the values (percentiles) for any distributions can be found by using the
 
 ### 1
 
-Finding the $95^{th}$ percentile from $N(0,1)$, we will use the `qnorm()`. We will set `mean=0`, `sd=1`, and `p=0.95`.
+Finding the $95^{th}$ percentile from $N(0,1)$, we will use the `qnorm()`. 
 
 ```{r}
 #| eval: false
@@ -1080,7 +1080,7 @@ qnorm(.95,0,1)
 
 ### 2
 
-Finding the $95^{th}$ percentile from a Poisson distribution with $\lambda = 9.5$, we will use the `qpois()`. We will set `lambda=9` and `p=0.95`.
+Finding the $95^{th}$ percentile from a Poisson distribution with $\lambda = 9.5$.
 
 
 ```{r}
@@ -1090,7 +1090,7 @@ qpois(.95,9)
 
 ### 3
 
-Finding the $95^{th}$ percentile for $F(3,4)$, we will use the `qt()`. We will set `df1=3`, `df2=4` and `p=0.95`.
+Finding the $75^{th}$ percentile for $Bin(45,.4)$.
 
 ```{r}
 #| eval: false
@@ -1109,7 +1109,7 @@ R is capable of generating random numbers. For example if we want to generate a 
 
 ### 1
 
-Let's first generate the random sample of fifty from $X \sim N(8,3)$. This is done with the `rnorm()` and setting `n = 50`, `mean = 8` and `sd = sqrt(3)`.
+Let's first generate the random sample of fifty from $X \sim N(8,3)$. 
 
 ```{r}
 #| eval: false
@@ -1118,25 +1118,29 @@ rnorm(50,8,sqrt(3))
 
 ### 2
 
-Generate a random sample of 100 form an `X \sim \Gamma (2,3)`. This is done by using the `rgamma()` and setting `n = 100`, `shape = 2`, and `rate = 3`.
+Generate a random sample of 100 form an `X \sim \Gamma (2,3)`.
 
 ```{r}
 #| eval: false
-rgamma(100,2,3)
+rgamma(100, 2,3)
 ```
 
 ### 3
 
+Generate a random sample of 100 form an `X \sim Binom (25,.23)`.
+
 ```{r}
 #| eval: false
-rbinom(n = 10, size  = 25, prob = 0.23)
+rbinom(n = 100, size  = 25, prob = 0.23)
 ```
 
 ### 4
 
+Generate a random sample of 100 form an `X \sim Pois (34.4)`. 
+
 ```{r}
 #| eval: false
-rpois(n = 20, lambda = 34.4)
+rpois(n = 100, lambda = 34.4)
 ```
 
 :::

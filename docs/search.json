@@ -3875,7 +3875,7 @@
     "href": "lectures/5.html#examples-2",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\n123\n\n\nFinding the \\(95^{th}\\) percentile from \\(N(0,1)\\), we will use the qnorm(). We will set mean=0, sd=1, and p=0.95.\n\n\nCode\nqnorm(.95,0,1)\n\n\n\n\nFinding the \\(95^{th}\\) percentile from a Poisson distribution with \\(\\lambda = 9.5\\), we will use the qpois(). We will set lambda=9 and p=0.95.\n\n\nCode\nqpois(.95,9)\n\n\n\n\nFinding the \\(95^{th}\\) percentile for \\(F(3,4)\\), we will use the qt(). We will set df1=3, df2=4 and p=0.95.\n\n\nCode\nqf(.95,3,4)"
+    "text": "Examples\n\n123\n\n\nFinding the \\(95^{th}\\) percentile from \\(N(0,1)\\), we will use the qnorm().\n\n\nCode\nqnorm(.95,0,1)\n\n\n\n\nFinding the \\(95^{th}\\) percentile from a Poisson distribution with \\(\\lambda = 9.5\\).\n\n\nCode\nqpois(.95,9)\n\n\n\n\nFinding the \\(75^{th}\\) percentile for \\(Bin(45,.4)\\).\n\n\nCode\nqf(.95,3,4)"
   },
   {
     "objectID": "lectures/5.html#random-number-generator",
@@ -3889,7 +3889,7 @@
     "href": "lectures/5.html#examples-3",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\n1234\n\n\nLet’s first generate the random sample of fifty from \\(X \\sim N(8,3)\\). This is done with the rnorm() and setting n = 50, mean = 8 and sd = sqrt(3).\n\n\nCode\nrnorm(50,8,sqrt(3))\n\n\n\n\nGenerate a random sample of 100 form an X \\sim \\Gamma (2,3). This is done by using the rgamma() and setting n = 100, shape = 2, and rate = 3.\n\n\nCode\nrgamma(100,2,3)\n\n\n\n\n\n\nCode\nrbinom(n = 10, size  = 25, prob = 0.23)\n\n\n\n\n\n\nCode\nrpois(n = 20, lambda = 34.4)"
+    "text": "Examples\n\n1234\n\n\nLet’s first generate the random sample of fifty from \\(X \\sim N(8,3)\\).\n\n\nCode\nrnorm(50,8,sqrt(3))\n\n\n\n\nGenerate a random sample of 100 form an X \\sim \\Gamma (2,3).\n\n\nCode\nrgamma(100, 2,3)\n\n\n\n\nGenerate a random sample of 100 form an X \\sim Binom (25,.23).\n\n\nCode\nrbinom(n = 100, size  = 25, prob = 0.23)\n\n\n\n\nGenerate a random sample of 100 form an X \\sim Pois (34.4).\n\n\nCode\nrpois(n = 100, lambda = 34.4)"
   },
   {
     "objectID": "lectures/8.html#explaining-variation",

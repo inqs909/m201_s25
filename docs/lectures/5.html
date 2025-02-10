@@ -1655,7 +1655,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <ul id="tabset-15" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-15-1">1</a></li><li><a href="#tabset-15-2">2</a></li><li><a href="#tabset-15-3">3</a></li></ul>
 <div class="tab-content">
 <div id="tabset-15-1">
-<p>Finding the <span class="math inline">\(95^{th}\)</span> percentile from <span class="math inline">\(N(0,1)\)</span>, we will use the <code>qnorm()</code>. We will set <code>mean=0</code>, <code>sd=1</code>, and <code>p=0.95</code>.</p>
+<p>Finding the <span class="math inline">\(95^{th}\)</span> percentile from <span class="math inline">\(N(0,1)\)</span>, we will use the <code>qnorm()</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1664,7 +1664,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </div>
 </div>
 <div id="tabset-15-2">
-<p>Finding the <span class="math inline">\(95^{th}\)</span> percentile from a Poisson distribution with <span class="math inline">\(\lambda = 9.5\)</span>, we will use the <code>qpois()</code>. We will set <code>lambda=9</code> and <code>p=0.95</code>.</p>
+<p>Finding the <span class="math inline">\(95^{th}\)</span> percentile from a Poisson distribution with <span class="math inline">\(\lambda = 9.5\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1673,7 +1673,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </div>
 </div>
 <div id="tabset-15-3">
-<p>Finding the <span class="math inline">\(95^{th}\)</span> percentile for <span class="math inline">\(F(3,4)\)</span>, we will use the <code>qt()</code>. We will set <code>df1=3</code>, <code>df2=4</code> and <code>p=0.95</code>.</p>
+<p>Finding the <span class="math inline">\(75^{th}\)</span> percentile for <span class="math inline">\(Bin(45,.4)\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1694,7 +1694,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <ul id="tabset-16" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-16-1">1</a></li><li><a href="#tabset-16-2">2</a></li><li><a href="#tabset-16-3">3</a></li><li><a href="#tabset-16-4">4</a></li></ul>
 <div class="tab-content">
 <div id="tabset-16-1">
-<p>Let’s first generate the random sample of fifty from <span class="math inline">\(X \sim N(8,3)\)</span>. This is done with the <code>rnorm()</code> and setting <code>n = 50</code>, <code>mean = 8</code> and <code>sd = sqrt(3)</code>.</p>
+<p>Let’s first generate the random sample of fifty from <span class="math inline">\(X \sim N(8,3)\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1703,27 +1703,29 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </div>
 </div>
 <div id="tabset-16-2">
-<p>Generate a random sample of 100 form an <code>X \sim \Gamma (2,3)</code>. This is done by using the <code>rgamma()</code> and setting <code>n = 100</code>, <code>shape = 2</code>, and <code>rate = 3</code>.</p>
+<p>Generate a random sample of 100 form an <code>X \sim \Gamma (2,3)</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">rgamma</span>(<span class="dv">100</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div id="tabset-16-3">
+<p>Generate a random sample of 100 form an <code>X \sim Binom (25,.23)</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size  =</span> <span class="dv">25</span>, <span class="at">prob =</span> <span class="fl">0.23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size  =</span> <span class="dv">25</span>, <span class="at">prob =</span> <span class="fl">0.23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div id="tabset-16-4">
+<p>Generate a random sample of 100 form an <code>X \sim Pois (34.4)</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">lambda =</span> <span class="fl">34.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> <span class="fl">34.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
