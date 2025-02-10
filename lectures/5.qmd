@@ -63,7 +63,7 @@ theme_set(theme_bw() +
 - Values between 0 and 1 represent varying degrees of likelihood.
 
 ## Everyday Examples
-- What’s the probability it will rain tomorrow?
+- What's the probability it will rain tomorrow?
 - What are the chances of rolling a 6 on a standard die?
 - How likely is it that a randomly chosen student has a GPA above 3.0?
 
@@ -82,6 +82,7 @@ The set of all possible outcomes of an experiment.
 
 ### **Event**
 A subset of the sample space, representing outcomes of interest.  
+
 - Example: Rolling an even number ($A = \{2, 4, 6\}$).
 
 ### **Prob. of an Event**
@@ -98,6 +99,7 @@ P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of possible
 $$
 
 ## Example
+
 If we roll a die, what is the probability of rolling a 4?
 
 - **Favorable outcomes**: 1 (rolling a 4).
@@ -126,6 +128,7 @@ $$
 **Probability of Impossible Events**
 
 The probability of an event that cannot happen is 0:
+
 $$
 P(\emptyset) = 0
 $$
@@ -139,6 +142,7 @@ The probability of the complement of an event $A$ (not $A$) is:
 $$
 P(A^c) = 1 - P(A)
 $$
+
 - Example: If $P(\text{rain}) = 0.3$, then $P(\text{no rain}) = 1 - 0.3 = 0.7$.
 
 
@@ -308,52 +312,6 @@ Calculating Union Probability
 *   Reverses the conditioning:  Relates P(A|B) to P(B|A).
 *   **P(A|B) = [P(B|A) * P(A)] / P(B)**
 *   Useful when we know P(B|A) but want P(A|B).
-
-# Case Study: Diagnosis Tests
-
-## Introduction
-
-*   When evaluating diagnostic tests, we need metrics beyond just "accuracy."
-*   Sensitivity, Specificity, Positive Predictive Value (PPV), and Negative Predictive Value (NPV) provide a more nuanced understanding of a test's performance.
-*   These metrics help us understand how well a test identifies those with and without a condition.
-
-
-## The 2x2 Contingency Table
-
-|                 | Condition Present | Condition Absent  |
-|-----------------|-----------------------------------|-----------------------------------|
-| Test Positive   | True Positive (TP)                | False Positive (FP)               |
-| Test Negative   | False Negative (FN)               | True Negative (TN)                |
-
-
-## Sensitivity (True Positive Rate)
-
-*   The proportion of people *with* the condition who test positive.
-*   "How well does the test identify those who *have* the condition?"
-
-
-## Specificity (True Negative Rate)
-
-*   The proportion of people *without* the condition who test negative.
-*   Answers: "How well does the test identify those who *do not have* the condition?"
-
-
-
-## Positive Predictive Value (PPV)
-
-*   The proportion of people who test positive who *actually have* the condition.
-*   "If someone tests positive, what's the probability they truly have the condition?"
-
-
-## Negative Predictive Value (NPV)
-
-*   The proportion of people who test negative who *actually do not have* the condition.
-*   "If someone tests negative, what's the probability they truly do not have the condition?"
-
-
-## 
-
-
 
 
 # Distribution Functions
@@ -554,11 +512,17 @@ $$
 This can be used to model waiting times between events.
 
 ### Apps. in Real Life
+
 1. **PMF**:
+
    - Number of emails received per hour.
+
 2. **PDF**:
+
    - Heights of students in a class.
+
 3. **CDF**:
+
    - The likelihood of completing a task within a certain time frame.
 
 :::
@@ -644,7 +608,7 @@ ggplot(data = data.frame(x, y), aes(x = factor(x), y = y)) +  # x as factor for 
 
 The **Normal Distribution** is a probability distribution that is symmetric, with most of the data points clustering around the mean. 
 
-- It’s **bell-shaped** and is defined mathematically by two parameters:
+- It's **bell-shaped** and is defined mathematically by two parameters:
   - **Mean ($\mu$)**: The center or peak of the distribution.
   - **Standard Deviation ($\sigma$)**: Controls the spread of the distribution.
 
@@ -760,7 +724,7 @@ The empirical rule is very helpful because, with just the mean and standard devi
 
 ## Empirical Rule to the Normal Dist.
 
-Let’s define the key terms and apply the empirical rule to the normal distribution.
+Let's define the key terms and apply the empirical rule to the normal distribution.
 
 - **Mean (μ)**: This is the central point of the normal distribution where the data clusters around.
 - **Standard Deviation (σ)**: This is a measure of how spread out the data points are from the mean.

@@ -223,9 +223,6 @@
 <p>Joint Probability</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Case Study: Diagnosis Tests</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
 <p>Distribution Functions</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
@@ -277,8 +274,10 @@
 - Example: For rolling a die, <span class="math inline">\(S = \{1, 2, 3, 4, 5, 6\}\)</span>.</p>
 </div>
 <div id="tabset-1-3">
-<p>A subset of the sample space, representing outcomes of interest.<br>
-- Example: Rolling an even number (<span class="math inline">\(A = \{2, 4, 6\}\)</span>).</p>
+<p>A subset of the sample space, representing outcomes of interest.</p>
+<ul>
+<li>Example: Rolling an even number (<span class="math inline">\(A = \{2, 4, 6\}\)</span>).</li>
+</ul>
 </div>
 <div id="tabset-1-4">
 <p>The proportion of times an event is expected to occur if the experiment is repeated many times.</p>
@@ -317,7 +316,8 @@ P(S) = 1
 </div>
 <div id="tabset-2-2">
 <p><strong>Probability of Impossible Events</strong></p>
-<p>The probability of an event that cannot happen is 0: <span class="math display">\[
+<p>The probability of an event that cannot happen is 0:</p>
+<p><span class="math display">\[
 P(\emptyset) = 0
 \]</span></p>
 </div>
@@ -326,7 +326,10 @@ P(\emptyset) = 0
 <p>The probability of the complement of an event <span class="math inline">\(A\)</span> (not <span class="math inline">\(A\)</span>) is:</p>
 <p><span class="math display">\[
 P(A^c) = 1 - P(A)
-\]</span> - Example: If <span class="math inline">\(P(\text{rain}) = 0.3\)</span>, then <span class="math inline">\(P(\text{no rain}) = 1 - 0.3 = 0.7\)</span>.</p>
+\]</span></p>
+<ul>
+<li>Example: If <span class="math inline">\(P(\text{rain}) = 0.3\)</span>, then <span class="math inline">\(P(\text{no rain}) = 1 - 0.3 = 0.7\)</span>.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -436,9 +439,6 @@ P(X &gt; 1)
 </div></li>
 <li><div class="agenda-active">
 <p>Joint Probability</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Case Study: Diagnosis Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
 <p>Distribution Functions</p>
@@ -561,109 +561,6 @@ P(X &gt; 1)
 </ul>
 </section></section>
 <section>
-<section id="case-study-diagnosis-tests" class="title-slide slide level1 agenda-slide center">
-<h1>Case Study: Diagnosis Tests</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Probability Theory</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Joint Probability</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Case Study: Diagnosis Tests</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Distribution Functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Normal Distribution</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Empirical Rule</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Binomial Distribution</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Poisson Distribution</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Probability in R</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="introduction" class="slide level2">
-<h2>Introduction</h2>
-<ul>
-<li>When evaluating diagnostic tests, we need metrics beyond just “accuracy.”</li>
-<li>Sensitivity, Specificity, Positive Predictive Value (PPV), and Negative Predictive Value (NPV) provide a more nuanced understanding of a test’s performance.</li>
-<li>These metrics help us understand how well a test identifies those with and without a condition.</li>
-</ul>
-</section>
-<section id="the-2x2-contingency-table" class="slide level2">
-<h2>The 2x2 Contingency Table</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 40%">
-<col style="width: 40%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>Condition Present</th>
-<th>Condition Absent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Test Positive</td>
-<td>True Positive (TP)</td>
-<td>False Positive (FP)</td>
-</tr>
-<tr class="even">
-<td>Test Negative</td>
-<td>False Negative (FN)</td>
-<td>True Negative (TN)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="sensitivity-true-positive-rate" class="slide level2">
-<h2>Sensitivity (True Positive Rate)</h2>
-<ul>
-<li>The proportion of people <em>with</em> the condition who test positive.</li>
-<li>“How well does the test identify those who <em>have</em> the condition?”</li>
-</ul>
-</section>
-<section id="specificity-true-negative-rate" class="slide level2">
-<h2>Specificity (True Negative Rate)</h2>
-<ul>
-<li>The proportion of people <em>without</em> the condition who test negative.</li>
-<li>Answers: “How well does the test identify those who <em>do not have</em> the condition?”</li>
-</ul>
-</section>
-<section id="positive-predictive-value-ppv" class="slide level2">
-<h2>Positive Predictive Value (PPV)</h2>
-<ul>
-<li>The proportion of people who test positive who <em>actually have</em> the condition.</li>
-<li>“If someone tests positive, what’s the probability they truly have the condition?”</li>
-</ul>
-</section>
-<section id="negative-predictive-value-npv" class="slide level2">
-<h2>Negative Predictive Value (NPV)</h2>
-<ul>
-<li>The proportion of people who test negative who <em>actually do not have</em> the condition.</li>
-<li>“If someone tests negative, what’s the probability they truly do not have the condition?”</li>
-</ul>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-</section></section>
-<section>
 <section id="distribution-functions" class="title-slide slide level1 agenda-slide center">
 <h1>Distribution Functions</h1>
 <div class="agenda">
@@ -673,9 +570,6 @@ P(X &gt; 1)
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Joint Probability</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Case Study: Diagnosis Tests</p>
 </div></li>
 <li><div class="agenda-active">
 <p>Distribution Functions</p>
@@ -896,15 +790,15 @@ F_X(x) =
 </div>
 <div id="tabset-6-3">
 <ol type="1">
-<li><strong>PMF</strong>:
+<li><p><strong>PMF</strong>:</p>
 <ul>
 <li>Number of emails received per hour.</li>
 </ul></li>
-<li><strong>PDF</strong>:
+<li><p><strong>PDF</strong>:</p>
 <ul>
 <li>Heights of students in a class.</li>
 </ul></li>
-<li><strong>CDF</strong>:
+<li><p><strong>CDF</strong>:</p>
 <ul>
 <li>The likelihood of completing a task within a certain time frame.</li>
 </ul></li>
@@ -1127,9 +1021,6 @@ F_X(x) =
 <p>Joint Probability</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Case Study: Diagnosis Tests</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
 </div></li>
 <li><div class="agenda-active">
@@ -1274,9 +1165,6 @@ P(a \leq X \leq b) = P(a &lt; X &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}}
 <p>Joint Probability</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Case Study: Diagnosis Tests</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
@@ -1384,9 +1272,6 @@ P(a \leq X \leq b) = P(a &lt; X &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi\sigma^2}}
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Joint Probability</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Case Study: Diagnosis Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
@@ -1540,9 +1425,6 @@ P(X \geq 3) = P(X = 3) + P(X = 4) + P(X = 5)
 <p>Joint Probability</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Case Study: Diagnosis Tests</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
@@ -1661,9 +1543,6 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Joint Probability</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Case Study: Diagnosis Tests</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Distribution Functions</p>
