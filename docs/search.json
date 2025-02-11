@@ -3434,56 +3434,49 @@
     "href": "lectures/5.html#joint-probability-2",
     "title": "Distribution Functions",
     "section": "Joint Probability",
-    "text": "Joint Probability\n\nThe probability of both events A and B occurring.\nDenoted as P(A and B) or P(A ∩ B).\nExamples:\n\nDrawing a King and a Heart from a deck of cards.\nFlipping two coins and getting heads on both."
-  },
-  {
-    "objectID": "lectures/5.html#joint-probability-3",
-    "href": "lectures/5.html#joint-probability-3",
-    "title": "Distribution Functions",
-    "section": "Joint Probability",
-    "text": "Joint Probability\nCalculating Union Probability\n\nGeneral Case: P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)\nMutually Exclusive Events: If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)"
+    "text": "Joint Probability\n\nThe probability of both events A and B occurring.\nDenoted as \\(P(A\\ \\mathrm{and}\\ B)\\) or \\(P(A \\cap B)\\).\nExamples:\n\nDrawing a King and a Heart from a deck of cards.\nFlipping two coins and getting heads on both."
   },
   {
     "objectID": "lectures/5.html#union-of-events",
     "href": "lectures/5.html#union-of-events",
     "title": "Distribution Functions",
     "section": "Union of Events",
-    "text": "Union of Events\n\nThe probability of either event A or event B (or both) occurring.\nDenoted as P(A or B) or P(A ∪ B).\nExamples:\n\nRolling a 3 or a 5 on a die.\nDrawing a red card or a face card."
+    "text": "Union of Events\n\nThe probability of either event A or event B (or both) occurring.\nDenoted as \\(P(A\\ \\mathrm{or}\\ B)\\) or \\(P(A \\cup B)\\).\nExamples:\n\nRolling a 3 or a 5 on a die.\nDrawing a red card or a face card."
   },
   {
     "objectID": "lectures/5.html#calculating-union-probability",
     "href": "lectures/5.html#calculating-union-probability",
     "title": "Distribution Functions",
     "section": "Calculating Union Probability",
-    "text": "Calculating Union Probability\n\nGeneral Case: P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)\nMutually Exclusive Events: If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)"
+    "text": "Calculating Union Probability\n\nGeneral Case: \\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\) (Inclusion-Exclusion Principle)\nMutually Exclusive Events: If A and B are mutually exclusive (cannot both occur), then \\(P(A \\cap B) = 0\\), and \\(P(A \\cup B) = P(A) + P(B)\\)"
   },
   {
     "objectID": "lectures/5.html#example-union-probability",
     "href": "lectures/5.html#example-union-probability",
     "title": "Distribution Functions",
     "section": "Example: Union Probability",
-    "text": "Example: Union Probability\n\nWhat is the probability of rolling a number greater than 4 or an even number on a six-sided die?\n\nEvent A: Rolling a number greater than 4 (5 or 6).\nEvent B: Rolling an even number (2, 4, or 6).\n\nP(A) = 2/6\nP(B) = 3/6\nP(A and B) = 1/6 (rolling a 6)\nP(A or B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3"
+    "text": "Example: Union Probability\n\nWhat is the probability of rolling a number greater than 4 or an even number on a six-sided die?\n\nEvent A: Rolling a number greater than 4 (5 or 6).\nEvent B: Rolling an even number (2, 4, or 6).\n\n\n\n\n\\(P(A) = 2/6\\)\n\\(P(B) = 3/6\\)\n\\(P(A \\cap B) = 1/6\\) (rolling a 6)\n\\(P(A \\cup B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3\\)"
   },
   {
     "objectID": "lectures/5.html#conditional-probability",
     "href": "lectures/5.html#conditional-probability",
     "title": "Distribution Functions",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\n\nThe conditional probability of event A occurring given that event B has occurred: P(A|B) (read as “the probability of A given B”).\nFormula: P(A|B) = P(A and B) / P(B)\n\nP(A|B): Conditional probability of A given B.\nP(A and B): Probability of both A and B occurring.\nP(B): Probability of B occurring."
+    "text": "Conditional Probability\n\nThe conditional probability of event A occurring given that event B has occurred: \\(P(A|B)\\) (read as “the probability of A given B”).\nFormula: \\(P(A|B) =\\frac{P(A \\cap B)}{P(B)}\\)\n\n\\(P(A|B)\\): Conditional probability of A given B.\n\\(P(A \\cap B)\\): Probability of both A and B occurring.\n\\(P(B)\\): Probability of B occurring."
   },
   {
     "objectID": "lectures/5.html#independence",
     "href": "lectures/5.html#independence",
     "title": "Distribution Functions",
     "section": "Independence",
-    "text": "Independence\n\nTwo events are independent if the occurrence of one does not affect the probability of the other.\nIf A and B are independent:\n\nP(A|B) = P(A)\nP(B|A) = P(B)\nP(A and B) = P(A) * P(B)"
+    "text": "Independence\n\nTwo events are independent if the occurrence of one does not affect the probability of the other.\nIf A and B are independent:\n\n\\(P(A|B) = P(A)\\)\n\\(P(B|A) = P(B)\\)\n\\(P(A \\cap B) = P(A) P(B)\\)"
   },
   {
     "objectID": "lectures/5.html#bayes-theorem",
     "href": "lectures/5.html#bayes-theorem",
     "title": "Distribution Functions",
     "section": "Bayes’ Theorem",
-    "text": "Bayes’ Theorem\n\nReverses the conditioning: Relates P(A|B) to P(B|A).\nP(A|B) = [P(B|A) * P(A)] / P(B)\nUseful when we know P(B|A) but want P(A|B)."
+    "text": "Bayes’ Theorem\n\nReverses the conditioning: Relates P(A|B) to P(B|A).\n\\(P(A|B) = \\frac{P(B|A) * P(A)}{P(B)}\\)\nUseful when we know P(B|A) but want P(A|B)."
   },
   {
     "objectID": "lectures/5.html#random-variable",
@@ -3854,14 +3847,14 @@
     "href": "lectures/5.html#examples-1",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\n123\n\n\nFind \\(P(X \\leq 5 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm().\n\n\nFind \\(P(X \\geq 7 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm().\n\n\nFind \\(P(X = 20 )\\) where \\(X \\sim Bin(30,0.8)\\). Here we will use the dbinom()."
+    "text": "Examples\n\n123\n\n\nFind \\(P(X \\leq 5 )\\) where \\(X \\sim N(6,2)\\).\n\n\nCode\npnorm(5, mean = 6, sd = 2)\n\n\n\n\nFind \\(P(X \\geq 7 )\\) where \\(X \\sim N(6,2)\\).\n\n\nCode\n1 - pnorm(7, mean = 6, sd = 2)\n\n\n\n\nFind \\(P(X = 20 )\\) where \\(X \\sim Bin(30,0.8)\\).\n\n\nCode\ndbinom(20, size = 30, prob = 0.8)"
   },
   {
     "objectID": "lectures/5.html#more-examples-1",
     "href": "lectures/5.html#more-examples-1",
     "title": "Distribution Functions",
     "section": "More Examples",
-    "text": "More Examples\n\n123\n\n\nFind \\(P(2 \\lew X \\leq 5 )\\) where \\(X \\sim N(6,2)\\). Here we will use the pnorm().\n\n\nFind \\(P(14 &lt; X &lt; 20)\\) where \\(X \\sim Pois(16)\\). Here we will use the dpois().\n\n\nFind \\(P(23 &lt; X)\\) where \\(X \\sim Pois(12)\\). Here we will use the dpois()."
+    "text": "More Examples\n\n123\n\n\nFind \\(P(2 \\leq X \\leq 5 )\\) where \\(X \\sim N(6,2)\\).\n\n\nCode\npnorm(5, 6, 2) - pnorm(2, 6, 2) \n\n\n\n\nFind \\(P(14 &lt; X &lt; 20)\\) where \\(X \\sim Pois(16)\\).\n\n\nCode\nppois(19, lambda = 16) - ppois(14, lambda = 16)\n\n## OR\n\ndpois(15, 16) + dpois(16, 16) + dpois(17, 16) + dpois(18, 16) + dpois(19, 16)\n\n\n\n\nFind \\(P(23 &lt; X)\\) where \\(X \\sim Pois(12)\\).\n\n\nCode\n1 - ppois(23, 12)"
   },
   {
     "objectID": "lectures/5.html#percentiles-1",
@@ -3875,7 +3868,7 @@
     "href": "lectures/5.html#examples-2",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\n123\n\n\nFinding the \\(95^{th}\\) percentile from \\(N(0,1)\\), we will use the qnorm().\n\n\nCode\nqnorm(.95,0,1)\n\n\n\n\nFinding the \\(95^{th}\\) percentile from a Poisson distribution with \\(\\lambda = 9.5\\).\n\n\nCode\nqpois(.95,9)\n\n\n\n\nFinding the \\(75^{th}\\) percentile for \\(Bin(45,.4)\\).\n\n\nCode\nqf(.95,3,4)"
+    "text": "Examples\n\n123\n\n\nFinding the \\(95^{th}\\) percentile from \\(N(0,1)\\), we will use the qnorm().\n\n\nCode\nqnorm(.95, 0, 1)\n\n\n\n\nFinding the \\(95^{th}\\) percentile from a Poisson distribution with \\(\\lambda = 9.5\\).\n\n\nCode\nqpois(.95, 9.5)\n\n\n\n\nFinding the \\(75^{th}\\) percentile for \\(Bin(45,.4)\\).\n\n\nCode\nqbinom(.75, 45, .4)"
   },
   {
     "objectID": "lectures/5.html#random-number-generator",
@@ -3889,7 +3882,7 @@
     "href": "lectures/5.html#examples-3",
     "title": "Distribution Functions",
     "section": "Examples",
-    "text": "Examples\n\n1234\n\n\nLet’s first generate the random sample of fifty from \\(X \\sim N(8,3)\\).\n\n\nCode\nrnorm(50,8,sqrt(3))\n\n\n\n\nGenerate a random sample of 100 form an X \\sim \\Gamma (2,3).\n\n\nCode\nrgamma(100, 2,3)\n\n\n\n\nGenerate a random sample of 100 form an X \\sim Binom (25,.23).\n\n\nCode\nrbinom(n = 100, size  = 25, prob = 0.23)\n\n\n\n\nGenerate a random sample of 100 form an X \\sim Pois (34.4).\n\n\nCode\nrpois(n = 100, lambda = 34.4)"
+    "text": "Examples\n\n1234\n\n\nLet’s first generate the random sample of fifty from \\(X \\sim N(8,3)\\).\n\n\nCode\nrnorm(50, 8, sqrt(3))\n\n\n\n\nGenerate a random sample of 100 form an \\(X \\sim Gamma (2,3)\\).\n\n\nCode\nrgamma(100, 2,3)\n\n\n\n\nGenerate a random sample of 100 form an \\(X \\sim Binom (25,.23)\\).\n\n\nCode\nrbinom(n = 100, size  = 25, prob = 0.23)\n\n\n\n\nGenerate a random sample of 100 form an \\(X \\sim Pois (34.4)\\).\n\n\nCode\nrpois(n = 100, lambda = 34.4)"
   },
   {
     "objectID": "lectures/8.html#explaining-variation",

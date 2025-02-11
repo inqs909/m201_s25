@@ -479,7 +479,7 @@ P(X &gt; 1)
 <h2>Joint Probability</h2>
 <ul>
 <li>The probability of <em>both</em> events A and B occurring.</li>
-<li>Denoted as P(A and B) or P(A ∩ B).</li>
+<li>Denoted as <span class="math inline">\(P(A\ \mathrm{and}\ B)\)</span> or <span class="math inline">\(P(A \cap B)\)</span>.</li>
 <li>Examples:
 <ul>
 <li>Drawing a King <em>and</em> a Heart from a deck of cards.</li>
@@ -487,19 +487,11 @@ P(X &gt; 1)
 </ul></li>
 </ul>
 </section>
-<section id="joint-probability-3" class="slide level2">
-<h2>Joint Probability</h2>
-<p>Calculating Union Probability</p>
-<ul>
-<li><strong>General Case:</strong> P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)</li>
-<li><strong>Mutually Exclusive Events:</strong> If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)</li>
-</ul>
-</section>
 <section id="union-of-events" class="slide level2">
 <h2>Union of Events</h2>
 <ul>
 <li>The probability of <em>either</em> event A <em>or</em> event B (or both) occurring.</li>
-<li>Denoted as P(A or B) or P(A ∪ B).</li>
+<li>Denoted as <span class="math inline">\(P(A\ \mathrm{or}\ B)\)</span> or <span class="math inline">\(P(A \cup B)\)</span>.</li>
 <li>Examples:
 <ul>
 <li>Rolling a 3 or a 5 on a die.</li>
@@ -510,8 +502,8 @@ P(X &gt; 1)
 <section id="calculating-union-probability" class="slide level2">
 <h2>Calculating Union Probability</h2>
 <ul>
-<li><strong>General Case:</strong> P(A or B) = P(A) + P(B) - P(A and B) (Inclusion-Exclusion Principle)</li>
-<li><strong>Mutually Exclusive Events:</strong> If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)</li>
+<li><strong>General Case:</strong> <span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span> (Inclusion-Exclusion Principle)</li>
+<li><strong>Mutually Exclusive Events:</strong> If A and B are mutually exclusive (cannot both occur), then <span class="math inline">\(P(A \cap B) = 0\)</span>, and <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></li>
 </ul>
 </section>
 <section id="example-union-probability" class="slide level2">
@@ -522,21 +514,25 @@ P(X &gt; 1)
 <li>Event A: Rolling a number greater than 4 (5 or 6).</li>
 <li>Event B: Rolling an even number (2, 4, or 6).</li>
 </ul></li>
-<li><p>P(A) = 2/6</p></li>
-<li><p>P(B) = 3/6</p></li>
-<li><p>P(A and B) = 1/6 (rolling a 6)</p></li>
-<li><p>P(A or B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3</p></li>
 </ul>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(P(A) = 2/6\)</span></li>
+<li><span class="math inline">\(P(B) = 3/6\)</span></li>
+<li><span class="math inline">\(P(A \cap B) = 1/6\)</span> (rolling a 6)</li>
+<li><span class="math inline">\(P(A \cup B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3\)</span></li>
+</ul>
+</div>
 </section>
 <section id="conditional-probability" class="slide level2">
 <h2>Conditional Probability</h2>
 <ul>
-<li><p>The conditional probability of event A occurring <em>given</em> that event B has occurred: <strong>P(A|B)</strong> (read as “the probability of A given B”).</p></li>
-<li><p>Formula: <strong>P(A|B) = P(A and B) / P(B)</strong></p>
+<li><p>The conditional probability of event A occurring <em>given</em> that event B has occurred: <span class="math inline">\(P(A|B)\)</span> (read as “the probability of A given B”).</p></li>
+<li><p>Formula: <span class="math inline">\(P(A|B) =\frac{P(A \cap B)}{P(B)}\)</span></p>
 <ul>
-<li>P(A|B): Conditional probability of A given B.</li>
-<li>P(A and B): Probability of both A and B occurring.</li>
-<li>P(B): Probability of B occurring.</li>
+<li><span class="math inline">\(P(A|B)\)</span>: Conditional probability of A given B.</li>
+<li><span class="math inline">\(P(A \cap B)\)</span>: Probability of both A and B occurring.</li>
+<li><span class="math inline">\(P(B)\)</span>: Probability of B occurring.</li>
 </ul></li>
 </ul>
 </section>
@@ -546,9 +542,9 @@ P(X &gt; 1)
 <li>Two events are independent if the occurrence of one does not affect the probability of the other.</li>
 <li>If A and B are independent:
 <ul>
-<li>P(A|B) = P(A)</li>
-<li>P(B|A) = P(B)</li>
-<li>P(A and B) = P(A) * P(B)</li>
+<li><span class="math inline">\(P(A|B) = P(A)\)</span></li>
+<li><span class="math inline">\(P(B|A) = P(B)\)</span></li>
+<li><span class="math inline">\(P(A \cap B) = P(A) P(B)\)</span></li>
 </ul></li>
 </ul>
 </section>
@@ -556,7 +552,7 @@ P(X &gt; 1)
 <h2>Bayes’ Theorem</h2>
 <ul>
 <li>Reverses the conditioning: Relates P(A|B) to P(B|A).</li>
-<li><strong>P(A|B) = [P(B|A) * P(A)] / P(B)</strong></li>
+<li><span class="math inline">\(P(A|B) = \frac{P(B|A) * P(A)}{P(B)}\)</span></li>
 <li>Useful when we know P(B|A) but want P(A|B).</li>
 </ul>
 </section></section>
@@ -1617,13 +1613,31 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <ul id="tabset-13" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-13-1">1</a></li><li><a href="#tabset-13-2">2</a></li><li><a href="#tabset-13-3">3</a></li></ul>
 <div class="tab-content">
 <div id="tabset-13-1">
-<p>Find <span class="math inline">\(P(X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code>.</p>
+<p>Find <span class="math inline">\(P(X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">pnorm</span>(<span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 <div id="tabset-13-2">
-<p>Find <span class="math inline">\(P(X \geq 7 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code>.</p>
+<p>Find <span class="math inline">\(P(X \geq 7 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">7</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 <div id="tabset-13-3">
-<p>Find <span class="math inline">\(P(X = 20 )\)</span> where <span class="math inline">\(X \sim Bin(30,0.8)\)</span>. Here we will use the <code>dbinom()</code>.</p>
+<p>Find <span class="math inline">\(P(X = 20 )\)</span> where <span class="math inline">\(X \sim Bin(30,0.8)\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">dbinom</span>(<span class="dv">20</span>, <span class="at">size =</span> <span class="dv">30</span>, <span class="at">prob =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 </div>
 </div>
@@ -1634,13 +1648,35 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <ul id="tabset-14" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-14-1">1</a></li><li><a href="#tabset-14-2">2</a></li><li><a href="#tabset-14-3">3</a></li></ul>
 <div class="tab-content">
 <div id="tabset-14-1">
-<p>Find <span class="math inline">\(P(2 \lew X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>. Here we will use the <code>pnorm()</code>.</p>
+<p>Find <span class="math inline">\(P(2 \leq X \leq 5 )\)</span> where <span class="math inline">\(X \sim N(6,2)\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">pnorm</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 <div id="tabset-14-2">
-<p>Find <span class="math inline">\(P(14 &lt; X &lt; 20)\)</span> where <span class="math inline">\(X \sim Pois(16)\)</span>. Here we will use the <code>dpois()</code>.</p>
+<p>Find <span class="math inline">\(P(14 &lt; X &lt; 20)\)</span> where <span class="math inline">\(X \sim Pois(16)\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ppois</span>(<span class="dv">19</span>, <span class="at">lambda =</span> <span class="dv">16</span>) <span class="sc">-</span> <span class="fu">ppois</span>(<span class="dv">14</span>, <span class="at">lambda =</span> <span class="dv">16</span>)</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="do">## OR</span></span>
+<span id="cb9-4"><a></a></span>
+<span id="cb9-5"><a></a><span class="fu">dpois</span>(<span class="dv">15</span>, <span class="dv">16</span>) <span class="sc">+</span> <span class="fu">dpois</span>(<span class="dv">16</span>, <span class="dv">16</span>) <span class="sc">+</span> <span class="fu">dpois</span>(<span class="dv">17</span>, <span class="dv">16</span>) <span class="sc">+</span> <span class="fu">dpois</span>(<span class="dv">18</span>, <span class="dv">16</span>) <span class="sc">+</span> <span class="fu">dpois</span>(<span class="dv">19</span>, <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 <div id="tabset-14-3">
-<p>Find <span class="math inline">\(P(23 &lt; X)\)</span> where <span class="math inline">\(X \sim Pois(12)\)</span>. Here we will use the <code>dpois()</code>.</p>
+<p>Find <span class="math inline">\(P(23 &lt; X)\)</span> where <span class="math inline">\(X \sim Pois(12)\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">ppois</span>(<span class="dv">23</span>, <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </div>
 </div>
 </div>
@@ -1659,7 +1695,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">qnorm</span>(.<span class="dv">95</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">qnorm</span>(.<span class="dv">95</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1668,7 +1704,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">qpois</span>(.<span class="dv">95</span>,<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">qpois</span>(.<span class="dv">95</span>, <span class="fl">9.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1677,7 +1713,7 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">qf</span>(.<span class="dv">95</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">qbinom</span>(.<span class="dv">75</span>, <span class="dv">45</span>, .<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1698,34 +1734,34 @@ P(X = 0) = \frac{2^0 e^{-2}}{0!} = e^{-2} \approx 0.1353
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">rnorm</span>(<span class="dv">50</span>,<span class="dv">8</span>,<span class="fu">sqrt</span>(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">8</span>, <span class="fu">sqrt</span>(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div id="tabset-16-2">
-<p>Generate a random sample of 100 form an <code>X \sim \Gamma (2,3)</code>.</p>
+<p>Generate a random sample of 100 form an <span class="math inline">\(X \sim Gamma (2,3)\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div id="tabset-16-3">
-<p>Generate a random sample of 100 form an <code>X \sim Binom (25,.23)</code>.</p>
+<p>Generate a random sample of 100 form an <span class="math inline">\(X \sim Binom (25,.23)\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size  =</span> <span class="dv">25</span>, <span class="at">prob =</span> <span class="fl">0.23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size  =</span> <span class="dv">25</span>, <span class="at">prob =</span> <span class="fl">0.23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div id="tabset-16-4">
-<p>Generate a random sample of 100 form an <code>X \sim Pois (34.4)</code>.</p>
+<p>Generate a random sample of 100 form an <span class="math inline">\(X \sim Pois (34.4)\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> <span class="fl">34.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> <span class="fl">34.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>

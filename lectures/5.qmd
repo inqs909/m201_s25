@@ -247,23 +247,15 @@ $$
 ## Joint Probability
 
 *   The probability of *both* events A and B occurring.
-*   Denoted as P(A and B) or P(A ∩ B).
+*   Denoted as $P(A\ \mathrm{and}\ B)$ or $P(A \cap B)$.
 *   Examples:
     *   Drawing a King *and* a Heart from a deck of cards.
     *   Flipping two coins and getting heads on both.
 
-## Joint Probability
-
-Calculating Union Probability
-
-*   **General Case:** P(A or B) = P(A) + P(B) - P(A and B)  (Inclusion-Exclusion Principle)
-*   **Mutually Exclusive Events:** If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)
-
-
 ## Union of Events
 
 *   The probability of *either* event A *or* event B (or both) occurring.
-*   Denoted as P(A or B) or P(A ∪ B).
+*   Denoted as $P(A\ \mathrm{or}\ B)$ or $P(A \cup B)$.
 *   Examples:
     *   Rolling a 3 or a 5 on a die.
     *   Drawing a red card or a face card.
@@ -271,8 +263,8 @@ Calculating Union Probability
 
 ## Calculating Union Probability
 
-*   **General Case:** P(A or B) = P(A) + P(B) - P(A and B)  (Inclusion-Exclusion Principle)
-*   **Mutually Exclusive Events:** If A and B are mutually exclusive (cannot both occur), then P(A and B) = 0, and P(A or B) = P(A) + P(B)
+*   **General Case:** $P(A \cup B) = P(A) + P(B) - P(A \cap B)$  (Inclusion-Exclusion Principle)
+*   **Mutually Exclusive Events:** If A and B are mutually exclusive (cannot both occur), then $P(A \cap B) = 0$, and $P(A \cup B) = P(A) + P(B)$
 
 
 ## Example: Union Probability
@@ -282,35 +274,38 @@ Calculating Union Probability
     *   Event A: Rolling a number greater than 4 (5 or 6).
     *   Event B: Rolling an even number (2, 4, or 6).
 
-*   P(A) = 2/6
-*   P(B) = 3/6
-*   P(A and B) = 1/6 (rolling a 6)
-*   P(A or B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3
+::: fragment
+
+*   $P(A) = 2/6$
+*   $P(B) = 3/6$
+*   $P(A \cap B) = 1/6$ (rolling a 6)
+*   $P(A \cup B) = (2/6) + (3/6) - (1/6) = 4/6 = 2/3$
+:::
 
 
 ## Conditional Probability
 
-*   The conditional probability of event A occurring *given* that event B has occurred:  **P(A|B)** (read as "the probability of A given B").
+*   The conditional probability of event A occurring *given* that event B has occurred:  $P(A|B)$ (read as "the probability of A given B").
 
-*   Formula:  **P(A|B) = P(A and B) / P(B)**
+*   Formula:  $P(A|B) =\frac{P(A \cap B)}{P(B)}$
 
-    *   P(A|B): Conditional probability of A given B.
-    *   P(A and B): Probability of both A and B occurring.
-    *   P(B): Probability of B occurring.
+    *   $P(A|B)$: Conditional probability of A given B.
+    *   $P(A \cap B)$: Probability of both A and B occurring.
+    *   $P(B)$: Probability of B occurring.
 
 
 ## Independence
 
 *   Two events are independent if the occurrence of one does not affect the probability of the other.
 *   If A and B are independent:
-    *   P(A|B) = P(A)
-    *   P(B|A) = P(B)
-    *   P(A and B) = P(A) * P(B)
+    *   $P(A|B) = P(A)$
+    *   $P(B|A) = P(B)$
+    *   $P(A \cap B) = P(A) P(B)$
 
 ## Bayes' Theorem
 
 *   Reverses the conditioning:  Relates P(A|B) to P(B|A).
-*   **P(A|B) = [P(B|A) * P(A)] / P(B)**
+*   $P(A|B) = \frac{P(B|A) * P(A)}{P(B)}$
 *   Useful when we know P(B|A) but want P(A|B).
 
 
@@ -1030,15 +1025,37 @@ R can compute the probabilities of a distribution given the correct parameters:
 
 ### 1
 
-Find $P(X \leq 5 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()`.
+Find $P(X \leq 5 )$ where $X \sim N(6,2)$. 
+
+```{r}
+#| code-fold: true
+#| eval: false
+pnorm(5, mean = 6, sd = 2)
+```
 
 ### 2
 
-Find $P(X \geq 7 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()`.
+Find $P(X \geq 7 )$ where $X \sim N(6,2)$. 
+
+
+```{r}
+#| code-fold: true
+#| eval: false
+1 - pnorm(7, mean = 6, sd = 2)
+```
+
 
 ### 3
 
-Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. Here we will use the `dbinom()`.
+Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. 
+
+
+```{r}
+#| code-fold: true
+#| eval: false
+dbinom(20, size = 30, prob = 0.8)
+```
+
 
 :::
 
@@ -1048,15 +1065,41 @@ Find $P(X = 20 )$ where $X \sim Bin(30,0.8)$. Here we will use the `dbinom()`.
 
 ### 1
 
-Find $P(2 \lew X \leq 5 )$ where $X \sim N(6,2)$. Here we will use the `pnorm()`.
+Find $P(2 \leq X \leq 5 )$ where $X \sim N(6,2)$. 
+
+```{r}
+#| code-fold: true
+#| eval: false
+pnorm(5, 6, 2) - pnorm(2, 6, 2) 
+```
 
 ### 2
 
-Find $P(14 < X < 20)$ where $X \sim Pois(16)$. Here we will use the `dpois()`.
+Find $P(14 < X < 20)$ where $X \sim Pois(16)$. 
+
+```{r}
+#| code-fold: true
+#| eval: false
+
+
+ppois(19, lambda = 16) - ppois(14, lambda = 16)
+
+## OR
+
+dpois(15, 16) + dpois(16, 16) + dpois(17, 16) + dpois(18, 16) + dpois(19, 16)
+```
 
 ### 3
 
-Find $P(23 < X)$ where $X \sim Pois(12)$. Here we will use the `dpois()`.
+Find $P(23 < X)$ where $X \sim Pois(12)$.
+
+```{r}
+#| code-fold: true
+#| eval: false
+
+1 - ppois(23, 12)
+
+```
 
 :::
 
@@ -1074,8 +1117,9 @@ Finding the values (percentiles) for any distributions can be found by using the
 Finding the $95^{th}$ percentile from $N(0,1)$, we will use the `qnorm()`. 
 
 ```{r}
+#| code-fold: true
 #| eval: false
-qnorm(.95,0,1)
+qnorm(.95, 0, 1)
 ```
 
 ### 2
@@ -1084,8 +1128,9 @@ Finding the $95^{th}$ percentile from a Poisson distribution with $\lambda = 9.5
 
 
 ```{r}
+#| code-fold: true
 #| eval: false
-qpois(.95,9)
+qpois(.95, 9.5)
 ```
 
 ### 3
@@ -1093,8 +1138,9 @@ qpois(.95,9)
 Finding the $75^{th}$ percentile for $Bin(45,.4)$.
 
 ```{r}
+#| code-fold: true
 #| eval: false
-qf(.95,3,4)
+qbinom(.75, 45, .4)
 ```
 
 :::
@@ -1112,33 +1158,37 @@ R is capable of generating random numbers. For example if we want to generate a 
 Let's first generate the random sample of fifty from $X \sim N(8,3)$. 
 
 ```{r}
+#| code-fold: true
 #| eval: false
-rnorm(50,8,sqrt(3))
+rnorm(50, 8, sqrt(3))
 ```
 
 ### 2
 
-Generate a random sample of 100 form an `X \sim \Gamma (2,3)`.
+Generate a random sample of 100 form an $X \sim Gamma (2,3)$.
 
 ```{r}
+#| code-fold: true
 #| eval: false
 rgamma(100, 2,3)
 ```
 
 ### 3
 
-Generate a random sample of 100 form an `X \sim Binom (25,.23)`.
+Generate a random sample of 100 form an $X \sim Binom (25,.23)$.
 
 ```{r}
+#| code-fold: true
 #| eval: false
 rbinom(n = 100, size  = 25, prob = 0.23)
 ```
 
 ### 4
 
-Generate a random sample of 100 form an `X \sim Pois (34.4)`. 
+Generate a random sample of 100 form an $X \sim Pois (34.4)$. 
 
 ```{r}
+#| code-fold: true
 #| eval: false
 rpois(n = 100, lambda = 34.4)
 ```
