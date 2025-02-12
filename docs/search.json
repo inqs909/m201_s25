@@ -466,7 +466,7 @@
     "href": "lectures/7.html#compute-group-statistics",
     "title": "Simple Linear Regression",
     "section": "Compute Group Statistics",
-    "text": "Compute Group Statistics\n\nnum_by_cat_stats(penguins, body_mass_g, species)\n\n#&gt; # A tibble: 3 × 11\n#&gt;   species     min   q25  mean median   q75   max    sd     var   iqr missing\n#&gt;   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;int&gt;\n#&gt; 1 Adelie     2850 3362. 3706.   3700  4000  4775  459. 210332.  638.       0\n#&gt; 2 Chinstrap  2700 3488. 3733.   3700  3950  4800  384. 147713.  462.       0\n#&gt; 3 Gentoo     3950 4700  5092.   5050  5500  6300  501. 251478.  800        0"
+    "text": "Compute Group Statistics\n\nnum_by_cat_stats(penguins, body_mass_g, species)\n\n#&gt;   Categories  min    q25     mean median  q75  max      sd      var   iqr\n#&gt; 1     Adelie 2850 3362.5 3706.164   3700 4000 4775 458.620 210332.4 637.5\n#&gt; 2  Chinstrap 2700 3487.5 3733.088   3700 3950 4800 384.335 147713.5 462.5\n#&gt; 3     Gentoo 3950 4700.0 5092.437   5050 5500 6300 501.476 251478.3 800.0\n#&gt;   missing\n#&gt; 1       0\n#&gt; 2       0\n#&gt; 3       0"
   },
   {
     "objectID": "lectures/7.html#linear-models-with-categorical-variables",
