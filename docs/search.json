@@ -228,14 +228,14 @@
     "href": "lectures/7.html#explaining-variation-1",
     "title": "Simple Linear Regression",
     "section": "Explaining Variation",
-    "text": "Explaining Variation"
+    "text": "Explaining Variation\n\n\nCode\nggplot(penguins, aes(body_mass_g)) +\n  geom_density()"
   },
   {
-    "objectID": "lectures/7.html#explaining-variation-with-one-variable",
-    "href": "lectures/7.html#explaining-variation-with-one-variable",
+    "objectID": "lectures/7.html#variation-with-one-variable",
+    "href": "lectures/7.html#variation-with-one-variable",
     "title": "Simple Linear Regression",
-    "section": "Explaining Variation with One Variable",
-    "text": "Explaining Variation with One Variable"
+    "section": "Variation with One Variable",
+    "text": "Variation with One Variable\n\n\nCode\nggplot(penguins, aes(body_mass_g, fill = species)) +\n  geom_density(alpha = .5)"
   },
   {
     "objectID": "lectures/7.html#generated-model",
@@ -249,7 +249,7 @@
     "href": "lectures/7.html#a-simple-model-1",
     "title": "Simple Linear Regression",
     "section": "A Simple Model",
-    "text": "A Simple Model"
+    "text": "A Simple Model\n\n\nCode\nggplot(penguins, aes(body_mass_g)) +\n  geom_density()"
   },
   {
     "objectID": "lectures/7.html#a-simple-model-2",
@@ -340,14 +340,21 @@
     "href": "lectures/7.html#estimation-in-r",
     "title": "Simple Linear Regression",
     "section": "Estimation in R",
-    "text": "Estimation in R\n\nlm(Y ~ 1, data = DATA)"
+    "text": "Estimation in R\n\nlm(Y ~ 1, data = DATA)\n\n\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame"
   },
   {
     "objectID": "lectures/7.html#modeling-body-mass-in-penguins",
     "href": "lectures/7.html#modeling-body-mass-in-penguins",
     "title": "Simple Linear Regression",
     "section": "Modeling Body Mass in Penguins",
-    "text": "Modeling Body Mass in Penguins\n\nlm(body_mass_g ~ 1, data = penguins)\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ 1, data = penguins)\n#&gt; \n#&gt; Coefficients:\n#&gt; (Intercept)  \n#&gt;        4207"
+    "text": "Modeling Body Mass in Penguins\n\nlm(body_mass_g ~ 1, data = penguins)\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ 1, data = penguins)\n#&gt; \n#&gt; Coefficients:\n#&gt; (Intercept)  \n#&gt;        4207\n\n\n\n\\[\n\\hat Y = 4207\n\\]"
+  },
+  {
+    "objectID": "lectures/7.html#visualize",
+    "href": "lectures/7.html#visualize",
+    "title": "Simple Linear Regression",
+    "section": "Visualize",
+    "text": "Visualize\n\n\nCode\nggplot(penguins, aes(body_mass_g)) +\n  geom_density() +\n  geom_vline(xintercept = 4207)"
   },
   {
     "objectID": "lectures/7.html#linear-model-1",
@@ -355,6 +362,13 @@
     "title": "Simple Linear Regression",
     "section": "Linear Model",
     "text": "Linear Model\nThe goal of Statistics is to develop models the have a better explanation of the outcome \\(Y\\).\n\nIn particularly, reduce the sum of squared errors.\n\n\nBy utilizing a bit more of information, \\(X\\), we can increase the predicting capabilities of the model.\n\n\nThus, the linear model is born."
+  },
+  {
+    "objectID": "lectures/7.html#visualization",
+    "href": "lectures/7.html#visualization",
+    "title": "Simple Linear Regression",
+    "section": "Visualization",
+    "text": "Visualization\n\n1-Dimensional2-Dimensional\n\n\n\n\nCode\nggplot(penguins, aes(body_mass_g)) +\n  geom_density()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, fill = after_stat(level))) +\n  stat_density_2d(geom = \"polygon\")"
   },
   {
     "objectID": "lectures/7.html#linear-model-2",
@@ -368,14 +382,14 @@
     "href": "lectures/7.html#scatter-plot",
     "title": "Simple Linear Regression",
     "section": "Scatter Plot",
-    "text": "Scatter Plot\n\n\nCode\nggplot(penguins, aes(flipper_length_mm, body_mass_g)) + \n  geom_point() +\n  theme(axis.text.x = element_text(size = 24),\n                   axis.title.x = element_text(size = 30),\n                   plot.title = element_text(size = 48),\n                   strip.text = element_text(size = 20),\n                   legend.title = element_blank(),\n                   legend.text = element_text(size = 24))"
+    "text": "Scatter Plot\n\n\nCode\nggplot(penguins, aes(flipper_length_mm, body_mass_g)) + \n  geom_point()"
   },
   {
     "objectID": "lectures/7.html#imposing-a-line",
     "href": "lectures/7.html#imposing-a-line",
     "title": "Simple Linear Regression",
     "section": "Imposing a Line",
-    "text": "Imposing a Line\n\n\nCode\nggplot(penguins, aes(flipper_length_mm, body_mass_g)) + \n  geom_point() +\n  stat_smooth(method = \"lm\", se = F) +\n  theme(axis.text.x = element_text(size = 24),\n                   axis.title.x = element_text(size = 30),\n                   plot.title = element_text(size = 48),\n                   strip.text = element_text(size = 20),\n                   legend.title = element_blank(),\n                   legend.text = element_text(size = 24))"
+    "text": "Imposing a Line\n\n\nCode\nggplot(penguins, aes(flipper_length_mm, body_mass_g)) + \n  geom_point() +\n  stat_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "lectures/7.html#modelling-the-data",
@@ -403,7 +417,7 @@
     "href": "lectures/7.html#fitting-a-model-in-r",
     "title": "Simple Linear Regression",
     "section": "Fitting a Model in R",
-    "text": "Fitting a Model in R\n\nlm(Y ~ X, data = DATA)"
+    "text": "Fitting a Model in R\n\nlm(Y ~ X, data = DATA)\n\n\nX: Name Predictor Variable of Interest in data frame DATA\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame"
   },
   {
     "objectID": "lectures/7.html#example",
@@ -424,7 +438,7 @@
     "href": "lectures/7.html#interpreting-example",
     "title": "Simple Linear Regression",
     "section": "Interpreting Example",
-    "text": "Interpreting Example\n\\[\n\\hat Y_i = -5872.09 + 50.15 X_i\n\\] When flipper length is 0 mm, the body mass is -5872 grams."
+    "text": "Interpreting Example\n\\[\n\\hat Y_i = -5872.09 + 50.15 X_i\n\\]\nWhen flipper length is 0 mm, the body mass is -5872 grams."
   },
   {
     "objectID": "lectures/7.html#interpretation-of-hat-beta_1",
@@ -445,14 +459,14 @@
     "href": "lectures/7.html#body-mass-with-species",
     "title": "Simple Linear Regression",
     "section": "Body Mass with Species",
-    "text": "Body Mass with Species\n\n\nCode\npenguins |&gt; \n  ggplot(aes(body_mass_g)) +\n    geom_boxplot() +\n    theme(axis.text.x = element_text(size = 24),\n          axis.title.x = element_text(size = 30),\n          plot.title = element_text(size = 48),\n          strip.text = element_text(size = 20),\n          legend.title = element_blank(),\n          legend.text = element_text(size = 24))"
+    "text": "Body Mass with Species\n\n\nCode\nggplot(penguins, aes(body_mass_g)) +\n  geom_boxplot()"
   },
   {
     "objectID": "lectures/7.html#body-mass-with-species-1",
     "href": "lectures/7.html#body-mass-with-species-1",
     "title": "Simple Linear Regression",
     "section": "Body Mass with Species",
-    "text": "Body Mass with Species\n\n\nCode\npenguins |&gt; \n  ggplot(aes(body_mass_g, fill = species)) +\n    geom_boxplot() +\n    theme(axis.text.x = element_text(size = 24),\n          axis.title.x = element_text(size = 30),\n          plot.title = element_text(size = 48),\n          strip.text = element_text(size = 20),\n          legend.title = element_blank(),\n          legend.text = element_text(size = 24))"
+    "text": "Body Mass with Species\n\n\nCode\nggplot(penguins, aes(body_mass_g, fill = species)) +\n  geom_boxplot()"
   },
   {
     "objectID": "lectures/7.html#group-statistics",
@@ -469,11 +483,11 @@
     "text": "Compute Group Statistics\n\nnum_by_cat_stats(penguins, body_mass_g, species)\n\n#&gt;   Categories  min    q25     mean median  q75  max      sd      var   iqr\n#&gt; 1     Adelie 2850 3362.5 3706.164   3700 4000 4775 458.620 210332.4 637.5\n#&gt; 2  Chinstrap 2700 3487.5 3733.088   3700 3950 4800 384.335 147713.5 462.5\n#&gt; 3     Gentoo 3950 4700.0 5092.437   5050 5500 6300 501.476 251478.3 800.0\n#&gt;   missing\n#&gt; 1       0\n#&gt; 2       0\n#&gt; 3       0"
   },
   {
-    "objectID": "lectures/7.html#linear-models-with-categorical-variables",
-    "href": "lectures/7.html#linear-models-with-categorical-variables",
+    "objectID": "lectures/7.html#lm-with-categorical-variables",
+    "href": "lectures/7.html#lm-with-categorical-variables",
     "title": "Simple Linear Regression",
-    "section": "Linear Models with Categorical Variables",
-    "text": "Linear Models with Categorical Variables\nA line is normally used to model 2 continuous variables.\n\nHowever, the predictor variable \\(X\\) can be restricted to a set a variables that can symbolize categories.\n\n\nA category will be used as a reference for a model."
+    "section": "LM with Categorical Variables",
+    "text": "LM with Categorical Variables\nA line is normally used to model 2 continuous variables.\n\nHowever, the predictor variable \\(X\\) can be restricted to a set a variables that can symbolize categories.\n\n\nA category will be used as a reference for a model."
   },
   {
     "objectID": "lectures/7.html#binary-dummy-variables",
@@ -515,7 +529,14 @@
     "href": "lectures/7.html#fitting-a-model-in-r-1",
     "title": "Simple Linear Regression",
     "section": "Fitting a Model in R",
-    "text": "Fitting a Model in R\n\nlm(Y ~ X, data = DATA)"
+    "text": "Fitting a Model in R\n\nlm(Y ~ X, data = DATA)\n\n\nX: Name Predictor Variable of Interest in data frame DATA, must be a factor variable\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame"
+  },
+  {
+    "objectID": "lectures/7.html#x-not-a-factor",
+    "href": "lectures/7.html#x-not-a-factor",
+    "title": "Simple Linear Regression",
+    "section": "X not a Factor",
+    "text": "X not a Factor\n\nlm(Y ~ factor(X), data = DATA)\n\n\nX: Name Predictor Variable of Interest in data frame DATA, not a factor variable\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame"
   },
   {
     "objectID": "lectures/7.html#example-2",
@@ -585,7 +606,7 @@
     "href": "lectures/7.html#correlation-in-r",
     "title": "Simple Linear Regression",
     "section": "Correlation in R",
-    "text": "Correlation in R\n\ncor(DATA$Y, DATA$X)"
+    "text": "Correlation in R\n\ncor(DATA$Y, DATA$X)\n\n\nX: Name Predictor Variable of Interest in data frame DATA\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame"
   },
   {
     "objectID": "lectures/7.html#example-3",
@@ -599,7 +620,7 @@
     "href": "lectures/7.html#coefficient-of-determination-in-r",
     "title": "Simple Linear Regression",
     "section": "Coefficient of Determination in R",
-    "text": "Coefficient of Determination in R\n\nxlm &lt;- lm(Y ~ X, data = DATA)\nr2(xlm)"
+    "text": "Coefficient of Determination in R\n\nxlm &lt;- lm(Y ~ X, data = DATA)\nr2(xlm)\n\n\nX: Name Predictor Variable of Interest in data frame DATA\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame"
   },
   {
     "objectID": "lectures/7.html#example-4",
@@ -607,6 +628,62 @@
     "title": "Simple Linear Regression",
     "section": "Example",
     "text": "Example\n\nxlm &lt;- lm(body_mass_g ~ species, penguins)\nr2(xlm)\n\n#&gt; [1] 0.6744887"
+  },
+  {
+    "objectID": "lectures/7.html#statistical-model",
+    "href": "lectures/7.html#statistical-model",
+    "title": "Simple Linear Regression",
+    "section": "Statistical Model",
+    "text": "Statistical Model\n\\[\n\\hat Y = \\hat \\beta_0 + \\hat \\beta_1 X\n\\]\n\n\\(X\\): Input\n\\(\\hat Y\\): Output"
+  },
+  {
+    "objectID": "lectures/7.html#prediction-1",
+    "href": "lectures/7.html#prediction-1",
+    "title": "Simple Linear Regression",
+    "section": "Prediction",
+    "text": "Prediction\nUsing the equation \\(\\hat Y\\), we can give it a value of \\(X\\) and then, in return, a value of \\(\\hat Y\\) that predicts the true value \\(Y\\)."
+  },
+  {
+    "objectID": "lectures/7.html#prediction-in-r",
+    "href": "lectures/7.html#prediction-in-r",
+    "title": "Simple Linear Regression",
+    "section": "Prediction in R",
+    "text": "Prediction in R\n\nxlm &lt;- lm(Y ~ X,\n            data = DATA)\n\npredict_df &lt;- data.frame(X = VAL)\n\npredict(xlm,\n        predict_df)\n\n\nX: Name Predictor Variable of Interest in data frame DATA\nY: Name Outcome Variable of Interest in data frame DATA\nDATA: Name of the data frame\nVAL: Value for the Predictor Variable"
+  },
+  {
+    "objectID": "lectures/7.html#example-1-1",
+    "href": "lectures/7.html#example-1-1",
+    "title": "Simple Linear Regression",
+    "section": "Example 1",
+    "text": "Example 1\n\nExampleCode\n\n\nPredict the body mass for a gentoo penguin.\n\n\n\nxlm &lt;- lm(body_mass_g ~ species,\n            data = penguins)\n\nxlm\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ species, data = penguins)\n#&gt; \n#&gt; Coefficients:\n#&gt;      (Intercept)  speciesChinstrap     speciesGentoo  \n#&gt;          3706.16             26.92           1386.27\n\npredict_df &lt;- data.frame(species = \"Gentoo\")\n\npredict(xlm,\n        predict_df)\n\n#&gt;        1 \n#&gt; 5092.437"
+  },
+  {
+    "objectID": "lectures/7.html#example-2-1",
+    "href": "lectures/7.html#example-2-1",
+    "title": "Simple Linear Regression",
+    "section": "Example 2",
+    "text": "Example 2\n\nExampleCode\n\n\nPredict the body mass for a penguin with a flipper length of 190.\n\n\n\nxlm &lt;- lm(body_mass_g ~ flipper_length_mm,\n            data = penguins)\n\n\nxlm\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)\n#&gt; \n#&gt; Coefficients:\n#&gt;       (Intercept)  flipper_length_mm  \n#&gt;          -5872.09              50.15\n\npredict_df &lt;- data.frame(flipper_length_mm = 190)\n\npredict(xlm,\n        predict_df)\n\n#&gt;        1 \n#&gt; 3657.028"
+  },
+  {
+    "objectID": "lectures/7.html#interpolation",
+    "href": "lectures/7.html#interpolation",
+    "title": "Simple Linear Regression",
+    "section": "Interpolation",
+    "text": "Interpolation\nInterpolation is the process of estimating a value within the range of the observed input data \\(X\\)."
+  },
+  {
+    "objectID": "lectures/7.html#extrapolation",
+    "href": "lectures/7.html#extrapolation",
+    "title": "Simple Linear Regression",
+    "section": "Extrapolation",
+    "text": "Extrapolation\nExtrapolation is the process of estimating a value beyond the range of observed input data \\(X\\). It’s about venturing into the unknown, using what we know as a guide."
+  },
+  {
+    "objectID": "lectures/7.html#extrapolation-1",
+    "href": "lectures/7.html#extrapolation-1",
+    "title": "Simple Linear Regression",
+    "section": "Extrapolation",
+    "text": "Extrapolation\n\n\nCode\nggplot(penguins, aes(flipper_length_mm, body_mass_g)) + \n  xlim(160, 250) +\n  ylim(2600, 7000) +\n  geom_point() +\n  stat_smooth(method = \"lm\", se = F)"
   },
   {
     "objectID": "lectures/4.html#r-packages",

@@ -234,6 +234,9 @@
 <li><div class="agenda-inactive agenda-post-active">
 <p>Strength and Correlation</p>
 </div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Prediction</p>
+</div></li>
 </ul>
 </div>
 </section>
@@ -248,11 +251,25 @@
 </section>
 <section id="explaining-variation-1" class="slide level2">
 <h2>Explaining Variation</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">geom_density</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
+</div>
 <img data-src="7_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-<section id="explaining-variation-with-one-variable" class="slide level2">
-<h2>Explaining Variation with One Variable</h2>
+<section id="variation-with-one-variable" class="slide level2">
+<h2>Variation with One Variable</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
+</div>
 <img data-src="7_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="a-simple-model" class="title-slide slide level1 agenda-slide center">
@@ -277,6 +294,9 @@
 <li><div class="agenda-inactive agenda-post-active">
 <p>Strength and Correlation</p>
 </div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Prediction</p>
+</div></li>
 </ul>
 </div>
 </section>
@@ -288,7 +308,14 @@ Y \sim DGP_1
 </section>
 <section id="a-simple-model-1" class="slide level2">
 <h2>A Simple Model</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
+</div>
 <img data-src="7_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="a-simple-model-2" class="slide level2">
 <h2>A Simple Model</h2>
@@ -364,6 +391,9 @@ Y = \beta_0 + \varepsilon
 <li><div class="agenda-inactive agenda-post-active">
 <p>Strength and Correlation</p>
 </div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Prediction</p>
+</div></li>
 </ul>
 </div>
 </section>
@@ -371,7 +401,7 @@ Y = \beta_0 + \varepsilon
 <h2>Indexing Data</h2>
 <p>The data in a data set can be indexed by a number.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>penguins[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>penguins[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; # A tibble: 1 × 6
 #&gt;   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
@@ -428,13 +458,17 @@ r_i = Y_i - \hat Y_i
 <section id="estimation-in-r" class="slide level2">
 <h2>Estimation in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+</ul>
 </section>
 <section id="modeling-body-mass-in-penguins" class="slide level2">
 <h2>Modeling Body Mass in Penguins</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
 #&gt; Call:
@@ -445,7 +479,24 @@ r_i = Y_i - \hat Y_i
 #&gt;        4207</code></pre>
 </div>
 </div>
-</section></section>
+<div class="fragment">
+<p><span class="math display">\[
+\hat Y = 4207
+\]</span></p>
+</div>
+</section>
+<section id="visualize" class="slide level2">
+<h2>Visualize</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">4207</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="linear-model" class="title-slide slide level1 agenda-slide center">
 <h1>Linear Model</h1>
@@ -469,6 +520,9 @@ r_i = Y_i - \hat Y_i
 <li><div class="agenda-inactive agenda-post-active">
 <p>Strength and Correlation</p>
 </div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Prediction</p>
+</div></li>
 </ul>
 </div>
 </section>
@@ -485,6 +539,46 @@ r_i = Y_i - \hat Y_i
 <p>Thus, the linear model is born.</p>
 </div>
 </section>
+<section id="visualization" class="slide level2">
+<h2>Visualization</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">1-Dimensional</a></li><li><a href="#tabset-1-2">2-Dimensional</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="7_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> <span class="fu">after_stat</span>(level))) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">stat_density_2d</span>(<span class="at">geom =</span> <span class="st">"polygon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="7_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="linear-model-2" class="slide level2">
 <h2>Linear Model</h2>
 <p><span class="math display">\[
@@ -499,36 +593,24 @@ Y = \beta_0 + \beta_1 X + \varepsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb6-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb6-4"><a></a>                   <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb6-5"><a></a>                   <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb6-6"><a></a>                   <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb6-7"><a></a>                   <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-8"><a></a>                   <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_point</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
 <section id="imposing-a-line" class="slide level2">
 <h2>Imposing a Line</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb7-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb7-5"><a></a>                   <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb7-6"><a></a>                   <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb7-7"><a></a>                   <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb7-8"><a></a>                   <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-9"><a></a>                   <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="modelling-the-data" class="slide level2">
 <h2>Modelling the Data</h2>
 <p><span class="math display">\[
@@ -556,14 +638,19 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <section id="fitting-a-model-in-r" class="slide level2">
 <h2>Fitting a Model in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+</ul>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <p>Y: “body_mass_g”; X: “flipper_length_mm”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
 #&gt; Call:
@@ -592,7 +679,8 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <h2>Interpreting Example</h2>
 <p><span class="math display">\[
 \hat Y_i = -5872.09 + 50.15 X_i
-\]</span> When flipper length is 0 mm, the body mass is -5872 grams.</p>
+\]</span></p>
+<p>When flipper length is 0 mm, the body mass is -5872 grams.</p>
 </section>
 <section id="interpretation-of-hat-beta_1" class="slide level2">
 <h2>Interpretation of <span class="math inline">\(\hat \beta_1\)</span></h2>
@@ -631,6 +719,9 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <li><div class="agenda-inactive agenda-post-active">
 <p>Strength and Correlation</p>
 </div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Prediction</p>
+</div></li>
 </ul>
 </div>
 </section>
@@ -639,37 +730,23 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb11-5"><a></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb11-6"><a></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb11-7"><a></a>          <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb11-8"><a></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb11-9"><a></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="body-mass-with-species-1" class="slide level2">
 <h2>Body Mass with Species</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb12-3"><a></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>),</span>
-<span id="cb12-5"><a></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>),</span>
-<span id="cb12-6"><a></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">48</span>),</span>
-<span id="cb12-7"><a></a>          <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb12-8"><a></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-9"><a></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="group-statistics" class="slide level2">
 <h2>Group Statistics</h2>
 <p>We can use statistics to explain a continuous variable by the categories.</p>
@@ -678,14 +755,14 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">num_by_cat_stats</span>(DATA, NUM, CAT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">num_by_cat_stats</span>(DATA, NUM, CAT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="compute-group-statistics" class="slide level2">
 <h2>Compute Group Statistics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">num_by_cat_stats</span>(penguins, body_mass_g, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">num_by_cat_stats</span>(penguins, body_mass_g, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;   Categories  min    q25     mean median  q75  max      sd      var   iqr
 #&gt; 1     Adelie 2850 3362.5 3706.164   3700 4000 4775 458.620 210332.4 637.5
@@ -698,8 +775,8 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 </div>
 </div>
 </section>
-<section id="linear-models-with-categorical-variables" class="slide level2">
-<h2>Linear Models with Categorical Variables</h2>
+<section id="lm-with-categorical-variables" class="slide level2">
+<h2>LM with Categorical Variables</h2>
 <p>A line is normally used to model 2 continuous variables.</p>
 <div class="fragment">
 <p>However, the predictor variable <span class="math inline">\(X\)</span> can be restricted to a set a variables that can symbolize categories.</p>
@@ -807,13 +884,29 @@ D_i = \left\{
 <section id="fitting-a-model-in-r-1" class="slide level2">
 <h2>Fitting a Model in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code>, must be a factor variable</li>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+</ul>
+</section>
+<section id="x-not-a-factor" class="slide level2">
+<h2>X not a Factor</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">factor</span>(X), <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code>, not a factor variable</li>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+</ul>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; 
 #&gt; Call:
@@ -877,6 +970,9 @@ D_i = \left\{
 <li><div class="agenda-active">
 <p>Strength and Correlation</p>
 </div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Prediction</p>
+</div></li>
 </ul>
 </div>
 </section>
@@ -922,13 +1018,18 @@ R^2 = r^2
 <section id="correlation-in-r" class="slide level2">
 <h2>Correlation in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">cor</span>(DATA<span class="sc">$</span>Y, DATA<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">cor</span>(DATA<span class="sc">$</span>Y, DATA<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+</ul>
 </section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">cor</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">cor</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 0.8729789</code></pre>
 </div>
@@ -937,17 +1038,184 @@ R^2 = r^2
 <section id="coefficient-of-determination-in-r" class="slide level2">
 <h2>Coefficient of Determination in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
-<span id="cb22-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
+<span id="cb29-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+</ul>
 </section>
 <section id="example-4" class="slide level2">
 <h2>Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span>
-<span id="cb23-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span>
+<span id="cb30-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 0.6744887</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="prediction" class="title-slide slide level1 agenda-slide center">
+<h1>Prediction</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Modeling Relationships</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>A Simple Model</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Modelling Data</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Linear Model</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Categorical Variables</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Strength and Correlation</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Prediction</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="statistical-model" class="slide level2">
+<h2>Statistical Model</h2>
+<p><span class="math display">\[
+\hat Y = \hat \beta_0 + \hat \beta_1 X
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X\)</span>: Input</li>
+<li><span class="math inline">\(\hat Y\)</span>: Output</li>
+</ul>
+</section>
+<section id="prediction-1" class="slide level2">
+<h2>Prediction</h2>
+<p>Using the equation <span class="math inline">\(\hat Y\)</span>, we can give it a value of <span class="math inline">\(X\)</span> and then, in return, a value of <span class="math inline">\(\hat Y\)</span> that predicts the true value <span class="math inline">\(Y\)</span>.</p>
+</section>
+<section id="prediction-in-r" class="slide level2">
+<h2>Prediction in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X,</span>
+<span id="cb32-2"><a></a>            <span class="at">data =</span> DATA)</span>
+<span id="cb32-3"><a></a></span>
+<span id="cb32-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> VAL)</span>
+<span id="cb32-5"><a></a></span>
+<span id="cb32-6"><a></a><span class="fu">predict</span>(xlm,</span>
+<span id="cb32-7"><a></a>        predict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
+<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data frame</li>
+<li><code>VAL</code>: Value for the Predictor Variable</li>
+</ul>
+</section>
+<section id="example-1-1" class="slide level2">
+<h2>Example 1</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Example</a></li><li><a href="#tabset-2-2">Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<p>Predict the body mass for a gentoo penguin.</p>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species,</span>
+<span id="cb33-2"><a></a>            <span class="at">data =</span> penguins)</span>
+<span id="cb33-3"><a></a></span>
+<span id="cb33-4"><a></a>xlm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ species, data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;      (Intercept)  speciesChinstrap     speciesGentoo  
+#&gt;          3706.16             26.92           1386.27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">species =</span> <span class="st">"Gentoo"</span>)</span>
+<span id="cb35-2"><a></a></span>
+<span id="cb35-3"><a></a><span class="fu">predict</span>(xlm,</span>
+<span id="cb35-4"><a></a>        predict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;        1 
+#&gt; 5092.437</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-1" class="slide level2">
+<h2>Example 2</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Example</a></li><li><a href="#tabset-3-2">Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p>Predict the body mass for a penguin with a flipper length of 190.</p>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm,</span>
+<span id="cb37-2"><a></a>            <span class="at">data =</span> penguins)</span>
+<span id="cb37-3"><a></a></span>
+<span id="cb37-4"><a></a></span>
+<span id="cb37-5"><a></a>xlm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;       (Intercept)  flipper_length_mm  
+#&gt;          -5872.09              50.15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">190</span>)</span>
+<span id="cb39-2"><a></a></span>
+<span id="cb39-3"><a></a><span class="fu">predict</span>(xlm,</span>
+<span id="cb39-4"><a></a>        predict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;        1 
+#&gt; 3657.028</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpolation" class="slide level2">
+<h2>Interpolation</h2>
+<p>Interpolation is the process of estimating a value within the range of the observed input data <span class="math inline">\(X\)</span>.</p>
+</section>
+<section id="extrapolation" class="slide level2">
+<h2>Extrapolation</h2>
+<p>Extrapolation is the process of estimating a value beyond the range of observed input data <span class="math inline">\(X\)</span>. It’s about venturing into the unknown, using what we know as a guide.</p>
+</section>
+<section id="extrapolation-1" class="slide level2">
+<h2>Extrapolation</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb41-2"><a></a>  <span class="fu">xlim</span>(<span class="dv">160</span>, <span class="dv">250</span>) <span class="sc">+</span></span>
+<span id="cb41-3"><a></a>  <span class="fu">ylim</span>(<span class="dv">2600</span>, <span class="dv">7000</span>) <span class="sc">+</span></span>
+<span id="cb41-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb41-5"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="7_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 

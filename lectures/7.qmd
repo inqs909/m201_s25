@@ -41,13 +41,13 @@ library(csucistats)
 library(ThemePark)
 library(palmerpenguins)
 penguins <- penguins |> drop_na()
-theme_set(theme_bw())
-theme_update(theme(axis.text.x = element_text(size = 24),
-                   axis.title.x = element_text(size = 30),
-                   plot.title = element_text(size = 48),
-                   strip.text = element_text(size = 20),
-                   legend.title = element_blank(),
-                   legend.text = element_text(size = 24)))
+theme_set(theme_bw() + 
+          theme(axis.text = element_text(size = 24),
+                axis.title = element_text(size = 30),
+                plot.title = element_text(size = 48),
+                strip.text = element_text(size = 20),
+                legend.title = element_blank(),
+                legend.text = element_text(size = 24)))
 ```
 
 
@@ -66,32 +66,18 @@ Can be thought of as getting it less wrong when taking an educated guess.
 ## Explaining Variation
 
 ```{r}
-#| echo: false
-penguins |> 
-  ggplot(aes(body_mass_g)) +
-    geom_density() +
-    theme(axis.text.x = element_text(size = 24),
-                   axis.title.x = element_text(size = 30),
-                   plot.title = element_text(size = 48),
-                   strip.text = element_text(size = 20),
-                   legend.title = element_blank(),
-                   legend.text = element_text(size = 24))
+#| code-fold: true
+ggplot(penguins, aes(body_mass_g)) +
+  geom_density() 
 
 ```
 
-## Explaining Variation with One Variable
+## Variation with One Variable
 
 ```{r}
-#| echo: false
-penguins |> 
-  ggplot(aes(body_mass_g, fill = species)) +
-    geom_density(alpha = .5) +
-    theme(axis.text.x = element_text(size = 24),
-          axis.title.x = element_text(size = 30),
-          plot.title = element_text(size = 48),
-          strip.text = element_text(size = 20),
-          legend.title = element_blank(),
-          legend.text = element_text(size = 24))
+#| code-fold: true
+ggplot(penguins, aes(body_mass_g, fill = species)) +
+  geom_density(alpha = .5)
 ```
 
 
@@ -106,15 +92,9 @@ $$
 ## A Simple Model
 
 ```{r}
-#| echo: false
-penguins |> ggplot(aes(body_mass_g)) +
-  geom_histogram() +
-  theme(axis.text.x = element_text(size = 24),
-                   axis.title.x = element_text(size = 30),
-                   plot.title = element_text(size = 48),
-                   strip.text = element_text(size = 20),
-                   legend.title = element_blank(),
-                   legend.text = element_text(size = 24))
+#| code-fold: true
+ggplot(penguins, aes(body_mass_g)) +
+  geom_density()
 ```
 
 ## A Simple Model
@@ -191,6 +171,7 @@ Making the variable "body_mass_g" be represented by $Y$ and "flipper_length_mm" 
 $$
 Y_1 = 3750 \ \ X_1=181
 $$
+
 :::
 
 ## Indexing Data
@@ -209,6 +190,7 @@ Using a simple model:
 $$
 Y_i = \beta_0 + \varepsilon_i
 $$
+
 :::
 
 ## Estimated Value
@@ -230,7 +212,6 @@ This is known as the sum squared errors, SSE
 :::
 
 
-
 ## Residuals
 
 The residuals are known as the observed errors from the data in the model:
@@ -249,10 +230,31 @@ lm(Y ~ 1, data = DATA)
 ```
 
 
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+
 ## Modeling Body Mass in Penguins
 
 ```{r}
 lm(body_mass_g ~ 1, data = penguins)
+```
+
+::: fragment
+
+$$
+\hat Y = 4207
+$$
+
+:::
+
+
+## Visualize
+
+```{r}
+#| code-fold: true
+ggplot(penguins, aes(body_mass_g)) +
+  geom_density() +
+  geom_vline(xintercept = 4207)
 ```
 
 
@@ -274,6 +276,28 @@ By utilizing a bit more of information, $X$, we can increase the predicting capa
 Thus, the linear model is born.
 :::
 
+## Visualization
+
+::: panel-tabset
+
+### 1-Dimensional
+
+```{r}
+#| code-fold: true
+ggplot(penguins, aes(body_mass_g)) +
+  geom_density()
+```
+
+### 2-Dimensional
+
+```{r}
+#| code-fold: true
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, fill = after_stat(level))) +
+  stat_density_2d(geom = "polygon")
+```
+
+:::
+
 ## Linear Model
 
 $$
@@ -291,13 +315,7 @@ $$
 #| eval: true
 
 ggplot(penguins, aes(flipper_length_mm, body_mass_g)) + 
-  geom_point() +
-  theme(axis.text.x = element_text(size = 24),
-                   axis.title.x = element_text(size = 30),
-                   plot.title = element_text(size = 48),
-                   strip.text = element_text(size = 20),
-                   legend.title = element_blank(),
-                   legend.text = element_text(size = 24))
+  geom_point() 
 ```
 
 ## Imposing a Line
@@ -308,13 +326,7 @@ ggplot(penguins, aes(flipper_length_mm, body_mass_g)) +
 
 ggplot(penguins, aes(flipper_length_mm, body_mass_g)) + 
   geom_point() +
-  stat_smooth(method = "lm", se = F) +
-  theme(axis.text.x = element_text(size = 24),
-                   axis.title.x = element_text(size = 30),
-                   plot.title = element_text(size = 48),
-                   strip.text = element_text(size = 20),
-                   legend.title = element_blank(),
-                   legend.text = element_text(size = 24))
+  stat_smooth(method = "lm", se = F) 
 ```
 
 ## Modelling the Data
@@ -353,6 +365,10 @@ $$
 lm(Y ~ X, data = DATA)
 ```
 
+- `X`: Name Predictor Variable of Interest in data frame `DATA`
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+
 ## Example
 
 
@@ -385,6 +401,7 @@ Other times it cannot.
 $$
 \hat Y_i = -5872.09 + 50.15 X_i
 $$
+
 When flipper length is 0 mm, the body mass is -5872 grams.
 
 ## Interpretation of $\hat \beta_1$
@@ -410,30 +427,16 @@ When flipper length increases by 1 mm, the body mass will increase by 50.15 gram
 
 ```{r}
 #| code-fold: true
-penguins |> 
-  ggplot(aes(body_mass_g)) +
-    geom_boxplot() +
-    theme(axis.text.x = element_text(size = 24),
-          axis.title.x = element_text(size = 30),
-          plot.title = element_text(size = 48),
-          strip.text = element_text(size = 20),
-          legend.title = element_blank(),
-          legend.text = element_text(size = 24))
+ggplot(penguins, aes(body_mass_g)) +
+  geom_boxplot() 
 ```
 
 ## Body Mass with Species
 
 ```{r}
 #| code-fold: true
-penguins |> 
-  ggplot(aes(body_mass_g, fill = species)) +
-    geom_boxplot() +
-    theme(axis.text.x = element_text(size = 24),
-          axis.title.x = element_text(size = 30),
-          plot.title = element_text(size = 48),
-          strip.text = element_text(size = 20),
-          legend.title = element_blank(),
-          legend.text = element_text(size = 24))
+ggplot(penguins, aes(body_mass_g, fill = species)) +
+  geom_boxplot() 
 ```
 
 ## Group Statistics
@@ -460,7 +463,7 @@ num_by_cat_stats(penguins, body_mass_g, species)
 ```
 
 
-## Linear Models with Categorical Variables
+## LM with Categorical Variables
 
 A line is normally used to model 2 continuous variables.
 
@@ -533,6 +536,23 @@ $\hat \beta_0$ represents the baseline level, in this case the body mass of Adel
 
 lm(Y ~ X, data = DATA)
 ```
+
+- `X`: Name Predictor Variable of Interest in data frame `DATA`, must be a factor variable
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+
+## X not a Factor
+
+```{r}
+#| eval: false
+
+lm(Y ~ factor(X), data = DATA)
+```
+
+- `X`: Name Predictor Variable of Interest in data frame `DATA`, not a factor variable
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+
 
 ## Example
 
@@ -624,6 +644,10 @@ The coefficient of determination measures the total variation explained by the l
 cor(DATA$Y, DATA$X)
 ```
 
+- `X`: Name Predictor Variable of Interest in data frame `DATA`
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+
 ## Example
 
 ```{r}
@@ -638,6 +662,10 @@ xlm <- lm(Y ~ X, data = DATA)
 r2(xlm)
 ```
 
+- `X`: Name Predictor Variable of Interest in data frame `DATA`
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+
 
 ## Example
 
@@ -645,3 +673,112 @@ r2(xlm)
 xlm <- lm(body_mass_g ~ species, penguins)
 r2(xlm)
 ```
+
+# Prediction
+
+## Statistical Model
+
+$$
+\hat Y = \hat \beta_0 + \hat \beta_1 X
+$$
+
+- $X$: Input
+- $\hat Y$: Output
+
+## Prediction
+
+Using the equation $\hat Y$, we can give it a value of $X$ and then, in return, a value of $\hat Y$ that predicts the true value $Y$.
+
+## Prediction in R
+
+```{r}
+#| echo: true
+#| eval: false
+
+xlm <- lm(Y ~ X,
+            data = DATA)
+
+predict_df <- data.frame(X = VAL)
+
+predict(xlm,
+        predict_df)
+```
+- `X`: Name Predictor Variable of Interest in data frame `DATA`
+- `Y`: Name Outcome Variable of Interest in data frame `DATA`
+- `DATA`: Name of the data frame
+- `VAL`: Value for the Predictor Variable
+
+
+## Example 1
+
+::: panel-tabset
+
+### Example
+
+Predict the body mass for a gentoo penguin.
+
+### Code
+
+```{r}
+xlm <- lm(body_mass_g ~ species,
+            data = penguins)
+
+xlm
+
+predict_df <- data.frame(species = "Gentoo")
+
+predict(xlm,
+        predict_df)
+```
+
+:::
+
+## Example 2
+
+
+::: panel-tabset
+
+### Example
+
+Predict the body mass for a penguin with a flipper length of 190.
+
+### Code
+
+```{r}
+xlm <- lm(body_mass_g ~ flipper_length_mm,
+            data = penguins)
+
+
+xlm
+
+predict_df <- data.frame(flipper_length_mm = 190)
+
+predict(xlm,
+        predict_df)
+```
+
+:::
+
+## Interpolation
+
+Interpolation is the process of estimating a value within the range of the observed input data $X$. 
+
+## Extrapolation
+
+Extrapolation is the process of estimating a value beyond the range of observed input data $X$. It's about venturing into the unknown, using what we know as a guide.
+
+## Extrapolation
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+ggplot(penguins, aes(flipper_length_mm, body_mass_g)) + 
+  xlim(160, 250) +
+  ylim(2600, 7000) +
+  geom_point() +
+  stat_smooth(method = "lm", se = F) 
+```
+
+
+
