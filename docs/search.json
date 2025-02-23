@@ -270,7 +270,7 @@
     "href": "lectures/7.html#the-simple-generated-model",
     "title": "Simple Linear Regression",
     "section": "The Simple Generated Model",
-    "text": "The Simple Generated Model\n\\[\nY \\sim \\mu + \\varepsilon\n\\]\n\\[\n\\varepsilon \\sim DGP_2\n\\]\n\n\\(DGP_2\\) is not the same as the \\(DGP_1\\), it is transformed due \\(\\beta_0\\). Consider this the NULL \\(DGP\\)."
+    "text": "The Simple Generated Model\n\\[\nY \\sim \\beta_0 + \\varepsilon\n\\]\n\\[\n\\varepsilon \\sim DGP_2\n\\]\n\n\\(DGP_2\\) is not the same as the \\(DGP_1\\), it is transformed due \\(\\beta_0\\). Consider this the NULL \\(DGP\\)."
   },
   {
     "objectID": "lectures/7.html#observing-data",

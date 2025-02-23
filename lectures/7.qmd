@@ -112,7 +112,7 @@ $$
 ## The Simple Generated Model
 
 $$
-Y \sim \mu + \varepsilon
+Y \sim \beta_0 + \varepsilon
 $$
 
 $$
