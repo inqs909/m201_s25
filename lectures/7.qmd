@@ -453,6 +453,12 @@ Compute statistics for each group.
 #| eval: false
 num_by_cat_stats(DATA, NUM, CAT)
 ```
+
+- `NUM`: Name of the numerical variable
+- `CAT`: Name of the categorical variable
+- `DATA`: Name of the data frame
+
+
 :::
 
 

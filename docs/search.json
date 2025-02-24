@@ -473,7 +473,7 @@
     "href": "lectures/7.html#group-statistics",
     "title": "Simple Linear Regression",
     "section": "Group Statistics",
-    "text": "Group Statistics\nWe can use statistics to explain a continuous variable by the categories.\n\nCompute statistics for each group.\n\n\n\nnum_by_cat_stats(DATA, NUM, CAT)"
+    "text": "Group Statistics\nWe can use statistics to explain a continuous variable by the categories.\n\nCompute statistics for each group.\n\n\n\nnum_by_cat_stats(DATA, NUM, CAT)\n\n\nNUM: Name of the numerical variable\nCAT: Name of the categorical variable\nDATA: Name of the data frame"
   },
   {
     "objectID": "lectures/7.html#compute-group-statistics",
