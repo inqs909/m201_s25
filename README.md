@@ -28,13 +28,13 @@ Use the following code to install visualization packages:
 
 ```r
 csucistats::install_plots()
-
+csucistats::install_themes()
 ```
 
 
 ### Other Packages
 
-The course materials lightly uses [tidyverse](https://www.tidyverse.org/) packages for a few data manipulation techniques. Other packages used are [coursekata](https://github.com/coursekata/coursekata-r), [openintro](https://github.com/OpenIntroStat/openintro), [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/), [DT](https://rstudio.github.io/DT/), [taylor](https://taylor.wjakethompson.com/), and [patchwork](https://patchwork.data-imaginist.com/articles/patchwork.html).
+The course materials lightly uses [tidyverse](https://www.tidyverse.org/) packages for a few data manipulation techniques. Other packages used are [coursekata](https://github.com/coursekata/coursekata-r), [openintro](https://github.com/OpenIntroStat/openintro), [dsbox](https://github.com/tidyverse/dsbox), [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/), [DT](https://rstudio.github.io/DT/), [taylor](https://taylor.wjakethompson.com/), and [patchwork](https://patchwork.data-imaginist.com/articles/patchwork.html).
 
 ## Navigation
 
