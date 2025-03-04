@@ -1,11 +1,9 @@
 ---
-title: "Multivariable Linear Regression"
-date: 3/4/25
-description: |
-  Continues the discussion with multi linear regression.
-
+title: "Logistic Regression"
+date: 3/11/25
 format:
   revealjs:
+    width: 1200
     scrollable: true
     theme: [default, styles.scss]
     navigation-mode: vertical
@@ -42,8 +40,8 @@ editor: source
 
 library(tidyverse)
 library(csucistats)
-library(ThemePark)
-library(taylor)
+library(MASS)
+Melanoma$dead <- ifelse(Melanoma$status == 1, 1, 0)
 
 theme_set(theme_bw() + 
             theme(
@@ -56,275 +54,279 @@ theme_set(theme_bw() +
 
 ```
 
+# Motivation
 
-# Modeling Outcomes
+## Melanoma
 
-## Explaining Variation
+Melanoma is a type of skin cancer that causes the cells that produce melanin to grow out of control. What makes Melanoma so dangerous is that it can metastasize to other parts of the body.
 
-::: fragment
-This is the process where we try to reduce the variation with the use of other variables.
-:::
+## Outcome of Interest
 
-::: fragment
-Can be thought of as getting it less wrong when taking an educated guess.
-:::
+We are interested in learning how do different factors affect and individual's chances of survival. Therefore, we are measuring patients and if they lived or died during a study period.
 
-## Taylor Swift's Songs Danceability
+## Data 
 
-```{r}
-ggplot(taylor_album_songs, aes(danceability)) +
-  geom_density()
-```
+We will be using the `Melanoma` data set with the following variables: `dead` (died by Melanoma, 1=yes, 0= no),  `sex` (1 = male, 0 = female), `age` (in years), `thickness` (tumour thickness in mm), ulcer (1 = presence, 0 absent).
 
-## Danceability by `mode_name`
+## Plot
 
 ```{r}
-taylor_album_songs |> 
-  drop_na(mode_name) |> 
-  ggplot(aes(danceability)) +
-  geom_density() +
-  facet_wrap(~ mode_name)
+Melanoma |> 
+  ggplot(aes(thickness, dead)) +
+  geom_point()
 ```
 
-## Danceability by Valence
+# Modeling Binary Outcomes
 
-```{r}
-ggplot(taylor_album_songs, aes(valence, danceability)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-```
+## Construct Model
 
-## Danceability by Energy
+$$
+\left(\begin{array}{c}
+Dead \\
+Alive
+\end{array}\right) = \beta_0 + \beta_1X
+$$
 
-```{r}
-ggplot(taylor_album_songs, aes(energy, danceability)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-```
+## Let ...
 
-## Modelling Danceability
+$$
+Y = \left\{\begin{array}{cc}
+1 & Dead \\
+0 & Alive
+\end{array}\right.
+$$
 
-How do we use all the variables to explain danceability?
+## Construct a Model
 
-# Multivariable Linear Regression
+$$
+P\left(Y = 1\right) = \beta_0 + \beta_1X
+$$
 
-## MLR
+## Construct a Model
 
-Multivariable Linear Regression (MLR) is used to model an outcome variable ($Y$) by multiple predictor variables ($X_1, X_2, \ldots, X_p$).
+$$
+P\left(Y = 1\right) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}
+$$
 
+## Construct a Model
+
+$$
+\frac{P(Y = 1)}{P(Y = 0)} = e^{\beta_0 + \beta_1X}
+$$
+
+where $\frac{P(Y = 1)}{P(Y = 0)}$ are considered the odds of observing $Y = 1$.
+
+## The Logistic Model
+
+$$
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
+$$
+
+
+# Logistic Regression
+
+## Logistic Regression
+
+Logistic Regression is used to model the association between a set of predictors and a **binary** outcome variable.
 
 ::: fragment
-Using MLR, you propose that the ouctome variable was constructed from a set of predictors, with their corresponding regression coefficients ($\beta$), and a bit of error
+This is similar Linear Regression which models the association between a set of predictors and a **numerical** outcome variable.
+:::
+
+## Logistic Regression
+
+Logistic Regression uses the logistic model to formulate the relationship between the predictors and the outcome.
+
+::: fragment
+
+More specifically, for an outcome of Y:
+
+$$
+Y = \left\{\begin{array}{cc}
+1 & \text{Category 1} \\
+0 & \text{Category 2}
+\end{array}\right.
+$$
+
+The Predictors variable will model the probability of observing category 1 ($P(Y=1)$)
+
 :::
 
 
-::: fragment
-$$
-Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon
-$$
+## Logistic Model
 
 $$
-\varepsilon \sim DGP
-$$
-:::
-
-## Model Data
-
-$$
-Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon
+\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
 $$
 
-$$
-\varepsilon \sim DGP
-$$
+## Regression Coefficients $\beta$
 
-::: fragment
+The regression coefficients quantify how a specific predictor changes the odds of observing the first category of the outcome ($Y = 1$)
 
-$$
-Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \varepsilon_i
-$$
+## Estimating $\beta$
+
+To obtain the numerical value for $\beta$, denoted as $\hat \beta$, we will be finding the values of $\hat \beta$ that maximizes the likelihood function:
 
 $$
-\varepsilon_i \sim DGP
+L(\boldsymbol \beta) = \prod_{i=1}^n \left(\frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}\right)^{Y_i}\left(\frac{1}{1 + e^{\beta_0 + \beta_1X}}\right)^{1-Y_i}
 $$
 
-:::
+The likelihood function can be thought as the probability of observing the entire data set. Therefore, we want to choose the values the $\beta_0$ and $\beta_1$ that will result in the highest probability of observing the data.
 
-## Unknown Parameters
 
-$$
-Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \varepsilon_i
-$$
+## Estimated Parameters
+
+The values you obtain ($\hat \beta$) tell you the relationship between the a predictor variable and the log odds of observing the first category of the outcome $Y=1$.
 
 ::: fragment
-$$
-\beta_0, \beta_1, \beta_2, \beta_3, \ldots, \beta_p
-$$
+Exponentiating the estimate ($e^{\hat \beta}$) will give you the relationship between a predictor variable and the odds of observing the first category of the outcome $Y=1$.
 :::
 
-## Estimated Model
+## Interpreting $\hat \beta$
 
-$$
-Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \varepsilon_i
-$$
+For a continuous predictor variable:
 
-$$
-\hat Y_i = \hat\beta_0 + \hat\beta_1 X_{i1} + \hat\beta_2 X_{i2} + \cdots + \hat\beta_p X_{ip} 
-$$
+As X increases by 1 unit, the odds of observing the first category ($Y = 1$) increases by a factor of $e^{\hat\beta}$.
 
-## Estimating Prameters
+For a categorical predictor variable (first dummy variable):
 
-$\beta_0, \beta_1, \beta_2, \beta_3, \ldots, \beta_p$ are estimated by minimizing the following function:
+The odds of observing the first category ($Y = 1$) in the indicated category ($D=1$) is $e^{\hat\beta}$ times higher/lower compared to the reference category ($D=0$).
 
 
-$$
-\sum^n_{i=1} (Y_i-\hat Y_i)^2
-$$
-
-
-## Fitting a Model in R
+## Logistic Regression in R
 
 ```{r}
 #| echo: true
 #| eval: false
 
-lm(Y ~ X1 + X2 + ... + Xp, data = DATA)
-```
-
-
-## Modelling Danceability
-
-```{r}
-#| code-fold: show
-lm(danceability ~ mode_name + valence + energy, 
-   data = taylor_album_songs)
-```
-
-## Estimated Model
-
-$$
-dance = 0.54 + 0.07\times Minor + 0.18 \times valence - 0.06 \times energy 
-$$
-
-## $\hat \beta_i$ Representation
-
-Each regression coefficient $\beta_i$ represents how the predictor variable changes the outcome, as it increase by 1 unit.
-
-::: fragment
-For categorical dummy variables, the $\beta_i$ represents how the outcome will change when the data point belongs to that value.
-:::
-
-
-## $\hat \beta_i$ Interpretation
-
-For $hat \beta_i$, which is the regression coefficient (slope) of $X_i$:
-
-As $X_i$ increases by 1 unit, the outcome ($Y$) will increase/decrease by $\hat \beta_i$ units, adjusting for all other predictor variables.
-
-::: fragment
-For categorical dummy variables $X_i$:
-
-The outcome $Y_i$ increases/decreases by $\beta_i$ units for category $X_i$ compared to the reference category, adjusting for all other predictor variables.
-
-:::
-
-
-## Intepreting Minor coefficient
-
-$$
-dance = 0.54 + 0.07 Minor + 0.18 valence - 0.06 energy 
-$$
-Minor song's average danceability score is 0.07 units higher compared to Major song's, adjusting for valence and energy.
-
-## Intepreting valence coefficient
-
-$$
-dance = 0.54 + 0.07Minor + 0.18  valence - 0.06 energy 
-$$
-
-As valence increases by 1 unit, danceability increases by an average of 0.18 units, adjusting for energy and type of song.
-
-
-## Intepreting energy coefficient
-
-$$
-dance = 0.54 + 0.07 Minor + 0.18 valence - 0.06 energy 
-$$
-
-As energy increases by 1 unit, danceability decreases by an average of 0.06 units, adjusting for valence and type of song.
-
-
-# Adjusted $R^2$
-
-## $R^2$
-
-Computing $R^2$ is done by determining how much the variation in the outcome is explained by model and divided by the variation of the outcome.
-
-$$
-R^2 = \frac{\text{variation explained by model}}{\text{variation from outcome}} \\
-= 1-\frac{\text{variation of residuals}}{\text{variation from outcome}}
-$$
-
-## $R^2$
-
-Problems arise when multiple predictors are added to the model. As a new predictor is added to the model, new information is added to the model which will always reduce the variation in the residuals. Therefore, the $R^2$ will always increase.
-
-## Problems with $R^2$ in MLR
-
-When the number of variables increase, the regular $R²$ will be biased in its prediction capability when new data is obtained.
-
-::: fragment
-Therefore, statisticians uses the adjusted $R^2$, that penalizes the model when more variables are added. This ensures that a variable added will have a significant effect in predicting outcomes.
-:::
-
-## Adjusted $R^2$
-
-$$
-R_a^2 = 1-\frac{\text{variation of residuals}}{\text{variation from outcome}}\times \frac{n-1}{n-k-1}
-$$
-
-- $n$: Number of data points
-- $k$: Number of predictor variables in the model
-
-## Adjusted $R^2$ in R
-
-```{r}
-#| eval: false
-#| echo: true
-
-xlm <- lm(Y ~ X1 + X2 + ... + Xp, data = DATA)
-ar2(xlm)
+glm(Y ~ X1 + X2 + ... + Xp,
+    data = DATA,
+    family = binomial())
 ```
 
 
 ## Example
 
+Modelling `dead` by `sex`, `age`, `thickness`, and `ulcer`: 
+
 ```{r}
-xlm <- lm(danceability ~ mode_name + valence + energy, 
-   data = taylor_album_songs)
-ar2(xlm)
+glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
 ```
 
-8.1% of the variation in danceability is explained by the model.
+$$
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+$$
 
-# Model Selection
 
-## Model Selection
+## Interpretation
 
-Model Selection is the process of obtaining a "final" model containing all the necessary predictors, and eliminating any that are not necessary.
+$$
+\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+$$
 
-## Forward Selection
+::: fragment
+The odds of experiencing death in males is 1.5 times larger than the odds for females, adjusting for age, tumor thickness and the presence of an ulcer.
+:::
 
-Begin with the null model ($Y\sim 1$) and add variables until a final model is chosen.
+::: fragment
+As age increases by 1 year, the odds of experiencing death increases by a factor of 1.004, adjusting for sex, tumor thickness and presence of an ulcer.
+:::
 
-## Backward Selection
+# Prediction with Models
 
-Begin with the full model, and remove variable until the final model is chosen.
+## Working with probabilities
 
-## Hybrid Selection
+As you can see, working with odds may be unintuitive for the average person. It will be better to predict the probability and display those results to individuals.
 
-A hybrid approach between the forward and backward building approach.
+## Predicting Probability
 
-## About Model Selection
 
-Generally, it is not a good idea to conduct model selection. The predictor variables in your model should be guided by a literature review that illustrates important predictor variables in a model.
+$$
+\hat P\left(Y = 1\right) = \frac{e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}{1 + e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}
+$$
+
+## Prediction in R
+
+```{r}
+#| echo: true
+#| eval: false
+xglm <- glm(Y ~ X1 + X2 + ... + Xp,
+            data = DATA,
+            family = binomial())
+predict_df <- data.frame(X1 = VAL,  X2 = VAL, ..., Xp = VAL)
+predict(xglm,
+        predict_df,
+        type = "response")
+```
+
+
+## Example 1
+
+Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **with** ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
+```
+
+
+## Example 1
+
+Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **without** ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 0)
+predict(xglm, predict_df, type = "response")
+```
+
+
+## Example 1
+
+| | Ulcer Present | Ulcer not Present |
+|:-|:-|:-|
+| Probabiltiy | 48.7% | 20.3% |
+
+For a patient who is 75 years old, male, and a tumor thickness of 2.9, when an ulcer is present, the probability a patient dies increases to 48% compared to a patient who does not have an ulcer with a probability of 20%.
+
+
+## Example 2
+
+Predict the probability of observing death for a patient who is female, **75** years old, an tumor thickness of 2.9, and with ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 0, age = 75, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
+```
+
+
+## Example 2
+
+Predict the probability of observing death for a patient who is female, **55** years old, an tumor thickness of 2.9, and with ulcer presence. 
+
+```{r}
+xglm <- glm(dead ~ sex + age + thickness + ulcer,
+    data = Melanoma,
+    family = binomial())
+predict_df <- data.frame(sex = 0, age = 55, thickness = 2.9, ulcer = 1)
+predict(xglm, predict_df, type = "response")
+```
+
+## Example 2
+
+| | 55 | 75 |
+|:-|:-|:-|
+| Probabiltiy | 36.8% | 38.7% |
+
+For a patient who is female, a tumor thickness of 2.9, and has an ulcer, the probability a 75 year old patient dies increases to 38.7% compared to a 55 year old patient with a probability of 36.8%.
+

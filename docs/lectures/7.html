@@ -16,8 +16,8 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <meta name="dcterms.date" content="2025-02-25">
-  <title>MATH 201 – Simple Linear Regression</title>
+  <meta name="dcterms.date" content="2025-03-04">
+  <title>MATH 201 – Multivariable Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -204,38 +204,29 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Simple Linear Regression</h1>
+  <h1 class="title">Multivariable Linear Regression</h1>
 
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2025-02-25</p>
+  <p class="date">2025-03-04</p>
 </section>
 <section>
-<section id="modeling-relationships" class="title-slide slide level1 agenda-slide center">
-<h1>Modeling Relationships</h1>
+<section id="modeling-outcomes" class="title-slide slide level1 agenda-slide center">
+<h1>Modeling Outcomes</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-active">
-<p>Modeling Relationships</p>
+<p>Modeling Outcomes</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>A Simple Model</p>
+<p>Multivariable Linear Regression</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Modelling Data</p>
+<p>Adjusted <span class="math inline">\(R^2\)</span></p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Prediction</p>
+<p>Model Selection</p>
 </div></li>
 </ul>
 </div>
@@ -249,980 +240,321 @@
 <p>Can be thought of as getting it less wrong when taking an educated guess.</p>
 </div>
 </section>
-<section id="explaining-variation-1" class="slide level2">
-<h2>Explaining Variation</h2>
+<section id="taylor-swifts-songs-danceability" class="slide level2">
+<h2>Taylor Swift’s Songs Danceability</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_density</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(taylor_album_songs, <span class="fu">aes</span>(danceability)) <span class="sc">+</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
 <img data-src="7_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-<section id="variation-with-one-variable" class="slide level2">
-<h2>Variation with One Variable</h2>
+<section id="danceability-by-mode_name" class="slide level2">
+<h2>Danceability by <code>mode_name</code></h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>taylor_album_songs <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a></a>  <span class="fu">drop_na</span>(mode_name) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(danceability)) <span class="sc">+</span></span>
+<span id="cb2-4"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> mode_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="a-simple-model" class="title-slide slide level1 agenda-slide center">
-<h1>A Simple Model</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Prediction</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="generated-model" class="slide level2">
-<h2>Generated Model</h2>
-<p><span class="math display">\[
-Y \sim DGP_1
-\]</span></p>
-</section>
-<section id="a-simple-model-1" class="slide level2">
-<h2>A Simple Model</h2>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="danceability-by-valence" class="slide level2">
+<h2>Danceability by Valence</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(taylor_album_songs, <span class="fu">aes</span>(valence, danceability)) <span class="sc">+</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
 <img data-src="7_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="a-simple-model-2" class="slide level2">
-<h2>A Simple Model</h2>
-<p><span class="math display">\[
-Y = \_\_\_ + error
-\]</span></p>
-</section>
-<section id="notation" class="slide level2">
-<h2>Notation</h2>
-<p><span class="math display">\[
-Y = \ \ \ \ \ \ \ \ \ + \varepsilon
-\]</span></p>
-</section>
-<section id="the-simple-generated-model" class="slide level2">
-<h2>The Simple Generated Model</h2>
-<p><span class="math display">\[
-Y \sim \beta_0 + \varepsilon
-\]</span></p>
-<p><span class="math display">\[
-\varepsilon \sim DGP_2
-\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(DGP_2\)</span> is not the same as the <span class="math inline">\(DGP_1\)</span>, it is transformed due <span class="math inline">\(\beta_0\)</span>. Consider this the NULL <span class="math inline">\(DGP\)</span>.</p>
+<section id="danceability-by-energy" class="slide level2">
+<h2>Danceability by Energy</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(taylor_album_songs, <span class="fu">aes</span>(energy, danceability)) <span class="sc">+</span></span>
+<span id="cb4-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
 </div>
-</section>
-<section id="observing-data" class="slide level2">
-<h2>Observing Data</h2>
-<p><span class="math display">\[
-Y = \beta_0 + \varepsilon
-\]</span></p>
-</section>
-<section id="estimated-line" class="slide level2">
-<h2>Estimated Line</h2>
-<p><span class="math display">\[
-\hat Y=\hat\beta_0
-\]</span></p>
-</section>
-<section id="notation-1" class="slide level2">
-<h2>Notation</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="observed">Observed</h3>
-<p><span class="math display">\[
-Y = \beta_0 + \varepsilon
-\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="estimated">Estimated</h3>
-<p><span class="math display">\[
-\hat Y = \hat \beta_0
-\]</span></p>
-</div></div>
+<img data-src="7_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="modelling-danceability" class="slide level2">
+<h2>Modelling Danceability</h2>
+<p>How do we use all the variables to explain danceability?</p>
 </section></section>
 <section>
-<section id="modelling-data" class="title-slide slide level1 agenda-slide center">
-<h1>Modelling Data</h1>
+<section id="multivariable-linear-regression" class="title-slide slide level1 agenda-slide center">
+<h1>Multivariable Linear Regression</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
+<p>Modeling Outcomes</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Modelling Data</p>
+<p>Multivariable Linear Regression</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Linear Model</p>
+<p>Adjusted <span class="math inline">\(R^2\)</span></p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Prediction</p>
+<p>Model Selection</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="indexing-data" class="slide level2">
-<h2>Indexing Data</h2>
-<p>The data in a data set can be indexed by a number.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>penguins[<span class="dv">1</span>,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 1 × 6
-#&gt;   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-#&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-#&gt; 1           39.1          18.7               181        3750 male   2007</code></pre>
-</div>
+<section id="mlr" class="slide level2">
+<h2>MLR</h2>
+<p>Multivariable Linear Regression (MLR) is used to model an outcome variable (<span class="math inline">\(Y\)</span>) by multiple predictor variables (<span class="math inline">\(X_1, X_2, \ldots, X_p\)</span>).</p>
+<div class="fragment">
+<p>Using MLR, you propose that the ouctome variable was constructed from a set of predictors, with their corresponding regression coefficients (<span class="math inline">\(\beta\)</span>), and a bit of error</p>
 </div>
 <div class="fragment">
-<p>Making the variable “body_mass_g” be represented by <span class="math inline">\(Y\)</span> and “flipper_length_mm” as <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[
-Y_1 = 3750 \ \ X_1=181
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon \sim DGP
 \]</span></p>
 </div>
 </section>
-<section id="indexing-data-1" class="slide level2">
-<h2>Indexing Data</h2>
+<section id="model-data" class="slide level2">
+<h2>Model Data</h2>
 <p><span class="math display">\[
-Y_i, X_i
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon
 \]</span></p>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<p>With the data that we collect from a sample, we hypothesize how the data was generated.</p>
+<p><span class="math display">\[
+\varepsilon \sim DGP
+\]</span></p>
 <div class="fragment">
-<p>Using a simple model:</p>
 <p><span class="math display">\[
-Y_i = \beta_0 + \varepsilon_i
+Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \varepsilon_i
+\]</span></p>
+<p><span class="math display">\[
+\varepsilon_i \sim DGP
 \]</span></p>
 </div>
 </section>
-<section id="estimated-value" class="slide level2">
-<h2>Estimated Value</h2>
+<section id="unknown-parameters" class="slide level2">
+<h2>Unknown Parameters</h2>
 <p><span class="math display">\[
-\hat Y_i = \hat \beta_0
+Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \varepsilon_i
+\]</span></p>
+<div class="fragment">
+<p><span class="math display">\[
+\beta_0, \beta_1, \beta_2, \beta_3, \ldots, \beta_p
+\]</span></p>
+</div>
+</section>
+<section id="estimated-model" class="slide level2">
+<h2>Estimated Model</h2>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \cdots + \beta_p X_{ip} + \varepsilon_i
+\]</span></p>
+<p><span class="math display">\[
+\hat Y_i = \hat\beta_0 + \hat\beta_1 X_{i1} + \hat\beta_2 X_{i2} + \cdots + \hat\beta_p X_{ip}
 \]</span></p>
 </section>
-<section id="estimation" class="slide level2">
-<h2>Estimation</h2>
-<p>To estimate <span class="math inline">\(\hat \beta_0\)</span>, we minimize the follow function:</p>
+<section id="estimating-prameters" class="slide level2">
+<h2>Estimating Prameters</h2>
+<p><span class="math inline">\(\beta_0, \beta_1, \beta_2, \beta_3, \ldots, \beta_p\)</span> are estimated by minimizing the following function:</p>
 <p><span class="math display">\[
 \sum^n_{i=1} (Y_i-\hat Y_i)^2
-\]</span></p>
-<div class="fragment">
-<p>This is known as the sum squared errors, SSE</p>
-</div>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-<p>The residuals are known as the observed errors from the data in the model:</p>
-<p><span class="math display">\[
-r_i = Y_i - \hat Y_i
-\]</span></p>
-</section>
-<section id="estimation-in-r" class="slide level2">
-<h2>Estimation in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
-</ul>
-</section>
-<section id="modeling-body-mass-in-penguins" class="slide level2">
-<h2>Modeling Body Mass in Penguins</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ 1, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt; (Intercept)  
-#&gt;        4207</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\hat Y = 4207
-\]</span></p>
-</div>
-</section>
-<section id="visualize" class="slide level2">
-<h2>Visualize</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">4207</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="linear-model" class="title-slide slide level1 agenda-slide center">
-<h1>Linear Model</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Prediction</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="linear-model-1" class="slide level2">
-<h2>Linear Model</h2>
-<p>The goal of Statistics is to develop models the have a better explanation of the outcome <span class="math inline">\(Y\)</span>.</p>
-<div class="fragment">
-<p>In particularly, reduce the sum of squared errors.</p>
-</div>
-<div class="fragment">
-<p>By utilizing a bit more of information, <span class="math inline">\(X\)</span>, we can increase the predicting capabilities of the model.</p>
-</div>
-<div class="fragment">
-<p>Thus, the linear model is born.</p>
-</div>
-</section>
-<section id="visualization" class="slide level2">
-<h2>Visualization</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">1-Dimensional</a></li><li><a href="#tabset-1-2">2-Dimensional</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="7_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> <span class="fu">after_stat</span>(level))) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">stat_density_2d</span>(<span class="at">geom =</span> <span class="st">"polygon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="7_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="linear-model-2" class="slide level2">
-<h2>Linear Model</h2>
-<p><span class="math display">\[
-Y = \beta_0 + \beta_1 X + \varepsilon
-\]</span></p>
-<p><span class="math display">\[
-\varepsilon \sim DGP_3
-\]</span></p>
-</section>
-<section id="scatter-plot" class="slide level2">
-<h2>Scatter Plot</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb12-2"><a></a>  <span class="fu">geom_point</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
-<section id="imposing-a-line" class="slide level2">
-<h2>Imposing a Line</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb13-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
-<section id="modelling-the-data" class="slide level2">
-<h2>Modelling the Data</h2>
-<p><span class="math display">\[
-Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
-\]</span></p>
-</section>
-<section id="linear-model-3" class="slide level2">
-<h2>Linear Model</h2>
-<p><span class="math display">\[
-\hat Y_i = \hat \beta_0 + \hat \beta_1 X_i
-\]</span></p>
-<div class="fragment">
-<p>Goal is to obtain numerical values for <span class="math inline">\(\hat \beta_0\)</span> and <span class="math inline">\(\hat \beta_1\)</span> that will minimize the SSE.</p>
-</div>
-</section>
-<section id="sse" class="slide level2">
-<h2>SSE</h2>
-<p><span class="math display">\[
-\sum^n_{i=1} (Y_i-\hat Y_i)^2
-\]</span></p>
-<p><span class="math display">\[
-\hat Y_i = \hat \beta_0 + \hat \beta_1 X_i
 \]</span></p>
 </section>
 <section id="fitting-a-model-in-r" class="slide level2">
 <h2>Fitting a Model in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> ... <span class="sc">+</span> Xp, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
+</section>
+<section id="modelling-danceability-1" class="slide level2">
+<h2>Modelling Danceability</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">lm</span>(danceability <span class="sc">~</span> mode_name <span class="sc">+</span> valence <span class="sc">+</span> energy, </span>
+<span id="cb6-2"><a></a>   <span class="at">data =</span> taylor_album_songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = danceability ~ mode_name + valence + energy, data = taylor_album_songs)
+#&gt; 
+#&gt; Coefficients:
+#&gt;    (Intercept)  mode_nameminor         valence          energy  
+#&gt;        0.53816         0.08386         0.17554        -0.05944</code></pre>
+</div>
+</div>
+</section>
+<section id="estimated-model-1" class="slide level2">
+<h2>Estimated Model</h2>
+<p><span class="math display">\[
+dance = 0.54 + 0.07\times Minor + 0.18 \times valence - 0.06 \times energy
+\]</span></p>
+</section>
+<section id="hat-beta_i-representation" class="slide level2">
+<h2><span class="math inline">\(\hat \beta_i\)</span> Representation</h2>
+<p>Each regression coefficient <span class="math inline">\(\beta_i\)</span> represents how the predictor variable changes the outcome, as it increase by 1 unit.</p>
+<div class="fragment">
+<p>For categorical dummy variables, the <span class="math inline">\(\beta_i\)</span> represents how the outcome will change when the data point belongs to that value.</p>
+</div>
+</section>
+<section id="hat-beta_i-interpretation" class="slide level2">
+<h2><span class="math inline">\(\hat \beta_i\)</span> Interpretation</h2>
+<p>For <span class="math inline">\(hat \beta_i\)</span>, which is the regression coefficient (slope) of <span class="math inline">\(X_i\)</span>:</p>
+<p>As <span class="math inline">\(X_i\)</span> increases by 1 unit, the outcome (<span class="math inline">\(Y\)</span>) will increase/decrease by <span class="math inline">\(\hat \beta_i\)</span> units, adjusting for all other predictor variables.</p>
+<div class="fragment">
+<p>For categorical dummy variables <span class="math inline">\(X_i\)</span>:</p>
+<p>The outcome <span class="math inline">\(Y_i\)</span> increases/decreases by <span class="math inline">\(\beta_i\)</span> units for category <span class="math inline">\(X_i\)</span> compared to the reference category, adjusting for all other predictor variables.</p>
+</div>
+</section>
+<section id="intepreting-minor-coefficient" class="slide level2">
+<h2>Intepreting Minor coefficient</h2>
+<p><span class="math display">\[
+dance = 0.54 + 0.07 Minor + 0.18 valence - 0.06 energy
+\]</span> Minor song’s average danceability score is 0.07 units higher compared to Major song’s, adjusting for valence and energy.</p>
+</section>
+<section id="intepreting-valence-coefficient" class="slide level2">
+<h2>Intepreting valence coefficient</h2>
+<p><span class="math display">\[
+dance = 0.54 + 0.07Minor + 0.18  valence - 0.06 energy
+\]</span></p>
+<p>As valence increases by 1 unit, danceability increases by an average of 0.18 units, adjusting for energy and type of song.</p>
+</section>
+<section id="intepreting-energy-coefficient" class="slide level2">
+<h2>Intepreting energy coefficient</h2>
+<p><span class="math display">\[
+dance = 0.54 + 0.07 Minor + 0.18 valence - 0.06 energy
+\]</span></p>
+<p>As energy increases by 1 unit, danceability decreases by an average of 0.06 units, adjusting for valence and type of song.</p>
+</section></section>
+<section>
+<section id="adjusted-r2" class="title-slide slide level1 agenda-slide center">
+<h1>Adjusted <span class="math inline">\(R^2\)</span></h1>
+<div class="agenda">
 <ul>
-<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Modeling Outcomes</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Multivariable Linear Regression</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Adjusted <span class="math inline">\(R^2\)</span></p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Model Selection</p>
+</div></li>
 </ul>
+</div>
+</section>
+<section id="r2" class="slide level2">
+<h2><span class="math inline">\(R^2\)</span></h2>
+<p>Computing <span class="math inline">\(R^2\)</span> is done by determining how much the variation in the outcome is explained by model and divided by the variation of the outcome.</p>
+<p><span class="math display">\[
+R^2 = \frac{\text{variation explained by model}}{\text{variation from outcome}} \\
+= 1-\frac{\text{variation of residuals}}{\text{variation from outcome}}
+\]</span></p>
+</section>
+<section id="r2-1" class="slide level2">
+<h2><span class="math inline">\(R^2\)</span></h2>
+<p>Problems arise when multiple predictors are added to the model. As a new predictor is added to the model, new information is added to the model which will always reduce the variation in the residuals. Therefore, the <span class="math inline">\(R^2\)</span> will always increase.</p>
+</section>
+<section id="problems-with-r2-in-mlr" class="slide level2">
+<h2>Problems with <span class="math inline">\(R^2\)</span> in MLR</h2>
+<p>When the number of variables increase, the regular <span class="math inline">\(R²\)</span> will be biased in its prediction capability when new data is obtained.</p>
+<div class="fragment">
+<p>Therefore, statisticians uses the adjusted <span class="math inline">\(R^2\)</span>, that penalizes the model when more variables are added. This ensures that a variable added will have a significant effect in predicting outcomes.</p>
+</div>
+</section>
+<section id="adjusted-r2-1" class="slide level2">
+<h2>Adjusted <span class="math inline">\(R^2\)</span></h2>
+<p><span class="math display">\[
+R_a^2 = 1-\frac{\text{variation of residuals}}{\text{variation from outcome}}\times \frac{n-1}{n-k-1}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(n\)</span>: Number of data points</li>
+<li><span class="math inline">\(k\)</span>: Number of predictor variables in the model</li>
+</ul>
+</section>
+<section id="adjusted-r2-in-r" class="slide level2">
+<h2>Adjusted <span class="math inline">\(R^2\)</span> in R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> ... <span class="sc">+</span> Xp, <span class="at">data =</span> DATA)</span>
+<span id="cb8-2"><a></a><span class="fu">ar2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Y: “body_mass_g”; X: “flipper_length_mm”</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt;       (Intercept)  flipper_length_mm  
-#&gt;          -5872.09              50.15</code></pre>
-</div>
-</div>
-<p><span class="math display">\[
-\hat Y_i = -5872.09 + 50.15 X_i
-\]</span></p>
-</section>
-<section id="interpretation-of-hatbeta_0" class="slide level2">
-<h2>Interpretation of <span class="math inline">\(\hat\beta_0\)</span></h2>
-<p>The intercept <span class="math inline">\(\hat \beta_0\)</span> can be interpreted as the base value when <span class="math inline">\(X\)</span> is set to 0.</p>
-<div class="fragment">
-<p>Some times the intercept can be interpretable to real world scenarios.</p>
-</div>
-<div class="fragment">
-<p>Other times it cannot.</p>
-</div>
-</section>
-<section id="interpreting-example" class="slide level2">
-<h2>Interpreting Example</h2>
-<p><span class="math display">\[
-\hat Y_i = -5872.09 + 50.15 X_i
-\]</span></p>
-<p>When flipper length is 0 mm, the body mass is -5872 grams.</p>
-</section>
-<section id="interpretation-of-hat-beta_1" class="slide level2">
-<h2>Interpretation of <span class="math inline">\(\hat \beta_1\)</span></h2>
-<p>The slope <span class="math inline">\(\hat \beta_1\)</span> indicates how will y change when x increases by 1 unit.</p>
-<div class="fragment">
-<p>It will demonstrate if there is, on average, a positive or negative relationship based on the sign provided.</p>
-</div>
-</section>
-<section id="interpreting-example-1" class="slide level2">
-<h2>Interpreting Example</h2>
-<p><span class="math display">\[
-\hat Y_i = -5872.09 + 50.15 X_i
-\]</span></p>
-<p>When flipper length increases by 1 mm, the body mass will increase by 50.15 grams.</p>
-</section></section>
-<section>
-<section id="categorical-variables" class="title-slide slide level1 agenda-slide center">
-<h1>Categorical Variables</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Prediction</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="body-mass-with-species" class="slide level2">
-<h2>Body Mass with Species</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(danceability <span class="sc">~</span> mode_name <span class="sc">+</span> valence <span class="sc">+</span> energy, </span>
+<span id="cb9-2"><a></a>   <span class="at">data =</span> taylor_album_songs)</span>
+<span id="cb9-3"><a></a><span class="fu">ar2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
-</div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
-<section id="body-mass-with-species-1" class="slide level2">
-<h2>Body Mass with Species</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">geom_boxplot</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="7_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="group-statistics" class="slide level2">
-<h2>Group Statistics</h2>
-<p>We can use statistics to explain a continuous variable by the categories.</p>
-<div class="fragment">
-<p>Compute statistics for each group.</p>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">num_by_cat_stats</span>(DATA, NUM, CAT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>NUM</code>: Name of the numerical variable</li>
-<li><code>CAT</code>: Name of the categorical variable</li>
-<li><code>DATA</code>: Name of the data frame</li>
-</ul>
-</div>
-</section>
-<section id="compute-group-statistics" class="slide level2">
-<h2>Compute Group Statistics</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">num_by_cat_stats</span>(penguins, body_mass_g, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;   Categories  min    q25     mean median  q75  max      sd      var   iqr
-#&gt; 1     Adelie 2850 3362.5 3706.164   3700 4000 4775 458.620 210332.4 637.5
-#&gt; 2  Chinstrap 2700 3487.5 3733.088   3700 3950 4800 384.335 147713.5 462.5
-#&gt; 3     Gentoo 3950 4700.0 5092.437   5050 5500 6300 501.476 251478.3 800.0
-#&gt;   missing
-#&gt; 1       0
-#&gt; 2       0
-#&gt; 3       0</code></pre>
+<pre><code>#&gt; [1] 0.09148268</code></pre>
 </div>
 </div>
-</section>
-<section id="lm-with-categorical-variables" class="slide level2">
-<h2>LM with Categorical Variables</h2>
-<p>A line is normally used to model 2 continuous variables.</p>
-<div class="fragment">
-<p>However, the predictor variable <span class="math inline">\(X\)</span> can be restricted to a set a variables that can symbolize categories.</p>
-</div>
-<div class="fragment">
-<p>A category will be used as a reference for a model.</p>
-</div>
-</section>
-<section id="binary-dummy-variables" class="slide level2">
-<h2>Binary (Dummy) Variables</h2>
-<p>Binary variables are variable that can only take on the value 0 or 1.</p>
-<p><span class="math display">\[
-D_i = \left\{
-\begin{array}{cc}
-1 &amp; Category\\
-0 &amp; Other
-\end{array}
-\right.
-\]</span></p>
-</section>
-<section id="binary-dummy-variables-1" class="slide level2">
-<h2>Binary (Dummy) Variables</h2>
-<p>To fit a model with categorical variables, we must utilize dummy (binary) variables that indicate which category is being referenced. We use <span class="math inline">\(C-1\)</span> dummy variables where <span class="math inline">\(C\)</span> indicates the number of categories. When coded correctly, each category will be represented by a combination of dummy variables.</p>
-</section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
-<p>If we have 4 categories, we will need 3 dummy variables:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th></th>
-<th>Cat 1</th>
-<th>Cat 2</th>
-<th>Cat 3</th>
-<th>Cat 4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Dummy 1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>Dummy 2</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>Dummy 2</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="species-dummy-variables" class="slide level2">
-<h2>Species Dummy Variables</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th></th>
-<th>Chinstrap</th>
-<th>Gentoo</th>
-<th>Adelie</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(D_1\)</span></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(D_2\)</span></td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="linear-model-4" class="slide level2">
-<h2>Linear Model</h2>
-<p><span class="math display">\[
-\hat Y_i = \hat \beta_0 + \hat\beta_1 D_{1i} + \hat\beta_2 D_{2i}
-\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(\hat \beta_1\)</span> indicates how body mass changes from Adelie to Chinstrap.</p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\hat \beta_2\)</span> indicates how body mass changes from Adelie to Gentoo.</p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\hat \beta_0\)</span> represents the baseline level, in this case the body mass of Adelie.</p>
-</div>
-</section>
-<section id="fitting-a-model-in-r-1" class="slide level2">
-<h2>Fitting a Model in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code>, must be a factor variable</li>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
-</ul>
-</section>
-<section id="x-not-a-factor" class="slide level2">
-<h2>X not a Factor</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">factor</span>(X), <span class="at">data =</span> DATA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code>, not a factor variable</li>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
-</ul>
-</section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ species, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt;      (Intercept)  speciesChinstrap     speciesGentoo  
-#&gt;          3706.16             26.92           1386.27</code></pre>
-</div>
-</div>
-<p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 D_{1i} + 1386.27 D_{2i}
-\]</span></p>
-</section>
-<section id="finding-the-adelie-mass" class="slide level2">
-<h2>Finding the Adelie MASS</h2>
-<p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 (0) + 1386.27 (0)
-\]</span></p>
-</section>
-<section id="finding-the-chinstrap-mass" class="slide level2">
-<h2>Finding the Chinstrap MASS</h2>
-<p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 (1) + 1386.27 (0)
-\]</span></p>
-</section>
-<section id="finding-the-gentoo-mass" class="slide level2">
-<h2>Finding the Gentoo MASS</h2>
-<p><span class="math display">\[
-\hat Y_i = 3706 + 26.92 (0) + 1386.27 (1)
-\]</span></p>
-</section>
-<section id="intepreting-hat-beta_1" class="slide level2">
-<h2>Intepreting <span class="math inline">\(\hat \beta_1\)</span></h2>
-<p>On average, Chinstrap has a larger mass than Adelie by about 26.92 grams.</p>
-</section>
-<section id="intepreting-hat-beta_2" class="slide level2">
-<h2>Intepreting <span class="math inline">\(\hat \beta_2\)</span></h2>
-<p>On average, Gentoo has a larger mass than Adelie by about 1386.27 grams.</p>
+<p>8.1% of the variation in danceability is explained by the model.</p>
 </section></section>
 <section>
-<section id="strength-and-correlation" class="title-slide slide level1 agenda-slide center">
-<h1>Strength and Correlation</h1>
+<section id="model-selection" class="title-slide slide level1 agenda-slide center">
+<h1>Model Selection</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
+<p>Modeling Outcomes</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
+<p>Multivariable Linear Regression</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Categorical Variables</p>
+<p>Adjusted <span class="math inline">\(R^2\)</span></p>
 </div></li>
 <li><div class="agenda-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Prediction</p>
+<p>Model Selection</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="correlation" class="slide level2">
-<h2>Correlation</h2>
-<p>Correlation is a statistics that can be used to describe the strength of the relationship between 2 continuous variables.</p>
-<div class="fragment">
-<p><span class="math display">\[
-r = \frac{1}{n-1}\sum^n_{i=1}\frac{x_i - \bar x}{s_x}\frac{y_i - \bar y}{s_y}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\bar x\)</span>, <span class="math inline">\(\bar y\)</span>: sample means</li>
-<li><span class="math inline">\(s_x\)</span>, <span class="math inline">\(s_y\)</span>: sample standard deviations</li>
-</ul>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
--1 \leq r \leq 1
-\]</span></p>
-</div>
+<section id="model-selection-1" class="slide level2">
+<h2>Model Selection</h2>
+<p>Model Selection is the process of obtaining a “final” model containing all the necessary predictors, and eliminating any that are not necessary.</p>
 </section>
-<section id="correlations" class="slide level2">
-<h2>Correlations</h2>
-
-<img data-src="https://openintro-ims.netlify.app/model-slr_files/figure-html/fig-posNegCorPlots-1.png" class="r-stretch quarto-figure-center"><p class="caption">From IMS 2e</p></section>
-<section id="coefficient-of-determination" class="slide level2">
-<h2>Coefficient of Determination</h2>
-<p>The coefficient of determination evaluates the strength between an outcome <span class="math inline">\(Y\)</span> and the linear model, which includes <span class="math inline">\(X\)</span>.</p>
-<div class="fragment">
-<p><span class="math display">\[
-R^2 = r^2
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-0 \leq R^2 \leq 1
-\]</span></p>
-</div>
-<div class="fragment">
-<p>The coefficient of determination measures the total variation explained by the linear model. The closer to 1, the better the linear model.</p>
-</div>
+<section id="forward-selection" class="slide level2">
+<h2>Forward Selection</h2>
+<p>Begin with the null model (<span class="math inline">\(Y\sim 1\)</span>) and add variables until a final model is chosen.</p>
 </section>
-<section id="correlation-in-r" class="slide level2">
-<h2>Correlation in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">cor</span>(DATA<span class="sc">$</span>Y, DATA<span class="sc">$</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
-</ul>
+<section id="backward-selection" class="slide level2">
+<h2>Backward Selection</h2>
+<p>Begin with the full model, and remove variable until the final model is chosen.</p>
 </section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">cor</span>(penguins<span class="sc">$</span>body_mass_g, penguins<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.8729789</code></pre>
-</div>
-</div>
+<section id="hybrid-selection" class="slide level2">
+<h2>Hybrid Selection</h2>
+<p>A hybrid approach between the forward and backward building approach.</p>
 </section>
-<section id="coefficient-of-determination-in-r" class="slide level2">
-<h2>Coefficient of Determination in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
-<span id="cb29-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
-</ul>
-</section>
-<section id="example-4" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, penguins)</span>
-<span id="cb30-2"><a></a><span class="fu">r2</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.6744887</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="prediction" class="title-slide slide level1 agenda-slide center">
-<h1>Prediction</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modeling Relationships</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>A Simple Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Modelling Data</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Linear Model</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Categorical Variables</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Strength and Correlation</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Prediction</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="statistical-model" class="slide level2">
-<h2>Statistical Model</h2>
-<p><span class="math display">\[
-\hat Y = \hat \beta_0 + \hat \beta_1 X
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X\)</span>: Input</li>
-<li><span class="math inline">\(\hat Y\)</span>: Output</li>
-</ul>
-</section>
-<section id="prediction-1" class="slide level2">
-<h2>Prediction</h2>
-<p>Using the equation <span class="math inline">\(\hat Y\)</span>, we can give it a value of <span class="math inline">\(X\)</span> and then, in return, a value of <span class="math inline">\(\hat Y\)</span> that predicts the true value <span class="math inline">\(Y\)</span>.</p>
-</section>
-<section id="prediction-in-r" class="slide level2">
-<h2>Prediction in R</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X,</span>
-<span id="cb32-2"><a></a>            <span class="at">data =</span> DATA)</span>
-<span id="cb32-3"><a></a></span>
-<span id="cb32-4"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X =</span> VAL)</span>
-<span id="cb32-5"><a></a></span>
-<span id="cb32-6"><a></a><span class="fu">predict</span>(xlm,</span>
-<span id="cb32-7"><a></a>        predict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><code>X</code>: Name Predictor Variable of Interest in data frame <code>DATA</code></li>
-<li><code>Y</code>: Name Outcome Variable of Interest in data frame <code>DATA</code></li>
-<li><code>DATA</code>: Name of the data frame</li>
-<li><code>VAL</code>: Value for the Predictor Variable</li>
-</ul>
-</section>
-<section id="example-1-1" class="slide level2">
-<h2>Example 1</h2>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Example</a></li><li><a href="#tabset-2-2">Code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-<p>Predict the body mass for a gentoo penguin.</p>
-</div>
-<div id="tabset-2-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species,</span>
-<span id="cb33-2"><a></a>            <span class="at">data =</span> penguins)</span>
-<span id="cb33-3"><a></a></span>
-<span id="cb33-4"><a></a>xlm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ species, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt;      (Intercept)  speciesChinstrap     speciesGentoo  
-#&gt;          3706.16             26.92           1386.27</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">species =</span> <span class="st">"Gentoo"</span>)</span>
-<span id="cb35-2"><a></a></span>
-<span id="cb35-3"><a></a><span class="fu">predict</span>(xlm,</span>
-<span id="cb35-4"><a></a>        predict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;        1 
-#&gt; 5092.437</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="example-2-1" class="slide level2">
-<h2>Example 2</h2>
-<div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Example</a></li><li><a href="#tabset-3-2">Code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1">
-<p>Predict the body mass for a penguin with a flipper length of 190.</p>
-</div>
-<div id="tabset-3-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm,</span>
-<span id="cb37-2"><a></a>            <span class="at">data =</span> penguins)</span>
-<span id="cb37-3"><a></a></span>
-<span id="cb37-4"><a></a></span>
-<span id="cb37-5"><a></a>xlm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = body_mass_g ~ flipper_length_mm, data = penguins)
-#&gt; 
-#&gt; Coefficients:
-#&gt;       (Intercept)  flipper_length_mm  
-#&gt;          -5872.09              50.15</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">190</span>)</span>
-<span id="cb39-2"><a></a></span>
-<span id="cb39-3"><a></a><span class="fu">predict</span>(xlm,</span>
-<span id="cb39-4"><a></a>        predict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;        1 
-#&gt; 3657.028</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="interpolation" class="slide level2">
-<h2>Interpolation</h2>
-<p>Interpolation is the process of estimating a value within the range of the observed input data <span class="math inline">\(X\)</span>.</p>
-</section>
-<section id="extrapolation" class="slide level2">
-<h2>Extrapolation</h2>
-<p>Extrapolation is the process of estimating a value beyond the range of observed input data <span class="math inline">\(X\)</span>. It’s about venturing into the unknown, using what we know as a guide.</p>
-</section>
-<section id="extrapolation-1" class="slide level2">
-<h2>Extrapolation</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(flipper_length_mm, body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb41-2"><a></a>  <span class="fu">xlim</span>(<span class="dv">160</span>, <span class="dv">250</span>) <span class="sc">+</span></span>
-<span id="cb41-3"><a></a>  <span class="fu">ylim</span>(<span class="dv">2600</span>, <span class="dv">7000</span>) <span class="sc">+</span></span>
-<span id="cb41-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-5"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="7_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="about-model-selection" class="slide level2">
+<h2>About Model Selection</h2>
+<p>Generally, it is not a good idea to conduct model selection. The predictor variables in your model should be guided by a literature review that illustrates important predictor variables in a model.</p>
 
 
 <div class="reveal-header">
@@ -1279,7 +611,7 @@ R^2 = r^2
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true,"theme":"whiteboard","chalkWidth":4},
+'chalkboard': {"buttons":true,"src":"notes/chalkboard_1a.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
 'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
 'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
