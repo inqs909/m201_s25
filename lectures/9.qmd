@@ -1,0 +1,403 @@
+---
+title: "Sampling Distribution"
+date: 4/1/25
+format:
+  revealjs:
+    width: 1200
+    sc-sb-title: true
+    footer: <https://m201.inqs.info/lectures/9>
+    df-print: paged
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    code-fold: true
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+
+editor: source
+---
+
+```{r}
+#| include: false
+library(MASS)
+library(tidyverse)
+library(csucistats)
+library(waffle)
+library(patchwork)
+
+theme_set(theme_bw() + 
+            theme(
+              axis.text.x = element_text(size = 24),
+              axis.title = element_text(size = 30),
+              plot.title = element_text(size = 48),
+              strip.text = element_text(size = 20),
+              legend.title = element_blank(),
+              legend.text = element_text(size = 24)))
+
+```
+
+# Sampling Distribution
+
+## Sampling Distribution
+
+Sampling Distribution is the idea that the statistics that you generate (slopes and intercepts) have their own data generation process.
+
+::: fragment
+In other words, the numerical values you obtain from the `lm` and `glm` function can be different if we got a different data set.
+:::
+
+::: fragment
+Some values will be more common than others. Because of this, they have their own data generating process, like the outcome of interest has it's own data generating process.
+:::
+
+## Modelling the Data
+
+$$
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+$$ 
+
+- $Y_i$: Outcome data 
+- $X_i$: Predictor data 
+- $\beta_0, \beta_1$: parameters 
+- $\varepsilon_i$: error term
+
+## Error Term
+
+$$
+\varepsilon_i \sim DGP
+$$
+
+::: notes
+-   The error terms forces the outcome variable to be different from the mathematical model.
+-   The numbers being generated are random and cannot be predicted.
+:::
+
+## Randomness Effect
+
+```{r}
+#| echo: false
+ggplot(tibble(x = rnorm(1000), y = rnorm(1000)), aes(x,y)) +
+  geom_point() +
+  theme_void()
+```
+
+# Simulating Unicorns
+
+## Simulating Unicorns
+
+To better understand the variation in statistics, let's simulate a data set of unicorn characteristics to visualize and understand the variation.
+
+::: fragment
+We will simulate a data set using the `unicorns` function and only need to specify how many unicorns you want to simulate.
+:::
+
+## Simulating Unicorn Data
+
+```{r}
+#| code-fold: show
+unicorns(10)
+```
+
+## Unicorn Data Variables
+
+```{r}
+#| code-fold: show
+
+names(unicorns(10))
+```
+
+We will only look at `Magical_Score` and `Nature_Score`.
+
+## Magical and Nature Score
+
+$$
+Magical =  3423 + 8 \times Nature + \varepsilon
+$$ 
+
+$$
+\varepsilon \sim N(0, 3.24)
+$$
+
+## Simulating $N(0, 3.24)$
+
+```{r}
+#| code-fold: show
+rnorm(1, 0, sqrt(3.24))
+```
+
+## Collecting
+
+```{r}
+unicorns(10) |> select(Nature_Score, Magical_Score)
+```
+
+## DGP of Magical Score 1
+
+```{r}
+ggplot(unicorns(500), aes(Magical_Score)) +
+  geom_density()
+```
+
+## DGP of Magical Score 2
+
+```{r}
+ggplot(unicorns(500), aes(Magical_Score)) +
+  geom_density()
+```
+
+## Estimating $\beta_1$ via `lm`
+
+```{r}
+u1 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u1)
+```
+
+## Collecting a new sample
+
+```{r}
+u2 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u2)
+```
+
+## Collecting a new sample
+
+```{r}
+u3 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u3)
+```
+
+## Collecting a new sample
+
+```{r}
+u4 <- unicorns(500)
+lm(Magical_Score ~ Nature_Score, u4)
+```
+
+## Collecting 1000 Samples
+
+```{r}
+betas <- replicate(1000,
+                   b(Magical_Score ~ Nature_Score, 1, unicorns(500)))
+
+betas
+```
+
+## Distributions of $\hat \beta_1$
+
+```{r}
+ggplot(data.frame(x = betas), aes(x = x)) +
+  geom_density()
+```
+
+# Central Limit Theorem
+
+## Central Limit Theorem
+
+The Central Limit Theorem (CLT) is a fundamental concept in probability and statistics. It states that the distribution of the sum (or average) of a large number of independent, identically distributed (i.i.d.) random variables will be approximately normal, regardless of the underlying distribution of those individual variables.
+
+
+## Formal Statement of the CLT
+
+- Let $X_1$, $X_2$, ..., $X_n$ be a sequence of i.i.d. random variables with mean $\mu$ and standard deviation $\sigma$.
+- Let $\bar X$ be the sample mean of these variables.
+- As n (the sample size) approaches infinity, the distribution of $\bar X$ approaches a normal distribution with:
+    - Mean: $\mu$
+    - Standard Deviation: $\sigma/\sqrt{n}$
+
+## CLT Example
+
+- **Imagine:** You're flipping a fair coin many times. 
+    - Each flip is an independent event (heads or tails).
+    - The probability of heads/tails is the same for each flip.
+- **Now:** Calculate the average number of heads after each set of 10 flips, then each set of 100 flips, and so on.
+- **Observation:** As the number of flips in each set increases, the distribution of these averages will start to resemble a bell-shaped curve (normal distribution), even though the individual coin flips are not normally distributed.
+
+## CLT Implications
+
+- **Approximation:** Even if the underlying data is not normally distributed, the distribution of the sample means will be approximately normal for large enough sample sizes.
+- **Practical Rule:** A common rule of thumb is that the sample size (n) should be at least 30 for the CLT to provide a good approximation. However, this is a guideline, and the actual required sample size can vary depending on the shape of the original distribution.
+
+## Normal Example $n = 10$
+
+Simulating 500 samples of size 10 from a normal distribution with mean 5 and standard deviation of 2.
+
+```{r}
+#rnorm(10, 5, 2)
+sims <- replicate(500, rnorm(10, 5, 2))
+sims_mean <- colMeans(sims)
+ggplot(data.frame(x = sims_mean), aes(x)) +
+  geom_density() +
+  stat_function(fun = dnorm, 
+                args = list(mean = 5, sd = 2 / sqrt(10)),
+                col = "red")
+```
+
+## Normal Example $n = 30$
+
+Simulating 500 samples of size 30 from a normal distribution with mean 5 and standard deviation of 2.
+
+
+```{r}
+# rnorm(30, 5, 2)
+sims <- replicate(500, rnorm(30, 5, 2))
+sims_mean <- colMeans(sims)
+ggplot(data.frame(x = sims_mean), aes(x)) +
+  geom_density() +
+  stat_function(fun = dnorm, 
+                args = list(mean = 5, sd = 2 / sqrt(30)),
+                col = "red")
+```
+
+
+## Normal Example $n = 50$
+
+Simulating 500 samples of size 50 from a normal distribution with mean 5 and standard deviation of 2.
+
+
+```{r}
+# rnorm(50, 5, 2)
+sims <- replicate(500, rnorm(50, 5, 2))
+sims_mean <- colMeans(sims)
+ggplot(data.frame(x = sims_mean), aes(x)) +
+  geom_density() +
+  stat_function(fun = dnorm, 
+                args = list(mean = 5, sd = 2 / sqrt(50)),
+                col = "red")
+```
+
+## Normal Example $n = 100$
+
+Simulating 500 samples of size 100 from a normal distribution with mean 5 and standard deviation of 2.
+
+
+```{r}
+# rnorm(100, 5, 2)
+sims <- replicate(500, rnorm(100, 5, 2))
+sims_mean <- colMeans(sims)
+ggplot(data.frame(x = sims_mean), aes(x)) +
+  geom_density() +
+  stat_function(fun = dnorm, 
+                args = list(mean = 5, sd = 2 / sqrt(100)),
+                col = "red")
+```
+
+# Common Sampling Distributions
+
+## Normal DGP
+
+When the data is said to have a normal distribution (DGP), there are special properties with both the mean and standard deviation, regardless of sample size.
+
+## Statistics
+
+::: {.columns}
+::: {.column}
+**Mean**
+$$
+\bar X = \sum ^n_{i=1} X_i
+$$
+:::
+::: {.column}
+**Standard Deviation**
+$$
+s^2 = \frac{1}{n}\sum ^n_{i=1} (X_i - \bar X)^2
+$$
+
+:::
+:::
+
+
+## When the true $\mu$ and $\sigma$ are known
+A data sample of size $n$ is generated from:
+$$
+X_i \sim N(\mu, \sigma)
+$$
+
+## Distribution of $\bar X$
+
+$$
+\bar X \sim N(\mu, \sigma/\sqrt{n})
+$$
+
+## Distribution of Z
+
+$$
+Z = \frac{\bar X - \mu}{\sigma/\sqrt{n}} \sim N(0,1)
+$$
+
+## When the true $\mu$ and $\sigma$ are unknown
+A data sample of size $n$ is generated from:
+$$
+X_i \sim N(\mu, \sigma)
+$$
+
+## Distribution of $s^2$ (unknown $\mu$)
+$$
+(n-1)s^2/\sigma^2 \sim \chi^2(n-1)
+$$
+
+## Distribution of Z (unknown $\sigma$)
+
+$$
+Z = \frac{\bar X - \mu}{\sigma/\sqrt{n}} \rightarrow \frac{\bar X - \mu}{s/\sqrt{n}} \sim t(n-1)
+$$
+
+
+
+# Sampling Distributions for Regression Models
+
+
+## Regression Coefficients
+
+The estimates of regression coefficients (slopes) have a distribution!
+
+::: fragment
+
+Based on our outcome, we will have 2 different distributions to work with: Normal or t.
+
+:::
+
+## Linear Regression
+
+$$
+\frac{\hat\beta_j-\beta_j}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
+$$
+
+
+## $\beta_j = 0$
+
+$$
+\frac{\hat\beta_j}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
+$$
+
+
+## Logistic Regression
+
+$$
+\frac{\hat\beta_j - \beta_j}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
+$$
+
+## $\beta_j = 0$
+
+$$
+\frac{\hat\beta_j}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
+$$

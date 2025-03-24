@@ -3,7 +3,7 @@
  * A filter that adds header text and logo.
  * 
  * MIT License
- * Copyright (c) 2023 Shafayet Khan Shafee.
+ * Copyright (c) 2023-2024 Shafayet Khan Shafee.
  */
  
  function add_sc_sb_title() {
@@ -39,7 +39,7 @@
   
   if (Reveal.isReady()) {
   
-    if (document.querySelector('div.reveal-header img').getAttribute('src').length == 0) {
+    if (document.querySelector('div.reveal-header img')?.getAttribute('src')?.length == 0) {
       document.querySelector('div.reveal-header').classList.add('no-logo')
     }
   
