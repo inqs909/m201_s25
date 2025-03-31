@@ -1,21 +1,21 @@
 ---
-title: "Poisson Regression"
-date: 3/25/25
+title: "Statistical Inference"
+date: 4/10/25
 description: |
-  Begins the discussion for Poisson regression.
+  Statistical Inference
 
 format:
   revealjs:
     width: 1200
     scrollable: true
+    sc-sb-title: true
+    footer: <https://m201.inqs.info/lectures/10>
     theme: [default, styles.scss]
     navigation-mode: vertical
     controls-layout: bottom-right
     controls-tutorial: true
     incremental: false 
     chalkboard:
-      src: notes/chalkboard_1a.json
-      storage: chalkboard_pres
       theme: whiteboard
       chalk-width: 4
 knitr:
@@ -35,6 +35,7 @@ filters:
   - reveal-header
   - code-fullscreen
   - reveal-auto-agenda
+
 editor: source
 ---
 
@@ -57,279 +58,389 @@ theme_set(theme_bw() +
 
 ```
 
-# Motivation
 
-## Melanoma
+# Statistical Inference
 
-Melanoma is a type of skin cancer that causes the cells that produce melanin to grow out of control. What makes Melanoma so dangerous is that it can metastasize to other parts of the body.
+## What is Statistical Inference?
 
-## Outcome of Interest
+- Drawing conclusions about a **population** based on a **sample**
+- Population = entire group; Sample = subset
 
-We are interested in learning how do different factors affect and individual's chances of survival. Therefore, we are measuring patients and if they lived or died during a study period.
-
-## Data 
-
-We will be using the `Melanoma` data set with the following variables: `dead` (died by Melanoma, 1=yes, 0= no),  `sex` (1 = male, 0 = female), `age` (in years), `thickness` (tumour thickness in mm), ulcer (1 = presence, 0 absent).
-
-## Plot
-
-```{r}
-Melanoma |> 
-  ggplot(aes(thickness, dead)) +
-  geom_point()
-```
-
-# Modeling Binary Outcomes
-
-## Construct Model
-
-$$
-\left(\begin{array}{c}
-Dead \\
-Alive
-\end{array}\right) = \beta_0 + \beta_1X
-$$
-
-## Let ...
-
-$$
-Y = \left\{\begin{array}{cc}
-1 & Dead \\
-0 & Alive
-\end{array}\right.
-$$
-
-## Construct a Model
-
-$$
-P\left(Y = 1\right) = \beta_0 + \beta_1X
-$$
-
-## Construct a Model
-
-$$
-P\left(Y = 1\right) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}
-$$
-
-## Construct a Model
-
-$$
-\frac{P(Y = 1)}{P(Y = 0)} = e^{\beta_0 + \beta_1X}
-$$
-
-where $\frac{P(Y = 1)}{P(Y = 0)}$ are considered the odds of observing $Y = 1$.
-
-## The Logistic Model
-
-$$
-\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
-$$
-
-
-# Logistic Regression
-
-## Logistic Regression
-
-Logistic Regression is used to model the association between a set of predictors and a **binary** outcome variable.
-
-::: fragment
-This is similar Linear Regression which models the association between a set of predictors and a **numerical** outcome variable.
+::: notes
+Introduce the big idea: We want to make statements about a large group (population) but can only observe a small part of it (sample). Inference bridges that gap.
 :::
 
-## Logistic Regression
+## Why It Matters
 
-Logistic Regression uses the logistic model to formulate the relationship between the predictors and the outcome.
+- Studying populations directly is hard or impossible.
+- We use data from samples to make predictions and decisions.
 
-::: fragment
+::: notes
+Explain practical challenges: cost, time, or accessibility of population data. This motivates the need for inference.
+:::
 
-More specifically, for an outcome of Y:
+## Two Main Types of Inference
 
-$$
-Y = \left\{\begin{array}{cc}
-1 & \text{Category 1} \\
-0 & \text{Category 2}
-\end{array}\right.
-$$
+1. Estimation  
+2. Hypothesis Testing
 
-The Predictors variable will model the probability of observing category 1 ($P(Y=1)$)
+::: notes
+We’ll be focusing on two fundamental techniques in inference. First, estimating population values (like the mean), and second, testing claims about the population.
+:::
 
+## Estimation
+
+- **Point Estimate**: Single best guess (e.g., $\hat \beta_1$)
+- **Interval Estimate**: Range likely to contain the true value
+
+::: notes
+Point estimates are easy but not very informative. Intervals give us a sense of uncertainty, which is critical in inference.
+:::
+
+## Hypothesis Testing
+
+- $H_0$: No effect or difference  
+- $H_1$: Some effect or difference  
+- We use sample data to support or reject $H_0$
+
+::: notes
+Mention that $H_0$ is the default assumption. We only reject it if the data give us strong enough evidence.
+:::
+
+## Key Concepts and Tools
+
+- Sampling Distribution
+- Central Limit Theorem
+- Standard Error
+
+::: notes
+These three concepts are foundational. Understanding them helps us assess how reliable our estimates are.
 :::
 
 
-## Logistic Model
+## Confidence Intervals
 
-$$
-\log\left\{\frac{P(Y = 1)}{P(Y = 0)}\right\} = \beta_0 + \beta_1X
-$$
+- A range where we expect the true value to fall
 
-## Regression Coefficients $\beta$
-
-The regression coefficients quantify how a specific predictor changes the odds of observing the first category of the outcome ($Y = 1$)
-
-## Estimating $\beta$
-
-To obtain the numerical value for $\beta$, denoted as $\hat \beta$, we will be finding the values of $\hat \beta$ that maximizes the likelihood function:
-
-$$
-L(\boldsymbol \beta) = \prod_{i=1}^n \left(\frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}\right)^{Y_i}\left(\frac{1}{1 + e^{\beta_0 + \beta_1X}}\right)^{1-Y_i}
-$$
-
-The likelihood function can be thought as the probability of observing the entire data set. Therefore, we want to choose the values the $\beta_0$ and $\beta_1$ that will result in the highest probability of observing the data.
-
-
-## Estimated Parameters
-
-The values you obtain ($\hat \beta$) tell you the relationship between the a predictor variable and the log odds of observing the first category of the outcome $Y=1$.
-
-::: fragment
-Exponentiating the estimate ($e^{\hat \beta}$) will give you the relationship between a predictor variable and the odds of observing the first category of the outcome $Y=1$.
+::: notes
+Clarify interpretation: it's not about the probability the parameter is inside the interval, but about the method producing accurate intervals in the long run.
 :::
 
-## Interpreting $\hat \beta$
-
-For a continuous predictor variable:
-
-As X increases by 1 unit, the odds of observing the first category ($Y = 1$) increases by a factor of $e^{\hat\beta}$.
-
-For a categorical predictor variable (first dummy variable):
-
-The odds of observing the first category ($Y = 1$) in the indicated category ($D=1$) is $e^{\hat\beta}$ times higher/lower compared to the reference category ($D=0$).
-
-
-## Logistic Regression in R
-
-```{r}
-#| echo: true
-#| eval: false
-
-glm(Y ~ X1 + X2 + ... + Xp,
-    data = DATA,
-    family = binomial())
-```
-
-
-## Example
-
-Modelling `dead` by `sex`, `age`, `thickness`, and `ulcer`: 
-
-```{r}
-glm(dead ~ sex + age + thickness + ulcer,
-    data = Melanoma,
-    family = binomial())
-```
+## Confidence Interval Formula
 
 $$
-\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
+\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}
 $$
 
+::: notes
+$z^*$ depends on the confidence level, like 1.96 for 95%. Explain how higher confidence means wider intervals.
+:::
+
+
+## Hypothesis Testing Steps
+
+1. State $H_0$ and $H_1$  
+2. Choose $\alpha$  
+3. Compute confidence interval/p-value  
+5. Make a decision
+
+::: notes
+Walk through the steps slowly with an example in mind. Emphasize that $\alpha$ is a threshold, not the actual probability of error.
+:::
+
+## p-values
+
+- Probability of observing data as extreme as this if $H_0$ is true
+
+::: notes
+Misinterpretation of p-values is common. Emphasize: low p-value means data is unusual under $H_0$.
+:::
+
+
+# Power Analysis
+
+## Errors in Inference
+
+| | | |
+|:-|:-|:-|
+| Type I | Reject $H_0$ when true | False positive |
+| Type II | Don’t reject $H_0$ when false | False negative |
+| Power | $1 - P(\text{Type II})$ | Detecting a true effect |
+
+::: notes
+Power is often overlooked. It's about how sensitive the test is to real effects. Larger samples increase power.
+:::
+
+
+## Type I Error (False Positive)
+
+- **Rejecting $H_0$ when it is actually true**
+- Probability = $\alpha$ (significance level)
+
+::: notes
+Type I errors happen when we detect an effect that doesn’t really exist. This is controlled by our chosen alpha level.
+:::
+
+## Type II Error (False Negative)
+
+- **Failing to reject $H_0$ when it is actually false**
+- Probability = $\beta$
+- Power = $1 - \beta$
+
+
+::: notes
+Type II errors are often due to small sample sizes or high variability. Power analysis helps us plan to avoid these.
+:::
+
+## Balancing Errors
+
+- Lowering $\alpha$ reduces Type I errors, but **increases** risk of Type II errors.
+- To reduce both:
+  - Increase sample size
+  - Use more appropriate statistical tests
+
+::: notes
+There’s a trade-off between these errors. We can’t eliminate both, but we can **manage** the risk based on the consequences of each type.
+:::
+
+## Real-World Examples
+
+| Scenario                    | Type I Error                  | Type II Error                    |
+|-----------------------------|-------------------------------|----------------------------------|
+| Medical Test (e.g., cancer) | Healthy person diagnosed      | Missed diagnosis                 |
+| Spam Filter                 | Good email marked as spam     | Spam not caught                  |
+| Judicial Trial              | Innocent person convicted     | Guilty person acquitted          |
+
+::: notes
+Use these examples to help students internalize the concepts. Ask them to think of scenarios in their field.
+:::
+
+## 💥 What is Statistical Power?
+
+- **Statistical Power** is the probability of correctly rejecting a false null hypothesis.
+- In other words, it's the chance of **detecting a real effect** when it exists.
+
+$$
+\text{Power} = 1 - \beta
+$$
+
+::: notes
+Introduce power as a key measure of a test’s sensitivity. It tells us how likely we are to catch a true effect.
+:::
+
+
+## 🔎 Why Power Matters
+
+- Low power → high risk of **Type II Error** (false negatives)
+- High power → better chance of finding true effects
+- Common threshold: **80% power**
+
+::: notes
+A test with low power might miss important effects. 80% is a widely used benchmark in research planning.
+:::
+
+
+## 📈 What Affects Power?
+
+1. **Effect Size**  
+   - Bigger effects are easier to detect
+
+2. **Sample Size ($n$)**  
+   - Larger samples reduce standard error
+
+3. **Significance Level ($\alpha$)**  
+   - Higher $\alpha$ increases power (but riskier!)
+
+4. **Variability**  
+   - Less noise in data = better power
+
+::: notes
+Use this to emphasize the practical levers we have. Sample size is one of the easiest things we can change to improve power.
+:::
+
+## Example: Power in a Drug Trial
+
+- $H_0$: New drug has no effect  
+- $H_1$: New drug lowers blood pressure by 5 mmHg  
+- If the test has **low power**, we might fail to detect this true improvement.
+
+::: notes
+Medical examples make power feel real. Failing to detect real treatment effects could cost lives—or result in false conclusions.
+:::
+
+---
+
+## Boosting Power
+
+- Increase sample size ($n$)
+- Use better statistical models
+- Increase $\alpha$ (carefully)
+- Use one-tailed test (if direction is justified)
+
+::: notes
+Show students that power is not fixed—they can plan studies to improve it. Emphasize ethical and scientific trade-offs.
+:::
+
+# Confidence Intervals
+
+## Confidence Intervals
+
+- A confidence interval gives a **range of plausible values** for a population parameter.
+- It reflects **uncertainty** in point estimates from sample data.
+
+::: notes
+Introduce confidence intervals as the natural next step after understanding sampling variability and standard error. Emphasize that point estimates are useful, but intervals give a more complete picture.
+:::
+
+---
 
 ## Interpretation
 
-$$
-\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc
-$$
+> "We are 95% confident that the true mean lies between A and B."
 
-::: fragment
-The odds of experiencing death in males is 1.5 times larger than the odds for females, adjusting for age, tumor thickness and the presence of an ulcer.
+- This does **not** mean there's a 95% chance the mean is in that interval.
+- It means: if we repeated the sampling process many times, **95% of the intervals would contain the true value**.
+
+::: notes
+This is one of the most common misconceptions. Clarify that the confidence is in the *method*, not any one interval.
 :::
 
-::: fragment
-As age increases by 1 year, the odds of experiencing death increases by a factor of 1.004, adjusting for sex, tumor thickness and presence of an ulcer.
+---
+
+## Formula (Known $\sigma$)
+
+$$
+\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}
+$$
+
+- $\bar{x}$ = sample mean  
+- $\sigma$ = population standard deviation  
+- $z^*$ = critical value (e.g., 1.96 for 95%)
+
+::: notes
+This formula is used when the population standard deviation $\sigma$ is known. It assumes a normal distribution for $\bar{x}$.
 :::
 
-# Prediction with Models
+---
 
-## Working with probabilities
-
-As you can see, working with odds may be unintuitive for the average person. It will be better to predict the probability and display those results to individuals.
-
-## Predicting Probability
-
+## Formula (Unknown $\sigma$)
 
 $$
-\hat P\left(Y = 1\right) = \frac{e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}{1 + e^{\hat\beta_0 + \hat\beta_1X_1 + \cdots  + \hat \beta_pX_p}}
+\bar{x} \pm t^* \cdot \frac{s}{\sqrt{n}}
 $$
 
-## Prediction in R
+- $s$ = sample standard deviation  
+- $t^*$ = critical value from $t$-distribution ($n-1$ df)
 
-```{r}
-#| echo: true
-#| eval: false
-xglm <- glm(Y ~ X1 + X2 + ... + Xp,
-            data = DATA,
-            family = binomial())
-predict_df <- data.frame(X1 = VAL,  X2 = VAL, ..., Xp = VAL)
-predict(xglm,
-        predict_df,
-        type = "response")
-```
+::: notes
+In real-world scenarios, $\sigma$ is rarely known. We estimate it using $s$ and use the $t$-distribution to account for extra uncertainty.
+:::
 
+---
 
-## Example 1
+## Choosing Confidence Levels
 
-Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **with** ulcer presence. 
+| Level | $z^*$ (approx.) |
+|-------|-----------------|
+| 90%   | 1.645           |
+| 95%   | 1.960           |
+| 99%   | 2.576           |
 
-```{r}
-xglm <- glm(dead ~ sex + age + thickness + ulcer,
-    data = Melanoma,
-    family = binomial())
-predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 1)
-predict(xglm, predict_df, type = "response")
-```
+::: notes
+Higher confidence means wider intervals. Discuss the trade-off: precision vs certainty.
+:::
 
+---
 
-## Example 1
+## 🔎 Example
 
-Predict the probability of observing death for a patient who is male, 75 years old, an tumor thickness of 2.9, and **without** ulcer presence. 
+- $n = 100$, $\bar{x} = 68$, $\sigma = 3$
+- 95% CI:
 
-```{r}
-xglm <- glm(dead ~ sex + age + thickness + ulcer,
-    data = Melanoma,
-    family = binomial())
-predict_df <- data.frame(sex = 1, age = 75, thickness = 2.9, ulcer = 0)
-predict(xglm, predict_df, type = "response")
-```
+$$
+68 \pm 1.96 \cdot \frac{3}{\sqrt{100}} = 68 \pm 0.588
+$$
+
+**CI: [67.412, 68.588]**
+
+::: notes
+Walk through the calculation step-by-step. Emphasize how increasing $n$ or decreasing $\sigma$ would narrow the interval.
+:::
 
 
-## Example 1
+## Factors Affecting CI Width
 
-| | Ulcer Present | Ulcer not Present |
-|:-|:-|:-|
-| Probabiltiy | 48.7% | 20.3% |
+- Sample size ($n$): larger $n$ → narrower CI  
+- Standard deviation ($s$ or $\sigma$): more variability → wider CI  
+- Confidence level: higher confidence → wider CI
 
-For a patient who is 75 years old, male, and a tumor thickness of 2.9, when an ulcer is present, the probability a patient dies increases to 48% compared to a patient who does not have an ulcer with a probability of 20%.
-
-
-## Example 2
-
-Predict the probability of observing death for a patient who is female, **75** years old, an tumor thickness of 2.9, and with ulcer presence. 
-
-```{r}
-xglm <- glm(dead ~ sex + age + thickness + ulcer,
-    data = Melanoma,
-    family = binomial())
-predict_df <- data.frame(sex = 0, age = 75, thickness = 2.9, ulcer = 1)
-predict(xglm, predict_df, type = "response")
-```
+::: notes
+Use this to summarize what controls how “precise” our confidence interval is. Give examples of each.
+:::
 
 
-## Example 2
+# Inference: Linear Regression
 
-Predict the probability of observing death for a patient who is female, **55** years old, an tumor thickness of 2.9, and with ulcer presence. 
+## Inference for Regression Coefficients
 
-```{r}
-xglm <- glm(dead ~ sex + age + thickness + ulcer,
-    data = Melanoma,
-    family = binomial())
-predict_df <- data.frame(sex = 0, age = 55, thickness = 2.9, ulcer = 1)
-predict(xglm, predict_df, type = "response")
-```
+- $Y = \beta_0 + \beta_1 X + \varepsilon$
+- We estimate $\hat{\beta}_0$ and $\hat{\beta}_1$
 
-## Example 2
+::: notes
+Now we're applying inference in a regression context. Same principles apply—estimating, testing, confidence intervals.
+:::
 
-| | 55 | 75 |
-|:-|:-|:-|
-| Probabiltiy | 36.8% | 38.7% |
 
-For a patient who is female, a tumor thickness of 2.9, and has an ulcer, the probability a 75 year old patient dies increases to 38.7% compared to a 55 year old patient with a probability of 36.8%.
+## Sampling Distribution of $\hat{\beta}_1$
+
+- $\hat{\beta}_1$ is normally distributed (under assumptions)
+- SE depends on spread of $x_i$
+
+::: notes
+Variance in $x_i$ helps reduce uncertainty in slope estimate. More spread = more informative data.
+:::
+
+
+## Confidence Interval for $\beta_1$
+
+$$
+\hat{\beta}_1 \pm t^* \cdot SE(\hat{\beta}_1)
+$$
+
+::: notes
+This is like the CI for the mean, but uses the $t$-distribution because $\sigma$ is estimated.
+:::
+
+
+## Hypothesis Testing for $\beta_1$
+
+- $H_0: \beta_1 = 0$  
+- $t = \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)}$
+
+::: notes
+We're testing whether the slope is zero—i.e., whether $X$ is a useful predictor for $Y$.
+:::
+
+## ✅ Interpretation
+
+- If $p < \alpha$, conclude $\beta_1 \ne 0$
+- If not, we can't say $X$ affects $Y$
+
+::: notes
+Make it clear that failing to reject $H_0$ doesn't prove it's true—just that we lack strong evidence against it.
+:::
+
+
+## 🧩 Regression Example
+
+- $\hat{\beta}_1 = 2.5$, $SE = 0.8$, $n = 30$
+- 95% CI: $[0.86,\ 4.14]$  
+- $t = 3.125$, $p < 0.01$
+
+::: notes
+Highlight how the CI and hypothesis test lead to the same conclusion: the slope is likely not zero.
+:::
+
+
+
 

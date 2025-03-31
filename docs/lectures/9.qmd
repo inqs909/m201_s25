@@ -41,6 +41,7 @@ editor: source
 #| include: false
 library(MASS)
 library(tidyverse)
+library(latex2exp)
 library(csucistats)
 library(waffle)
 library(patchwork)
@@ -70,6 +71,24 @@ In other words, the numerical values you obtain from the `lm` and `glm` function
 Some values will be more common than others. Because of this, they have their own data generating process, like the outcome of interest has it's own data generating process.
 :::
 
+## Sampling Distributions
+
+- Distribution of a statistic over repeated samples
+
+::: notes
+If we took many samples, the statistics (like means) would vary. Their distribution helps us quantify uncertainty.
+:::
+
+## Standard Error
+
+The Standard Error (SE) is the standard deviation of a statistic itself.
+
+::: fragment
+SE tells us how much a statistic varies from sample to sample. Smaller SE = more precision.
+:::
+
+
+
 ## Modelling the Data
 
 $$
@@ -94,12 +113,107 @@ $$
 
 ## Randomness Effect
 
+The randomness effect is a sampling phenomenom where you will get different samples everytime you sample a population.
+
+::: fragment
+
+Getting different samples means you will get different statistics.
+
+:::
+
+
+::: fragment
+
+These statistics will have a distribution on their own.
+
+::: 
+
+## Randomness Effect 1
+
 ```{r}
 #| echo: false
-ggplot(tibble(x = rnorm(1000), y = rnorm(1000)), aes(x,y)) +
+
+x <- rnorm(1000)
+y <- 4 + 5 * x + rnorm(1000)
+bb <- round(b(lm(y ~ x),1),2)
+ggplot(tibble(x = x, y = y), aes(x,y)) +
   geom_point() +
-  theme_void()
+  annotate("text", 
+           x = -1, y = 15, 
+           label = TeX(sprintf(r'($\hat{\beta}_1 = %g$)', bb)),
+           parse = TRUE,
+           size = 8) 
 ```
+
+## Randomness Effect 2
+
+```{r}
+#| echo: false
+
+x <- rnorm(1000)
+y <- 4 + 5 * x + rnorm(1000)
+bb <- round(b(lm(y ~ x),1),2)
+ggplot(tibble(x = x, y = y), aes(x,y)) +
+  geom_point() +
+  annotate("text", 
+           x = -1, y = 15, 
+           label = TeX(sprintf(r'($\hat{\beta}_1 = %g$)', bb)),
+           parse = TRUE,
+           size = 8) 
+```
+
+## Randomness Effect 3
+
+```{r}
+#| echo: false
+
+x <- rnorm(1000)
+y <- 4 + 5 * x + rnorm(1000)
+bb <- round(b(lm(y ~ x),1),2)
+ggplot(tibble(x = x, y = y), aes(x,y)) +
+  geom_point() +
+  annotate("text", 
+           x = -1, y = 15, 
+           label = TeX(sprintf(r'($\hat{\beta}_1 = %g$)', bb)),
+           parse = TRUE,
+           size = 8) 
+```
+
+## Randomness Effect 4
+
+```{r}
+#| echo: false
+
+x <- rnorm(1000)
+y <- 4 + 5 * x + rnorm(1000)
+bb <- round(b(lm(y ~ x),1),2)
+ggplot(tibble(x = x, y = y), aes(x,y)) +
+  geom_point() +
+  annotate("text", 
+           x = -1, y = 15, 
+           label = TeX(sprintf(r'($\hat{\beta}_1 = %g$)', bb)),
+           parse = TRUE,
+           size = 8) 
+```
+
+## Randomness Effect 5
+
+```{r}
+#| echo: false
+
+x <- rnorm(1000)
+y <- 4 + 5 * x + rnorm(1000)
+bb <- round(b(lm(y ~ x),1),2)
+ggplot(tibble(x = x, y = y), aes(x,y)) +
+  geom_point() +
+  annotate("text", 
+           x = -1, y = 15, 
+           label = TeX(sprintf(r'($\hat{\beta}_1 = %g$)', bb)),
+           parse = TRUE,
+           size = 8) 
+```
+
+
 
 # Simulating Unicorns
 

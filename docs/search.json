@@ -74,7 +74,7 @@
     "href": "lectures/9.html#simulating-n0-3.24",
     "title": "Sampling Distribution",
     "section": "Simulating \\(N(0, 3.24)\\)",
-    "text": "Simulating \\(N(0, 3.24)\\)\n\n\nCode\nrnorm(1, 0, sqrt(3.24))\n\n\n#&gt; [1] -2.741735"
+    "text": "Simulating \\(N(0, 3.24)\\)\n\n\nCode\nrnorm(1, 0, sqrt(3.24))\n\n\n#&gt; [1] 2.76654"
   },
   {
     "objectID": "lectures/9.html#collecting",
@@ -102,35 +102,35 @@
     "href": "lectures/9.html#estimating-beta_1-via-lm",
     "title": "Sampling Distribution",
     "section": "Estimating \\(\\beta_1\\) via lm",
-    "text": "Estimating \\(\\beta_1\\) via lm\n\n\nCode\nu1 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u1)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3418.523         8.005"
+    "text": "Estimating \\(\\beta_1\\) via lm\n\n\nCode\nu1 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u1)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3422.074         8.001"
   },
   {
     "objectID": "lectures/9.html#collecting-a-new-sample",
     "href": "lectures/9.html#collecting-a-new-sample",
     "title": "Sampling Distribution",
     "section": "Collecting a new sample",
-    "text": "Collecting a new sample\n\n\nCode\nu2 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u2)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u2)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3425.266         7.998"
+    "text": "Collecting a new sample\n\n\nCode\nu2 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u2)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u2)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3415.224         8.008"
   },
   {
     "objectID": "lectures/9.html#collecting-a-new-sample-1",
     "href": "lectures/9.html#collecting-a-new-sample-1",
     "title": "Sampling Distribution",
     "section": "Collecting a new sample",
-    "text": "Collecting a new sample\n\n\nCode\nu3 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u3)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u3)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3424.409         7.999"
+    "text": "Collecting a new sample\n\n\nCode\nu3 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u3)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u3)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3421.590         8.002"
   },
   {
     "objectID": "lectures/9.html#collecting-a-new-sample-2",
     "href": "lectures/9.html#collecting-a-new-sample-2",
     "title": "Sampling Distribution",
     "section": "Collecting a new sample",
-    "text": "Collecting a new sample\n\n\nCode\nu4 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u4)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u4)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3425.562         7.997"
+    "text": "Collecting a new sample\n\n\nCode\nu4 &lt;- unicorns(500)\nlm(Magical_Score ~ Nature_Score, u4)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = Magical_Score ~ Nature_Score, data = u4)\n#&gt; \n#&gt; Coefficients:\n#&gt;  (Intercept)  Nature_Score  \n#&gt;     3431.181         7.991"
   },
   {
     "objectID": "lectures/9.html#collecting-1000-samples",
     "href": "lectures/9.html#collecting-1000-samples",
     "title": "Sampling Distribution",
     "section": "Collecting 1000 Samples",
-    "text": "Collecting 1000 Samples\n\n\nCode\nbetas &lt;- replicate(1000,\n                   b(Magical_Score ~ Nature_Score, 1, unicorns(500)))\n\nbetas\n\n\n#&gt;    [1] 8.001039 7.995424 7.998978 8.006231 7.997319 7.999447 8.001647 8.007213\n#&gt;    [9] 8.004721 8.002049 8.004657 7.998890 7.987239 7.994038 8.001023 7.998717\n#&gt;   [17] 7.999547 8.005144 7.997047 8.005322 7.999135 7.991336 7.999450 7.994668\n#&gt;   [25] 7.996320 7.993715 7.998078 7.998413 7.997435 8.002588 7.999076 8.006303\n#&gt;   [33] 7.995423 7.997724 8.003068 7.993633 7.998774 7.999477 8.003030 7.991605\n#&gt;   [41] 8.010024 8.007784 8.002413 8.002612 8.003989 8.002112 8.001727 7.998192\n#&gt;   [49] 8.006906 7.992860 8.006628 7.997894 7.997763 7.997623 7.998646 7.995208\n#&gt;   [57] 8.004984 7.996956 8.001154 8.004208 7.994734 7.996489 8.000079 8.001184\n#&gt;   [65] 8.002515 7.997576 8.000469 8.001036 8.005044 7.998555 7.999805 8.006738\n#&gt;   [73] 8.001875 7.999432 8.000694 8.006066 7.998450 8.000134 8.004326 8.002046\n#&gt;   [81] 7.997384 8.001802 8.006776 7.998429 7.997291 8.000385 8.003750 7.995779\n#&gt;   [89] 8.004254 7.998248 7.996141 7.997537 8.003760 7.993662 7.998423 7.998404\n#&gt;   [97] 8.000441 7.996817 8.002844 7.995948 8.000583 8.004905 7.999043 8.003016\n#&gt;  [105] 8.001158 7.999690 7.996345 8.006717 8.004607 8.002298 8.002570 7.993923\n#&gt;  [113] 7.997821 8.004010 7.995376 8.003818 7.997284 8.003661 8.001292 8.004237\n#&gt;  [121] 8.000705 8.000275 7.993522 7.996208 7.995301 7.999343 7.994368 8.002756\n#&gt;  [129] 8.003369 8.002399 7.997827 7.996653 8.002018 8.000735 8.008033 7.997319\n#&gt;  [137] 8.001671 7.992755 7.999350 7.996949 8.002627 8.001929 7.996374 7.996827\n#&gt;  [145] 7.997828 7.999859 7.998110 7.999297 7.991588 7.996043 7.995705 8.001308\n#&gt;  [153] 7.999252 7.994251 8.010275 8.002902 8.001008 8.000152 7.995628 7.997940\n#&gt;  [161] 8.005774 7.997120 7.994588 7.996132 8.003775 8.007321 8.000386 8.001084\n#&gt;  [169] 8.000095 8.000074 7.996240 8.000548 7.999536 8.000562 7.998894 8.001153\n#&gt;  [177] 8.005973 7.998669 8.000162 8.002030 8.001912 7.997327 8.004979 7.997953\n#&gt;  [185] 7.996306 8.008094 8.002597 8.002836 8.008694 8.003027 7.996661 8.002739\n#&gt;  [193] 8.002629 8.011338 7.993668 8.000989 7.994522 7.995940 7.995721 8.000694\n#&gt;  [201] 8.007828 7.993502 8.008759 8.004972 7.992492 8.000200 8.000550 7.998613\n#&gt;  [209] 8.000893 7.996079 8.000271 8.004217 7.999621 7.998439 8.000134 7.996818\n#&gt;  [217] 7.995897 7.998767 8.006429 7.991808 7.994699 8.001228 8.002749 7.999222\n#&gt;  [225] 8.000240 7.993858 7.996960 8.000005 8.000208 7.995865 8.001727 7.999961\n#&gt;  [233] 7.998046 7.996356 8.005130 7.998828 8.001909 8.000190 7.998771 8.003161\n#&gt;  [241] 7.997924 7.996446 7.996441 7.999298 8.001446 8.004394 7.997150 8.000563\n#&gt;  [249] 8.000911 8.004916 7.995518 8.002550 7.995850 8.005911 7.997010 8.002376\n#&gt;  [257] 7.998344 7.989572 8.006660 8.000027 7.995413 8.003798 7.995594 8.003250\n#&gt;  [265] 8.001938 7.999647 7.997500 7.999100 7.996224 7.998825 7.996794 8.000400\n#&gt;  [273] 7.998930 7.992411 8.001693 8.002445 7.996897 8.000871 7.999868 7.995446\n#&gt;  [281] 7.998211 7.993223 7.996405 7.999553 8.003226 8.000124 8.007135 8.000042\n#&gt;  [289] 8.000899 7.996872 8.004594 7.996360 8.006758 7.994669 7.999791 8.000634\n#&gt;  [297] 7.990232 7.997922 7.998059 8.004780 8.006710 8.003275 7.998861 7.997527\n#&gt;  [305] 8.005871 7.999948 8.001486 7.997278 7.997495 7.994919 7.997040 8.004331\n#&gt;  [313] 8.006059 8.005040 7.997972 8.000036 7.992041 7.998973 7.986941 8.000469\n#&gt;  [321] 8.001694 7.999418 8.007100 8.005316 8.003439 7.991563 8.006785 8.001978\n#&gt;  [329] 8.004127 7.992321 7.995161 7.999634 7.991959 8.001793 7.995870 8.005097\n#&gt;  [337] 7.996970 7.993322 7.997818 8.001600 7.996305 7.997746 8.005762 7.998594\n#&gt;  [345] 8.007027 7.999629 7.996072 8.006063 7.996980 7.997671 8.006669 8.002567\n#&gt;  [353] 8.004979 7.993332 7.993232 7.998067 7.993628 7.994016 8.000966 7.997022\n#&gt;  [361] 7.994944 8.002908 8.002875 7.995729 8.003886 7.996744 7.995882 8.003520\n#&gt;  [369] 8.005567 7.997110 8.004586 8.004235 8.003362 7.994406 7.999326 7.991222\n#&gt;  [377] 7.995645 8.004339 7.994513 7.996881 8.000206 8.005570 7.998120 8.001952\n#&gt;  [385] 7.995433 7.999055 8.001279 7.998668 7.999583 7.998860 7.997404 7.996661\n#&gt;  [393] 7.998170 7.994006 8.000444 7.999897 7.996095 8.004840 7.996321 8.004550\n#&gt;  [401] 7.994234 8.001469 8.000385 7.998297 8.004710 7.994631 8.004634 7.999534\n#&gt;  [409] 7.992754 7.996880 7.999322 7.995502 7.992247 7.999755 7.999642 7.995513\n#&gt;  [417] 8.009953 8.005530 8.004040 7.997150 8.002559 7.999714 8.005862 7.995887\n#&gt;  [425] 7.994208 7.998341 7.995700 7.993678 7.998311 7.998622 7.996984 8.000239\n#&gt;  [433] 7.996411 7.999377 8.002466 7.999766 8.002873 8.002080 7.999927 7.999046\n#&gt;  [441] 7.999789 7.993528 7.995075 8.002775 7.998526 8.005045 8.005528 8.001067\n#&gt;  [449] 7.996293 8.004840 8.000838 8.002589 8.000926 8.010624 7.991845 7.998454\n#&gt;  [457] 7.993909 7.998319 7.997605 7.995659 7.994973 7.997829 7.995492 8.003935\n#&gt;  [465] 7.998378 7.997833 7.990803 7.992746 7.999853 7.999337 8.001279 7.998824\n#&gt;  [473] 8.003000 8.004067 8.007826 8.001456 7.997332 7.998789 7.995401 7.993388\n#&gt;  [481] 7.995422 7.995064 7.998791 7.997638 7.997910 7.994195 7.997326 7.999905\n#&gt;  [489] 8.001840 8.000879 8.007022 7.999877 8.006558 7.997480 8.005430 7.998079\n#&gt;  [497] 7.999446 8.000837 8.008294 7.996368 8.003301 8.003681 7.999059 8.001617\n#&gt;  [505] 7.999584 7.998340 8.001803 8.001327 8.003766 8.002818 7.998859 7.995575\n#&gt;  [513] 8.004404 8.000656 7.997732 8.007043 8.003667 7.997352 7.998131 7.997756\n#&gt;  [521] 7.995282 8.004718 7.991869 8.003546 7.996525 8.000235 8.002709 7.994211\n#&gt;  [529] 7.998404 7.996983 8.004857 7.995964 8.004478 8.002883 8.006113 8.000445\n#&gt;  [537] 8.000411 7.996843 8.002260 8.006550 8.004431 8.007798 7.995154 7.995780\n#&gt;  [545] 8.000181 7.997639 8.000036 7.996949 8.001420 7.999160 7.998435 7.999870\n#&gt;  [553] 7.993954 7.994906 7.996048 8.000132 8.004589 7.998570 7.999110 7.996238\n#&gt;  [561] 8.008304 7.994950 7.999382 8.002774 7.992517 7.999868 7.995892 8.005117\n#&gt;  [569] 7.999459 8.000871 8.001053 7.997133 8.002531 8.000706 8.002327 8.001231\n#&gt;  [577] 8.004061 8.003790 8.002874 8.001925 7.997674 8.003075 8.003406 7.999836\n#&gt;  [585] 7.998636 8.004937 8.003245 8.006371 7.996203 8.008265 8.001406 8.006305\n#&gt;  [593] 7.996528 7.996171 8.002439 8.004762 8.005898 8.003099 8.006997 7.997561\n#&gt;  [601] 8.003071 8.005061 8.009180 8.008370 8.002236 8.005988 8.002944 7.993435\n#&gt;  [609] 7.989781 8.001986 8.003254 7.998018 7.997713 7.992599 7.996921 8.001593\n#&gt;  [617] 7.995437 8.004420 8.003690 7.993833 7.997836 7.998922 7.997041 7.994983\n#&gt;  [625] 8.004370 7.996782 8.009106 7.999199 7.997822 7.998938 8.006677 8.004305\n#&gt;  [633] 7.998599 7.997901 8.000693 7.995023 8.001790 7.998212 7.997626 8.002119\n#&gt;  [641] 8.003201 8.005181 7.997687 8.002220 8.003466 8.004287 8.002447 8.001988\n#&gt;  [649] 7.996489 7.998312 7.998246 8.000680 8.003872 8.004868 7.999776 8.001197\n#&gt;  [657] 7.996760 7.996860 7.997146 8.000404 7.995321 7.994787 8.003267 7.998049\n#&gt;  [665] 8.000142 8.000913 7.999112 7.995001 8.005443 7.993297 7.991542 7.997259\n#&gt;  [673] 7.993371 7.998056 8.001568 7.996045 7.997616 7.993699 8.001760 7.997582\n#&gt;  [681] 8.001847 8.001810 8.002698 7.998880 7.998725 8.000182 7.994555 8.001572\n#&gt;  [689] 8.001251 7.996353 7.997603 8.002028 7.997016 7.997210 7.994927 7.999170\n#&gt;  [697] 8.004991 7.994413 8.005345 7.996116 7.996278 8.000338 7.998387 8.004210\n#&gt;  [705] 8.007738 7.999254 7.996258 7.994710 8.000046 7.990742 7.995527 8.001596\n#&gt;  [713] 7.994164 7.998289 8.001826 8.002535 8.009212 8.005253 7.994529 8.004467\n#&gt;  [721] 8.001880 7.989564 7.993773 7.997840 8.002789 7.992614 8.002112 7.993360\n#&gt;  [729] 7.999926 7.993221 7.994239 7.998579 7.998314 7.998234 7.999980 7.995840\n#&gt;  [737] 8.002690 7.996473 7.997026 8.000704 8.003601 8.000038 8.002979 8.005484\n#&gt;  [745] 8.002258 7.994447 8.007497 8.003551 8.006858 7.999670 8.002979 8.000479\n#&gt;  [753] 8.002552 7.997668 7.996479 7.995803 8.003704 7.991381 8.003545 7.994026\n#&gt;  [761] 7.999245 7.996208 7.999535 8.003408 8.000391 8.000307 7.997313 8.008174\n#&gt;  [769] 8.001498 8.002010 7.998776 7.995450 7.997541 7.999937 8.000285 8.000692\n#&gt;  [777] 7.996358 8.005261 7.998186 7.999984 7.997740 8.001834 7.993615 7.996690\n#&gt;  [785] 8.003602 7.993889 8.000223 7.994442 7.998086 7.994658 8.001552 7.999689\n#&gt;  [793] 8.002120 7.996503 8.005401 7.997587 7.992330 8.001596 7.992068 7.998287\n#&gt;  [801] 7.994289 8.001450 7.999839 7.999165 7.996463 7.999095 7.997869 8.001542\n#&gt;  [809] 7.996383 7.991441 8.002700 8.006675 7.996638 8.000417 8.000514 8.007677\n#&gt;  [817] 8.005820 7.999422 8.002189 7.993370 8.004422 8.002898 8.001308 7.992859\n#&gt;  [825] 8.000487 8.004793 7.999257 7.993487 7.997622 8.005620 8.001325 7.988602\n#&gt;  [833] 7.993631 7.998239 7.994204 7.999827 7.990601 8.001782 7.998730 7.991749\n#&gt;  [841] 8.001076 8.004814 7.998220 8.004001 7.998881 8.004538 7.998918 8.003213\n#&gt;  [849] 8.007598 7.997229 8.007260 7.994002 7.995289 7.997120 7.990966 7.998145\n#&gt;  [857] 7.998041 8.007883 8.000120 7.998259 7.994149 7.999113 7.995124 7.997896\n#&gt;  [865] 8.008872 7.997870 7.995206 7.996355 7.999184 8.005455 8.005962 7.992799\n#&gt;  [873] 7.997977 8.001662 7.990687 7.997686 8.004168 7.996409 8.001091 8.002954\n#&gt;  [881] 8.000296 7.996008 8.005612 8.003626 8.000004 8.006636 8.003056 7.991716\n#&gt;  [889] 7.994458 7.998790 8.003017 7.994455 7.994972 7.996663 7.998724 8.002218\n#&gt;  [897] 7.996508 7.998931 8.003908 7.998559 7.993541 7.999751 8.005113 7.999920\n#&gt;  [905] 7.993684 7.999899 8.003778 7.996015 7.996129 8.004235 8.005589 7.996142\n#&gt;  [913] 7.999885 8.003705 8.000914 7.999873 8.002889 8.002862 8.006699 8.003799\n#&gt;  [921] 8.003929 7.998468 8.002643 8.006104 8.006845 7.996801 7.997976 8.000126\n#&gt;  [929] 7.998160 8.004326 8.002240 8.002977 7.997451 7.999684 7.988356 8.002999\n#&gt;  [937] 7.997677 7.998559 7.994866 8.000278 8.002432 8.004041 8.000219 8.003607\n#&gt;  [945] 8.004106 8.006058 7.996897 7.992707 8.004363 8.003838 7.997327 8.009434\n#&gt;  [953] 8.006149 7.996520 8.001484 7.993181 7.994546 7.990320 8.009053 7.997865\n#&gt;  [961] 7.996973 7.996909 7.997002 8.002903 8.001588 7.996677 7.996053 7.996457\n#&gt;  [969] 8.002106 7.998034 8.010395 7.997076 7.999059 8.003264 7.998366 7.997358\n#&gt;  [977] 8.006635 7.997668 8.003086 8.008254 8.005506 8.007073 8.001908 8.001248\n#&gt;  [985] 7.992828 7.996259 8.002501 8.005369 8.005316 7.999389 8.007009 8.000636\n#&gt;  [993] 8.001717 8.004606 7.999654 7.999717 8.002558 8.001628 8.003330 8.004241"
+    "text": "Collecting 1000 Samples\n\n\nCode\nbetas &lt;- replicate(1000,\n                   b(Magical_Score ~ Nature_Score, 1, unicorns(500)))\n\nbetas\n\n\n#&gt;    [1] 7.999438 7.996674 7.995469 7.998382 7.996859 7.994082 7.997401 8.003169\n#&gt;    [9] 7.995830 8.008999 7.994556 7.998273 7.994390 7.995247 8.003674 7.997915\n#&gt;   [17] 7.992698 7.998411 7.990822 7.999980 8.003716 7.997549 7.991804 7.999116\n#&gt;   [25] 8.003934 7.993250 7.994899 8.007665 8.001598 8.001039 8.000403 7.996520\n#&gt;   [33] 8.002898 7.993326 7.995336 8.007566 8.001755 8.003359 7.996071 7.999379\n#&gt;   [41] 8.001128 8.004139 7.998209 8.009284 8.003452 8.002449 8.001472 7.996994\n#&gt;   [49] 8.000527 8.005120 7.990690 8.002089 7.993726 7.993077 8.000645 7.999279\n#&gt;   [57] 8.007025 7.999669 8.000497 8.002883 8.001081 7.995444 7.998697 7.998448\n#&gt;   [65] 7.999487 8.000692 8.000594 8.000662 8.002371 7.997530 8.002520 7.999631\n#&gt;   [73] 7.992761 8.001158 7.997764 7.993326 8.004114 8.011083 7.994598 7.998333\n#&gt;   [81] 7.998805 7.996224 8.005108 7.989425 8.004168 7.995918 7.999573 8.002016\n#&gt;   [89] 7.995787 8.002040 8.004568 7.998017 7.999355 7.997987 7.993947 8.000461\n#&gt;   [97] 7.997549 7.999377 7.997881 7.996641 7.999589 7.992412 7.994142 8.003721\n#&gt;  [105] 8.002856 8.001302 7.996728 7.992015 7.996466 8.002715 7.995305 8.000827\n#&gt;  [113] 8.005843 8.001840 8.003773 8.002879 7.997890 7.997213 7.998753 8.004665\n#&gt;  [121] 8.000204 7.997218 8.000608 8.007543 8.003496 8.005370 8.003619 7.994881\n#&gt;  [129] 8.003120 7.999783 8.004327 7.996434 8.009592 7.998798 8.002042 7.993196\n#&gt;  [137] 7.997656 8.002588 7.999411 8.003640 7.997683 7.995796 7.998262 8.001999\n#&gt;  [145] 7.998988 8.003018 7.999192 7.997938 7.994595 8.004520 7.991429 7.996793\n#&gt;  [153] 8.000738 8.001284 7.997376 7.999508 8.007260 7.998700 8.004171 8.004624\n#&gt;  [161] 8.003195 7.994684 8.003964 8.008792 7.995493 7.999532 8.000747 7.997940\n#&gt;  [169] 7.996127 8.001348 7.999925 8.000039 8.004195 7.999346 8.003335 8.002056\n#&gt;  [177] 8.008561 8.005546 7.998452 7.999964 7.997196 8.000981 7.989706 8.009242\n#&gt;  [185] 7.999767 7.992948 8.008240 7.990863 7.996821 7.995580 8.002453 8.003075\n#&gt;  [193] 8.005870 7.999708 7.994312 8.002021 7.997533 8.003335 7.995198 8.005132\n#&gt;  [201] 8.000015 7.997077 8.004265 7.999461 8.002779 7.999269 7.993568 8.001665\n#&gt;  [209] 7.996340 8.000349 7.996996 8.002216 7.997866 7.995439 7.997394 7.999731\n#&gt;  [217] 7.999611 7.997031 7.993277 8.002121 8.001494 7.998858 7.996419 8.001852\n#&gt;  [225] 8.005505 8.002548 8.001486 7.997419 8.002292 8.000578 8.002743 8.000340\n#&gt;  [233] 8.005237 7.998929 7.995082 7.999851 8.003294 8.004432 7.996889 8.006231\n#&gt;  [241] 8.000659 8.001784 7.999428 8.005941 8.001449 8.007220 8.000010 7.995378\n#&gt;  [249] 8.004739 8.005369 8.003626 8.002173 8.003300 8.002234 7.991895 8.006415\n#&gt;  [257] 8.002009 8.000041 7.997136 8.002016 8.001430 8.001018 7.999388 7.996001\n#&gt;  [265] 8.001587 7.996444 7.999627 8.001511 7.992113 8.001984 7.999731 8.005337\n#&gt;  [273] 8.002942 7.998456 7.996489 7.998525 7.998781 7.999905 8.006494 7.995420\n#&gt;  [281] 7.999968 7.996431 7.998514 7.993150 7.995516 8.003010 8.002137 7.996873\n#&gt;  [289] 7.992141 8.000518 7.998958 7.996565 8.001261 8.004302 7.999487 7.999132\n#&gt;  [297] 7.999321 8.006158 8.005862 7.991301 7.997915 8.005414 7.993867 7.997428\n#&gt;  [305] 7.999037 8.002430 7.994552 7.996002 7.997175 8.003076 7.992781 7.993140\n#&gt;  [313] 7.994588 7.996467 7.997256 8.000174 8.011357 7.999836 7.999420 8.002369\n#&gt;  [321] 7.999797 7.995462 8.002200 7.996305 8.000397 7.998733 8.002363 7.995196\n#&gt;  [329] 7.997086 7.995711 8.005515 7.999847 8.000516 7.997567 8.002966 7.991995\n#&gt;  [337] 7.998769 8.005298 7.994416 7.997012 7.998534 7.993541 7.994853 8.001847\n#&gt;  [345] 7.998204 8.005029 8.000421 7.999367 8.003434 8.002340 8.003614 8.004975\n#&gt;  [353] 7.994447 7.992979 7.996143 7.998473 7.995870 8.000420 7.992337 8.001986\n#&gt;  [361] 7.998671 7.998414 8.004602 7.990124 7.999500 7.998297 7.996406 7.993048\n#&gt;  [369] 7.998144 7.989578 8.003967 7.994946 8.004665 8.000854 8.010257 8.002703\n#&gt;  [377] 8.002208 7.987476 7.989080 7.994529 8.001530 8.004520 7.995372 7.996683\n#&gt;  [385] 8.003001 8.002329 8.007932 8.001246 8.004411 8.003952 7.996010 8.002687\n#&gt;  [393] 7.996193 8.011761 7.998664 8.004047 7.995845 7.988312 8.005082 7.992096\n#&gt;  [401] 8.000545 7.997355 7.997243 8.000507 8.004666 8.000474 7.993300 8.000754\n#&gt;  [409] 8.001364 7.997470 8.001298 8.006315 8.003401 7.995756 7.999347 8.006188\n#&gt;  [417] 8.001932 8.006068 8.000698 8.003393 8.006751 8.000232 8.004150 8.000923\n#&gt;  [425] 7.996264 8.002800 8.002812 8.001977 7.998923 8.000796 7.999847 7.994481\n#&gt;  [433] 8.011555 8.004556 7.997419 8.003383 7.993300 8.002273 7.996275 8.009541\n#&gt;  [441] 8.001405 7.998309 8.004861 8.000192 7.995502 8.000066 8.004474 7.992995\n#&gt;  [449] 8.006032 7.999783 8.004580 7.998934 8.004394 7.999153 8.005966 8.002303\n#&gt;  [457] 7.996724 8.003734 7.991884 7.994927 8.000511 7.994868 7.993357 7.989832\n#&gt;  [465] 7.993323 7.991905 7.998462 8.003644 8.001375 7.999626 7.997910 8.003830\n#&gt;  [473] 8.000496 8.005036 7.999939 8.001331 7.995456 7.997610 7.999089 8.008794\n#&gt;  [481] 8.002911 8.001705 8.004534 8.002699 7.998196 7.996703 7.999738 8.004803\n#&gt;  [489] 8.004017 8.002451 7.996682 8.001054 8.001958 8.001384 8.009548 7.997373\n#&gt;  [497] 7.997727 8.000730 7.995191 8.001524 8.002681 7.999497 7.994743 8.003635\n#&gt;  [505] 7.990270 8.001843 7.997286 7.997175 7.999199 8.001504 7.994045 7.995210\n#&gt;  [513] 8.002933 7.999772 7.995972 8.000669 7.998122 7.987245 8.000536 8.004540\n#&gt;  [521] 8.002816 7.993018 7.997789 7.999126 8.000307 8.003979 7.993326 7.998551\n#&gt;  [529] 7.996780 7.999205 7.997118 7.999263 7.998516 7.994812 8.004935 7.997334\n#&gt;  [537] 7.994731 8.004488 8.002021 7.998715 8.007854 8.003373 7.995168 7.999811\n#&gt;  [545] 7.997228 8.000518 7.999082 7.995397 8.001819 7.999095 7.996965 8.006007\n#&gt;  [553] 7.989453 8.001647 7.992427 7.994626 8.012275 8.002654 8.003441 7.998215\n#&gt;  [561] 7.998059 8.002815 7.999184 8.003062 7.996320 8.001201 7.998197 8.005287\n#&gt;  [569] 8.000128 8.000066 8.000436 8.000980 8.002638 8.000524 8.005874 7.997378\n#&gt;  [577] 8.000234 8.001037 7.998800 7.998161 7.998835 8.000005 7.995311 8.003981\n#&gt;  [585] 7.997414 8.000710 7.998135 8.001762 8.004912 8.001003 7.999515 7.999816\n#&gt;  [593] 8.000467 7.991963 7.999656 7.998749 7.996438 7.993678 7.992948 8.006446\n#&gt;  [601] 8.001446 8.003805 7.998955 8.002789 7.997323 8.009622 7.997156 8.002679\n#&gt;  [609] 7.997236 8.001353 8.002436 7.997681 8.003378 7.997815 8.001204 8.005060\n#&gt;  [617] 7.992381 7.997782 7.998091 7.993680 7.995287 7.995492 8.005368 8.007509\n#&gt;  [625] 7.992934 7.999956 7.994345 8.003521 8.005997 7.998737 7.999797 8.006179\n#&gt;  [633] 7.998146 7.999206 7.998579 7.996961 7.997055 7.993138 8.000793 7.998089\n#&gt;  [641] 7.994246 8.000963 8.001142 8.005526 8.003022 7.998638 8.002413 7.993763\n#&gt;  [649] 7.995592 8.005464 8.000405 7.998942 7.998555 7.997612 7.999484 7.992237\n#&gt;  [657] 7.999559 7.999890 7.995827 8.001985 8.000761 7.998671 8.004775 7.996605\n#&gt;  [665] 7.999676 7.993284 8.004282 8.002649 7.993314 7.994384 7.994235 8.006294\n#&gt;  [673] 7.992741 7.999949 8.002906 8.004481 7.996220 8.002652 8.002285 7.999940\n#&gt;  [681] 7.998955 7.995691 8.006270 7.999817 8.007342 7.999014 8.002877 8.007829\n#&gt;  [689] 8.002348 7.999950 7.994678 7.993748 7.999461 8.003064 7.999467 8.005333\n#&gt;  [697] 7.995327 7.993144 8.008996 7.994770 8.002473 8.004787 7.999571 7.999079\n#&gt;  [705] 7.997835 7.998318 8.002228 8.005623 8.001561 7.994978 8.005701 8.000103\n#&gt;  [713] 7.998932 8.000254 8.001366 7.996169 8.001890 7.996349 8.002921 7.992559\n#&gt;  [721] 8.008152 7.999469 7.998522 7.992525 7.999984 8.004749 8.003420 8.000144\n#&gt;  [729] 8.002488 7.996743 7.988253 8.000413 7.995444 7.999455 8.001378 7.998891\n#&gt;  [737] 7.999161 7.996871 7.998428 8.001028 8.001453 7.994865 8.000647 7.996544\n#&gt;  [745] 8.008073 8.005668 7.998466 7.998639 7.996752 7.993481 8.002474 7.998605\n#&gt;  [753] 8.001798 7.993533 8.003590 7.998056 8.002400 8.004629 8.006034 8.001538\n#&gt;  [761] 7.998556 7.993978 7.997151 8.000421 7.999416 7.999488 7.997704 8.009120\n#&gt;  [769] 7.998271 7.993924 8.000352 7.995142 8.002162 7.998941 7.997571 7.998794\n#&gt;  [777] 7.997724 8.006209 7.991055 7.997944 7.999982 8.002405 7.997368 7.998186\n#&gt;  [785] 8.003518 7.991159 7.997081 8.002370 7.993618 8.000533 8.003580 7.999372\n#&gt;  [793] 7.997277 7.999220 7.998903 7.999372 7.996478 8.004827 7.993013 8.000474\n#&gt;  [801] 7.997734 8.000236 7.997808 8.002997 8.002838 7.998534 8.003773 8.001101\n#&gt;  [809] 7.997768 7.999985 7.998529 8.002221 8.002018 7.998708 8.000457 8.007646\n#&gt;  [817] 7.996339 7.995736 8.004150 8.002204 8.002874 8.003128 7.997577 8.001530\n#&gt;  [825] 7.997094 7.989351 8.001952 8.006758 7.993666 7.994832 8.002238 7.998745\n#&gt;  [833] 8.001019 8.001153 8.000979 7.997300 8.003230 7.995957 7.997699 8.002349\n#&gt;  [841] 7.993566 7.993943 7.995477 8.003193 7.998602 8.006171 7.998572 7.996874\n#&gt;  [849] 8.000790 8.008067 8.006346 8.002881 7.999687 8.004821 8.000874 7.999036\n#&gt;  [857] 8.001938 7.991994 8.000434 7.996911 8.000670 8.005613 7.993733 7.995547\n#&gt;  [865] 7.996299 7.999874 8.000558 7.994889 8.002131 7.996599 8.001294 8.001855\n#&gt;  [873] 8.002436 8.002148 7.999237 7.997816 8.003602 8.000292 7.999207 8.001804\n#&gt;  [881] 8.003439 7.997881 7.996348 7.998534 7.994865 8.000339 7.999254 7.994527\n#&gt;  [889] 8.000296 8.003403 7.999351 8.000020 8.005406 8.000255 8.002675 7.996375\n#&gt;  [897] 8.004729 7.998767 8.005054 8.000956 7.999571 7.996457 7.997136 8.001983\n#&gt;  [905] 7.992840 7.999641 7.997038 8.006410 7.999883 7.999770 8.000543 8.001182\n#&gt;  [913] 7.999816 8.004373 7.991364 7.998923 7.998407 7.999647 8.015105 7.999699\n#&gt;  [921] 7.995012 8.002922 7.997217 8.001716 7.995627 7.999572 8.005293 7.998105\n#&gt;  [929] 7.997418 8.000772 7.997748 7.999184 8.000222 7.992496 8.000478 8.007092\n#&gt;  [937] 8.004170 8.000640 7.995920 8.003254 8.006622 7.998563 7.998909 7.999780\n#&gt;  [945] 8.000055 8.008326 7.999546 7.994926 7.996328 7.996922 7.998107 8.002731\n#&gt;  [953] 8.000165 8.001787 7.998599 8.003386 7.996753 8.003580 8.004689 7.997025\n#&gt;  [961] 8.003197 7.998231 8.004840 8.000382 7.996508 8.001889 7.995964 7.999123\n#&gt;  [969] 7.990414 7.995324 7.998356 8.002738 7.998463 8.003398 7.999233 8.000581\n#&gt;  [977] 8.005173 8.000666 7.999339 7.999903 7.994999 7.993491 7.995456 7.999448\n#&gt;  [985] 7.999325 8.003449 8.004068 8.004900 7.997201 7.998728 7.997273 8.001763\n#&gt;  [993] 8.001557 8.002315 8.000333 7.997476 8.001166 8.001168 7.995677 8.003130"
   },
   {
     "objectID": "lectures/9.html#distributions-of-hat-beta_1",
@@ -2209,7 +2209,7 @@
     "href": "lectures.html",
     "title": "Lectures",
     "section": "",
-    "text": "Categorical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for categorical data. \n\n\n\n\n\nJan 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nData Generating Process\n\n\n\n\n\nProvide a Brief Introduction of Data, Study Design, and the Data Generating Process. \n\n\n\n\n\nJan 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Functions\n\n\n\n\n\n\n\n\n\n\n\nFeb 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference\n\n\n\n\n\nBegins the discussion on Inference. \n\n\n\n\n\nApr 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nApr 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Logistic and Poisson Regression\n\n\n\n\n\nBegins the discussion on inference for logistic and Poisson regression. \n\n\n\n\n\nApr 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMultivariable Linear Regression\n\n\n\n\n\nContinues the discussion with multi linear regression. \n\n\n\n\n\nMar 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nNumerical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for numerical data. \n\n\n\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPoisson Regression\n\n\n\n\n\nBegins the discussion for Poisson regression. \n\n\n\n\n\nMar 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSampling Distribution\n\n\n\n\n\n\n\n\n\n\n\nApr 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSimple Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nFeb 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics\n\n\nA Math? A Science? An Art? Or Something Else?\n\n\n\n\n\n\n\n\nIsaac Quintanilla Salinas\n\n\n\n\n\n\nNo matching items"
+    "text": "Categorical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for categorical data. \n\n\n\n\n\nJan 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nData Generating Process\n\n\n\n\n\nProvide a Brief Introduction of Data, Study Design, and the Data Generating Process. \n\n\n\n\n\nJan 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Functions\n\n\n\n\n\n\n\n\n\n\n\nFeb 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference\n\n\n\n\n\nBegins the discussion on Inference. \n\n\n\n\n\nApr 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nApr 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Logistic and Poisson Regression\n\n\n\n\n\nBegins the discussion on inference for logistic and Poisson regression. \n\n\n\n\n\nApr 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMultivariable Linear Regression\n\n\n\n\n\nContinues the discussion with multi linear regression. \n\n\n\n\n\nMar 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nNumerical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for numerical data. \n\n\n\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSampling Distribution\n\n\n\n\n\n\n\n\n\n\n\nApr 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSimple Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nFeb 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistical Inference\n\n\n\n\n\nStatistical Inference \n\n\n\n\n\nApr 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics\n\n\nA Math? A Science? An Art? Or Something Else?\n\n\n\n\n\n\n\n\nIsaac Quintanilla Salinas\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/10.html#melanoma",
@@ -2340,16 +2340,16 @@
   {
     "objectID": "lectures/10.html#example",
     "href": "lectures/10.html#example",
-    "title": "Poisson Regression",
-    "section": "Example",
-    "text": "Example\nModelling dead by sex, age, thickness, and ulcer:\n\n\nCode\nglm(dead ~ sex + age + thickness + ulcer,\n    data = Melanoma,\n    family = binomial())\n\n\n#&gt; \n#&gt; Call:  glm(formula = dead ~ sex + age + thickness + ulcer, family = binomial(), \n#&gt;     data = Melanoma)\n#&gt; \n#&gt; Coefficients:\n#&gt; (Intercept)          sex          age    thickness        ulcer  \n#&gt;    -2.39860      0.40767      0.00402      0.11253      1.31314  \n#&gt; \n#&gt; Degrees of Freedom: 204 Total (i.e. Null);  200 Residual\n#&gt; Null Deviance:       242.4 \n#&gt; Residual Deviance: 210.3     AIC: 220.3\n\n\n\\[\n\\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc\n\\]"
+    "title": "Statistical Inference",
+    "section": "🔎 Example",
+    "text": "🔎 Example\n\n\\(n = 100\\), \\(\\bar{x} = 68\\), \\(\\sigma = 3\\)\n95% CI:\n\n\\[\n68 \\pm 1.96 \\cdot \\frac{3}{\\sqrt{100}} = 68 \\pm 0.588\n\\]\nCI: [67.412, 68.588]\n\nWalk through the calculation step-by-step. Emphasize how increasing \\(n\\) or decreasing \\(\\sigma\\) would narrow the interval."
   },
   {
     "objectID": "lectures/10.html#interpretation",
     "href": "lectures/10.html#interpretation",
-    "title": "Poisson Regression",
+    "title": "Statistical Inference",
     "section": "Interpretation",
-    "text": "Interpretation\n\\[\n\\log(odds) = -2.40 + 0.41 M + 0.004 age + 0.11 thick + 1.31ulc\n\\]\n\nThe odds of experiencing death in males is 1.5 times larger than the odds for females, adjusting for age, tumor thickness and the presence of an ulcer.\n\n\nAs age increases by 1 year, the odds of experiencing death increases by a factor of 1.004, adjusting for sex, tumor thickness and presence of an ulcer."
+    "text": "Interpretation\n\n“We are 95% confident that the true mean lies between A and B.”\n\n\nThis does not mean there’s a 95% chance the mean is in that interval.\nIt means: if we repeated the sampling process many times, 95% of the intervals would contain the true value.\n\n\nThis is one of the most common misconceptions. Clarify that the confidence is in the method, not any one interval."
   },
   {
     "objectID": "lectures/10.html#working-with-probabilities",
@@ -3974,5 +3974,355 @@
     "title": "Logistic Regression",
     "section": "Example 2",
     "text": "Example 2\n\n\n\n\n55\n75\n\n\n\n\nProbabiltiy\n36.8%\n38.7%\n\n\n\nFor a patient who is female, a tumor thickness of 2.9, and has an ulcer, the probability a 75 year old patient dies increases to 38.7% compared to a 55 year old patient with a probability of 36.8%."
+  },
+  {
+    "objectID": "lectures/10.html#what-is-statistical-inference",
+    "href": "lectures/10.html#what-is-statistical-inference",
+    "title": "Statistical Inference",
+    "section": "What is Statistical Inference?",
+    "text": "What is Statistical Inference?\n\nDrawing conclusions about a population based on a sample\nPopulation = entire group; Sample = subset\n\n\nIntroduce the big idea: We want to make statements about a large group (population) but can only observe a small part of it (sample). Inference bridges that gap."
+  },
+  {
+    "objectID": "lectures/10.html#two-main-types-of-inference",
+    "href": "lectures/10.html#two-main-types-of-inference",
+    "title": "Statistical Inference",
+    "section": "Two Main Types of Inference",
+    "text": "Two Main Types of Inference\n\nEstimation\n\nHypothesis Testing\n\n\nWe’ll be focusing on two fundamental techniques in inference. First, estimating population values (like the mean), and second, testing claims about the population."
+  },
+  {
+    "objectID": "lectures/10.html#estimation-1",
+    "href": "lectures/10.html#estimation-1",
+    "title": "Statistical Inference",
+    "section": "Estimation",
+    "text": "Estimation\n\nPoint Estimate: Single best guess (e.g., \\(\\hat \\beta_1\\))\nInterval Estimate: Range likely to contain the true value\n\n\nPoint estimates are easy but not very informative. Intervals give us a sense of uncertainty, which is critical in inference."
+  },
+  {
+    "objectID": "lectures/10.html#hypothesis-testing-1",
+    "href": "lectures/10.html#hypothesis-testing-1",
+    "title": "Statistical Inference",
+    "section": "Hypothesis Testing",
+    "text": "Hypothesis Testing\n\n\\(H_0\\): No effect or difference\n\n\\(H_1\\): Some effect or difference\n\nWe use sample data to support or reject \\(H_0\\)\n\n\nMention that \\(H_0\\) is the default assumption. We only reject it if the data give us strong enough evidence."
+  },
+  {
+    "objectID": "lectures/10.html#key-concepts-and-tools",
+    "href": "lectures/10.html#key-concepts-and-tools",
+    "title": "Statistical Inference",
+    "section": "Key Concepts and Tools",
+    "text": "Key Concepts and Tools\n\nSampling Distribution\nCentral Limit Theorem\nStandard Error\n\n\nThese three concepts are foundational. Understanding them helps us assess how reliable our estimates are."
+  },
+  {
+    "objectID": "lectures/10.html#sampling-distributions",
+    "href": "lectures/10.html#sampling-distributions",
+    "title": "Statistical Inference",
+    "section": "Sampling Distributions",
+    "text": "Sampling Distributions\n\nDistribution of a statistic over repeated samples\n\n\nIf we took many samples, the statistics (like means) would vary. Their distribution helps us quantify uncertainty."
+  },
+  {
+    "objectID": "lectures/10.html#central-limit-theorem-clt",
+    "href": "lectures/10.html#central-limit-theorem-clt",
+    "title": "Statistical Inference",
+    "section": "Central Limit Theorem (CLT)",
+    "text": "Central Limit Theorem (CLT)\n\nFor large \\(n\\), \\(\\bar{x}\\) is approx. normally distributed\n\n\nEven if the population isn’t normal, the sample mean behaves normally with large enough \\(n\\). Very powerful result."
+  },
+  {
+    "objectID": "lectures/10.html#standard-error",
+    "href": "lectures/10.html#standard-error",
+    "title": "Statistical Inference",
+    "section": "Standard Error",
+    "text": "Standard Error\n\n\\(SE = \\frac{\\sigma}{\\sqrt{n}}\\)\n\n\nSE tells us how much a statistic (like the mean) varies from sample to sample. Smaller SE = more precision."
+  },
+  {
+    "objectID": "lectures/10.html#confidence-intervals",
+    "href": "lectures/10.html#confidence-intervals",
+    "title": "Statistical Inference",
+    "section": "Confidence Intervals",
+    "text": "Confidence Intervals\n\nA range where we expect the true value to fall\n\n\nClarify interpretation: it’s not about the probability the parameter is inside the interval, but about the method producing accurate intervals in the long run."
+  },
+  {
+    "objectID": "lectures/10.html#confidence-interval-formula",
+    "href": "lectures/10.html#confidence-interval-formula",
+    "title": "Statistical Inference",
+    "section": "Confidence Interval Formula",
+    "text": "Confidence Interval Formula\n\\[\n\\bar{x} \\pm z^* \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]\n\n\\(z^*\\) depends on the confidence level, like 1.96 for 95%. Explain how higher confidence means wider intervals."
+  },
+  {
+    "objectID": "lectures/10.html#hypothesis-testing-steps",
+    "href": "lectures/10.html#hypothesis-testing-steps",
+    "title": "Statistical Inference",
+    "section": "Hypothesis Testing Steps",
+    "text": "Hypothesis Testing Steps\n\nState \\(H_0\\) and \\(H_1\\)\n\nChoose \\(\\alpha\\)\n\nCompute confidence interval/p-value\n\nMake a decision\n\n\nWalk through the steps slowly with an example in mind. Emphasize that \\(\\alpha\\) is a threshold, not the actual probability of error."
+  },
+  {
+    "objectID": "lectures/10.html#p-values",
+    "href": "lectures/10.html#p-values",
+    "title": "Statistical Inference",
+    "section": "p-values",
+    "text": "p-values\n\nProbability of observing data as extreme as this if \\(H_0\\) is true\n\n\nMisinterpretation of p-values is common. Emphasize: low p-value means data is unusual under \\(H_0\\)."
+  },
+  {
+    "objectID": "lectures/10.html#errors-in-inference",
+    "href": "lectures/10.html#errors-in-inference",
+    "title": "Statistical Inference",
+    "section": "Errors in Inference",
+    "text": "Errors in Inference\n\n\n\nType I\nReject \\(H_0\\) when true\nFalse positive\n\n\nType II\nDon’t reject \\(H_0\\) when false\nFalse negative\n\n\nPower\n\\(1 - P(\\text{Type II})\\)\nDetecting a true effect\n\n\n\n\nPower is often overlooked. It’s about how sensitive the test is to real effects. Larger samples increase power."
+  },
+  {
+    "objectID": "lectures/10.html#example-1-confidence-interval",
+    "href": "lectures/10.html#example-1-confidence-interval",
+    "title": "Statistical Inference",
+    "section": "🧩 Example 1: Confidence Interval",
+    "text": "🧩 Example 1: Confidence Interval\n\n\\(n = 100\\), \\(\\bar{x} = 68\\), \\(\\sigma = 3\\)\n\n\\[\n68 \\pm 1.96 \\cdot \\frac{3}{\\sqrt{100}} = 68 \\pm 0.588\n\\]\n\nUse this to show a real numeric example. Point out how sample size and standard deviation affect the width."
+  },
+  {
+    "objectID": "lectures/10.html#example-2-hypothesis-test",
+    "href": "lectures/10.html#example-2-hypothesis-test",
+    "title": "Statistical Inference",
+    "section": "🧩 Example 2: Hypothesis Test",
+    "text": "🧩 Example 2: Hypothesis Test\n\n\\(H_0: \\mu = 70\\), sample mean = 68\n\n\\(z = -6.67\\)\n\n\nWith such a large z-score, the result is extremely unlikely under \\(H_0\\). Emphasize how this leads to rejecting the null."
+  },
+  {
+    "objectID": "lectures/10.html#inference-for-regression-coefficients",
+    "href": "lectures/10.html#inference-for-regression-coefficients",
+    "title": "Statistical Inference",
+    "section": "Inference for Regression Coefficients",
+    "text": "Inference for Regression Coefficients\n\n\\(Y = \\beta_0 + \\beta_1 X + \\varepsilon\\)\nWe estimate \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\)\n\n\nNow we’re applying inference in a regression context. Same principles apply—estimating, testing, confidence intervals."
+  },
+  {
+    "objectID": "lectures/10.html#sampling-distribution-of-hatbeta_1",
+    "href": "lectures/10.html#sampling-distribution-of-hatbeta_1",
+    "title": "Statistical Inference",
+    "section": "Sampling Distribution of \\(\\hat{\\beta}_1\\)",
+    "text": "Sampling Distribution of \\(\\hat{\\beta}_1\\)\n\n\\(\\hat{\\beta}_1\\) is normally distributed (under assumptions)\nSE depends on spread of \\(x_i\\)\n\n\nVariance in \\(x_i\\) helps reduce uncertainty in slope estimate. More spread = more informative data."
+  },
+  {
+    "objectID": "lectures/10.html#confidence-interval-for-beta_1",
+    "href": "lectures/10.html#confidence-interval-for-beta_1",
+    "title": "Statistical Inference",
+    "section": "Confidence Interval for \\(\\beta_1\\)",
+    "text": "Confidence Interval for \\(\\beta_1\\)\n\\[\n\\hat{\\beta}_1 \\pm t^* \\cdot SE(\\hat{\\beta}_1)\n\\]\n\nThis is like the CI for the mean, but uses the \\(t\\)-distribution because \\(\\sigma\\) is estimated."
+  },
+  {
+    "objectID": "lectures/10.html#hypothesis-testing-for-beta_1",
+    "href": "lectures/10.html#hypothesis-testing-for-beta_1",
+    "title": "Statistical Inference",
+    "section": "Hypothesis Testing for \\(\\beta_1\\)",
+    "text": "Hypothesis Testing for \\(\\beta_1\\)\n\n\\(H_0: \\beta_1 = 0\\)\n\n\\(t = \\frac{\\hat{\\beta}_1}{SE(\\hat{\\beta}_1)}\\)\n\n\nWe’re testing whether the slope is zero—i.e., whether \\(X\\) is a useful predictor for \\(Y\\)."
+  },
+  {
+    "objectID": "lectures/10.html#regression-example",
+    "href": "lectures/10.html#regression-example",
+    "title": "Statistical Inference",
+    "section": "🧩 Regression Example",
+    "text": "🧩 Regression Example\n\n\\(\\hat{\\beta}_1 = 2.5\\), \\(SE = 0.8\\), \\(n = 30\\)\n95% CI: \\([0.86,\\ 4.14]\\)\n\n\\(t = 3.125\\), \\(p &lt; 0.01\\)\n\n\nHighlight how the CI and hypothesis test lead to the same conclusion: the slope is likely not zero."
+  },
+  {
+    "objectID": "lectures/10.html#summary",
+    "href": "lectures/10.html#summary",
+    "title": "Statistical Inference",
+    "section": "📌 Summary",
+    "text": "📌 Summary\n\nInference is about drawing conclusions from samples\nApplies to means, proportions, and regression models\nConfidence intervals & hypothesis testing are key tools\n\n\nSummarize how inference generalizes across different contexts—always quantifying uncertainty and testing ideas with data."
+  },
+  {
+    "objectID": "lectures/10.html#further-reading",
+    "href": "lectures/10.html#further-reading",
+    "title": "Statistical Inference",
+    "section": "📚 Further Reading",
+    "text": "📚 Further Reading\n\nIntro to the Practice of Stats – Moore et al.\n\nISL – James et al.\n\nKhan Academy – Linear Regression\n\n\nPoint students to resources for deeper understanding and practice. Encourage trying examples with real data."
+  },
+  {
+    "objectID": "lectures/10.html#questions",
+    "href": "lectures/10.html#questions",
+    "title": "Statistical Inference",
+    "section": "❓ Questions?",
+    "text": "❓ Questions?\n\nLet’s discuss!\n\n\nInvite the audience to share thoughts or ask for clarification. Revisit any examples they found confusing."
+  },
+  {
+    "objectID": "lectures/9.html#sampling-distributions",
+    "href": "lectures/9.html#sampling-distributions",
+    "title": "Sampling Distribution",
+    "section": "Sampling Distributions",
+    "text": "Sampling Distributions\n\nDistribution of a statistic over repeated samples\n\n\nIf we took many samples, the statistics (like means) would vary. Their distribution helps us quantify uncertainty."
+  },
+  {
+    "objectID": "lectures/9.html#standard-error",
+    "href": "lectures/9.html#standard-error",
+    "title": "Sampling Distribution",
+    "section": "Standard Error",
+    "text": "Standard Error\nThe Standard Error is the standard deviation of a statistic itself.\n\nSE tells us how much a statistic (like the mean) varies from sample to sample. Smaller SE = more precision."
+  },
+  {
+    "objectID": "lectures/9.html#randomness-effect-1",
+    "href": "lectures/9.html#randomness-effect-1",
+    "title": "Sampling Distribution",
+    "section": "Randomness Effect 1",
+    "text": "Randomness Effect 1"
+  },
+  {
+    "objectID": "lectures/9.html#randomness-effect-2",
+    "href": "lectures/9.html#randomness-effect-2",
+    "title": "Sampling Distribution",
+    "section": "Randomness Effect 2",
+    "text": "Randomness Effect 2"
+  },
+  {
+    "objectID": "lectures/9.html#randomness-effect-3",
+    "href": "lectures/9.html#randomness-effect-3",
+    "title": "Sampling Distribution",
+    "section": "Randomness Effect 3",
+    "text": "Randomness Effect 3"
+  },
+  {
+    "objectID": "lectures/9.html#randomness-effect-4",
+    "href": "lectures/9.html#randomness-effect-4",
+    "title": "Sampling Distribution",
+    "section": "Randomness Effect 4",
+    "text": "Randomness Effect 4"
+  },
+  {
+    "objectID": "lectures/9.html#randomness-effect-1-1",
+    "href": "lectures/9.html#randomness-effect-1-1",
+    "title": "Sampling Distribution",
+    "section": "Randomness Effect 1",
+    "text": "Randomness Effect 1"
+  },
+  {
+    "objectID": "lectures/9.html#randomness-effect-5",
+    "href": "lectures/9.html#randomness-effect-5",
+    "title": "Sampling Distribution",
+    "section": "Randomness Effect 5",
+    "text": "Randomness Effect 5"
+  },
+  {
+    "objectID": "lectures/10.html#confidence-intervals-2",
+    "href": "lectures/10.html#confidence-intervals-2",
+    "title": "Statistical Inference",
+    "section": "Confidence Intervals",
+    "text": "Confidence Intervals\n\nA confidence interval gives a range of plausible values for a population parameter.\nIt reflects uncertainty in point estimates from sample data.\n\n\nIntroduce confidence intervals as the natural next step after understanding sampling variability and standard error. Emphasize that point estimates are useful, but intervals give a more complete picture."
+  },
+  {
+    "objectID": "lectures/10.html#interpretation-1",
+    "href": "lectures/10.html#interpretation-1",
+    "title": "Statistical Inference",
+    "section": "✅ Interpretation",
+    "text": "✅ Interpretation\n\nIf \\(p &lt; \\alpha\\), conclude \\(\\beta_1 \\ne 0\\)\nIf not, we can’t say \\(X\\) affects \\(Y\\)\n\n\nMake it clear that failing to reject \\(H_0\\) doesn’t prove it’s true—just that we lack strong evidence against it."
+  },
+  {
+    "objectID": "lectures/10.html#formula-known-sigma",
+    "href": "lectures/10.html#formula-known-sigma",
+    "title": "Statistical Inference",
+    "section": "Formula (Known \\(\\sigma\\))",
+    "text": "Formula (Known \\(\\sigma\\))\n\\[\n\\bar{x} \\pm z^* \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]\n\n\\(\\bar{x}\\) = sample mean\n\n\\(\\sigma\\) = population standard deviation\n\n\\(z^*\\) = critical value (e.g., 1.96 for 95%)\n\n\nThis formula is used when the population standard deviation \\(\\sigma\\) is known. It assumes a normal distribution for \\(\\bar{x}\\)."
+  },
+  {
+    "objectID": "lectures/10.html#formula-unknown-sigma",
+    "href": "lectures/10.html#formula-unknown-sigma",
+    "title": "Statistical Inference",
+    "section": "Formula (Unknown \\(\\sigma\\))",
+    "text": "Formula (Unknown \\(\\sigma\\))\n\\[\n\\bar{x} \\pm t^* \\cdot \\frac{s}{\\sqrt{n}}\n\\]\n\n\\(s\\) = sample standard deviation\n\n\\(t^*\\) = critical value from \\(t\\)-distribution (\\(n-1\\) df)\n\n\nIn real-world scenarios, \\(\\sigma\\) is rarely known. We estimate it using \\(s\\) and use the \\(t\\)-distribution to account for extra uncertainty."
+  },
+  {
+    "objectID": "lectures/10.html#choosing-confidence-levels",
+    "href": "lectures/10.html#choosing-confidence-levels",
+    "title": "Statistical Inference",
+    "section": "Choosing Confidence Levels",
+    "text": "Choosing Confidence Levels\n\n\n\nLevel\n\\(z^*\\) (approx.)\n\n\n\n\n90%\n1.645\n\n\n95%\n1.960\n\n\n99%\n2.576\n\n\n\n\nHigher confidence means wider intervals. Discuss the trade-off: precision vs certainty."
+  },
+  {
+    "objectID": "lectures/10.html#visual-intuition",
+    "href": "lectures/10.html#visual-intuition",
+    "title": "Statistical Inference",
+    "section": "📊 Visual Intuition",
+    "text": "📊 Visual Intuition\n\nCI plot\nExplain that most sample means will produce CIs that contain the true mean, but some will miss. This is expected."
+  },
+  {
+    "objectID": "lectures/10.html#factors-affecting-ci-width",
+    "href": "lectures/10.html#factors-affecting-ci-width",
+    "title": "Statistical Inference",
+    "section": "Factors Affecting CI Width",
+    "text": "Factors Affecting CI Width\n\nSample size (\\(n\\)): larger \\(n\\) → narrower CI\n\nStandard deviation (\\(s\\) or \\(\\sigma\\)): more variability → wider CI\n\nConfidence level: higher confidence → wider CI\n\n\nUse this to summarize what controls how “precise” our confidence interval is. Give examples of each."
+  },
+  {
+    "objectID": "lectures/10.html#estimation",
+    "href": "lectures/10.html#estimation",
+    "title": "Statistical Inference",
+    "section": "Estimation",
+    "text": "Estimation\n\nPoint Estimate: Single best guess (e.g., \\(\\hat \\beta_1\\))\nInterval Estimate: Range likely to contain the true value\n\n\nPoint estimates are easy but not very informative. Intervals give us a sense of uncertainty, which is critical in inference."
+  },
+  {
+    "objectID": "lectures/10.html#hypothesis-testing",
+    "href": "lectures/10.html#hypothesis-testing",
+    "title": "Statistical Inference",
+    "section": "Hypothesis Testing",
+    "text": "Hypothesis Testing\n\n\\(H_0\\): No effect or difference\n\n\\(H_1\\): Some effect or difference\n\nWe use sample data to support or reject \\(H_0\\)\n\n\nMention that \\(H_0\\) is the default assumption. We only reject it if the data give us strong enough evidence."
+  },
+  {
+    "objectID": "lectures/10.html#why-it-matters",
+    "href": "lectures/10.html#why-it-matters",
+    "title": "Statistical Inference",
+    "section": "Why It Matters",
+    "text": "Why It Matters\n\nStudying populations directly is hard or impossible.\nWe use data from samples to make predictions and decisions.\n\n\nExplain practical challenges: cost, time, or accessibility of population data. This motivates the need for inference."
+  },
+  {
+    "objectID": "lectures/10.html#type-i-error-false-positive",
+    "href": "lectures/10.html#type-i-error-false-positive",
+    "title": "Statistical Inference",
+    "section": "Type I Error (False Positive)",
+    "text": "Type I Error (False Positive)\n\nRejecting \\(H_0\\) when it is actually true\nProbability = \\(\\alpha\\) (significance level)\n\n\nType I errors happen when we detect an effect that doesn’t really exist. This is controlled by our chosen alpha level."
+  },
+  {
+    "objectID": "lectures/10.html#type-ii-error-false-negative",
+    "href": "lectures/10.html#type-ii-error-false-negative",
+    "title": "Statistical Inference",
+    "section": "Type II Error (False Negative)",
+    "text": "Type II Error (False Negative)\n\nFailing to reject \\(H_0\\) when it is actually false\nProbability = \\(\\beta\\)\nPower = \\(1 - \\beta\\)\n\n\nType II errors are often due to small sample sizes or high variability. Power analysis helps us plan to avoid these."
+  },
+  {
+    "objectID": "lectures/10.html#balancing-errors",
+    "href": "lectures/10.html#balancing-errors",
+    "title": "Statistical Inference",
+    "section": "Balancing Errors",
+    "text": "Balancing Errors\n\nLowering \\(\\alpha\\) reduces Type I errors, but increases risk of Type II errors.\nTo reduce both:\n\nIncrease sample size\nUse more appropriate statistical tests\n\n\n\nThere’s a trade-off between these errors. We can’t eliminate both, but we can manage the risk based on the consequences of each type."
+  },
+  {
+    "objectID": "lectures/10.html#real-world-examples",
+    "href": "lectures/10.html#real-world-examples",
+    "title": "Statistical Inference",
+    "section": "Real-World Examples",
+    "text": "Real-World Examples\n\n\n\n\n\n\n\n\nScenario\nType I Error\nType II Error\n\n\n\n\nMedical Test (e.g., cancer)\nHealthy person diagnosed\nMissed diagnosis\n\n\nSpam Filter\nGood email marked as spam\nSpam not caught\n\n\nJudicial Trial\nInnocent person convicted\nGuilty person acquitted\n\n\n\n\nUse these examples to help students internalize the concepts. Ask them to think of scenarios in their field."
+  },
+  {
+    "objectID": "lectures/10.html#what-is-statistical-power",
+    "href": "lectures/10.html#what-is-statistical-power",
+    "title": "Statistical Inference",
+    "section": "💥 What is Statistical Power?",
+    "text": "💥 What is Statistical Power?\n\nStatistical Power is the probability of correctly rejecting a false null hypothesis.\nIn other words, it’s the chance of detecting a real effect when it exists.\n\n\\[\n\\text{Power} = 1 - \\beta\n\\]\n\nIntroduce power as a key measure of a test’s sensitivity. It tells us how likely we are to catch a true effect."
+  },
+  {
+    "objectID": "lectures/10.html#why-power-matters",
+    "href": "lectures/10.html#why-power-matters",
+    "title": "Statistical Inference",
+    "section": "🔎 Why Power Matters",
+    "text": "🔎 Why Power Matters\n\nLow power → high risk of Type II Error (false negatives)\nHigh power → better chance of finding true effects\nCommon threshold: 80% power\n\n\nA test with low power might miss important effects. 80% is a widely used benchmark in research planning."
+  },
+  {
+    "objectID": "lectures/10.html#what-affects-power",
+    "href": "lectures/10.html#what-affects-power",
+    "title": "Statistical Inference",
+    "section": "📈 What Affects Power?",
+    "text": "📈 What Affects Power?\n\nEffect Size\n\nBigger effects are easier to detect\n\nSample Size (\\(n\\))\n\nLarger samples reduce standard error\n\nSignificance Level (\\(\\alpha\\))\n\nHigher \\(\\alpha\\) increases power (but riskier!)\n\nVariability\n\nLess noise in data = better power\n\n\n\nUse this to emphasize the practical levers we have. Sample size is one of the easiest things we can change to improve power."
+  },
+  {
+    "objectID": "lectures/10.html#example-power-in-a-drug-trial",
+    "href": "lectures/10.html#example-power-in-a-drug-trial",
+    "title": "Statistical Inference",
+    "section": "Example: Power in a Drug Trial",
+    "text": "Example: Power in a Drug Trial\n\n\\(H_0\\): New drug has no effect\n\n\\(H_1\\): New drug lowers blood pressure by 5 mmHg\n\nIf the test has low power, we might fail to detect this true improvement.\n\n\nMedical examples make power feel real. Failing to detect real treatment effects could cost lives—or result in false conclusions."
+  },
+  {
+    "objectID": "lectures/10.html#boosting-power",
+    "href": "lectures/10.html#boosting-power",
+    "title": "Statistical Inference",
+    "section": "Boosting Power",
+    "text": "Boosting Power\n\nIncrease sample size (\\(n\\))\nUse better statistical models\nIncrease \\(\\alpha\\) (carefully)\nUse one-tailed test (if direction is justified)\n\n\nShow students that power is not fixed—they can plan studies to improve it. Emphasize ethical and scientific trade-offs."
   }
 ]
