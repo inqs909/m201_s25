@@ -325,11 +325,32 @@ replicate(N, CODE)
 - `CODE`: what is to repeated
 
 
+## Extracting $\hat \beta$ Coefficeints
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+b(MODEL, INDEX)
+
+
+```
+
+
+- `MODEL`: a model that can be used to extract components
+- `INDEX`: which component do you want to use
+    - `0`: Intercept
+    - `1`: first slope
+    - `2`: second slope
+    - `...`
+
+
+
 ## Collecting 1000 Samples
 
 ```{r}
 betas <- replicate(1000,
-                   b(Magical_Score ~ Nature_Score, 1, unicorns(500)))
+                   b(lm(Magical_Score ~ Nature_Score, unicorns(500)), 1))
 
 betas
 ```
