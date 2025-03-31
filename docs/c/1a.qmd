@@ -1,0 +1,301 @@
+---
+title: "Welcome!"
+subtitle: "Introduction to Statistics"
+format:
+  revealjs:
+    scrollable: true
+    theme: [default, styles.scss]
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false
+    chalkboard: true
+
+
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - code-fullscreen
+  - reveal-auto-agenda
+
+editor: source
+---
+
+## Slides
+
+[m201.inqs.info/c/1a](https://m201.inqs.info/c/1a#/title-slide)
+
+
+# Introductions
+
+## Introductions
+
+-   San Bernardino, CA
+
+-   CSU Monterey Bay
+
+    -   BS Biology
+
+-   San Diego State University
+
+    -   Master's in Public Health
+
+-   UC Riverside
+
+    -   PhD in Applied Statistics
+
+## Introductions
+
+::: nonincremental
+-   Name
+
+-   Year
+
+-   Major
+
+-   Fun Fact
+
+-   Career Goal
+:::
+
+# Embedded Peer Educator
+
+## EPE - Connor Stevenson
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/mePic.jpg)
+:::
+
+::: {.column width="50%"}
+-   3rd Year
+
+-   Math/Computer Science Major
+
+:::
+
+::::
+
+
+# Early Success Module
+
+## Early Succes Module (ESM)
+
+## Assignments
+
+:::: {.columns}
+
+::: {.column width="50%"}
+-   Selfie at profesor's door and Introduction
+-   Selfie at the LRC
+-   Learner Info Survey
+-   Evidence of a Study Group
+:::
+
+::: {.column width="50%"}
+-   Bloom's Taxonomy
+-   Using the Study Cycle Efficiently
+-   Selfie at favorite place
+-   Selfie with support staff
+-   The Feynman Technique
+:::
+
+::::
+
+# Class Setup
+
+## Class Setup
+
+-   Participation
+-   Reading Assignments
+-   Notebook Assignments
+-   Video Assignments
+-   Homework Assignments
+-   Exams
+-   Extra Credit
+
+## Study Expectations
+
+For every 1 unit of class you take, you are expected to spend ~3 hours outside of class for the course.
+
+## Syllabus
+
+[m201.inqs.info/syllabus](https://m201.inqs.info/syllabus.html)
+
+## R Programming
+
+This class you will use R programming to conduct data analysis.
+
+R is a powerful tool that allows you to program complex tasks.
+
+Learning R is difficult, but it is the best teacher to teach you how to overcome challenges. Don't give up when it gets hard and seek out help when needed.
+
+# Statistics Activity
+
+## When do you use statistics?
+
+## What is the difference between math and stats?
+
+
+# Use of Generative AI
+
+## Use of Generative AI
+
+The use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini.
+
+## Educational Mislearning
+
+The purpose of this class, and college, is for you to learn about critical thinking skills and perseverance. Using AI will only teach you how to get an answer, which may or may not be correct. 
+
+::: fragment
+You will not develop the skills needed to problem solve a challenge. Additionally, developing grit is essential to become successful in college and life. There is no easy way out and AI is an illusion to your success in life.
+:::
+
+
+::: fragment
+To learn something, it requires hours of work! If not years!
+:::
+
+
+## Stolen WorkMonday have their work to be used this way.
+
+::: fragment
+Additionally, all these individuals are not receiving any royalties for the work to be used in creating generative AI models.
+:::
+
+
+::: fragment
+[Inside Higher Ed](https://www.insidehighered.com/news/faculty-issues/research/2024/07/29/taylor-francis-ai-deal-sets-worrying-precedent) and [The New Yorker](https://www.newyorker.com/culture/infinite-scroll/is-ai-art-stealing-from-artists) highlight individual's concern of their work being used to train AI models.
+:::
+
+
+## Privacy Concerns
+
+The use of generative AI raises concerns of what data is being harvested from us, possibly without informed consent. 
+
+::: fragment
+When you used any large language models, you do not know what information is being harvested from you.
+:::
+
+::: fragment
+Do you want to upload your thoughts and ideas to a company that can monetize, and possibly exploit.
+:::
+
+::: fragment
+Does your Professors consent with you uploading their assignments to large language models.
+:::
+
+::: fragment
+Stanford provided a [report](https://hai.stanford.edu/news/privacy-ai-era-how-do-we-protect-our-personal-information) highlighting the risks of our personal data use in large language models.
+:::
+
+## Math 201 Consent
+
+::: fragment
+Dr. Isaac Quintanilla Salinas consents in you sharing course material to your friends and family for learning purposes. Use the material to educate and uplift your community.
+:::
+
+::: fragment
+Dr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for [DASS](https://www.csuci.edu/dass/)-approved services.
+:::
+
+## Environmental Impact
+
+In order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model. 
+
+::: fragment
+The [LA Times](https://www.latimes.com/opinion/story/2024-08-15/editorial-generative-ai-is-a-leading-contributor-to-our-energy-consumption-how-will-this-impact-our-climate) reports the potential impact that running AI models in California.
+:::
+
+::: fragment
+Additionally, [Time](https://time.com/6987773/ai-data-centers-energy-usage-climate-change/) reports that a ChatGPT query uses ten times more energy than a Google search query, and global AI demands can consume of 1 trillion gallons of water by 2027.
+:::
+
+::: fragment
+There are also environmental justice questions about where these data centers are constructed.
+:::
+
+## Worker Exploitation
+
+The [Washington Post](https://www.washingtonpost.com/world/2023/08/28/scale-ai-remotasks-philippines-artificial-intelligence/) and Time ([Article 1](https://time.com/6147458/facebook-africa-content-moderation-employee-treatment/) and [Article 2](https://time.com/6247678/openai-chatgpt-kenya-workers/)) reported that AI companies utilize "digital sweatshops" to classify data points for model training. 
+
+::: fragment
+There is a human cost from the Global South, both financially and mentally, to develop the AI models for users in the United States and Europe.
+:::
+
+::: fragment
+We must be conscious consumers and demand more from these companies to provide safe working conditions and livable wages.
+:::
+
+## How will the Profesor enforce the policy?
+
+::: fragment
+I am not! Unless it is extremely obvious, it is extremely difficult to identify AI use.
+:::
+
+::: fragment
+[Cell](https://www.cell.com/patterns/fulltext/S2666-3899(23)00130-7) has an article indicating that the use of GPT detectors harm non-native English speakers.
+:::
+
+## Is Using AI Bad?
+
+::: fragment
+NO
+:::
+
+::: fragment
+What we should do is demand companies to develop these tools in an ethical manner!
+:::
+
+# Surveys
+
+## Intro Form
+
+<https://forms.gle/JWaUdgKB6qui98yz5>
+
+![](img/frame.png){fig-align="center"}
+
+## Survey
+
+<https://forms.gle/BCMDgB3pDHJ1MmSYA>
+
+![](img/frame (1).png){fig-align="center"}
+
+
+# Extra Credits
+
+## Extra Credit 1
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_1.html" width="1100" height="700"></iframe></p>
+
+## Extra Credit 2
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_2.html" width="1100" height="700"></iframe></p>
+
+## Extra Credit 3
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_3.html" width="1100" height="700"></iframe></p>
+
+## Extra Credit 4
+
+<p><iframe title="embedded content" src="https://www.inqs.info/m201_s25/ec/ec_4.html" width="1100" height="700"></iframe></p>
+
+# Class Schedule
+
+## Class Cancelled
+
+- Monday 1/27/25
+
+- Monday 2/3/25
+
+# Field Trip
