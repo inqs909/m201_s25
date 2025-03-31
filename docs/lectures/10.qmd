@@ -215,7 +215,7 @@ There’s a trade-off between these errors. We can’t eliminate both, but we ca
 Use these examples to help students internalize the concepts. Ask them to think of scenarios in their field.
 :::
 
-## 💥 What is Statistical Power?
+## What is Statistical Power?
 
 - **Statistical Power** is the probability of correctly rejecting a false null hypothesis.
 - In other words, it's the chance of **detecting a real effect** when it exists.
@@ -229,7 +229,7 @@ Introduce power as a key measure of a test’s sensitivity. It tells us how like
 :::
 
 
-## 🔎 Why Power Matters
+## Why Power Matters
 
 - Low power → high risk of **Type II Error** (false negatives)
 - High power → better chance of finding true effects
@@ -240,7 +240,7 @@ A test with low power might miss important effects. 80% is a widely used benchma
 :::
 
 
-## 📈 What Affects Power?
+## What Affects Power?
 
 1. **Effect Size**  
    - Bigger effects are easier to detect
@@ -352,7 +352,7 @@ Higher confidence means wider intervals. Discuss the trade-off: precision vs cer
 
 ---
 
-## 🔎 Example
+## Example
 
 - $n = 100$, $\bar{x} = 68$, $\sigma = 3$
 - 95% CI:
@@ -421,7 +421,7 @@ This is like the CI for the mean, but uses the $t$-distribution because $\sigma$
 We're testing whether the slope is zero—i.e., whether $X$ is a useful predictor for $Y$.
 :::
 
-## ✅ Interpretation
+## Interpretation
 
 - If $p < \alpha$, conclude $\beta_1 \ne 0$
 - If not, we can't say $X$ affects $Y$
@@ -431,7 +431,7 @@ Make it clear that failing to reject $H_0$ doesn't prove it's true—just that w
 :::
 
 
-## 🧩 Regression Example
+## Regression Example
 
 - $\hat{\beta}_1 = 2.5$, $SE = 0.8$, $n = 30$
 - 95% CI: $[0.86,\ 4.14]$  

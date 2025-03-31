@@ -131,7 +131,7 @@ These statistics will have a distribution on their own.
 ## Randomness Effect 1
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 x <- rnorm(1000)
 y <- 4 + 5 * x + rnorm(1000)
@@ -148,7 +148,7 @@ ggplot(tibble(x = x, y = y), aes(x,y)) +
 ## Randomness Effect 2
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 x <- rnorm(1000)
 y <- 4 + 5 * x + rnorm(1000)
@@ -165,7 +165,7 @@ ggplot(tibble(x = x, y = y), aes(x,y)) +
 ## Randomness Effect 3
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 x <- rnorm(1000)
 y <- 4 + 5 * x + rnorm(1000)
@@ -182,7 +182,7 @@ ggplot(tibble(x = x, y = y), aes(x,y)) +
 ## Randomness Effect 4
 
 ```{r}
-#| echo: false
+#| ecode-fold: true
 
 x <- rnorm(1000)
 y <- 4 + 5 * x + rnorm(1000)
@@ -199,7 +199,7 @@ ggplot(tibble(x = x, y = y), aes(x,y)) +
 ## Randomness Effect 5
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 x <- rnorm(1000)
 y <- 4 + 5 * x + rnorm(1000)
