@@ -75,6 +75,8 @@ Some values will be more common than others. Because of this, they have their ow
 
 - Distribution of a statistic over repeated samples
 
+- Different Samples yield different statistics
+
 ::: notes
 If we took many samples, the statistics (like means) would vary. Their distribution helps us quantify uncertainty.
 :::
