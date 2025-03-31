@@ -309,6 +309,22 @@ u4 <- unicorns(500)
 lm(Magical_Score ~ Nature_Score, u4)
 ```
 
+## Replicating Processes
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+replicate(N, CODE)
+
+
+```
+
+
+- `N`: number of times to repeat a process
+- `CODE`: what is to repeated
+
+
 ## Collecting 1000 Samples
 
 ```{r}
