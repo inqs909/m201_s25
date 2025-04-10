@@ -43,49 +43,45 @@ editor: source
 #| include: false
 
 library(tidyverse)
+library(palmerpenguins)
 library(csucistats)
-library(MASS)
+library(survival)
+library(ISLR2)
+Melanoma <- MASS::Melanoma
 Melanoma$dead <- ifelse(Melanoma$status == 1, 1, 0)
-
-theme_set(theme_bw() + 
-            theme(
-              axis.text.x = element_text(size = 24),
-              axis.title = element_text(size = 30),
-              plot.title = element_text(size = 48),
-              strip.text = element_text(size = 20),
-              legend.title = element_blank(),
-              legend.text = element_text(size = 24)))
+bladder1$death <- ifelse(bladder1$status %in% c(0, 1), 0, 1)
+bladder1$death2 <- ifelse(bladder1$death == 0, "Alive", "Dead")
+theme_set(theme_bw() +
+  theme(
+    axis.text.x = element_text(size = 24),
+    axis.title = element_text(size = 30),
+    plot.title = element_text(size = 48),
+    strip.text = element_text(size = 20),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 24)
+  ))
 
 ```
-
 
 # Statistical Inference
 
 ## What is Statistical Inference?
 
-- Drawing conclusions about a **population** based on a **sample**
-- Population = entire group; Sample = subset
+-   Drawing conclusions about a **population** based on a **sample**
+-   Population = entire group
+-   Sample = subset
 
 ::: notes
-Introduce the big idea: We want to make statements about a large group (population) but can only observe a small part of it (sample). Inference bridges that gap.
-:::
-
-## Why It Matters
-
-- Studying populations directly is hard or impossible.
-- We use data from samples to make predictions and decisions.
-
-::: notes
-Explain practical challenges: cost, time, or accessibility of population data. This motivates the need for inference.
+Introduce the big idea: We want to make st
 :::
 
 ## Two Main Types of Inference
 
-1. Estimation  
-2. Hypothesis Testing
+1.  Estimation\
+2.  Hypothesis Testing
 
 ::: notes
-We’ll be focusing on two fundamental techniques in inference. First, estimating population values (like the mean), and second, testing claims about the population.
+We'll be focusing on two fundamental techniques in inference. First, estimating population values (like the mean), and second, testing claims about the population.
 :::
 
 ## Estimation
@@ -99,8 +95,8 @@ Point estimates are easy but not very informative. Intervals give us a sense of 
 
 ## Hypothesis Testing
 
-- $H_0$: No effect or difference  
-- $H_1$: Some effect or difference  
+- $H_0$: No effect or difference\
+- $H_1$: Some effect or difference\
 - We use sample data to support or reject $H_0$
 
 ::: notes
@@ -117,117 +113,129 @@ Mention that $H_0$ is the default assumption. We only reject it if the data give
 These three concepts are foundational. Understanding them helps us assess how reliable our estimates are.
 :::
 
+## p-values
+
+-   Probability of observing data as extreme as this if $H_0$ is true
+
+Misinterpretation of p-values is common. Emphasize: low p-value means data is unusual under $H_0$.
 
 ## Confidence Intervals
 
-- A range where we expect the true value to fall
+-   A range where we expect the true value to fall
 
 ::: notes
 Clarify interpretation: it's not about the probability the parameter is inside the interval, but about the method producing accurate intervals in the long run.
 :::
 
-## Confidence Interval Formula
+# Hypothesis Testing
 
-$$
-\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}
-$$
+## Hypothesis Tests
 
-::: notes
-$z^*$ depends on the confidence level, like 1.96 for 95%. Explain how higher confidence means wider intervals.
-:::
+Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the **Null** and **Alternative** Hypothesis.
 
+## Null Hypothesis $H_0$
+
+The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.
+
+## Alternative Hypothesis $H_a$
+
+The alternative hypothesis contradicts the null hypothesis.
+
+## Example of Null and Alternative Hypothesis
+
+We want to see if $\beta$ is different from $\beta^*$
+
+| Null Hypothesis        | Alternative Hypothesis |
+|------------------------|------------------------|
+| $H_0: \beta=\beta^*$   | $H_a: \beta\ne\beta^*$ |
+| $H_0: \beta\le\beta^*$ | $H_a: \beta>\beta^*$   |
+| $H_0: \beta\ge\beta^*$ | $H_0: \beta<\beta^*$   |
+
+## One-Side vs Two-Side Hypothesis Tests
+
+Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis ($H_a:\beta\ne\beta^*$) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.
+
+| Null Hypothesis        | Alternative Hypothesis | Side    |
+|------------------------|------------------------|---------|
+| $H_0: \beta=\beta^*$   | $H_a: \beta\ne\beta^*$ | 2-Sided |
+| $H_0: \beta\le\beta^*$ | $H_a: \beta>\beta^*$   | 1-Sided |
+| $H_0: \beta\ge\beta^*$ | $H_0: \beta<\beta^*$   | 1-Sided |
 
 ## Hypothesis Testing Steps
 
-1. State $H_0$ and $H_1$  
-2. Choose $\alpha$  
-3. Compute confidence interval/p-value  
-5. Make a decision
+1.  State $H_0$ and $H_1$
+2.  Choose $\alpha$
+3.  Compute confidence interval/p-value
+4.  Make a decision
 
 ::: notes
 Walk through the steps slowly with an example in mind. Emphasize that $\alpha$ is a threshold, not the actual probability of error.
 :::
 
-## p-values
+## Rejection Region
 
-- Probability of observing data as extreme as this if $H_0$ is true
 
-::: notes
-Misinterpretation of p-values is common. Emphasize: low p-value means data is unusual under $H_0$.
+
+## Rejection Region
+
+```{r}
+#| code-fold: true
+
+alpha <- 0.05
+
+# Critical values for two-tailed test
+z_critical <- qnorm(1 - alpha / 2)
+
+# Create data for the normal curve
+x <- seq(-4, 4, length = 1000)
+y <- dnorm(x)
+
+df <- data.frame(x = x, y = y)
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_line(color = "deepskyblue", size = 1) +
+  geom_area(data = subset(df, x <= -z_critical), aes(y = y), fill = "firebrick", alpha = 0.5) +
+  geom_area(data = subset(df, x >= z_critical), aes(y = y), fill = "firebrick", alpha = 0.5) +
+  geom_vline(xintercept = c(-z_critical, z_critical), linetype = "dashed", color = "black") +
+  theme_bw()
+```
+
+
+# Decision Making
+
+## Decision Making
+
+Hypothesis Testing will force you to make a decision: Reject $H_0$ **OR** Fail to Reject $H_0$
+
+::: fragment
+Reject $H_0$: The effect seen is not due to random chance, there is a process making contributing to the effect.
 :::
 
+::: fragment
+Fail to Reject $H_0$: The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process.
+:::
+
+
+
+## Decision Making: P-Value
+
+The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true.
+
+::: fragment
+**If** $p < \alpha$, then you reject $H_0$; otherwise, you will fail to reject $H_0$.
+:::
+
+
+## Decision Making: Confidence Interval Approach
+
+The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is $\beta\ne\beta^*$. The bootstrapping approach will result in a lower and upper bound denoted as: $(LB, UB)$.
 
 # Power Analysis
 
-## Errors in Inference
-
-| | | |
-|:-|:-|:-|
-| Type I | Reject $H_0$ when true | False positive |
-| Type II | Don’t reject $H_0$ when false | False negative |
-| Power | $1 - P(\text{Type II})$ | Detecting a true effect |
-
-::: notes
-Power is often overlooked. It's about how sensitive the test is to real effects. Larger samples increase power.
-:::
-
-
-## Type I Error (False Positive)
-
-- **Rejecting $H_0$ when it is actually true**
-- Probability = $\alpha$ (significance level)
-
-::: notes
-Type I errors happen when we detect an effect that doesn’t really exist. This is controlled by our chosen alpha level.
-:::
-
-## Type II Error (False Negative)
-
-- **Failing to reject $H_0$ when it is actually false**
-- Probability = $\beta$
-- Power = $1 - \beta$
-
-
-::: notes
-Type II errors are often due to small sample sizes or high variability. Power analysis helps us plan to avoid these.
-:::
-
-## Balancing Errors
-
-- Lowering $\alpha$ reduces Type I errors, but **increases** risk of Type II errors.
-- To reduce both:
-  - Increase sample size
-  - Use more appropriate statistical tests
-
-::: notes
-There’s a trade-off between these errors. We can’t eliminate both, but we can **manage** the risk based on the consequences of each type.
-:::
-
-## Real-World Examples
-
-| Scenario                    | Type I Error                  | Type II Error                    |
-|-----------------------------|-------------------------------|----------------------------------|
-| Medical Test (e.g., cancer) | Healthy person diagnosed      | Missed diagnosis                 |
-| Spam Filter                 | Good email marked as spam     | Spam not caught                  |
-| Judicial Trial              | Innocent person convicted     | Guilty person acquitted          |
-
-::: notes
-Use these examples to help students internalize the concepts. Ask them to think of scenarios in their field.
-:::
-
-## What is Statistical Power?
+## What is Statistical Power
 
 - **Statistical Power** is the probability of correctly rejecting a false null hypothesis.
 - In other words, it's the chance of **detecting a real effect** when it exists.
-
-$$
-\text{Power} = 1 - \beta
-$$
-
-::: notes
-Introduce power as a key measure of a test’s sensitivity. It tells us how likely we are to catch a true effect.
-:::
-
 
 ## Why Power Matters
 
@@ -235,10 +243,47 @@ Introduce power as a key measure of a test’s sensitivity. It tells us how like
 - High power → better chance of finding true effects
 - Common threshold: **80% power**
 
+## Errors in Inference
+
+|         |                               |                         |
+|:--------|:------------------------------|:------------------------|
+| Type I  | Reject $H_0$ when true        | False positive          |
+| Type II | Don't reject $H_0$ when false | False negative          |
+| Power   | $1 - P(\text{Type II})$       | Detecting a true effect |
+
 ::: notes
-A test with low power might miss important effects. 80% is a widely used benchmark in research planning.
+Power is often overlooked. It's about how sensitive the test is to real effects. Larger samples increase power.
 :::
 
+## Type I Error (False Positive)
+
+-   **Rejecting** $H_0$ when it is actually true
+-   Probability = $\alpha$ (significance level)
+
+::: notes
+Type I errors happen when we detect an effect that doesn't really exist. This is controlled by our chosen alpha level.
+:::
+
+## Type II Error (False Negative)
+
+-   **Failing to reject** $H_0$ when it is actually false
+-   Probability = $\beta$
+-   Power = $1 - \beta$
+
+::: notes
+Type II errors are often due to small sample sizes or high variability. Power analysis helps us plan to avoid these.
+:::
+
+## Balancing Errors
+
+-   Lowering $\alpha$ reduces Type I errors, but **increases** risk of Type II errors.
+-   To reduce both:
+    -   Increase sample size
+    -   Use more appropriate statistical tests
+
+::: notes
+There's a trade-off between these errors. We can't eliminate both, but we can **manage** the risk based on the consequences of each type.
+:::
 
 ## What Affects Power?
 
@@ -254,32 +299,16 @@ A test with low power might miss important effects. 80% is a widely used benchma
 4. **Variability**  
    - Less noise in data = better power
 
-::: notes
-Use this to emphasize the practical levers we have. Sample size is one of the easiest things we can change to improve power.
-:::
-
-## Example: Power in a Drug Trial
-
-- $H_0$: New drug has no effect  
-- $H_1$: New drug lowers blood pressure by 5 mmHg  
-- If the test has **low power**, we might fail to detect this true improvement.
-
-::: notes
-Medical examples make power feel real. Failing to detect real treatment effects could cost lives—or result in false conclusions.
-:::
-
----
-
 ## Boosting Power
 
-- Increase sample size ($n$)
-- Use better statistical models
-- Increase $\alpha$ (carefully)
-- Use one-tailed test (if direction is justified)
-
-::: notes
-Show students that power is not fixed—they can plan studies to improve it. Emphasize ethical and scientific trade-offs.
-:::
+- Power = Probability of rejecting $H_0$ when it's false
+- Helps avoid **Type II Errors**
+- Driven by:
+  - Sample size
+  - Effect size
+  - $\alpha$
+  - Variability
+- Aim for **80% or higher**
 
 # Confidence Intervals
 
@@ -292,8 +321,6 @@ Show students that power is not fixed—they can plan studies to improve it. Emp
 Introduce confidence intervals as the natural next step after understanding sampling variability and standard error. Emphasize that point estimates are useful, but intervals give a more complete picture.
 :::
 
----
-
 ## Interpretation
 
 > "We are 95% confident that the true mean lies between A and B."
@@ -305,142 +332,174 @@ Introduce confidence intervals as the natural next step after understanding samp
 This is one of the most common misconceptions. Clarify that the confidence is in the *method*, not any one interval.
 :::
 
----
-
-## Formula (Known $\sigma$)
-
-$$
-\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}
-$$
-
-- $\bar{x}$ = sample mean  
-- $\sigma$ = population standard deviation  
-- $z^*$ = critical value (e.g., 1.96 for 95%)
-
-::: notes
-This formula is used when the population standard deviation $\sigma$ is known. It assumes a normal distribution for $\bar{x}$.
-:::
-
----
-
-## Formula (Unknown $\sigma$)
-
-$$
-\bar{x} \pm t^* \cdot \frac{s}{\sqrt{n}}
-$$
-
-- $s$ = sample standard deviation  
-- $t^*$ = critical value from $t$-distribution ($n-1$ df)
-
-::: notes
-In real-world scenarios, $\sigma$ is rarely known. We estimate it using $s$ and use the $t$-distribution to account for extra uncertainty.
-:::
-
----
-
-## Choosing Confidence Levels
-
-| Level | $z^*$ (approx.) |
-|-------|-----------------|
-| 90%   | 1.645           |
-| 95%   | 1.960           |
-| 99%   | 2.576           |
-
-::: notes
-Higher confidence means wider intervals. Discuss the trade-off: precision vs certainty.
-:::
-
----
-
-## Example
-
-- $n = 100$, $\bar{x} = 68$, $\sigma = 3$
-- 95% CI:
-
-$$
-68 \pm 1.96 \cdot \frac{3}{\sqrt{100}} = 68 \pm 0.588
-$$
-
-**CI: [67.412, 68.588]**
-
-::: notes
-Walk through the calculation step-by-step. Emphasize how increasing $n$ or decreasing $\sigma$ would narrow the interval.
-:::
-
-
 ## Factors Affecting CI Width
 
-- Sample size ($n$): larger $n$ → narrower CI  
-- Standard deviation ($s$ or $\sigma$): more variability → wider CI  
-- Confidence level: higher confidence → wider CI
+-   Sample size ($n$): larger $n$ → narrower CI\
+-   Standard deviation ($s$ or $\sigma$): more variability → wider CI\
+-   Confidence level: higher confidence → wider CI
 
 ::: notes
 Use this to summarize what controls how “precise” our confidence interval is. Give examples of each.
 :::
 
+# Linear Regression Inference in R
 
-# Inference: Linear Regression
+## Conducting HT of $\beta_j$
 
-## Inference for Regression Coefficients
+```{r}
+#| eval: false
 
-- $Y = \beta_0 + \beta_1 X + \varepsilon$
-- We estimate $\hat{\beta}_0$ and $\hat{\beta}_1$
+xlm <- lm(Y ~ X, data = DATA)
+summary(xlm)
+```
 
-::: notes
-Now we're applying inference in a regression context. Same principles apply—estimating, testing, confidence intervals.
-:::
+-   `xlm`: name of the stored model
+-   `Y`: Name of the outcome variable in `DATA`
+-   `X`: Name of the Predictor Variable(s) in `DATA`
+-   `DATA`: Name of the data set
 
+## Example
 
-## Sampling Distribution of $\hat{\beta}_1$
+```{r}
+#| code-fold: show
+#| eval: true
 
-- $\hat{\beta}_1$ is normally distributed (under assumptions)
-- SE depends on spread of $x_i$
+m1 <- lm(body_mass_g ~ species + flipper_length_mm, penguins)
+summary(m1)
+```
 
-::: notes
-Variance in $x_i$ helps reduce uncertainty in slope estimate. More spread = more informative data.
-:::
+## Confidence Interval
 
+```{r}
+#| code-fold: show
+#| eval: false
+confint(xlm, level = LEVEL)
+```
 
-## Confidence Interval for $\beta_1$
+-   `xlm`: Name of the model saved in R
+-   `LEVEL`: A number between 0 and 1 to specify confidence level
 
-$$
-\hat{\beta}_1 \pm t^* \cdot SE(\hat{\beta}_1)
-$$
+## Example
 
-::: notes
-This is like the CI for the mean, but uses the $t$-distribution because $\sigma$ is estimated.
-:::
+```{r}
+#| code-fold: show
+#| eval: true
 
+confint(m1, level = 0.90)
+```
 
-## Hypothesis Testing for $\beta_1$
+# Linear Regression Example
 
-- $H_0: \beta_1 = 0$  
-- $t = \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)}$
+## Wage Data Example
 
-::: notes
-We're testing whether the slope is zero—i.e., whether $X$ is a useful predictor for $Y$.
-:::
-
-## Interpretation
-
-- If $p < \alpha$, conclude $\beta_1 \ne 0$
-- If not, we can't say $X$ affects $Y$
-
-::: notes
-Make it clear that failing to reject $H_0$ doesn't prove it's true—just that we lack strong evidence against it.
-:::
-
-
-## Regression Example
-
-- $\hat{\beta}_1 = 2.5$, $SE = 0.8$, $n = 30$
-- 95% CI: $[0.86,\ 4.14]$  
-- $t = 3.125$, $p < 0.01$
-
-::: notes
-Highlight how the CI and hypothesis test lead to the same conclusion: the slope is likely not zero.
-:::
+The `Wage` data set contains data on 3000 male workers in the atlantic region. We are interested if there is a significant effect on the outcome `wage` based on the predictor variable `age`, adjusting for marital status (`maritl`), race (`race`),  and education level (`education`).
 
 
+## Red Wine Data
+
+The [Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality) data set contains data on information on both red and white wine from North Portugal. We are interested in seeing if `density` of the red wine (predictor variable) affects the `quality` (outcome variable), adjusting for `alcohol`, `pH`, `residual_sugar`, and `fixed_acidity`.
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+wine <- read_delim(url, delim = ";")
+```
+
+# Logistic Regression Inference in R
+
+## Conducting HT of $\beta_j$
+
+```{r}
+#| eval: false
+
+xlm <- glm(Y ~ X, data = DATA, family = binomial())
+summary(xlm)
+```
+
+-   `xlm`: name of the stored model
+-   `Y`: Name of the outcome variable in `DATA`
+-   `X`: Name of the Predictor Variable(s) in `DATA`
+-   `DATA`: Name of the data set
+
+## Example
+
+```{r}
+#| code-fold: show
+#| eval: true
+
+m1 <- glm(death ~ recur + number + size, bladder1, family = binomial())
+summary(m1)
+
+```
+
+## Confidence Interval
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+confint(xlm, level = LEVEL)
+
+```
+
+-   `xlm`: Name of the model saved in R
+-   `LEVEL`: A number between 0 and 1 to specify confidence level
+
+## Example
+
+```{r}
+#| code-fold: show
+#| eval: true
+
+confint(m1, level = 0.95)
+
+```
+
+## Confidence Interval for Odds Ratio
+
+```{r}
+#| code-fold: show
+#| eval: true
+
+exp(confint(m1, level = 0.95))
+
+```
+
+# Logistic Regression Example
+
+## Breast Cancer Data
+
+The [Breast Cancer](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic) data set contains information about image diagnosis of individuals from Wisconsin. We are interested if breast cancer `diagnosis` (outcome variable; Benign or Malignant), is affected by tumor `radius`, adjusting for `texture`, `perimeter`, `area`, and `smoothness`.
+
+```{r}
+#| code-fold: show
+#| eval: false
 
 
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"
+bc <- read.csv(url, header = FALSE)
+
+# Add column names
+colnames(bc) <- c("id", "diagnosis", paste0("V", 3:32))
+
+# Convert diagnosis to factor
+bc$diagnosis <- factor(bc$diagnosis, levels = c("B", "M"), labels = c("Benign", "Malignant"))
+```
+
+## Bank Note Classification
+
+The [Bank Note](https://archive.ics.uci.edu/dataset/267/banknote+authentication) data set contains information about bank note authentication based on images. We are interested in seeing if `class` (outcome variable; real or fake) is associated by image `entropy` (predictor), adjusting for `variance`, `skewness`, and `curtosis`.  
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00267/data_banknote_authentication.txt"
+bank <- read.csv(url, header = FALSE)
+
+colnames(bank) <- c("variance", "skewness", "curtosis", "entropy", "class")
+bank$class <- factor(bank$class, levels = c(0, 1), labels = c("Genuine", "Forged"))
+
+```

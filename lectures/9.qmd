@@ -321,7 +321,7 @@ replicate(N, CODE)
 ```
 
 
-- `N`: number of times to repeat a process
+- `N`: number of times to repeat a process 
 - `CODE`: what is to repeated
 
 

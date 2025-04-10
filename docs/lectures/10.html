@@ -36,6 +36,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-b5149592d8fa3064f64ae96168a75139.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -156,13 +221,28 @@
 <p>Statistical Inference</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
 <p>Power Analysis</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
 <p>Confidence Intervals</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Inference: Linear Regression</p>
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
 </div></li>
 </ul>
 </div>
@@ -171,30 +251,11 @@
 <h2>What is Statistical Inference?</h2>
 <ul>
 <li>Drawing conclusions about a <strong>population</strong> based on a <strong>sample</strong></li>
-<li>Population = entire group; Sample = subset</li>
+<li>Population = entire group</li>
+<li>Sample = subset</li>
 </ul>
 <aside class="notes">
-<p>Introduce the big idea: We want to make statements about a large group (population) but can only observe a small part of it (sample). Inference bridges that gap.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="why-it-matters" class="slide level2">
-<h2>Why It Matters</h2>
-<ul>
-<li>Studying populations directly is hard or impossible.</li>
-<li>We use data from samples to make predictions and decisions.</li>
-</ul>
-<aside class="notes">
-<p>Explain practical challenges: cost, time, or accessibility of population data. This motivates the need for inference.</p>
+<p>Introduce the big idea: We want to make st</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -292,6 +353,13 @@
           display:block!important;
       }</style></aside>
 </section>
+<section id="p-values" class="slide level2">
+<h2>p-values</h2>
+<ul>
+<li>Probability of observing data as extreme as this if <span class="math inline">\(H_0\)</span> is true</li>
+</ul>
+<p>Misinterpretation of p-values is common. Emphasize: low p-value means data is unusual under <span class="math inline">\(H_0\)</span>.</p>
+</section>
 <section id="confidence-intervals" class="slide level2">
 <h2>Confidence Intervals</h2>
 <ul>
@@ -310,35 +378,116 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section></section>
+<section>
+<section id="hypothesis-testing-1" class="title-slide slide level1 agenda-slide center">
+<h1>Hypothesis Testing</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Statistical Inference</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Power Analysis</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Confidence Intervals</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
+</div></li>
+</ul>
+</div>
 </section>
-<section id="confidence-interval-formula" class="slide level2">
-<h2>Confidence Interval Formula</h2>
-<p><span class="math display">\[
-\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}
-\]</span></p>
-<aside class="notes">
-<p><span class="math inline">\(z^*\)</span> depends on the confidence level, like 1.96 for 95%. Explain how higher confidence means wider intervals.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section id="hypothesis-tests" class="slide level2">
+<h2>Hypothesis Tests</h2>
+<p>Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the <strong>Null</strong> and <strong>Alternative</strong> Hypothesis.</p>
+</section>
+<section id="null-hypothesis-h_0" class="slide level2">
+<h2>Null Hypothesis <span class="math inline">\(H_0\)</span></h2>
+<p>The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.</p>
+</section>
+<section id="alternative-hypothesis-h_a" class="slide level2">
+<h2>Alternative Hypothesis <span class="math inline">\(H_a\)</span></h2>
+<p>The alternative hypothesis contradicts the null hypothesis.</p>
+</section>
+<section id="example-of-null-and-alternative-hypothesis" class="slide level2">
+<h2>Example of Null and Alternative Hypothesis</h2>
+<p>We want to see if <span class="math inline">\(\beta\)</span> is different from <span class="math inline">\(\beta^*\)</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta=\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta\ne\beta^*\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \beta\le\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta&gt;\beta^*\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta\ge\beta^*\)</span></td>
+<td><span class="math inline">\(H_0: \beta&lt;\beta^*\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-side-vs-two-side-hypothesis-tests" class="slide level2">
+<h2>One-Side vs Two-Side Hypothesis Tests</h2>
+<p>Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (<span class="math inline">\(H_a:\beta\ne\beta^*\)</span>) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta=\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta\ne\beta^*\)</span></td>
+<td>2-Sided</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \beta\le\beta^*\)</span></td>
+<td><span class="math inline">\(H_a: \beta&gt;\beta^*\)</span></td>
+<td>1-Sided</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \beta\ge\beta^*\)</span></td>
+<td><span class="math inline">\(H_0: \beta&lt;\beta^*\)</span></td>
+<td>1-Sided</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="hypothesis-testing-steps" class="slide level2 scrollable">
 <h2>Hypothesis Testing Steps</h2>
 <ol type="1">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span><br>
-</li>
-<li>Choose <span class="math inline">\(\alpha\)</span><br>
-</li>
-<li>Compute confidence interval/p-value<br>
-</li>
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span></li>
+<li>Choose <span class="math inline">\(\alpha\)</span></li>
+<li>Compute confidence interval/p-value</li>
 <li>Make a decision</li>
 </ol>
 <aside class="notes">
@@ -355,24 +504,90 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="p-values" class="slide level2">
-<h2>p-values</h2>
+<section id="rejection-region" class="slide level2">
+<h2>Rejection Region</h2>
+</section>
+<section id="rejection-region-1" class="slide level2">
+<h2>Rejection Region</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a><span class="co"># Critical values for two-tailed test</span></span>
+<span id="cb1-4"><a></a>z_critical <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb1-5"><a></a></span>
+<span id="cb1-6"><a></a><span class="co"># Create data for the normal curve</span></span>
+<span id="cb1-7"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb1-8"><a></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb1-13"><a></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"deepskyblue"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&lt;=</span> <span class="sc">-</span>z_critical), <span class="fu">aes</span>(<span class="at">y =</span> y), <span class="at">fill =</span> <span class="st">"firebrick"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb1-15"><a></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&gt;=</span> z_critical), <span class="fu">aes</span>(<span class="at">y =</span> y), <span class="at">fill =</span> <span class="st">"firebrick"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb1-16"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>z_critical, z_critical), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb1-17"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="10_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="decision-making" class="title-slide slide level1 agenda-slide center">
+<h1>Decision Making</h1>
+<div class="agenda">
 <ul>
-<li>Probability of observing data as extreme as this if <span class="math inline">\(H_0\)</span> is true</li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Statistical Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Power Analysis</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Confidence Intervals</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
+</div></li>
 </ul>
-<aside class="notes">
-<p>Misinterpretation of p-values is common. Emphasize: low p-value means data is unusual under <span class="math inline">\(H_0\)</span>.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+</div>
+</section>
+<section id="decision-making-1" class="slide level2">
+<h2>Decision Making</h2>
+<p>Hypothesis Testing will force you to make a decision: Reject <span class="math inline">\(H_0\)</span> <strong>OR</strong> Fail to Reject <span class="math inline">\(H_0\)</span></p>
+<div class="fragment">
+<p>Reject <span class="math inline">\(H_0\)</span>: The effect seen is not due to random chance, there is a process making contributing to the effect.</p>
+</div>
+<div class="fragment">
+<p>Fail to Reject <span class="math inline">\(H_0\)</span>: The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process.</p>
+</div>
+</section>
+<section id="decision-making-p-value" class="slide level2">
+<h2>Decision Making: P-Value</h2>
+<p>The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true.</p>
+<div class="fragment">
+<p><strong>If</strong> <span class="math inline">\(p &lt; \alpha\)</span>, then you reject <span class="math inline">\(H_0\)</span>; otherwise, you will fail to reject <span class="math inline">\(H_0\)</span>.</p>
+</div>
+</section>
+<section id="decision-making-confidence-interval-approach" class="slide level2">
+<h2>Decision Making: Confidence Interval Approach</h2>
+<p>The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is <span class="math inline">\(\beta\ne\beta^*\)</span>. The bootstrapping approach will result in a lower and upper bound denoted as: <span class="math inline">\((LB, UB)\)</span>.</p>
 </section></section>
 <section>
 <section id="power-analysis" class="title-slide slide level1 agenda-slide center">
@@ -382,6 +597,12 @@
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Statistical Inference</p>
 </div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Decision Making</p>
+</div></li>
 <li><div class="agenda-active">
 <p>Power Analysis</p>
 </div></li>
@@ -389,10 +610,34 @@
 <p>Confidence Intervals</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Inference: Linear Regression</p>
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
 </div></li>
 </ul>
 </div>
+</section>
+<section id="what-is-statistical-power" class="slide level2">
+<h2>What is Statistical Power</h2>
+<ul>
+<li><strong>Statistical Power</strong> is the probability of correctly rejecting a false null hypothesis.</li>
+<li>In other words, it’s the chance of <strong>detecting a real effect</strong> when it exists.</li>
+</ul>
+</section>
+<section id="why-power-matters" class="slide level2">
+<h2>Why Power Matters</h2>
+<ul>
+<li>Low power → high risk of <strong>Type II Error</strong> (false negatives)</li>
+<li>High power → better chance of finding true effects</li>
+<li>Common threshold: <strong>80% power</strong></li>
+</ul>
 </section>
 <section id="errors-in-inference" class="slide level2">
 <h2>Errors in Inference</h2>
@@ -432,7 +677,7 @@
 <section id="type-i-error-false-positive" class="slide level2">
 <h2>Type I Error (False Positive)</h2>
 <ul>
-<li><strong>Rejecting <span class="math inline">\(H_0\)</span> when it is actually true</strong></li>
+<li><strong>Rejecting</strong> <span class="math inline">\(H_0\)</span> when it is actually true</li>
 <li>Probability = <span class="math inline">\(\alpha\)</span> (significance level)</li>
 </ul>
 <aside class="notes">
@@ -452,7 +697,7 @@
 <section id="type-ii-error-false-negative" class="slide level2">
 <h2>Type II Error (False Negative)</h2>
 <ul>
-<li><strong>Failing to reject <span class="math inline">\(H_0\)</span> when it is actually false</strong></li>
+<li><strong>Failing to reject</strong> <span class="math inline">\(H_0\)</span> when it is actually false</li>
 <li>Probability = <span class="math inline">\(\beta\)</span></li>
 <li>Power = <span class="math inline">\(1 - \beta\)</span></li>
 </ul>
@@ -494,97 +739,6 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="real-world-examples" class="slide level2">
-<h2>Real-World Examples</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 32%">
-<col style="width: 36%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Scenario</th>
-<th>Type I Error</th>
-<th>Type II Error</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Medical Test (e.g., cancer)</td>
-<td>Healthy person diagnosed</td>
-<td>Missed diagnosis</td>
-</tr>
-<tr class="even">
-<td>Spam Filter</td>
-<td>Good email marked as spam</td>
-<td>Spam not caught</td>
-</tr>
-<tr class="odd">
-<td>Judicial Trial</td>
-<td>Innocent person convicted</td>
-<td>Guilty person acquitted</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<p>Use these examples to help students internalize the concepts. Ask them to think of scenarios in their field.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="what-is-statistical-power" class="slide level2">
-<h2>What is Statistical Power?</h2>
-<ul>
-<li><strong>Statistical Power</strong> is the probability of correctly rejecting a false null hypothesis.</li>
-<li>In other words, it’s the chance of <strong>detecting a real effect</strong> when it exists.</li>
-</ul>
-<p><span class="math display">\[
-\text{Power} = 1 - \beta
-\]</span></p>
-<aside class="notes">
-<p>Introduce power as a key measure of a test’s sensitivity. It tells us how likely we are to catch a true effect.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="why-power-matters" class="slide level2">
-<h2>Why Power Matters</h2>
-<ul>
-<li>Low power → high risk of <strong>Type II Error</strong> (false negatives)</li>
-<li>High power → better chance of finding true effects</li>
-<li>Common threshold: <strong>80% power</strong></li>
-</ul>
-<aside class="notes">
-<p>A test with low power might miss important effects. 80% is a widely used benchmark in research planning.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
 <section id="what-affects-power" class="slide level2 scrollable">
 <h2>What Affects Power?</h2>
 <ol type="1">
@@ -605,64 +759,21 @@
 <li>Less noise in data = better power</li>
 </ul></li>
 </ol>
-<aside class="notes">
-<p>Use this to emphasize the practical levers we have. Sample size is one of the easiest things we can change to improve power.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="example-power-in-a-drug-trial" class="slide level2">
-<h2>Example: Power in a Drug Trial</h2>
-<ul>
-<li><span class="math inline">\(H_0\)</span>: New drug has no effect<br>
-</li>
-<li><span class="math inline">\(H_1\)</span>: New drug lowers blood pressure by 5 mmHg<br>
-</li>
-<li>If the test has <strong>low power</strong>, we might fail to detect this true improvement.</li>
-</ul>
-<aside class="notes">
-<p>Medical examples make power feel real. Failing to detect real treatment effects could cost lives—or result in false conclusions.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section id="boosting-power" class="slide level2">
 <h2>Boosting Power</h2>
 <ul>
-<li>Increase sample size (<span class="math inline">\(n\)</span>)</li>
-<li>Use better statistical models</li>
-<li>Increase <span class="math inline">\(\alpha\)</span> (carefully)</li>
-<li>Use one-tailed test (if direction is justified)</li>
+<li>Power = Probability of rejecting <span class="math inline">\(H_0\)</span> when it’s false</li>
+<li>Helps avoid <strong>Type II Errors</strong></li>
+<li>Driven by:
+<ul>
+<li>Sample size</li>
+<li>Effect size</li>
+<li><span class="math inline">\(\alpha\)</span></li>
+<li>Variability</li>
+</ul></li>
+<li>Aim for <strong>80% or higher</strong></li>
 </ul>
-<aside class="notes">
-<p>Show students that power is not fixed—they can plan studies to improve it. Emphasize ethical and scientific trade-offs.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section></section>
 <section>
 <section id="confidence-intervals-1" class="title-slide slide level1 agenda-slide center">
@@ -673,13 +784,28 @@
 <p>Statistical Inference</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
 <p>Power Analysis</p>
 </div></li>
 <li><div class="agenda-active">
 <p>Confidence Intervals</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Inference: Linear Regression</p>
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
 </div></li>
 </ul>
 </div>
@@ -727,118 +853,6 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="formula-known-sigma" class="slide level2">
-<h2>Formula (Known <span class="math inline">\(\sigma\)</span>)</h2>
-<p><span class="math display">\[
-\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\bar{x}\)</span> = sample mean<br>
-</li>
-<li><span class="math inline">\(\sigma\)</span> = population standard deviation<br>
-</li>
-<li><span class="math inline">\(z^*\)</span> = critical value (e.g., 1.96 for 95%)</li>
-</ul>
-<aside class="notes">
-<p>This formula is used when the population standard deviation <span class="math inline">\(\sigma\)</span> is known. It assumes a normal distribution for <span class="math inline">\(\bar{x}\)</span>.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="formula-unknown-sigma" class="slide level2">
-<h2>Formula (Unknown <span class="math inline">\(\sigma\)</span>)</h2>
-<p><span class="math display">\[
-\bar{x} \pm t^* \cdot \frac{s}{\sqrt{n}}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(s\)</span> = sample standard deviation<br>
-</li>
-<li><span class="math inline">\(t^*\)</span> = critical value from <span class="math inline">\(t\)</span>-distribution (<span class="math inline">\(n-1\)</span> df)</li>
-</ul>
-<aside class="notes">
-<p>In real-world scenarios, <span class="math inline">\(\sigma\)</span> is rarely known. We estimate it using <span class="math inline">\(s\)</span> and use the <span class="math inline">\(t\)</span>-distribution to account for extra uncertainty.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="choosing-confidence-levels" class="slide level2">
-<h2>Choosing Confidence Levels</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Level</th>
-<th><span class="math inline">\(z^*\)</span> (approx.)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>90%</td>
-<td>1.645</td>
-</tr>
-<tr class="even">
-<td>95%</td>
-<td>1.960</td>
-</tr>
-<tr class="odd">
-<td>99%</td>
-<td>2.576</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<p>Higher confidence means wider intervals. Discuss the trade-off: precision vs certainty.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<ul>
-<li><span class="math inline">\(n = 100\)</span>, <span class="math inline">\(\bar{x} = 68\)</span>, <span class="math inline">\(\sigma = 3\)</span></li>
-<li>95% CI:</li>
-</ul>
-<p><span class="math display">\[
-68 \pm 1.96 \cdot \frac{3}{\sqrt{100}} = 68 \pm 0.588
-\]</span></p>
-<p><strong>CI: [67.412, 68.588]</strong></p>
-<aside class="notes">
-<p>Walk through the calculation step-by-step. Emphasize how increasing <span class="math inline">\(n\)</span> or decreasing <span class="math inline">\(\sigma\)</span> would narrow the interval.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
 <section id="factors-affecting-ci-width" class="slide level2">
 <h2>Factors Affecting CI Width</h2>
 <ul>
@@ -863,12 +877,18 @@
       }</style></aside>
 </section></section>
 <section>
-<section id="inference-linear-regression" class="title-slide slide level1 agenda-slide center">
-<h1>Inference: Linear Regression</h1>
+<section id="linear-regression-inference-in-r" class="title-slide slide level1 agenda-slide center">
+<h1>Linear Regression Inference in R</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Statistical Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Decision Making</p>
 </div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>Power Analysis</p>
@@ -877,132 +897,342 @@
 <p>Confidence Intervals</p>
 </div></li>
 <li><div class="agenda-active">
-<p>Inference: Linear Regression</p>
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="inference-for-regression-coefficients" class="slide level2">
-<h2>Inference for Regression Coefficients</h2>
+<section id="conducting-ht-of-beta_j" class="slide level2">
+<h2>Conducting HT of <span class="math inline">\(\beta_j\)</span></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA)</span>
+<span id="cb2-2"><a></a><span class="fu">summary</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <ul>
-<li><span class="math inline">\(Y = \beta_0 + \beta_1 X + \varepsilon\)</span></li>
-<li>We estimate <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span></li>
+<li><code>xlm</code>: name of the stored model</li>
+<li><code>Y</code>: Name of the outcome variable in <code>DATA</code></li>
+<li><code>X</code>: Name of the Predictor Variable(s) in <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data set</li>
 </ul>
-<aside class="notes">
-<p>Now we’re applying inference in a regression context. Same principles apply—estimating, testing, confidence intervals.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
-<section id="sampling-distribution-of-hatbeta_1" class="slide level2">
-<h2>Sampling Distribution of <span class="math inline">\(\hat{\beta}_1\)</span></h2>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species <span class="sc">+</span> flipper_length_mm, penguins)</span>
+<span id="cb3-2"><a></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -927.70 -254.82  -23.92  241.16 1191.68 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                    Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)       -4031.477    584.151  -6.901 2.55e-11 ***
+#&gt; speciesChinstrap   -206.510     57.731  -3.577 0.000398 ***
+#&gt; speciesGentoo       266.810     95.264   2.801 0.005392 ** 
+#&gt; flipper_length_mm    40.705      3.071  13.255  &lt; 2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Residual standard error: 375.5 on 338 degrees of freedom
+#&gt;   (2 observations deleted due to missingness)
+#&gt; Multiple R-squared:  0.7826, Adjusted R-squared:  0.7807 
+#&gt; F-statistic: 405.7 on 3 and 338 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="confidence-interval" class="slide level2">
+<h2>Confidence Interval</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">confint</span>(xlm, <span class="at">level =</span> LEVEL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <ul>
-<li><span class="math inline">\(\hat{\beta}_1\)</span> is normally distributed (under assumptions)</li>
-<li>SE depends on spread of <span class="math inline">\(x_i\)</span></li>
+<li><code>xlm</code>: Name of the model saved in R</li>
+<li><code>LEVEL</code>: A number between 0 and 1 to specify confidence level</li>
 </ul>
-<aside class="notes">
-<p>Variance in <span class="math inline">\(x_i\)</span> helps reduce uncertainty in slope estimate. More spread = more informative data.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
-<section id="confidence-interval-for-beta_1" class="slide level2">
-<h2>Confidence Interval for <span class="math inline">\(\beta_1\)</span></h2>
-<p><span class="math display">\[
-\hat{\beta}_1 \pm t^* \cdot SE(\hat{\beta}_1)
-\]</span></p>
-<aside class="notes">
-<p>This is like the CI for the mean, but uses the <span class="math inline">\(t\)</span>-distribution because <span class="math inline">\(\sigma\)</span> is estimated.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="hypothesis-testing-for-beta_1" class="slide level2">
-<h2>Hypothesis Testing for <span class="math inline">\(\beta_1\)</span></h2>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                           5 %        95 %
+#&gt; (Intercept)       -4994.96108 -3067.99270
+#&gt; speciesChinstrap   -301.72956  -111.29068
+#&gt; speciesGentoo       109.68404   423.93517
+#&gt; flipper_length_mm    35.64014    45.77066</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="linear-regression-example" class="title-slide slide level1 agenda-slide center">
+<h1>Linear Regression Example</h1>
+<div class="agenda">
 <ul>
-<li><span class="math inline">\(H_0: \beta_1 = 0\)</span><br>
-</li>
-<li><span class="math inline">\(t = \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)}\)</span></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Statistical Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Power Analysis</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Confidence Intervals</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
+</div></li>
 </ul>
-<aside class="notes">
-<p>We’re testing whether the slope is zero—i.e., whether <span class="math inline">\(X\)</span> is a useful predictor for <span class="math inline">\(Y\)</span>.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+</div>
 </section>
-<section id="interpretation-1" class="slide level2">
-<h2>Interpretation</h2>
-<ul>
-<li>If <span class="math inline">\(p &lt; \alpha\)</span>, conclude <span class="math inline">\(\beta_1 \ne 0\)</span></li>
-<li>If not, we can’t say <span class="math inline">\(X\)</span> affects <span class="math inline">\(Y\)</span></li>
-</ul>
-<aside class="notes">
-<p>Make it clear that failing to reject <span class="math inline">\(H_0\)</span> doesn’t prove it’s true—just that we lack strong evidence against it.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section id="wage-data-example" class="slide level2">
+<h2>Wage Data Example</h2>
+<p>The <code>Wage</code> data set contains data on 3000 male workers in the atlantic region. We are interested if there is a significant effect on the outcome <code>wage</code> based on the predictor variable <code>age</code>, adjusting for marital status (<code>maritl</code>), race (<code>race</code>), and education level (<code>education</code>).</p>
 </section>
-<section id="regression-example" class="slide level2">
-<h2>Regression Example</h2>
+<section id="red-wine-data" class="slide level2">
+<h2>Red Wine Data</h2>
+<p>The <a href="https://archive.ics.uci.edu/dataset/186/wine+quality">Wine Quality</a> data set contains data on information on both red and white wine from North Portugal. We are interested in seeing if <code>density</code> of the red wine (predictor variable) affects the <code>quality</code> (outcome variable), adjusting for <code>alcohol</code>, <code>pH</code>, <code>residual_sugar</code>, and <code>fixed_acidity</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>url <span class="ot">&lt;-</span> <span class="st">"https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"</span></span>
+<span id="cb8-2"><a></a>wine <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(url, <span class="at">delim =</span> <span class="st">";"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section>
+<section>
+<section id="logistic-regression-inference-in-r" class="title-slide slide level1 agenda-slide center">
+<h1>Logistic Regression Inference in R</h1>
+<div class="agenda">
 <ul>
-<li><span class="math inline">\(\hat{\beta}_1 = 2.5\)</span>, <span class="math inline">\(SE = 0.8\)</span>, <span class="math inline">\(n = 30\)</span></li>
-<li>95% CI: <span class="math inline">\([0.86,\ 4.14]\)</span><br>
-</li>
-<li><span class="math inline">\(t = 3.125\)</span>, <span class="math inline">\(p &lt; 0.01\)</span></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Statistical Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Power Analysis</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Confidence Intervals</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p>Logistic Regression Example</p>
+</div></li>
 </ul>
-<aside class="notes">
-<p>Highlight how the CI and hypothesis test lead to the same conclusion: the slope is likely not zero.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+</div>
+</section>
+<section id="conducting-ht-of-beta_j-1" class="slide level2">
+<h2>Conducting HT of <span class="math inline">\(\beta_j\)</span></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb9-2"><a></a><span class="fu">summary</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li><code>xlm</code>: name of the stored model</li>
+<li><code>Y</code>: Name of the outcome variable in <code>DATA</code></li>
+<li><code>X</code>: Name of the Predictor Variable(s) in <code>DATA</code></li>
+<li><code>DATA</code>: Name of the data set</li>
+</ul>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> recur <span class="sc">+</span> number <span class="sc">+</span> size, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb10-2"><a></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = death ~ recur + number + size, family = binomial(), 
+#&gt;     data = bladder1)
+#&gt; 
+#&gt; Coefficients:
+#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  
+#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***
+#&gt; number       0.0008451  0.1124503   0.008 0.994004    
+#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 189.38  on 293  degrees of freedom
+#&gt; Residual deviance: 166.43  on 290  degrees of freedom
+#&gt; AIC: 174.43
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+</div>
+</section>
+<section id="confidence-interval-1" class="slide level2">
+<h2>Confidence Interval</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">confint</span>(xlm, <span class="at">level =</span> LEVEL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li><code>xlm</code>: Name of the model saved in R</li>
+<li><code>LEVEL</code>: A number between 0 and 1 to specify confidence level</li>
+</ul>
+</section>
+<section id="example-3" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                  2.5 %      97.5 %
+#&gt; (Intercept) -1.7353779  0.02529523
+#&gt; recur       -0.6217831 -0.20078281
+#&gt; number      -0.2421738  0.20731479
+#&gt; size        -0.5880581  0.06061498</code></pre>
+</div>
+</div>
+</section>
+<section id="confidence-interval-for-odds-ratio" class="slide level2">
+<h2>Confidence Interval for Odds Ratio</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">exp</span>(<span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                 2.5 %    97.5 %
+#&gt; (Intercept) 0.1763335 1.0256179
+#&gt; recur       0.5369861 0.8180901
+#&gt; number      0.7849197 1.2303698
+#&gt; size        0.5554048 1.0624898</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="logistic-regression-example" class="title-slide slide level1 agenda-slide center">
+<h1>Logistic Regression Example</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Statistical Inference</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Hypothesis Testing</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Decision Making</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Power Analysis</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Confidence Intervals</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Linear Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Linear Regression Example</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p>Logistic Regression Inference in R</p>
+</div></li>
+<li><div class="agenda-active">
+<p>Logistic Regression Example</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="breast-cancer-data" class="slide level2">
+<h2>Breast Cancer Data</h2>
+<p>The <a href="https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic">Breast Cancer</a> data set contains information about image diagnosis of individuals from Wisconsin. We are interested if breast cancer <code>diagnosis</code> (outcome variable; Benign or Malignant), is affected by tumor <code>radius</code>, adjusting for <code>texture</code>, <code>perimeter</code>, <code>area</code>, and <code>smoothness</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>url <span class="ot">&lt;-</span> <span class="st">"https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"</span></span>
+<span id="cb17-2"><a></a>bc <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-3"><a></a></span>
+<span id="cb17-4"><a></a><span class="co"># Add column names</span></span>
+<span id="cb17-5"><a></a><span class="fu">colnames</span>(bc) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"diagnosis"</span>, <span class="fu">paste0</span>(<span class="st">"V"</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">32</span>))</span>
+<span id="cb17-6"><a></a></span>
+<span id="cb17-7"><a></a><span class="co"># Convert diagnosis to factor</span></span>
+<span id="cb17-8"><a></a>bc<span class="sc">$</span>diagnosis <span class="ot">&lt;-</span> <span class="fu">factor</span>(bc<span class="sc">$</span>diagnosis, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"M"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Benign"</span>, <span class="st">"Malignant"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="bank-note-classification" class="slide level2">
+<h2>Bank Note Classification</h2>
+<p>The <a href="https://archive.ics.uci.edu/dataset/267/banknote+authentication">Bank Note</a> data set contains information about bank note authentication based on images. We are interested in seeing if <code>class</code> (outcome variable; real or fake) is associated by image <code>entropy</code> (predictor), adjusting for <code>variance</code>, <code>skewness</code>, and <code>curtosis</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>url <span class="ot">&lt;-</span> <span class="st">"https://archive.ics.uci.edu/ml/machine-learning-databases/00267/data_banknote_authentication.txt"</span></span>
+<span id="cb18-2"><a></a>bank <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a><span class="fu">colnames</span>(bank) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"variance"</span>, <span class="st">"skewness"</span>, <span class="st">"curtosis"</span>, <span class="st">"entropy"</span>, <span class="st">"class"</span>)</span>
+<span id="cb18-5"><a></a>bank<span class="sc">$</span>class <span class="ot">&lt;-</span> <span class="fu">factor</span>(bank<span class="sc">$</span>class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Genuine"</span>, <span class="st">"Forged"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 <div class="reveal-header">
