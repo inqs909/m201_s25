@@ -2398,7 +2398,14 @@
     "href": "lectures/10.html#decision-making-confidence-interval-approach",
     "title": "Statistical Inference",
     "section": "Decision Making: Confidence Interval Approach",
-    "text": "Decision Making: Confidence Interval Approach\nThe confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is \\(\\beta\\ne\\beta^*\\). The bootstrapping approach will result in a lower and upper bound denoted as: \\((LB, UB)\\)."
+    "text": "Decision Making: Confidence Interval Approach\nThe confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is \\(\\beta\\ne\\beta^*\\). The bootstrapping approach will result in a lower and upper bound denoted as: \\((LB, UB)\\).\n\nIf \\(\\beta^*\\) is in \\((LB, UB)\\), then you fail to reject \\(H_0\\). If \\(\\beta^*\\) is not in \\((LB,UB)\\), then you reject \\(H_0\\)."
+  },
+  {
+    "objectID": "lectures/10.html#significance-level-alpha",
+    "href": "lectures/10.html#significance-level-alpha",
+    "title": "Statistical Inference",
+    "section": "Significance Level \\(\\alpha\\)",
+    "text": "Significance Level \\(\\alpha\\)\nThe significance level \\(\\alpha\\) is the probability you will reject the null hypothesis given that it was true.\n\nIn other words, \\(\\alpha\\) is the error rate that a research controls.\n\n\nTypically, we want this error rate to be small (\\(\\alpha = 0.05\\))."
   },
   {
     "objectID": "lectures/10.html#what-is-statistical-power",

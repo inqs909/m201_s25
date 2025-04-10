@@ -215,8 +215,6 @@ Reject $H_0$: The effect seen is not due to random chance, there is a process ma
 Fail to Reject $H_0$: The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process.
 :::
 
-
-
 ## Decision Making: P-Value
 
 The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true.
@@ -229,6 +227,22 @@ The p-value approach is one of the most common methods to report significant res
 ## Decision Making: Confidence Interval Approach
 
 The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is $\beta\ne\beta^*$. The bootstrapping approach will result in a lower and upper bound denoted as: $(LB, UB)$.
+
+::: fragment
+**If $\beta^*$ is in $(LB, UB)$, then you fail to reject $H_0$. If $\beta^*$ is not in $(LB,UB)$, then you reject $H_0$.**
+:::
+
+## Significance Level $\alpha$
+
+The significance level $\alpha$ is the probability you will reject the null hypothesis given that it was true.
+
+::: fragment
+In other words, $\alpha$ is the error rate that a research controls.
+:::
+
+::: fragment
+Typically, we want this error rate to be small ($\alpha = 0.05$).
+:::
 
 # Power Analysis
 
