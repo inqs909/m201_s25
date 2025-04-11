@@ -2524,7 +2524,7 @@
     "href": "lectures/10.html#red-wine-data",
     "title": "Statistical Inference",
     "section": "Red Wine Data",
-    "text": "Red Wine Data\nThe Wine Quality data set contains data on information on both red and white wine from North Portugal. We are interested in seeing if density of the red wine (predictor variable) affects the quality (outcome variable), adjusting for alcohol, pH, residual_sugar, and fixed_acidity.\n\n\nCode\nurl &lt;- \"https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv\"\nwine &lt;- read_delim(url, delim = \";\")"
+    "text": "Red Wine Data\nThe Wine Quality data set contains data on information on both red and white wine from North Portugal. We are interested in seeing if density of the red wine (predictor variable) affects the quality (outcome variable), adjusting for alcohol, p_h, residual_sugar, and fixed_acidity.\n\n\nCode\nurl &lt;- \"https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv\"\nwine &lt;- read_delim(url, delim = \";\")"
   },
   {
     "objectID": "lectures/10.html#conducting-ht-of-beta_j-1",

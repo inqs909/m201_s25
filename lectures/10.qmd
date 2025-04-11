@@ -411,7 +411,7 @@ The `Wage` data set contains data on 3000 male workers in the atlantic region. W
 
 ## Red Wine Data
 
-The [Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality) data set contains data on information on both red and white wine from North Portugal. We are interested in seeing if `density` of the red wine (predictor variable) affects the `quality` (outcome variable), adjusting for `alcohol`, `pH`, `residual_sugar`, and `fixed_acidity`.
+The [Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality) data set contains data on information on both red and white wine from North Portugal. We are interested in seeing if `density` of the red wine (predictor variable) affects the `quality` (outcome variable), adjusting for `alcohol`, `p_h`, `residual_sugar`, and `fixed_acidity`.
 
 ```{r}
 #| code-fold: show
