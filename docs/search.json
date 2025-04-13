@@ -2566,7 +2566,7 @@
     "href": "lectures/10.html#breast-cancer-data",
     "title": "Statistical Inference",
     "section": "Breast Cancer Data",
-    "text": "Breast Cancer Data\nThe Breast Cancer data set contains information about image diagnosis of individuals from Wisconsin. We are interested if breast cancer diagnosis (outcome variable; Benign or Malignant), is affected by tumor radius, adjusting for texture, perimeter, area, and smoothness.\n\n\nCode\nurl &lt;- \"https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data\"\nbc &lt;- read.csv(url, header = FALSE)\n\n# Add column names\ncolnames(bc) &lt;- c(\"id\", \"diagnosis\", paste0(\"V\", 3:32))\n\n# Convert diagnosis to factor\nbc$diagnosis &lt;- factor(bc$diagnosis, levels = c(\"B\", \"M\"), labels = c(\"Benign\", \"Malignant\"))"
+    "text": "Breast Cancer Data\nThe Breast Cancer data set contains information about image diagnosis of individuals from Wisconsin. We are interested if breast cancer diagnosis (outcome variable; Benign or Malignant), is affected by tumor radius, adjusting for texture, perimeter, and smoothness.\n\n\nCode\nurl &lt;- \"https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data\"\nbc &lt;- read.csv(url, header = FALSE)\n\n# Add column names\ncolnames(bc) &lt;- c(\"id\", \"diagnosis\", paste0(\"V\", 3:32))\n\n# Convert diagnosis to factor\nbc$diagnosis &lt;- factor(bc$diagnosis, levels = c(\"B\", \"M\"), labels = c(\"Benign\", \"Malignant\"))"
   },
   {
     "objectID": "lectures/10.html#bank-note-classification",

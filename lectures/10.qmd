@@ -485,7 +485,7 @@ exp(confint(m1, level = 0.95))
 
 ## Breast Cancer Data
 
-The [Breast Cancer](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic) data set contains information about image diagnosis of individuals from Wisconsin. We are interested if breast cancer `diagnosis` (outcome variable; Benign or Malignant), is affected by tumor `radius`, adjusting for `texture`, `perimeter`, `area`, and `smoothness`.
+The [Breast Cancer](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic) data set contains information about image diagnosis of individuals from Wisconsin. We are interested if breast cancer `diagnosis` (outcome variable; Benign or Malignant), is affected by tumor `radius`, adjusting for `texture`, `perimeter`, and `smoothness`.
 
 ```{r}
 #| code-fold: show
