@@ -504,7 +504,7 @@ bc$diagnosis <- factor(bc$diagnosis, levels = c("B", "M"), labels = c("Benign", 
 
 ## Bank Note Classification
 
-The [Bank Note](https://archive.ics.uci.edu/dataset/267/banknote+authentication) data set contains information about bank note authentication based on images. We are interested in seeing if `class` (outcome variable; real or fake) is associated by image `entropy` (predictor), adjusting for `variance`, `skewness`, and `curtosis`.  
+The [Bank Note](https://archive.ics.uci.edu/dataset/267/banknote+authentication) data set contains information about bank note authentication based on images. We are interested in seeing if `class` (outcome variable; real or fake) is associated by image `entropy` (predictor), adjusting for `variance`, and `skewness`.  
 
 ```{r}
 #| code-fold: show
