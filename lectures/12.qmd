@@ -1,0 +1,253 @@
+---
+title: "Inference with Logistic Regression"
+date: 4/28/25
+description: |
+  Begins the discussion on inference for logistic and Poisson regression.
+format:
+  revealjs:
+    width: 1200
+    scrollable: true
+    theme: [default, styles.scss]
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: notes/chalkboard_1a.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    code-fold: true
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+  - reveal-auto-agenda
+editor: source
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(csucistats)
+library(survival)
+library(patchwork)
+theme_set(theme_bw() + 
+            theme(
+              axis.text.x = element_text(size = 24),
+              axis.title = element_text(size = 30),
+              plot.title = element_text(size = 48),
+              strip.text = element_text(size = 20),
+              legend.title = element_blank(),
+              legend.text = element_text(size = 24)))
+
+bladder1$death <- ifelse(bladder1$status %in% c(0, 1), 0, 1)
+bladder1$death2 <- ifelse(bladder1$death == 0, "Alive", "Dead")
+
+```
+
+# Motivating Example
+
+## Motivating Example
+
+
+```{r}
+bladder1 |> ggplot(aes(number, color = death2)) +
+  geom_boxplot()
+```
+
+
+# $\beta$ Hypothesis Testing
+
+## Hypothesis
+
+::: columns
+::: {.column width="50%"}
+$$H_0: \beta = \theta$$
+:::
+
+::: {.column width="50%"}
+$$H_0: \beta \ne \theta$$
+:::
+:::
+
+## Testing $\beta_j$
+
+
+$$
+\frac{\hat\beta_j - \theta}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
+$$
+
+## Confidence Intervals
+
+$$
+PE \pm CV \times SE
+$$
+
+-   PE: Point Estimate
+
+-   CV: Critical Value $P(X<CV) = 1-\alpha/2$
+
+-   $\alpha$: significance level
+
+-   SE: Standard Error
+
+
+## Conducting HT of $\beta_j$
+
+```{r}
+#| eval: false
+
+xlm <- glm(Y ~ X, data = DATA, family = binomial())
+summary(xlm)
+```
+
+## Example
+
+```{r}
+#| code-fold: show
+#| eval: true
+
+m1 <- glm(death ~ recur + number + size, bladder1, family = binomial())
+summary(m1)
+
+```
+
+## Confidence Interval
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+confint(xlm, level = LEVEL)
+
+```
+
+
+## Example 
+
+```{r}
+#| code-fold: show
+#| eval: true
+
+confint(m1, level = 0.95)
+
+```
+## Confidence Interval for Odds Ratio
+
+```{r}
+#| code-fold: show
+#| eval: true
+
+exp(confint(m1, level = 0.95))
+
+```
+
+
+# Model Hypothesis Testing
+
+## Model inference
+
+We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model ($g(\hat Y)=\hat\beta_0 + \hat\beta_1 X$) to the mean of Y ($\hat \mu_y$). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.
+
+## Model Inference
+
+Given 2 models:
+
+$$
+g(\hat Y) = \hat\beta_0 + \hat\beta_1 X_1 + \hat\beta_2 X_2 + \cdots + \hat\beta_p X_p
+$$
+
+or
+
+$$
+g(\hat Y) = \bar y
+$$
+
+::: fragment
+Is the model with predictors do a better job than using the average?
+:::
+
+## Likelihood Ratio Test
+
+The Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model. 
+
+
+It conducts a hypothesis tests to see if models are significantly different from each other.
+
+## Conducting an LRT in R
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+xlm <- glm(Y ~ X, data = DATA, family = binomial)
+xlm0 <- glm(Y ~ 1, data = DATA, family = binomial)
+anova(xlm0, xlm, test = "LRT")
+
+```
+
+## Example
+
+```{r}
+m0 <- update(m1, formula. = ~ 1)
+anova(m0, m1, test = "LRT")
+```
+
+## Model Inference
+
+Model inference can be extended to compare models that have different number of predictors.
+
+## Model Inference
+
+Given:
+
+$$
+M1:\ g(\hat y) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 
+$$
+
+$$
+M2:\ g(\hat y) = \beta_0 + \beta_1 X_1  
+$$
+
+Let $M1$ be the FULL (larger) model, and let $M2$ be the RED (Reduced, smaller) model.
+
+## Model Inference
+
+He can test the following Hypothesis:
+
+-   $H_0$: The error variations between the FULL and RED model are not different.
+-   $H_1$: The error variations between the FULL and RED model are different.
+
+
+## Likelihood Ratio Test in R
+
+```{r}
+#| code-fold: show
+#| eval: false
+
+full <- glm(Y  ~  X1 + X2 + X3 + X4, DATA, family = binomial())
+red <- glm(Y ~ X1 + X2, DATA, family = binomial())
+anova(red, full, test = "LRT")
+```
+
+## Example
+
+```{r}
+m1 <- glm(death ~ number + size + recur, bladder1, family = binomial())
+m2 <- glm(death ~ recur, bladder1, family = binomial())
+anova(m2, m1, test = "LRT")
+```
+
+
