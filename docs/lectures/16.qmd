@@ -305,9 +305,8 @@ A **paired t-test** compares the means of two related measurements (e.g., before
 
 **Regression on difference scores** (simplest method): 
 $$
-    D_i = Y_{i2} - Y_{i1} = \beta_0 + \varepsilon_i
+D_i = Y_{i2} - Y_{i1} = \beta_0 + \varepsilon_i
 $$
-
 
 
 ## More Information

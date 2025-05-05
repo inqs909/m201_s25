@@ -12,12 +12,10 @@
 <script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
 <script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
 <link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <meta name="dcterms.date" content="2025-05-05">
-  <title>MATH 201 – Model Inference</title>
+  <title>MATH 201 – Installing R and Rstudio</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -204,367 +202,179 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Model Inference</h1>
+  <h1 class="title">Installing R and Rstudio</h1>
 
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2025-05-05</p>
 </section>
 <section>
-<section id="motivating-example" class="title-slide slide level1 agenda-slide center">
-<h1>Motivating Example</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Traditional Statistics</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="motivating-example-1" class="slide level2">
-<h2>Motivating Example</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>bladder1 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(number, <span class="at">color =</span> death2)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<section id="statistics" class="title-slide slide level1 center">
+<h1>Statistics</h1>
 
+</section>
+<section id="traditional-statistics" class="slide level2">
+<h2>Traditional Statistics</h2>
+<p>Traditional Statistics methods can conducted using either linear or logistic regression.</p>
+<p>Visit <a href="https://lindeloev.github.io/tests-as-linear/">Here</a> for more information.</p>
+</section>
+<section id="what-is-statistics" class="slide level2">
+<h2>What is Statistics?</h2>
+<p>It is the study of variation and randomness!</p>
+</section>
+<section id="whats-the-goal-of-statistics" class="slide level2">
+<h2>What’s the goal of Statistics?</h2>
+<div class="fragment" style="font-size: 2em; color: red;">
+<p><strong>INFERENCE</strong></p>
 </div>
-<img data-src="16_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="beta-hypothesis-testing" class="title-slide slide level1 agenda-slide center">
-<h1><span class="math inline">\(\beta\)</span> Hypothesis Testing</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Traditional Statistics</p>
-</div></li>
-</ul>
+<div class="fragment">
+<p>Use our sample data to understand the larger population.</p>
+</div>
+<div class="fragment">
+<p>The data will tell us how the population generally behaves.</p>
+</div>
+<div class="fragment">
+<p>The data will guide us in the differences in units.</p>
+</div>
+<div class="fragment">
+<p>Data will tell us if there is a signal or just noise.</p>
 </div>
 </section>
-<section id="hypothesis" class="slide level2">
-<h2>Hypothesis</h2>
+<section id="final-thoughts" class="slide level2">
+<h2>Final Thoughts</h2>
+<div class="fragment">
+<p>When conducting a study, literature review and study design are as equally important as statistics.</p>
+</div>
+<div class="fragment">
+<p>If you don’t see variability in the data, something is wrong.</p>
+</div>
+<div class="fragment">
+<p>Focus on consistency in the methodology, not consistency in data.</p>
+</div>
+<div class="fragment">
+<p>Understand that you can be wrong, and that is okay.</p>
+</div>
+<div class="fragment">
+<p>Don’t let data influence the methodology during a study/experiment.</p>
+</div>
+</section>
+<section id="statistics-mantra" class="slide level2">
+<h2>Statistics Mantra</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><span class="math display">\[H_0: \beta = \theta\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/GeorgeEPBox.jpg/400px-GeorgeEPBox.jpg" class="quarto-figure quarto-figure-center" alt="An image of George Box" width="333"></p>
+</figure>
+</div>
 </div><div class="column" style="width:50%;">
-<p><span class="math display">\[H_0: \beta \ne \theta\]</span></p>
+<p><strong>All models are wrong,</strong></p>
+<p><strong>some are useful!</strong></p>
 </div></div>
+</section></section>
+<section>
+<section id="final-survey" class="title-slide slide level1 center">
+<h1>Final Survey</h1>
+
 </section>
-<section id="testing-beta_j" class="slide level2">
-<h2>Testing <span class="math inline">\(\beta_j\)</span></h2>
-<p><span class="math display">\[
-\frac{\hat\beta_j - \theta}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
-\]</span></p>
+<section id="final-survey-1" class="slide level2">
+<h2>Final Survey</h2>
+<p><a href="https://forms.gle/Ew6qXnr3YjpJs2PJ6">Survery</a></p>
+
+<img data-src="img/frame.png" class="r-stretch"></section></section>
+<section>
+<section id="installation" class="title-slide slide level1 center">
+<h1>Installation</h1>
+
 </section>
-<section id="confidence-intervals" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p><span class="math display">\[
-PE \pm CV \times SE
-\]</span></p>
-<ul>
-<li><p>PE: Point Estimate</p></li>
-<li><p>CV: Critical Value <span class="math inline">\(P(X&lt;CV) = 1-\alpha/2\)</span></p></li>
-<li><p><span class="math inline">\(\alpha\)</span>: significance level</p></li>
-<li><p>SE: Standard Error</p></li>
-</ul>
+<section id="installing-r" class="slide level2">
+<h2>Installing R</h2>
+<p><a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></p>
 </section>
-<section id="conducting-ht-of-beta_j" class="slide level2">
-<h2>Conducting HT of <span class="math inline">\(\beta_j\)</span></h2>
+<section id="installing-rstudio" class="slide level2">
+<h2>Installing RStudio</h2>
+<p><a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
+</section>
+<section id="installing-rtools-windows" class="slide level2">
+<h2>Installing RTools (Windows)</h2>
+<p><a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></p>
+</section></section>
+<section>
+<section id="r-packages" class="title-slide slide level1 center">
+<h1>R Packages</h1>
+
+</section>
+<section id="tidyverse" class="slide level2">
+<h2>Tidyverse</h2>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb2-2"><a></a><span class="fu">summary</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
+<section id="csucistats" class="slide level2">
+<h2>csucistats</h2>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> recur <span class="sc">+</span> number <span class="sc">+</span> size, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb3-2"><a></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt; Call:
-#&gt; glm(formula = death ~ recur + number + size, family = binomial(), 
-#&gt;     data = bladder1)
-#&gt; 
-#&gt; Coefficients:
-#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    
-#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  
-#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***
-#&gt; number       0.0008451  0.1124503   0.008 0.994004    
-#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; 
-#&gt; (Dispersion parameter for binomial family taken to be 1)
-#&gt; 
-#&gt;     Null deviance: 189.38  on 293  degrees of freedom
-#&gt; Residual deviance: 166.43  on 290  degrees of freedom
-#&gt; AIC: 174.43
-#&gt; 
-#&gt; Number of Fisher Scoring iterations: 6</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">'csucistats'</span>, </span>
+<span id="cb2-2"><a></a>                 <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://inqs909.r-universe.dev'</span>, </span>
+<span id="cb2-3"><a></a>                           <span class="st">'https://cloud.r-project.org'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="confidence-interval" class="slide level2">
-<h2>Confidence Interval</h2>
+<section id="other-packages" class="slide level2">
+<h2>Other Packages</h2>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">confint</span>(xlm, <span class="at">level =</span> LEVEL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"ggthemes"</span>, <span class="st">"statmod"</span>, <span class="st">"car"</span>, <span class="st">"ggpubr"</span>, <span class="st">"lmtest"</span>, <span class="st">"rms"</span>, <span class="st">"palmerpenguins"</span>))</span>
+<span id="cb3-2"><a></a>csucistats<span class="sc">::</span><span class="fu">install_plots</span>()</span>
+<span id="cb3-3"><a></a>csucistats<span class="sc">::</span><span class="fu">install_themes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
+<section id="load-packages" class="slide level2">
+<h2>Load Packages</h2>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;                  2.5 %      97.5 %
-#&gt; (Intercept) -1.7353779  0.02529523
-#&gt; recur       -0.6217831 -0.20078281
-#&gt; number      -0.2421738  0.20731479
-#&gt; size        -0.5880581  0.06061498</code></pre>
-</div>
-</div>
-</section>
-<section id="confidence-interval-for-odds-ratio" class="slide level2">
-<h2>Confidence Interval for Odds Ratio</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">exp</span>(<span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;                 2.5 %    97.5 %
-#&gt; (Intercept) 0.1763335 1.0256179
-#&gt; recur       0.5369861 0.8180901
-#&gt; number      0.7849197 1.2303698
-#&gt; size        0.5554048 1.0624898</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a></a><span class="fu">library</span>(csucistats)</span>
+<span id="cb4-3"><a></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb4-4"><a></a><span class="fu">library</span>(waffle)</span>
+<span id="cb4-5"><a></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb4-6"><a></a><span class="fu">library</span>(ggtricks)</span>
+<span id="cb4-7"><a></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb4-8"><a></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb4-9"><a></a><span class="fu">library</span>(ThemePark)</span>
+<span id="cb4-10"><a></a><span class="fu">library</span>(car)</span>
+<span id="cb4-11"><a></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb4-12"><a></a><span class="fu">library</span>(rms)</span>
+<span id="cb4-13"><a></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
-<section id="model-hypothesis-testing" class="title-slide slide level1 agenda-slide center">
-<h1>Model Hypothesis Testing</h1>
-<div class="agenda">
+<section id="rstudio-layout" class="title-slide slide level1 center">
+<h1>RStudio Layout</h1>
+
+</section>
+<section id="rstudio-layout-1" class="slide level2">
+<h2>RStudio Layout</h2>
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Traditional Statistics</p>
-</div></li>
+<li class="fragment"><p>Scripts</p></li>
+<li class="fragment"><p>Console</p></li>
+<li class="fragment"><p>Environment</p></li>
+<li class="fragment"><p>Files</p></li>
+<li class="fragment"><p>Everything else</p></li>
 </ul>
-</div>
-</section>
-<section id="model-inference" class="slide level2">
-<h2>Model inference</h2>
-<p>We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (<span class="math inline">\(g(\hat Y)=\hat\beta_0 + \hat\beta_1 X\)</span>) to the mean of Y (<span class="math inline">\(\hat \mu_y\)</span>). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.</p>
-</section>
-<section id="model-inference-1" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given 2 models:</p>
-<p><span class="math display">\[
-g(\hat Y) = \hat\beta_0 + \hat\beta_1 X_1 + \hat\beta_2 X_2 + \cdots + \hat\beta_p X_p
-\]</span></p>
-<p>or</p>
-<p><span class="math display">\[
-g(\hat Y) = \bar y
-\]</span></p>
-<div class="fragment">
-<p>Is the model with predictors do a better job than using the average?</p>
-</div>
-</section>
-<section id="likelihood-ratio-test" class="slide level2">
-<h2>Likelihood Ratio Test</h2>
-<p>The Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model.</p>
-<p>It conducts a hypothesis tests to see if models are significantly different from each other.</p>
-</section>
-<section id="conducting-an-lrt-in-r" class="slide level2">
-<h2>Conducting an LRT in R</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>xlm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> DATA, <span class="at">family =</span> binomial)</span>
-<span id="cb10-2"><a></a>xlm0 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> DATA, <span class="at">family =</span> binomial)</span>
-<span id="cb10-3"><a></a><span class="fu">anova</span>(xlm0, xlm, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>m0 <span class="ot">&lt;-</span> <span class="fu">update</span>(m1, <span class="at">formula. =</span> <span class="sc">~</span> <span class="dv">1</span>)</span>
-<span id="cb11-2"><a></a><span class="fu">anova</span>(m0, m1, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Analysis of Deviance Table
-#&gt; 
-#&gt; Model 1: death ~ 1
-#&gt; Model 2: death ~ recur + number + size
-#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)    
-#&gt; 1       293     189.38                         
-#&gt; 2       290     166.43  3   22.953 4.13e-05 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-</section>
-<section id="model-inference-2" class="slide level2">
-<h2>Model Inference</h2>
-<p>Model inference can be extended to compare models that have different number of predictors.</p>
-</section>
-<section id="model-inference-3" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given:</p>
-<p><span class="math display">\[
-M1:\ g(\hat y) = \beta_0 + \beta_1 X_1 + \beta_2 X_2
-\]</span></p>
-<p><span class="math display">\[
-M2:\ g(\hat y) = \beta_0 + \beta_1 X_1  
-\]</span></p>
-<p>Let <span class="math inline">\(M1\)</span> be the FULL (larger) model, and let <span class="math inline">\(M2\)</span> be the RED (Reduced, smaller) model.</p>
-</section>
-<section id="model-inference-4" class="slide level2">
-<h2>Model Inference</h2>
-<p>He can test the following Hypothesis:</p>
-<ul>
-<li><span class="math inline">\(H_0\)</span>: The error variations between the FULL and RED model are not different.</li>
-<li><span class="math inline">\(H_1\)</span>: The error variations between the FULL and RED model are different.</li>
-</ul>
-</section>
-<section id="likelihood-ratio-test-in-r" class="slide level2">
-<h2>Likelihood Ratio Test in R</h2>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>full <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y  <span class="sc">~</span>  X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4, DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb13-2"><a></a>red <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2, DATA, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb13-3"><a></a><span class="fu">anova</span>(red, full, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> number <span class="sc">+</span> size <span class="sc">+</span> recur, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb14-2"><a></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death <span class="sc">~</span> recur, bladder1, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
-<span id="cb14-3"><a></a><span class="fu">anova</span>(m2, m1, <span class="at">test =</span> <span class="st">"LRT"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Analysis of Deviance Table
-#&gt; 
-#&gt; Model 1: death ~ recur
-#&gt; Model 2: death ~ number + size + recur
-#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
-#&gt; 1       292     168.72                     
-#&gt; 2       290     166.43  2   2.2883   0.3185</code></pre>
-</div>
-</div>
 </section></section>
 <section>
-<section id="traditional-statistics" class="title-slide slide level1 agenda-slide center">
-<h1>Traditional Statistics</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Motivating Example</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p><span class="math inline">\(\beta\)</span> Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Model Hypothesis Testing</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Traditional Statistics</p>
-</div></li>
-</ul>
+<section id="loading-data" class="title-slide slide level1 center">
+<h1>Loading Data</h1>
+
+</section>
+<section id="downloading-data-data" class="slide level2">
+<h2>Downloading Data Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>u1 <span class="ot">&lt;-</span> <span class="st">"https://www.inqs.info/p/plotathon/owenWilsonWows.csv"</span></span>
+<span id="cb5-2"><a></a>u2 <span class="ot">&lt;-</span> <span class="st">"https://www.inqs.info/p/plotathon/owenWilsonWows.xlsx"</span></span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="fu">download.file</span>(u1,</span>
+<span id="cb5-5"><a></a>              <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">basename</span>(u1)))</span>
+<span id="cb5-6"><a></a><span class="fu">download.file</span>(u2,</span>
+<span id="cb5-7"><a></a>              <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="fu">basename</span>(u2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="paired-t-test-as-linear-regression" class="slide level2">
-<h2>Paired t-Test as Linear Regression</h2>
-<p>A <strong>paired t-test</strong> compares the means of two related measurements (e.g., before and after). This can be expressed as a linear regression on the <strong>difference scores</strong>.</p>
-<p><strong>Regression on difference scores</strong> (simplest method): <span class="math display">\[
-    D_i = Y_{i2} - Y_{i1} = \beta_0 + \varepsilon_i
-\]</span></p>
-</section>
-<section id="t-test-equal-variances-as-linear-regression" class="slide level2">
-<h2>t-Test (Equal Variances) as Linear Regression</h2>
-<p>A <strong>two-sample t-test</strong> compares the means of two groups. The assumption is that the two groups have equal variance. This is equivalent to a linear regression model with a binary predictor:</p>
-<p><span class="math display">\[
-Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
-\]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(Y_i\)</span>: Outcome variable<br>
-</li>
-<li><span class="math inline">\(X_i\)</span>: Group indicator (0 = Group A, 1 = Group B)<br>
-</li>
-<li><span class="math inline">\(\beta_1\)</span>: Difference in means between groups</li>
-</ul>
-<p><strong>Key Insight:</strong> The t-statistic in the regression output matches the t-test result exactly. Both test if the group means are equal.</p>
-</section>
-<section id="anova-as-linear-regression" class="slide level2">
-<h2>ANOVA as Linear Regression</h2>
-<p>ANOVA compares means across <strong>three or more groups</strong>. This can also be expressed as a regression model using dummy variables for group membership:</p>
-<p><span class="math display">\[
-Y_i = \beta_0 + \beta_1 D_{1i} + \beta_2 D_{2i} + \varepsilon_i
-\]</span></p>
-<p>Where <span class="math inline">\(D_{1i}, D_{2i}\)</span> are dummy variables for group categories.</p>
-<p><strong>Key Insight:</strong></p>
-<p>The F-statistic in the ANOVA output is identical to the F-statistic from the regression model with a factor predictor.</p>
-</section>
-<section id="paired-t-test-as-linear-regression-1" class="slide level2">
-<h2>Paired t-Test as Linear Regression</h2>
-<p>A <strong>paired t-test</strong> compares the means of two related measurements (e.g., before and after). This can be expressed as a linear regression on the <strong>difference scores</strong>.</p>
-<p><strong>Regression on difference scores</strong> (simplest method): <span class="math display">\[
-D_i = Y_{i2} - Y_{i1} = \beta_0 + \varepsilon_i
-\]</span></p>
-</section>
-<section id="more-information" class="slide level2">
-<h2>More Information</h2>
-<p>Visit this site to get a more comprehensive picture on how common statistical tests can be done using regression models: https://lindeloev.github.io/tests-as-linear/#51_independent_t-test_and_mann-whitney_u</p>
 
 
 <div class="reveal-header">
@@ -621,7 +431,7 @@ D_i = Y_{i2} - Y_{i1} = \beta_0 + \varepsilon_i
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true,"src":"notes/chalkboard_1a.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
+'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
 'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
 'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
@@ -769,7 +579,7 @@ D_i = Y_{i2} - Y_{i1} = \beta_0 + \varepsilon_i
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1200,
+        width: 1050,
 
         height: 700,
 

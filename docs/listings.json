@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/ec.html",
+    "items": [
+      "/ec/ec_1.html",
+      "/ec/ec_2.html",
+      "/ec/ec_3.html",
+      "/ec/ec_4.html"
+    ]
+  },
+  {
     "listing": "/lectures.html",
     "items": [
       "/lectures/3.html",
@@ -10,6 +19,7 @@
       "/lectures/14.html",
       "/lectures/12.html",
       "/lectures/15.html",
+      "/lectures/15b.html",
       "/lectures/8.html",
       "/lectures/16.html",
       "/lectures/7.html",
@@ -18,15 +28,6 @@
       "/lectures/6.html",
       "/lectures/10.html",
       "/lectures/1.html"
-    ]
-  },
-  {
-    "listing": "/ec.html",
-    "items": [
-      "/ec/ec_1.html",
-      "/ec/ec_2.html",
-      "/ec/ec_3.html",
-      "/ec/ec_4.html"
     ]
   }
 ]
