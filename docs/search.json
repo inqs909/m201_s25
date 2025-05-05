@@ -1421,1138 +1421,585 @@
     "text": "Themes\nThe R packages ThemePark and ggthemes allows you to change the overall look of a plot.\n\nAll you need to do is add the theme to the plot."
   },
   {
-    "objectID": "lectures/15.html#motivating-example-1",
-    "href": "lectures/15.html#motivating-example-1",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#motivating-example-1",
+    "href": "lectures/16.html#motivating-example-1",
+    "title": "Model Inference",
     "section": "Motivating Example",
     "text": "Motivating Example\n\n\nCode\nbladder1 |&gt; ggplot(aes(number, color = death2)) +\n  geom_boxplot()"
   },
   {
-    "objectID": "lectures/15.html#hypothesis",
-    "href": "lectures/15.html#hypothesis",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#hypothesis",
+    "href": "lectures/16.html#hypothesis",
+    "title": "Model Inference",
     "section": "Hypothesis",
     "text": "Hypothesis\n\n\n\\[H_0: \\beta = \\theta\\]\n\n\\[H_0: \\beta \\ne \\theta\\]"
   },
   {
-    "objectID": "lectures/15.html#testing-beta_j",
-    "href": "lectures/15.html#testing-beta_j",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#testing-beta_j",
+    "href": "lectures/16.html#testing-beta_j",
+    "title": "Model Inference",
     "section": "Testing \\(\\beta_j\\)",
     "text": "Testing \\(\\beta_j\\)\n\\[\n\\frac{\\hat\\beta_j - \\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim N(0,1)\n\\]"
   },
   {
-    "objectID": "lectures/15.html#confidence-intervals",
-    "href": "lectures/15.html#confidence-intervals",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#confidence-intervals",
+    "href": "lectures/16.html#confidence-intervals",
+    "title": "Model Inference",
     "section": "Confidence Intervals",
     "text": "Confidence Intervals\n\\[\nPE \\pm CV \\times SE\n\\]\n\nPE: Point Estimate\nCV: Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\nSE: Standard Error"
   },
   {
-    "objectID": "lectures/15.html#conducting-ht-of-beta_j",
-    "href": "lectures/15.html#conducting-ht-of-beta_j",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#conducting-ht-of-beta_j",
+    "href": "lectures/16.html#conducting-ht-of-beta_j",
+    "title": "Model Inference",
     "section": "Conducting HT of \\(\\beta_j\\)",
     "text": "Conducting HT of \\(\\beta_j\\)\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial())\nsummary(xlm)"
   },
   {
-    "objectID": "lectures/15.html#example",
-    "href": "lectures/15.html#example",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#example",
+    "href": "lectures/16.html#example",
+    "title": "Model Inference",
     "section": "Example",
     "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ recur + number + size, bladder1, family = binomial())\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; glm(formula = death ~ recur + number + size, family = binomial(), \n#&gt;     data = bladder1)\n#&gt; \n#&gt; Coefficients:\n#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    \n#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  \n#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***\n#&gt; number       0.0008451  0.1124503   0.008 0.994004    \n#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    \n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; (Dispersion parameter for binomial family taken to be 1)\n#&gt; \n#&gt;     Null deviance: 189.38  on 293  degrees of freedom\n#&gt; Residual deviance: 166.43  on 290  degrees of freedom\n#&gt; AIC: 174.43\n#&gt; \n#&gt; Number of Fisher Scoring iterations: 6"
   },
   {
-    "objectID": "lectures/15.html#confidence-interval",
-    "href": "lectures/15.html#confidence-interval",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#confidence-interval",
+    "href": "lectures/16.html#confidence-interval",
+    "title": "Model Inference",
     "section": "Confidence Interval",
     "text": "Confidence Interval\n\n\nCode\nconfint(xlm, level = LEVEL)"
   },
   {
-    "objectID": "lectures/15.html#example-1",
-    "href": "lectures/15.html#example-1",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#example-1",
+    "href": "lectures/16.html#example-1",
+    "title": "Model Inference",
     "section": "Example",
     "text": "Example\n\n\nCode\nconfint(m1, level = 0.95)\n\n\n#&gt;                  2.5 %      97.5 %\n#&gt; (Intercept) -1.7353779  0.02529523\n#&gt; recur       -0.6217831 -0.20078281\n#&gt; number      -0.2421738  0.20731479\n#&gt; size        -0.5880581  0.06061498"
   },
   {
-    "objectID": "lectures/15.html#confidence-interval-for-odds-ratio",
-    "href": "lectures/15.html#confidence-interval-for-odds-ratio",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#confidence-interval-for-odds-ratio",
+    "href": "lectures/16.html#confidence-interval-for-odds-ratio",
+    "title": "Model Inference",
     "section": "Confidence Interval for Odds Ratio",
     "text": "Confidence Interval for Odds Ratio\n\n\nCode\nexp(confint(m1, level = 0.95))\n\n\n#&gt;                 2.5 %    97.5 %\n#&gt; (Intercept) 0.1763335 1.0256179\n#&gt; recur       0.5369861 0.8180901\n#&gt; number      0.7849197 1.2303698\n#&gt; size        0.5554048 1.0624898"
   },
   {
-    "objectID": "lectures/15.html#model-inference",
-    "href": "lectures/15.html#model-inference",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#model-inference",
+    "href": "lectures/16.html#model-inference",
+    "title": "Model Inference",
     "section": "Model inference",
     "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(g(\\hat Y)=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
   },
   {
-    "objectID": "lectures/15.html#model-inference-1",
-    "href": "lectures/15.html#model-inference-1",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#model-inference-1",
+    "href": "lectures/16.html#model-inference-1",
+    "title": "Model Inference",
     "section": "Model Inference",
     "text": "Model Inference\nGiven 2 models:\n\\[\ng(\\hat Y) = \\hat\\beta_0 + \\hat\\beta_1 X_1 + \\hat\\beta_2 X_2 + \\cdots + \\hat\\beta_p X_p\n\\]\nor\n\\[\ng(\\hat Y) = \\bar y\n\\]\n\nIs the model with predictors do a better job than using the average?"
   },
   {
-    "objectID": "lectures/15.html#likelihood-ratio-test",
-    "href": "lectures/15.html#likelihood-ratio-test",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#likelihood-ratio-test",
+    "href": "lectures/16.html#likelihood-ratio-test",
+    "title": "Model Inference",
     "section": "Likelihood Ratio Test",
     "text": "Likelihood Ratio Test\nThe Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model.\nIt conducts a hypothesis tests to see if models are significantly different from each other."
   },
   {
-    "objectID": "lectures/15.html#conducting-an-lrt-in-r",
-    "href": "lectures/15.html#conducting-an-lrt-in-r",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#conducting-an-lrt-in-r",
+    "href": "lectures/16.html#conducting-an-lrt-in-r",
+    "title": "Model Inference",
     "section": "Conducting an LRT in R",
     "text": "Conducting an LRT in R\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial)\nxlm0 &lt;- glm(Y ~ 1, data = DATA, family = binomial)\nanova(xlm0, xlm, test = \"LRT\")"
   },
   {
-    "objectID": "lectures/15.html#example-2",
-    "href": "lectures/15.html#example-2",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#example-2",
+    "href": "lectures/16.html#example-2",
+    "title": "Model Inference",
     "section": "Example",
     "text": "Example\n\n\nCode\nm0 &lt;- update(m1, formula. = ~ 1)\nanova(m0, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ 1\n#&gt; Model 2: death ~ recur + number + size\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)    \n#&gt; 1       293     189.38                         \n#&gt; 2       290     166.43  3   22.953 4.13e-05 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
-    "objectID": "lectures/15.html#model-inference-2",
-    "href": "lectures/15.html#model-inference-2",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#model-inference-2",
+    "href": "lectures/16.html#model-inference-2",
+    "title": "Model Inference",
     "section": "Model Inference",
     "text": "Model Inference\nModel inference can be extended to compare models that have different number of predictors."
   },
   {
-    "objectID": "lectures/15.html#model-inference-3",
-    "href": "lectures/15.html#model-inference-3",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#model-inference-3",
+    "href": "lectures/16.html#model-inference-3",
+    "title": "Model Inference",
     "section": "Model Inference",
     "text": "Model Inference\nGiven:\n\\[\nM1:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
   },
   {
-    "objectID": "lectures/15.html#model-inference-4",
-    "href": "lectures/15.html#model-inference-4",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#model-inference-4",
+    "href": "lectures/16.html#model-inference-4",
+    "title": "Model Inference",
     "section": "Model Inference",
     "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
   },
   {
-    "objectID": "lectures/15.html#likelihood-ratio-test-in-r",
-    "href": "lectures/15.html#likelihood-ratio-test-in-r",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#likelihood-ratio-test-in-r",
+    "href": "lectures/16.html#likelihood-ratio-test-in-r",
+    "title": "Model Inference",
     "section": "Likelihood Ratio Test in R",
     "text": "Likelihood Ratio Test in R\n\n\nCode\nfull &lt;- glm(Y  ~  X1 + X2 + X3 + X4, DATA, family = binomial())\nred &lt;- glm(Y ~ X1 + X2, DATA, family = binomial())\nanova(red, full, test = \"LRT\")"
   },
   {
-    "objectID": "lectures/15.html#example-3",
-    "href": "lectures/15.html#example-3",
-    "title": "Inference with Logistic and Poisson Regression",
+    "objectID": "lectures/16.html#example-3",
+    "href": "lectures/16.html#example-3",
+    "title": "Model Inference",
     "section": "Example",
     "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ number + size + recur, bladder1, family = binomial())\nm2 &lt;- glm(death ~ recur, bladder1, family = binomial())\nanova(m2, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ recur\n#&gt; Model 2: death ~ number + size + recur\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)\n#&gt; 1       292     168.72                     \n#&gt; 2       290     166.43  2   2.2883   0.3185"
   },
   {
-    "objectID": "lectures/13.html#motivation-1",
-    "href": "lectures/13.html#motivation-1",
-    "title": "Inference",
-    "section": "Motivation",
-    "text": "Motivation\nThe ncbirths data set provides information on whether different predictors. The outcome of interest will be premie (“full term” or “premie”)."
+    "objectID": "lectures/16.html#paired-t-test-as-linear-regression",
+    "href": "lectures/16.html#paired-t-test-as-linear-regression",
+    "title": "Model Inference",
+    "section": "Paired t-Test as Linear Regression",
+    "text": "Paired t-Test as Linear Regression\nA paired t-test compares the means of two related measurements (e.g., before and after). This can be expressed as a linear regression on the difference scores.\nRegression on difference scores (simplest method): \\[\n    D_i = Y_{i2} - Y_{i1} = \\beta_0 + \\varepsilon_i\n\\]"
   },
   {
-    "objectID": "lectures/13.html#motivation-1-1",
-    "href": "lectures/13.html#motivation-1-1",
-    "title": "Inference",
-    "section": "Motivation 1",
-    "text": "Motivation 1\nModel the relationship between the outcome premie and habit (“smoker” and “nonsmoker”)."
+    "objectID": "lectures/16.html#t-test-equal-variances-as-linear-regression",
+    "href": "lectures/16.html#t-test-equal-variances-as-linear-regression",
+    "title": "Model Inference",
+    "section": "t-Test (Equal Variances) as Linear Regression",
+    "text": "t-Test (Equal Variances) as Linear Regression\nA two-sample t-test compares the means of two groups. The assumption is that the two groups have equal variance. This is equivalent to a linear regression model with a binary predictor:\n\\[\nY_i = \\beta_0 + \\beta_1 X_i + \\varepsilon_i\n\\]\nWhere:\n\n\\(Y_i\\): Outcome variable\n\n\\(X_i\\): Group indicator (0 = Group A, 1 = Group B)\n\n\\(\\beta_1\\): Difference in means between groups\n\nKey Insight: The t-statistic in the regression output matches the t-test result exactly. Both test if the group means are equal."
   },
   {
-    "objectID": "lectures/13.html#motivation-2",
-    "href": "lectures/13.html#motivation-2",
-    "title": "Inference",
-    "section": "Motivation 2",
-    "text": "Motivation 2\nModel the relationship between the outcome premie and visits (“smoker” and “nonsmoker”)."
+    "objectID": "lectures/16.html#anova-as-linear-regression",
+    "href": "lectures/16.html#anova-as-linear-regression",
+    "title": "Model Inference",
+    "section": "ANOVA as Linear Regression",
+    "text": "ANOVA as Linear Regression\nANOVA compares means across three or more groups. This can also be expressed as a regression model using dummy variables for group membership:\n\\[\nY_i = \\beta_0 + \\beta_1 D_{1i} + \\beta_2 D_{2i} + \\varepsilon_i\n\\]\nWhere \\(D_{1i}, D_{2i}\\) are dummy variables for group categories.\nKey Insight:\nThe F-statistic in the ANOVA output is identical to the F-statistic from the regression model with a factor predictor."
   },
   {
-    "objectID": "lectures/13.html#logistic-model-1",
-    "href": "lectures/13.html#logistic-model-1",
-    "title": "Inference",
-    "section": "Logistic Model 1",
-    "text": "Logistic Model 1\nUse a logistic regression to model the outcome premie and habit.\n\n\nCode\nglm(premie ~ habit, data = ncbirths, family = binomial())"
+    "objectID": "lectures/16.html#paired-t-test-as-linear-regression-1",
+    "href": "lectures/16.html#paired-t-test-as-linear-regression-1",
+    "title": "Model Inference",
+    "section": "Paired t-Test as Linear Regression",
+    "text": "Paired t-Test as Linear Regression\nA paired t-test compares the means of two related measurements (e.g., before and after). This can be expressed as a linear regression on the difference scores.\nRegression on difference scores (simplest method): \\[\n    D_i = Y_{i2} - Y_{i1} = \\beta_0 + \\varepsilon_i\n\\]"
   },
   {
-    "objectID": "lectures/13.html#odds-ratio-1",
-    "href": "lectures/13.html#odds-ratio-1",
-    "title": "Inference",
-    "section": "Odds Ratio 1",
-    "text": "Odds Ratio 1\n\n\nCode\nb(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))"
+    "objectID": "lectures/16.html#more-information",
+    "href": "lectures/16.html#more-information",
+    "title": "Model Inference",
+    "section": "More Information",
+    "text": "More Information\nVisit this site to get a more comprehensive picture on how common statistical tests can be done using regression models: https://lindeloev.github.io/tests-as-linear/#51_independent_t-test_and_mann-whitney_u"
   },
   {
-    "objectID": "lectures/13.html#odds-ratio-1-1",
-    "href": "lectures/13.html#odds-ratio-1-1",
-    "title": "Inference",
-    "section": "Odds Ratio 1",
-    "text": "Odds Ratio 1\n\n\nCode\nb(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)\n\n\n#&gt; [1] -0.01344105\n\n\nCode\nexp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))\n\n\n#&gt; [1] 0.9866489\n\n\nThe odds of a mother who smokes having a premature infant is 0.98 times lower than the odds of a mother who does not smoke."
-  },
-  {
-    "objectID": "lectures/13.html#logistic-model-2",
-    "href": "lectures/13.html#logistic-model-2",
-    "title": "Inference",
-    "section": "Logistic Model 2",
-    "text": "Logistic Model 2\nUse a logistic regression to model the outcome premie and visits.\n\n\nCode\nglm(premie ~ visits, data = ncbirths, family = binomial())"
-  },
-  {
-    "objectID": "lectures/13.html#odds-ratio-2",
-    "href": "lectures/13.html#odds-ratio-2",
-    "title": "Inference",
-    "section": "Odds Ratio 2",
-    "text": "Odds Ratio 2\n\n\nCode\nb(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))"
-  },
-  {
-    "objectID": "lectures/13.html#odds-ratio-2-1",
-    "href": "lectures/13.html#odds-ratio-2-1",
-    "title": "Inference",
-    "section": "Odds Ratio 2",
-    "text": "Odds Ratio 2\n\n\nCode\nb(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)\n\n\n#&gt; [1] -0.1063097\n\n\nCode\nexp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))\n\n\n#&gt; [1] 0.8991461\n\n\nAs the number of hospital visits increases by 1, the odds of having a premature infant decreases by a factor 0.89."
-  },
-  {
-    "objectID": "lectures/13.html#real-or-random",
-    "href": "lectures/13.html#real-or-random",
-    "title": "Inference",
-    "section": "Real or Random",
-    "text": "Real or Random\n\nDoes smoking have a protective effect on having a premature infant?\n\n\nDoes the number of hospital visits have a protective effect?\n\n\nWhat is real and what is random?"
-  },
-  {
-    "objectID": "lectures/13.html#hypothesis-tests",
-    "href": "lectures/13.html#hypothesis-tests",
-    "title": "Inference",
-    "section": "Hypothesis Tests",
-    "text": "Hypothesis Tests\nHypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the Null and Alternative Hypothesis."
-  },
-  {
-    "objectID": "lectures/13.html#null-hypothesis-h_0",
-    "href": "lectures/13.html#null-hypothesis-h_0",
-    "title": "Inference",
-    "section": "Null Hypothesis \\(H_0\\)",
-    "text": "Null Hypothesis \\(H_0\\)\nThe null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value."
-  },
-  {
-    "objectID": "lectures/13.html#alternative-hypothesis-h_a",
-    "href": "lectures/13.html#alternative-hypothesis-h_a",
-    "title": "Inference",
-    "section": "Alternative Hypothesis \\(H_a\\)",
-    "text": "Alternative Hypothesis \\(H_a\\)\nThe alternative hypothesis contradicts the null hypothesis."
-  },
-  {
-    "objectID": "lectures/13.html#example-of-null-and-alternative-hypothesis",
-    "href": "lectures/13.html#example-of-null-and-alternative-hypothesis",
-    "title": "Inference",
-    "section": "Example of Null and Alternative Hypothesis",
-    "text": "Example of Null and Alternative Hypothesis\nWe want to see if \\(\\beta\\) is different from \\(\\beta^*\\)\n\n\n\nNull Hypothesis\nAlternative Hypothesis\n\n\n\n\n\\(H_0: \\beta=\\beta^*\\)\n\\(H_a: \\beta\\ne\\beta^*\\)\n\n\n\\(H_0: \\beta\\le\\beta^*\\)\n\\(H_a: \\beta&gt;\\beta^*\\)\n\n\n\\(H_0: \\beta\\ge\\beta^*\\)\n\\(H_0: \\beta&lt;\\beta^*\\)"
-  },
-  {
-    "objectID": "lectures/13.html#one-side-vs-two-side-hypothesis-tests",
-    "href": "lectures/13.html#one-side-vs-two-side-hypothesis-tests",
-    "title": "Inference",
-    "section": "One-Side vs Two-Side Hypothesis Tests",
-    "text": "One-Side vs Two-Side Hypothesis Tests\nNotice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (\\(H_a:\\beta\\ne\\beta^*\\)) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.\n\n\n\nNull Hypothesis\nAlternative Hypothesis\nSide\n\n\n\n\n\\(H_0: \\beta=\\beta^*\\)\n\\(H_a: \\beta\\ne\\beta^*\\)\n2-Sided\n\n\n\\(H_0: \\beta\\le\\beta^*\\)\n\\(H_a: \\beta&gt;\\beta^*\\)\n1-Sided\n\n\n\\(H_0: \\beta\\ge\\beta^*\\)\n\\(H_0: \\beta&lt;\\beta^*\\)\n1-Sided"
-  },
-  {
-    "objectID": "lectures/13.html#decision-making",
-    "href": "lectures/13.html#decision-making",
-    "title": "Inference",
-    "section": "Decision Making",
-    "text": "Decision Making\nHypothesis Testing will force you to make a decision: Reject \\(H_0\\) OR Fail to Reject \\(H_0\\)\n\nReject \\(H_0\\): The effect seen is not due to random chance, there is a process making contributing to the effect.\n\n\nFail to Reject \\(H_0\\): The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process."
-  },
-  {
-    "objectID": "lectures/13.html#decision-making-p-value",
-    "href": "lectures/13.html#decision-making-p-value",
-    "title": "Inference",
-    "section": "Decision Making: P-Value",
-    "text": "Decision Making: P-Value\nThe p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true.\n\nIf \\(p &lt; \\alpha\\), then you reject \\(H_0\\); otherwise, you will fail to reject \\(H_0\\)."
-  },
-  {
-    "objectID": "lectures/13.html#decision-making-confidence-interval-approach",
-    "href": "lectures/13.html#decision-making-confidence-interval-approach",
-    "title": "Inference",
-    "section": "Decision Making: Confidence Interval Approach",
-    "text": "Decision Making: Confidence Interval Approach\nThe confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is \\(\\beta\\ne\\beta^*\\). The bootstrapping approach will result in a lower and upper bound denoted as: \\((LB, UB)\\).\n\nIf \\(\\beta^*\\) is in \\((LB, UB)\\), then you fail to reject \\(H_0\\). If \\(\\beta^*\\) is not in \\((LB,UB)\\), then you reject \\(H_0\\)."
-  },
-  {
-    "objectID": "lectures/13.html#significance-level-alpha",
-    "href": "lectures/13.html#significance-level-alpha",
-    "title": "Inference",
-    "section": "Significance Level \\(\\alpha\\)",
-    "text": "Significance Level \\(\\alpha\\)\nThe significance level \\(\\alpha\\) is the probability you will reject the null hypothesis given that it was true.\n\nIn other words, \\(\\alpha\\) is the error rate that a research controls.\n\n\nTypically, we want this error rate to be small (\\(\\alpha = 0.05\\))."
-  },
-  {
-    "objectID": "lectures/13.html#hypothesis-test-process",
-    "href": "lectures/13.html#hypothesis-test-process",
-    "title": "Inference",
-    "section": "Hypothesis Test Process",
-    "text": "Hypothesis Test Process\n\n\nSet up the Null and Alternative Hypothesis.\n\n\\(H_0: \\beta = 0\\) and \\(H_a: \\beta \\ne 0\\)\n\nCompute p-value or confidence interval\nMake a decision\nInterpret the results"
-  },
-  {
-    "objectID": "lectures/13.html#example",
-    "href": "lectures/13.html#example",
-    "title": "Inference",
-    "section": "Example",
-    "text": "Example\nUse a logistic regression to model the outcome premie and habit.\n\n\nCode\nglm(premie ~ habit, data = ncbirths, family = binomial())\nb(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))"
-  },
-  {
-    "objectID": "lectures/13.html#example-3",
-    "href": "lectures/13.html#example-3",
-    "title": "Inference",
-    "section": "Example",
-    "text": "Example"
-  },
-  {
-    "objectID": "lectures/13.html#logistic-model-2-1",
-    "href": "lectures/13.html#logistic-model-2-1",
-    "title": "Inference",
-    "section": "Logistic Model 2",
-    "text": "Logistic Model 2\n\n\nCode\nglm(premie ~ visits, data = ncbirths, family = binomial())\n\nb(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))"
-  },
-  {
-    "objectID": "lectures/11.html#motivating-example-1",
-    "href": "lectures/11.html#motivating-example-1",
+    "objectID": "lectures/14.html#motivating-example-1",
+    "href": "lectures/14.html#motivating-example-1",
     "title": "Inference with Linear Regression",
     "section": "Motivating Example",
     "text": "Motivating Example\n\n\nCode\np1 &lt;- penguins |&gt; ggplot(aes(x=species, y = body_mass_g)) +\n  geom_jitter() + \n  geom_boxplot() + \n  labs(x = \"Species\", y = \"Body Mass\")\n  \np2 &lt;- penguins |&gt; ggplot(aes(x=flipper_length_mm, y = body_mass_g)) +\n  geom_point() + \n  labs(x = \"Flipper Length\", y = \"Body Mass\")  \n\np1 + p2"
   },
   {
-    "objectID": "lectures/11.html#mathematical-models-1",
-    "href": "lectures/11.html#mathematical-models-1",
+    "objectID": "lectures/14.html#mathematical-models-1",
+    "href": "lectures/14.html#mathematical-models-1",
     "title": "Inference with Linear Regression",
     "section": "Mathematical Models",
     "text": "Mathematical Models"
   },
   {
-    "objectID": "lectures/11.html#standard-normal-distribution",
-    "href": "lectures/11.html#standard-normal-distribution",
+    "objectID": "lectures/14.html#standard-normal-distribution",
+    "href": "lectures/14.html#standard-normal-distribution",
     "title": "Inference with Linear Regression",
     "section": "Standard Normal Distribution",
     "text": "Standard Normal Distribution\n\n\n\\[\n{\\frac{1}{\\sqrt{2 \\pi}}} e^{-\\frac{1}{2}x^2}\n\\]\n\n\n\nCode\ndata.frame(x = seq(-5,5, length.out = 100), \n           y1 = dt(seq(-5,5, length.out = 100), 1),\n           y2 = dt(seq(-5,5, length.out = 100), 10),\n           y3 = dt(seq(-5,5, length.out = 100), 30),\n           y4 = dt(seq(-5,5, length.out = 100), 100),\n           y5 = dnorm((seq(-5,5, length.out = 100)))) |&gt; \n  ggplot() +\n  # geom_line(aes(x, y1, color = \"1\")) +\n  # geom_line(aes(x, y2, color = \"10\")) +\n  # geom_line(aes(x, y3, color = \"30\")) +\n  # geom_line(aes(x, y4, color = \"100\")) +\n  geom_line(aes(x, y5)) +\n  ylab(\"y\")"
   },
   {
-    "objectID": "lectures/11.html#t-distribution",
-    "href": "lectures/11.html#t-distribution",
+    "objectID": "lectures/14.html#t-distribution",
+    "href": "lectures/14.html#t-distribution",
     "title": "Inference with Linear Regression",
     "section": "t Distribution",
     "text": "t Distribution\n\n\n\\[\n\\frac{\\Gamma \\left(\\frac{v+1}{2}\\right)}{\\sqrt{\\pi v}\\Gamma\\left(\\frac{v}{2}\\right)} \\left(1 + \\frac{x^2}{v}\\right)^{-\\frac{v+1}{2}}\n\\]\n\n\n\nCode\ndata.frame(x = seq(-5,5, length.out = 100), \n           y1 = dt(seq(-5,5, length.out = 100), 1),\n           y2 = dt(seq(-5,5, length.out = 100), 10),\n           y3 = dt(seq(-5,5, length.out = 100), 30),\n           y4 = dt(seq(-5,5, length.out = 100), 100),\n           y5 = dnorm((seq(-5,5, length.out = 100)))) |&gt; \n  ggplot() +\n  geom_line(aes(x, y1, color = \"1\")) +\n  geom_line(aes(x, y2, color = \"10\")) +\n  geom_line(aes(x, y3, color = \"30\")) +\n  geom_line(aes(x, y4, color = \"100\")) +\n  geom_line(aes(x, y5, color = \"Normal\")) +\n  ylab(\"y\")"
   },
   {
-    "objectID": "lectures/11.html#hypothesis",
-    "href": "lectures/11.html#hypothesis",
+    "objectID": "lectures/14.html#hypothesis",
+    "href": "lectures/14.html#hypothesis",
     "title": "Inference with Linear Regression",
     "section": "Hypothesis",
     "text": "Hypothesis\n\n\n\\[H_0: \\beta = \\theta\\]\n\n\\[H_0: \\beta \\ne \\theta\\]"
   },
   {
-    "objectID": "lectures/11.html#testing-beta_j",
-    "href": "lectures/11.html#testing-beta_j",
+    "objectID": "lectures/14.html#testing-beta_j",
+    "href": "lectures/14.html#testing-beta_j",
     "title": "Inference with Linear Regression",
     "section": "Testing \\(\\beta_j\\)",
     "text": "Testing \\(\\beta_j\\)\n\\[\nT = \\frac{\\hat\\beta_j-\\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim t_{n-p^\\prime}\n\\]\n\n\\(n\\): sample size\n\\(p^\\prime\\): number of \\(\\beta\\)s"
   },
   {
-    "objectID": "lectures/11.html#p-value",
-    "href": "lectures/11.html#p-value",
+    "objectID": "lectures/14.html#p-value",
+    "href": "lectures/14.html#p-value",
     "title": "Inference with Linear Regression",
     "section": "P-Value",
     "text": "P-Value\n\n\n\nAlternative Hypothesis\np-value\n\n\n\n\n\\(\\beta&gt;\\theta\\)\n\\(P(\\hat\\beta &gt;T)=p\\)\n\n\n\\(\\beta&lt;\\theta\\)\n\\(P(\\hat\\beta &lt; T)=p\\)\n\n\n\\(\\beta\\ne\\theta\\)\n\\(2\\times P(\\hat\\beta &gt;|T|)=p\\)"
   },
   {
-    "objectID": "lectures/11.html#confidence-intervals",
-    "href": "lectures/11.html#confidence-intervals",
+    "objectID": "lectures/14.html#confidence-intervals",
+    "href": "lectures/14.html#confidence-intervals",
     "title": "Inference with Linear Regression",
     "section": "Confidence Intervals",
     "text": "Confidence Intervals\n\\[\n\\hat \\beta_j \\pm CV \\times se(\\hat\\beta_j)\n\\]\n\n\\(CV\\): Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\n\\(se\\): Standard Error Function"
   },
   {
-    "objectID": "lectures/11.html#conducting-ht-of-beta_j",
-    "href": "lectures/11.html#conducting-ht-of-beta_j",
+    "objectID": "lectures/14.html#conducting-ht-of-beta_j",
+    "href": "lectures/14.html#conducting-ht-of-beta_j",
     "title": "Inference with Linear Regression",
     "section": "Conducting HT of \\(\\beta_j\\)",
     "text": "Conducting HT of \\(\\beta_j\\)\n\n\nCode\nxlm &lt;- lm(Y ~ X, data = DATA)\nsummary(xlm)"
   },
   {
-    "objectID": "lectures/11.html#example",
-    "href": "lectures/11.html#example",
+    "objectID": "lectures/14.html#example",
+    "href": "lectures/14.html#example",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nm1 &lt;- lm(body_mass_g ~ species + flipper_length_mm, penguins)\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)\n#&gt; \n#&gt; Residuals:\n#&gt;    Min     1Q Median     3Q    Max \n#&gt; -898.8 -252.0  -24.8  229.8 1191.6 \n#&gt; \n#&gt; Coefficients:\n#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept)       -4013.18     586.25  -6.846 3.74e-11 ***\n#&gt; speciesChinstrap   -205.38      57.57  -3.568 0.000414 ***\n#&gt; speciesGentoo       284.52      95.43   2.981 0.003083 ** \n#&gt; flipper_length_mm    40.61       3.08  13.186  &lt; 2e-16 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 373.3 on 329 degrees of freedom\n#&gt; Multiple R-squared:  0.787,  Adjusted R-squared:  0.7851 \n#&gt; F-statistic: 405.3 on 3 and 329 DF,  p-value: &lt; 2.2e-16"
   },
   {
-    "objectID": "lectures/11.html#confidence-interval",
-    "href": "lectures/11.html#confidence-interval",
+    "objectID": "lectures/14.html#confidence-interval",
+    "href": "lectures/14.html#confidence-interval",
     "title": "Inference with Linear Regression",
     "section": "Confidence Interval",
     "text": "Confidence Interval\n\n\nCode\nconfint(xlm, level = LEVEL)"
   },
   {
-    "objectID": "lectures/11.html#example-1",
-    "href": "lectures/11.html#example-1",
+    "objectID": "lectures/14.html#example-1",
+    "href": "lectures/14.html#example-1",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nconfint(m1, level = 0.90)\n\n\n#&gt;                           5 %        95 %\n#&gt; (Intercept)       -4980.19064 -3046.16714\n#&gt; speciesChinstrap   -300.33123  -110.41973\n#&gt; speciesGentoo       127.11143   441.93578\n#&gt; flipper_length_mm    35.52645    45.68588"
   },
   {
-    "objectID": "lectures/11.html#model-inference",
-    "href": "lectures/11.html#model-inference",
+    "objectID": "lectures/14.html#model-inference",
+    "href": "lectures/14.html#model-inference",
     "title": "Inference with Linear Regression",
     "section": "Model inference",
     "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(\\hat Y=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
   },
   {
-    "objectID": "lectures/11.html#model-inference-1",
-    "href": "lectures/11.html#model-inference-1",
+    "objectID": "lectures/14.html#model-inference-1",
+    "href": "lectures/14.html#model-inference-1",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nGiven 2 models:\n\\[\n\\hat Y = \\hat\\beta_0 + \\hat\\beta_1 X_1 + \\hat\\beta_2 X_2 + \\cdots + \\hat\\beta_p X_p\n\\]\nor\n\\[\n\\hat Y = \\bar y\n\\]\n\nIs the model with predictors do a better job than using the average?"
   },
   {
-    "objectID": "lectures/11.html#anova",
-    "href": "lectures/11.html#anova",
+    "objectID": "lectures/14.html#anova",
+    "href": "lectures/14.html#anova",
     "title": "Inference with Linear Regression",
     "section": "ANOVA",
     "text": "ANOVA"
   },
   {
-    "objectID": "lectures/11.html#anova-table",
-    "href": "lectures/11.html#anova-table",
+    "objectID": "lectures/14.html#anova-table",
+    "href": "lectures/14.html#anova-table",
     "title": "Inference with Linear Regression",
     "section": "ANOVA Table",
     "text": "ANOVA Table\n\n\n\n\n\n\n\n\n\n\nSource\nDF\nSS\nMS\nF\n\n\n\n\nModel\n\\(DFR=k-1\\)\n\\(SSR\\)\n\\(MSR=\\frac{SSM}{DFR}\\)\n\\(\\hat F=\\frac{MSR}{MSE}\\)\n\n\nError\n\\(DFE=n-k\\)\n\\(SSE\\)\n\\(MSE=\\frac{SSE}{DFE}\\)\n\n\n\nTotal\n\\(TDF=n-1\\)\n\\(TSS=SSR+SSE\\)\n\n\n\n\n\n\\[\n\\hat F \\sim F(DFR, DFE)\n\\]"
   },
   {
-    "objectID": "lectures/11.html#conducting-an-anova-in-r",
-    "href": "lectures/11.html#conducting-an-anova-in-r",
+    "objectID": "lectures/14.html#conducting-an-anova-in-r",
+    "href": "lectures/14.html#conducting-an-anova-in-r",
     "title": "Inference with Linear Regression",
     "section": "Conducting an ANOVA in R",
     "text": "Conducting an ANOVA in R\n\n\nCode\nxlm &lt;- lm(Y ~ X, data = DATA)\nsummary(xlm)"
   },
   {
-    "objectID": "lectures/11.html#example-2",
-    "href": "lectures/11.html#example-2",
+    "objectID": "lectures/14.html#example-2",
+    "href": "lectures/14.html#example-2",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)\n#&gt; \n#&gt; Residuals:\n#&gt;    Min     1Q Median     3Q    Max \n#&gt; -898.8 -252.0  -24.8  229.8 1191.6 \n#&gt; \n#&gt; Coefficients:\n#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept)       -4013.18     586.25  -6.846 3.74e-11 ***\n#&gt; speciesChinstrap   -205.38      57.57  -3.568 0.000414 ***\n#&gt; speciesGentoo       284.52      95.43   2.981 0.003083 ** \n#&gt; flipper_length_mm    40.61       3.08  13.186  &lt; 2e-16 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 373.3 on 329 degrees of freedom\n#&gt; Multiple R-squared:  0.787,  Adjusted R-squared:  0.7851 \n#&gt; F-statistic: 405.3 on 3 and 329 DF,  p-value: &lt; 2.2e-16"
   },
   {
-    "objectID": "lectures/11.html#model-inference-2",
-    "href": "lectures/11.html#model-inference-2",
+    "objectID": "lectures/14.html#model-inference-2",
+    "href": "lectures/14.html#model-inference-2",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nModel inference can be extended to compare models that have different number of predictors."
   },
   {
-    "objectID": "lectures/11.html#model-inference-3",
-    "href": "lectures/11.html#model-inference-3",
+    "objectID": "lectures/14.html#model-inference-3",
+    "href": "lectures/14.html#model-inference-3",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nGiven:\n\\[\nM1:\\ \\hat y = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ \\hat y = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
   },
   {
-    "objectID": "lectures/11.html#model-inference-4",
-    "href": "lectures/11.html#model-inference-4",
+    "objectID": "lectures/14.html#model-inference-4",
+    "href": "lectures/14.html#model-inference-4",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
   },
   {
-    "objectID": "lectures/11.html#test-statistic",
-    "href": "lectures/11.html#test-statistic",
+    "objectID": "lectures/14.html#test-statistic",
+    "href": "lectures/14.html#test-statistic",
     "title": "Inference with Linear Regression",
     "section": "Test Statistic",
     "text": "Test Statistic\n\\[\n\\hat F = \\frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}\n\\]\n\\[\n\\hat F \\sim F[DFE(RED) - DFE(FULL), DFE(FULL)]\n\\]"
   },
   {
-    "objectID": "lectures/11.html#anova-in-r",
-    "href": "lectures/11.html#anova-in-r",
+    "objectID": "lectures/14.html#anova-in-r",
+    "href": "lectures/14.html#anova-in-r",
     "title": "Inference with Linear Regression",
     "section": "ANOVA in R",
     "text": "ANOVA in R\n\n\nCode\nfull &lt;- lm(Y  ~  X1 + X2 + X3 + X4)\nred &lt;- lm(Y ~ X1 + X2)\nanova(red, full)"
   },
   {
-    "objectID": "lectures/11.html#example-3",
-    "href": "lectures/11.html#example-3",
+    "objectID": "lectures/14.html#example-3",
+    "href": "lectures/14.html#example-3",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nm1 &lt;- lm(body_mass_g ~ species + island + flipper_length_mm, penguins)\nm2 &lt;- lm(body_mass_g ~ island + flipper_length_mm, penguins)\nanova(m2, m1)\n\n\n#&gt; Analysis of Variance Table\n#&gt; \n#&gt; Model 1: body_mass_g ~ island + flipper_length_mm\n#&gt; Model 2: body_mass_g ~ species + island + flipper_length_mm\n#&gt;   Res.Df      RSS Df Sum of Sq      F    Pr(&gt;F)    \n#&gt; 1    329 47774435                                  \n#&gt; 2    327 45552857  2   2221579 7.9738 0.0004157 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
-    "objectID": "lectures/11.html#model-assumptions-1",
-    "href": "lectures/11.html#model-assumptions-1",
+    "objectID": "lectures/14.html#model-assumptions-1",
+    "href": "lectures/14.html#model-assumptions-1",
     "title": "Inference with Linear Regression",
     "section": "Model Assumptions",
     "text": "Model Assumptions\nWhen we are conducting inference linear regression, we will have to check the following conditions:\n\nLinearity\nIndependence\nNormality\nEqual Variances\nMulticollinearity (for MLR)"
   },
   {
-    "objectID": "lectures/11.html#linearity",
-    "href": "lectures/11.html#linearity",
+    "objectID": "lectures/14.html#linearity",
+    "href": "lectures/14.html#linearity",
     "title": "Inference with Linear Regression",
     "section": "Linearity",
     "text": "Linearity\nProbably considered the most important assumption, but there must be a linear relationship between both the outcome variable (y) and a set of predictors (\\(x_1\\), \\(x_2\\), …)."
   },
   {
-    "objectID": "lectures/11.html#independence",
-    "href": "lectures/11.html#independence",
+    "objectID": "lectures/14.html#independence",
+    "href": "lectures/14.html#independence",
     "title": "Inference with Linear Regression",
     "section": "Independence",
     "text": "Independence\nThe data points must not influence each other."
   },
   {
-    "objectID": "lectures/11.html#normality",
-    "href": "lectures/11.html#normality",
+    "objectID": "lectures/14.html#normality",
+    "href": "lectures/14.html#normality",
     "title": "Inference with Linear Regression",
     "section": "Normality",
     "text": "Normality\nThe model errors (also known as residuals) must follow a normal distribution."
   },
   {
-    "objectID": "lectures/11.html#equal-variances",
-    "href": "lectures/11.html#equal-variances",
+    "objectID": "lectures/14.html#equal-variances",
+    "href": "lectures/14.html#equal-variances",
     "title": "Inference with Linear Regression",
     "section": "Equal Variances",
     "text": "Equal Variances\nThe variability of the data points must be the same for all predictor values."
   },
   {
-    "objectID": "lectures/11.html#residuals",
-    "href": "lectures/11.html#residuals",
+    "objectID": "lectures/14.html#residuals",
+    "href": "lectures/14.html#residuals",
     "title": "Inference with Linear Regression",
     "section": "Residuals",
     "text": "Residuals\nResiduals are the errors between the observed value and the estimated model. Common residuals include\n\nRaw Residual\nStandardized Residual\nJackknife (studentized) Residuals"
   },
   {
-    "objectID": "lectures/11.html#influential-measurements",
-    "href": "lectures/11.html#influential-measurements",
+    "objectID": "lectures/14.html#influential-measurements",
+    "href": "lectures/14.html#influential-measurements",
     "title": "Inference with Linear Regression",
     "section": "Influential Measurements",
     "text": "Influential Measurements\nInfluential measures are statistics that determine how much a data point affects the model. Common influential measures are\n\nLeverages\nCook’s Distance"
   },
   {
-    "objectID": "lectures/11.html#raw-residuals",
-    "href": "lectures/11.html#raw-residuals",
+    "objectID": "lectures/14.html#raw-residuals",
+    "href": "lectures/14.html#raw-residuals",
     "title": "Inference with Linear Regression",
     "section": "Raw Residuals",
     "text": "Raw Residuals\n\\[\n\\hat r_i = y_i - \\hat y_i\n\\]"
   },
   {
-    "objectID": "lectures/11.html#residual-analysis",
-    "href": "lectures/11.html#residual-analysis",
+    "objectID": "lectures/14.html#residual-analysis",
+    "href": "lectures/14.html#residual-analysis",
     "title": "Inference with Linear Regression",
     "section": "Residual Analysis",
     "text": "Residual Analysis\nA residual analysis is used to test the assumptions of linear regression."
   },
   {
-    "objectID": "lectures/11.html#qq-plot",
-    "href": "lectures/11.html#qq-plot",
+    "objectID": "lectures/14.html#qq-plot",
+    "href": "lectures/14.html#qq-plot",
     "title": "Inference with Linear Regression",
     "section": "QQ Plot",
     "text": "QQ Plot\nA qq (quantile-quantile) plot will plot the estimated quantiles of the residuals against the theoretical quantiles from a normal distribution function. If the points from the qq-plot lie on the \\(y=x\\) line, it is said that the residuals follow a normal distribution."
   },
   {
-    "objectID": "lectures/11.html#residual-vs-fitted-plot",
-    "href": "lectures/11.html#residual-vs-fitted-plot",
+    "objectID": "lectures/14.html#residual-vs-fitted-plot",
+    "href": "lectures/14.html#residual-vs-fitted-plot",
     "title": "Inference with Linear Regression",
     "section": "Residual vs Fitted Plot",
     "text": "Residual vs Fitted Plot\nThis plot allows you to assess the linearity, constant variance, and identify potential outliers. Create a scatter plot between the fitted values (x-axis) and the raw/standardized residuals (y-axis)."
   },
   {
-    "objectID": "lectures/11.html#variance-inflation-factor",
-    "href": "lectures/11.html#variance-inflation-factor",
+    "objectID": "lectures/14.html#variance-inflation-factor",
+    "href": "lectures/14.html#variance-inflation-factor",
     "title": "Inference with Linear Regression",
     "section": "Variance Inflation Factor",
     "text": "Variance Inflation Factor\nThe variance inflation factor is a measurement on how much variables are collinear with each other. A value greater than 10 is a cause for concern and action should be taken."
   },
   {
-    "objectID": "lectures/11.html#residual-analysis-in-r",
-    "href": "lectures/11.html#residual-analysis-in-r",
+    "objectID": "lectures/14.html#residual-analysis-in-r",
+    "href": "lectures/14.html#residual-analysis-in-r",
     "title": "Inference with Linear Regression",
     "section": "Residual Analysis in R",
     "text": "Residual Analysis in R\nUse the resid_df function to obtain the residuals of a model.\n\n\nCode\nrdf &lt;- resid_df(LM_OBJECT)"
   },
   {
-    "objectID": "lectures/11.html#residual-vs-fitted-plot-1",
-    "href": "lectures/11.html#residual-vs-fitted-plot-1",
+    "objectID": "lectures/14.html#residual-vs-fitted-plot-1",
+    "href": "lectures/14.html#residual-vs-fitted-plot-1",
     "title": "Inference with Linear Regression",
     "section": "Residual vs Fitted Plot",
     "text": "Residual vs Fitted Plot\n\n\nCode\nggplot(RDF, aes(fitted, resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0, col = \"red\")"
   },
   {
-    "objectID": "lectures/11.html#qq-plot-1",
-    "href": "lectures/11.html#qq-plot-1",
+    "objectID": "lectures/14.html#qq-plot-1",
+    "href": "lectures/14.html#qq-plot-1",
     "title": "Inference with Linear Regression",
     "section": "QQ Plot",
     "text": "QQ Plot\n\n\nCode\nggplot(RDF, aes(sample = resid)) + \n  stat_qq() +\n  stat_qq_line()"
   },
   {
-    "objectID": "lectures/11.html#example-4",
-    "href": "lectures/11.html#example-4",
+    "objectID": "lectures/14.html#example-4",
+    "href": "lectures/14.html#example-4",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nxlm &lt;- lm(body_mass_g ~   island + species + flipper_length_mm,\n          penguins)\ndfxlm &lt;- resid_df(xlm)\n\nggplot(dfxlm, aes(fitted, resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0, col = \"red\")\n\nggplot(dfxlm, aes(sample = resid)) + \n  stat_qq() +\n  stat_qq_line()"
   },
   {
-    "objectID": "lectures/1.html#statistical-warning",
-    "href": "lectures/1.html#statistical-warning",
-    "title": "Statistics",
-    "section": "Statistical Warning",
-    "text": "Statistical Warning"
+    "objectID": "lectures/12.html#motivating-example-1",
+    "href": "lectures/12.html#motivating-example-1",
+    "title": "Inference with Logistic Regression",
+    "section": "Motivating Example",
+    "text": "Motivating Example\n\n\nCode\nbladder1 |&gt; ggplot(aes(number, color = death2)) +\n  geom_boxplot()"
   },
   {
-    "objectID": "lectures/1.html#statistics-1",
-    "href": "lectures/1.html#statistics-1",
-    "title": "Statistics",
-    "section": "Statistics",
-    "text": "Statistics\n\n\n\n\n\n\n\n\n\n\nWith an increasing use of data to make decisions, Statistics has been essential for processing large amounts of data to byte-size information\nStatistics is also known as\n\nData Science\nMachine Learning\nArtificial Intelligence\n\nSo for today, we’re asking: what is Statistics?"
+    "objectID": "lectures/12.html#hypothesis",
+    "href": "lectures/12.html#hypothesis",
+    "title": "Inference with Logistic Regression",
+    "section": "Hypothesis",
+    "text": "Hypothesis\n\n\n\\[H_0: \\beta = \\theta\\]\n\n\\[H_0: \\beta \\ne \\theta\\]"
   },
   {
-    "objectID": "lectures/1.html#what-does-google-say",
-    "href": "lectures/1.html#what-does-google-say",
-    "title": "Statistics",
-    "section": "What does Google say?",
-    "text": "What does Google say?\n\n\nUC Irvine\nStatistics is the science concerned with developing and studying methods for collecting, analyzing, interpreting and presenting empirical data.\n\nWikipedia\nStatistics is a mathematical body of science that pertains to the collection, analysis, interpretation or explanation, and presentation of data, or as a branch of mathematics."
+    "objectID": "lectures/12.html#testing-beta_j",
+    "href": "lectures/12.html#testing-beta_j",
+    "title": "Inference with Logistic Regression",
+    "section": "Testing \\(\\beta_j\\)",
+    "text": "Testing \\(\\beta_j\\)\n\\[\n\\frac{\\hat\\beta_j - \\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim N(0,1)\n\\]"
   },
   {
-    "objectID": "lectures/1.html#what-does-ai-say",
-    "href": "lectures/1.html#what-does-ai-say",
-    "title": "Statistics",
-    "section": "What does AI say?",
-    "text": "What does AI say?\n\n\nChatGPT\nStatistics is a branch of mathematics and a field of study that deals with the collection, analysis, interpretation, presentation, and organization of data.\n\nGoogle Gemini\nStatistics is the science of collecting, analyzing, interpreting, and presenting data."
+    "objectID": "lectures/12.html#confidence-intervals",
+    "href": "lectures/12.html#confidence-intervals",
+    "title": "Inference with Logistic Regression",
+    "section": "Confidence Intervals",
+    "text": "Confidence Intervals\n\\[\nPE \\pm CV \\times SE\n\\]\n\nPE: Point Estimate\nCV: Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\nSE: Standard Error"
   },
   {
-    "objectID": "lectures/1.html#what-do-researchers-say",
-    "href": "lectures/1.html#what-do-researchers-say",
-    "title": "Statistics",
-    "section": "What do researchers say?",
-    "text": "What do researchers say?\n\nAnthropologistMicrobiologistSociologistPolitical ScientistEcologistMathematician\n\n\nObjectively interpreting data to make meaningful inferences about our predictions.\n\n\nWhatever the statistician says.\n\n\nGathering the narratives of individuals, groups, or society and telling a story about their past, present, or future. The numbers paint a picture worth many words.\n\n\nUsing numbers to try to explain behaviors and/or patterns in our world.\n\n\nStatistics is the way to make sense of the natural world by taking data we collect to identify patterns between variables, and applying statistical theory to make sure we are taking the right approach to data collection and analysis. Also, assess patterns to see if they are reproducible and provide a logical explanation that makes biological sense.\n\n\nStatistics is the study of data, patterns, and trends."
+    "objectID": "lectures/12.html#conducting-ht-of-beta_j",
+    "href": "lectures/12.html#conducting-ht-of-beta_j",
+    "title": "Inference with Logistic Regression",
+    "section": "Conducting HT of \\(\\beta_j\\)",
+    "text": "Conducting HT of \\(\\beta_j\\)\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial())\nsummary(xlm)"
   },
   {
-    "objectID": "lectures/1.html#what-is-it",
-    "href": "lectures/1.html#what-is-it",
-    "title": "Statistics",
-    "section": "What is it?",
-    "text": "What is it?\n\n\nMath\n\n\n\n\n\n\nScience"
+    "objectID": "lectures/12.html#example",
+    "href": "lectures/12.html#example",
+    "title": "Inference with Logistic Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ recur + number + size, bladder1, family = binomial())\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; glm(formula = death ~ recur + number + size, family = binomial(), \n#&gt;     data = bladder1)\n#&gt; \n#&gt; Coefficients:\n#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    \n#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  \n#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***\n#&gt; number       0.0008451  0.1124503   0.008 0.994004    \n#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    \n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; (Dispersion parameter for binomial family taken to be 1)\n#&gt; \n#&gt;     Null deviance: 189.38  on 293  degrees of freedom\n#&gt; Residual deviance: 166.43  on 290  degrees of freedom\n#&gt; AIC: 174.43\n#&gt; \n#&gt; Number of Fisher Scoring iterations: 6"
   },
   {
-    "objectID": "lectures/1.html#what-does-a-statistician-say",
-    "href": "lectures/1.html#what-does-a-statistician-say",
-    "title": "Statistics",
-    "section": "What does a Statistician say?",
-    "text": "What does a Statistician say?\nIt is the study of variation and randomness!\n\nUsing mathematics, we model randomness to characterizes commonality and variation!\n\n\nUsing science, we systematically refine models to better fit randomness in data!\n\n\nUsing art, when it all eventually fails!"
+    "objectID": "lectures/12.html#confidence-interval",
+    "href": "lectures/12.html#confidence-interval",
+    "title": "Inference with Logistic Regression",
+    "section": "Confidence Interval",
+    "text": "Confidence Interval\n\n\nCode\nconfint(xlm, level = LEVEL)"
   },
   {
-    "objectID": "lectures/1.html#when-it-fails",
-    "href": "lectures/1.html#when-it-fails",
-    "title": "Statistics",
-    "section": "When it fails?!?!",
-    "text": "When it fails?!?!"
+    "objectID": "lectures/12.html#example-1",
+    "href": "lectures/12.html#example-1",
+    "title": "Inference with Logistic Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nconfint(m1, level = 0.95)\n\n\n#&gt;                  2.5 %      97.5 %\n#&gt; (Intercept) -1.7353779  0.02529523\n#&gt; recur       -0.6217831 -0.20078281\n#&gt; number      -0.2421738  0.20731479\n#&gt; size        -0.5880581  0.06061498"
   },
   {
-    "objectID": "lectures/1.html#statistics-mantra---george-box",
-    "href": "lectures/1.html#statistics-mantra---george-box",
-    "title": "Statistics",
-    "section": "Statistics Mantra - George Box",
-    "text": "Statistics Mantra - George Box\n\n\n\n\n\n\n\n\nAll models are wrong,\nsome are useful!"
+    "objectID": "lectures/12.html#confidence-interval-for-odds-ratio",
+    "href": "lectures/12.html#confidence-interval-for-odds-ratio",
+    "title": "Inference with Logistic Regression",
+    "section": "Confidence Interval for Odds Ratio",
+    "text": "Confidence Interval for Odds Ratio\n\n\nCode\nexp(confint(m1, level = 0.95))\n\n\n#&gt;                 2.5 %    97.5 %\n#&gt; (Intercept) 0.1763335 1.0256179\n#&gt; recur       0.5369861 0.8180901\n#&gt; number      0.7849197 1.2303698\n#&gt; size        0.5554048 1.0624898"
   },
   {
-    "objectID": "lectures/1.html#what-is-the-formal-definition-of-statistics",
-    "href": "lectures/1.html#what-is-the-formal-definition-of-statistics",
-    "title": "Statistics",
-    "section": "What is the formal definition of Statistics?",
-    "text": "What is the formal definition of Statistics?\nStatistics is both the development of mathematical models to be used in real-world data and the analysis of data using existing models."
+    "objectID": "lectures/12.html#model-inference",
+    "href": "lectures/12.html#model-inference",
+    "title": "Inference with Logistic Regression",
+    "section": "Model inference",
+    "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(g(\\hat Y)=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
   },
   {
-    "objectID": "lectures/1.html#probability-models",
-    "href": "lectures/1.html#probability-models",
-    "title": "Statistics",
-    "section": "Probability Models",
-    "text": "Probability Models\n\n\n\n\n\n\n\n\n\nModel observations that follow a new data generating process\nUnderstand its properties\nDevelop new probability distributions\nKnown as Probability Theory\nResearcher is a Probabilist or Mathematical Statistician"
+    "objectID": "lectures/12.html#model-inference-1",
+    "href": "lectures/12.html#model-inference-1",
+    "title": "Inference with Logistic Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nGiven 2 models:\n\\[\ng(\\hat Y) = \\hat\\beta_0 + \\hat\\beta_1 X_1 + \\hat\\beta_2 X_2 + \\cdots + \\hat\\beta_p X_p\n\\]\nor\n\\[\ng(\\hat Y) = \\bar y\n\\]\n\nIs the model with predictors do a better job than using the average?"
   },
   {
-    "objectID": "lectures/1.html#data-analysis",
-    "href": "lectures/1.html#data-analysis",
-    "title": "Statistics",
-    "section": "Data Analysis",
-    "text": "Data Analysis\n\n\n\nModel data with a known probability model\nAccount for sources of variation and bias\nAccount for violations of independence and randomness\nKnown as Statistician or Data Scientist"
+    "objectID": "lectures/12.html#likelihood-ratio-test",
+    "href": "lectures/12.html#likelihood-ratio-test",
+    "title": "Inference with Logistic Regression",
+    "section": "Likelihood Ratio Test",
+    "text": "Likelihood Ratio Test\nThe Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model.\nIt conducts a hypothesis tests to see if models are significantly different from each other."
   },
   {
-    "objectID": "lectures/1.html#whats-the-goal-of-a-statistician",
-    "href": "lectures/1.html#whats-the-goal-of-a-statistician",
-    "title": "Statistics",
-    "section": "What’s the goal of a Statistician?",
-    "text": "What’s the goal of a Statistician?\n\nINFERENCE\n\n\nUse our sample data to understand the larger population.\n\n\nThe data will tell us how the population generally behaves.\n\n\nThe data will guide us in the differences in units.\n\n\nData will tell us if there is a signal or just noise."
+    "objectID": "lectures/12.html#conducting-an-lrt-in-r",
+    "href": "lectures/12.html#conducting-an-lrt-in-r",
+    "title": "Inference with Logistic Regression",
+    "section": "Conducting an LRT in R",
+    "text": "Conducting an LRT in R\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial)\nxlm0 &lt;- glm(Y ~ 1, data = DATA, family = binomial)\nanova(xlm0, xlm, test = \"LRT\")"
   },
   {
-    "objectID": "lectures/1.html#word-cloud",
-    "href": "lectures/1.html#word-cloud",
-    "title": "Statistics",
-    "section": "Word Cloud",
-    "text": "Word Cloud"
+    "objectID": "lectures/12.html#example-2",
+    "href": "lectures/12.html#example-2",
+    "title": "Inference with Logistic Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nm0 &lt;- update(m1, formula. = ~ 1)\nanova(m0, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ 1\n#&gt; Model 2: death ~ recur + number + size\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)    \n#&gt; 1       293     189.38                         \n#&gt; 2       290     166.43  3   22.953 4.13e-05 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
-    "objectID": "lectures/1.html#conducting-inference",
-    "href": "lectures/1.html#conducting-inference",
-    "title": "Statistics",
-    "section": "Conducting Inference",
-    "text": "Conducting Inference"
+    "objectID": "lectures/12.html#model-inference-2",
+    "href": "lectures/12.html#model-inference-2",
+    "title": "Inference with Logistic Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nModel inference can be extended to compare models that have different number of predictors."
   },
   {
-    "objectID": "lectures/1.html#are-we-seeing-something-or-is-it-just-noise",
-    "href": "lectures/1.html#are-we-seeing-something-or-is-it-just-noise",
-    "title": "Statistics",
-    "section": "Are we seeing something or is it just noise???",
-    "text": "Are we seeing something or is it just noise???\nAre we seeing something different from what was expected? Or is it due to random chance?"
+    "objectID": "lectures/12.html#model-inference-3",
+    "href": "lectures/12.html#model-inference-3",
+    "title": "Inference with Logistic Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nGiven:\n\\[\nM1:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
   },
   {
-    "objectID": "lectures/1.html#hypothesis-testing",
-    "href": "lectures/1.html#hypothesis-testing",
-    "title": "Statistics",
-    "section": "Hypothesis Testing",
-    "text": "Hypothesis Testing\n\n\nSet up the Null and Alternative Hypothesis\nConstruct a test statistic based on the null hypothesis\nConstruct a distribution of the test statistic based on probability theory\nCompute the probability of observing the test statistic\nMake a decision based on the probability"
+    "objectID": "lectures/12.html#model-inference-4",
+    "href": "lectures/12.html#model-inference-4",
+    "title": "Inference with Logistic Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
   },
   {
-    "objectID": "lectures/1.html#what-if-we-cannot-construct-the-distribution",
-    "href": "lectures/1.html#what-if-we-cannot-construct-the-distribution",
-    "title": "Statistics",
-    "section": "What if we cannot construct the distribution?!?!",
-    "text": "What if we cannot construct the distribution?!?!\n\n\n\n\n\n\n\n\n\n\n\nWe bring out the Monte Carlo methods!"
+    "objectID": "lectures/12.html#likelihood-ratio-test-in-r",
+    "href": "lectures/12.html#likelihood-ratio-test-in-r",
+    "title": "Inference with Logistic Regression",
+    "section": "Likelihood Ratio Test in R",
+    "text": "Likelihood Ratio Test in R\n\n\nCode\nfull &lt;- glm(Y  ~  X1 + X2 + X3 + X4, DATA, family = binomial())\nred &lt;- glm(Y ~ X1 + X2, DATA, family = binomial())\nanova(red, full, test = \"LRT\")"
   },
   {
-    "objectID": "lectures/1.html#monte-carlo-methods",
-    "href": "lectures/1.html#monte-carlo-methods",
-    "title": "Statistics",
-    "section": "Monte Carlo Methods",
-    "text": "Monte Carlo Methods\n\nMonte Carlo Methods are used to construct a distribution function of an obscure test statistic\nWe simulate a large number of data sets based on the null hypothesis\nWe construct a test statistic for each fake data set and the real one\nWe count how many data sets produce a test statistic that is more extreme than the real test statistic\n\\(p=\\#\\ of\\ extreme\\ data\\ sets\\ /\\ all\\ data\\ sets\\)"
-  },
-  {
-    "objectID": "lectures/1.html#overview-of-research",
-    "href": "lectures/1.html#overview-of-research",
-    "title": "Statistics",
-    "section": "Overview of Research",
-    "text": "Overview of Research\n\n\nAsk a question about a population\nCollect data from a sample\nConstruct and test a hypothesis\nDraw conclusion about the population\nRefine your question and methodology"
-  },
-  {
-    "objectID": "lectures/1.html#so-what-is-statistics",
-    "href": "lectures/1.html#so-what-is-statistics",
-    "title": "Statistics",
-    "section": "So, what is Statistics?",
-    "text": "So, what is Statistics?\n\n\n\n\n\n\nFor you, I’ll be anything"
-  },
-  {
-    "objectID": "lectures/1.html#whats-statistics-without-a-little",
-    "href": "lectures/1.html#whats-statistics-without-a-little",
-    "title": "Statistics",
-    "section": "What’s Statistics without a little …",
-    "text": "What’s Statistics without a little …"
-  },
-  {
-    "objectID": "lectures/1.html#train-of-thoughts",
-    "href": "lectures/1.html#train-of-thoughts",
-    "title": "Statistics",
-    "section": "Train of Thoughts",
-    "text": "Train of Thoughts\n\nThere are two train of thoughts on how to interpret estimates and probability.\n\n\nOne approach is the Frequentist approach.\n\n\nThe other approach is the Bayesian approach.\n\n\nBoth sides hate each other."
-  },
-  {
-    "objectID": "lectures/1.html#frequentists",
-    "href": "lectures/1.html#frequentists",
-    "title": "Statistics",
-    "section": "Frequentists",
-    "text": "Frequentists"
-  },
-  {
-    "objectID": "lectures/1.html#frequentists-1",
-    "href": "lectures/1.html#frequentists-1",
-    "title": "Statistics",
-    "section": "Frequentists",
-    "text": "Frequentists\nA frequentist, in the context of statistics, is an individual who adheres to the frequentist interpretation of probability and statistical inference.\n\nMeaning probability is obtained by the repetition of multiple experiments."
-  },
-  {
-    "objectID": "lectures/1.html#bayesians",
-    "href": "lectures/1.html#bayesians",
-    "title": "Statistics",
-    "section": "Bayesians",
-    "text": "Bayesians"
-  },
-  {
-    "objectID": "lectures/1.html#bayesians-1",
-    "href": "lectures/1.html#bayesians-1",
-    "title": "Statistics",
-    "section": "Bayesians",
-    "text": "Bayesians\nA Bayesians, in the context of statistics, is an individual who adheres to the Bayesian interpretation of probability and statistical inference.\n\nProbability is obtained by likelihood of an event to occur, given data and prior knowledge."
-  },
-  {
-    "objectID": "lectures/1.html#what-am-i-and-people-that-have-lives",
-    "href": "lectures/1.html#what-am-i-and-people-that-have-lives",
-    "title": "Statistics",
-    "section": "What am I (and people that have lives)?",
-    "text": "What am I (and people that have lives)?\n\n\nWhatever gets the job done!"
-  },
-  {
-    "objectID": "lectures/1.html#there-is-more-much-more-but-i-will-say-this-in-my-statistical-journey",
-    "href": "lectures/1.html#there-is-more-much-more-but-i-will-say-this-in-my-statistical-journey",
-    "title": "Statistics",
-    "section": "There is more, much more, but I will say this, in my statistical journey",
-    "text": "There is more, much more, but I will say this, in my statistical journey"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to Elementary Statistics!",
-    "section": "",
-    "text": "Brief Introduction\n\n\n\n\n\nWelcome to the course! This is the home page of the course where I will provide a recap on what was covered in the week. Here I will post any documents or videos for your reference. If you have any questions, please email me at isaac.qs@csuci.edu."
-  },
-  {
-    "objectID": "ec/ec_3.html",
-    "href": "ec/ec_3.html",
-    "title": "Extra Credit 3",
-    "section": "",
-    "text": "Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. The majority of these books are available through the Broome Library.\nBooks:\n\nHappiness: A Guide to Developing Life’s\n\nMatthieu Ricard\n\nGrit: The Power of Passion and Perserverance\n\nAngela Duckworth\n\nMindset: The New Psychology of Success\n\nCarol Dweck\n\n\nReport guidelines\n\n4-5 Pages\nMust include a title page\nDouble Spaced\n12 point font\nProofread your work\nSubmit a pdf of your work to Canvas\nDue 5/9/2025\n\nWorth 3 final grade percentage points."
-  },
-  {
-    "objectID": "ec/ec_1.html",
-    "href": "ec/ec_1.html",
-    "title": "Extra Credit 1",
-    "section": "",
-    "text": "Complete One of the Following Assignments\nDue 2/14/2024\nWorth 1 final grade percentage points.\n\nVisit a Lunch and/or Research Talk\nCandidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with students community time, during lunch, and their research talk. This means there is a total of 9 opportunities to visit a candidate.\nTo obtain credit, you must visit one cancdidate during their lunch or research talk, and provide feedback and sign in.\n\n\n\n\n\n\n\n\n\n\nCandidate\nDay\nCommunity Time\nLunch\nResearch\n\n\n\n\n1\nMonday (1/27)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe; 10 Students Max)\n2-3 PM (Broome 1710)\n\n\n2\nMonday (2/3)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe)\n2-3 PM (BT 1642)\n\n\n3\nTuesday (2/4)\n9:30-10 & 11-11:20 (BTE 2810)\n11:30-12:15 PM (Island’s Cafe)\n1-2 PM (BT 1462)\n\n\n\nNote: you can attend more than one meeting.\n\n\nWrite a Wellness Plan\nWrite a welness plan to ensure you will maintain your overall well being.\nReport guidelines\n\n1-2 Pages\nDouble Spaced\n12 point font"
-  },
-  {
-    "objectID": "c/1a.html#slides",
-    "href": "c/1a.html#slides",
-    "title": "Welcome!",
-    "section": "Slides",
-    "text": "Slides\nm201.inqs.info/c/1a"
-  },
-  {
-    "objectID": "c/1a.html#introductions-1",
-    "href": "c/1a.html#introductions-1",
-    "title": "Welcome!",
-    "section": "Introductions",
-    "text": "Introductions\n\nSan Bernardino, CA\nCSU Monterey Bay\n\nBS Biology\n\nSan Diego State University\n\nMaster’s in Public Health\n\nUC Riverside\n\nPhD in Applied Statistics"
-  },
-  {
-    "objectID": "c/1a.html#introductions-2",
-    "href": "c/1a.html#introductions-2",
-    "title": "Welcome!",
-    "section": "Introductions",
-    "text": "Introductions\n\n\nName\nYear\nMajor\nFun Fact\nCareer Goal"
-  },
-  {
-    "objectID": "c/1a.html#epe---connor-stevenson",
-    "href": "c/1a.html#epe---connor-stevenson",
-    "title": "Welcome!",
-    "section": "EPE - Connor Stevenson",
-    "text": "EPE - Connor Stevenson\n\n\n\n\n\n3rd Year\nMath/Computer Science Major"
-  },
-  {
-    "objectID": "c/1a.html#early-succes-module-esm",
-    "href": "c/1a.html#early-succes-module-esm",
-    "title": "Welcome!",
-    "section": "Early Succes Module (ESM)",
-    "text": "Early Succes Module (ESM)"
-  },
-  {
-    "objectID": "c/1a.html#assignments",
-    "href": "c/1a.html#assignments",
-    "title": "Welcome!",
-    "section": "Assignments",
-    "text": "Assignments\n\n\n\nSelfie at profesor’s door and Introduction\nSelfie at the LRC\nLearner Info Survey\nEvidence of a Study Group\n\n\n\nBloom’s Taxonomy\nUsing the Study Cycle Efficiently\nSelfie at favorite place\nSelfie with support staff\nThe Feynman Technique"
-  },
-  {
-    "objectID": "c/1a.html#class-setup-1",
-    "href": "c/1a.html#class-setup-1",
-    "title": "Welcome!",
-    "section": "Class Setup",
-    "text": "Class Setup\n\nParticipation\nReading Assignments\nNotebook Assignments\nVideo Assignments\nHomework Assignments\nExams\nExtra Credit"
-  },
-  {
-    "objectID": "c/1a.html#study-expectations",
-    "href": "c/1a.html#study-expectations",
-    "title": "Welcome!",
-    "section": "Study Expectations",
-    "text": "Study Expectations\nFor every 1 unit of class you take, you are expected to spend ~3 hours outside of class for the course."
-  },
-  {
-    "objectID": "c/1a.html#syllabus",
-    "href": "c/1a.html#syllabus",
-    "title": "Welcome!",
-    "section": "Syllabus",
-    "text": "Syllabus\nm201.inqs.info/syllabus"
-  },
-  {
-    "objectID": "c/1a.html#r-programming",
-    "href": "c/1a.html#r-programming",
-    "title": "Welcome!",
-    "section": "R Programming",
-    "text": "R Programming\nThis class you will use R programming to conduct data analysis.\nR is a powerful tool that allows you to program complex tasks.\nLearning R is difficult, but it is the best teacher to teach you how to overcome challenges. Don’t give up when it gets hard and seek out help when needed."
-  },
-  {
-    "objectID": "c/1a.html#when-do-you-use-statistics",
-    "href": "c/1a.html#when-do-you-use-statistics",
-    "title": "Welcome!",
-    "section": "When do you use statistics?",
-    "text": "When do you use statistics?"
-  },
-  {
-    "objectID": "c/1a.html#what-is-the-difference-between-math-and-stats",
-    "href": "c/1a.html#what-is-the-difference-between-math-and-stats",
-    "title": "Welcome!",
-    "section": "What is the difference between math and stats?",
-    "text": "What is the difference between math and stats?"
-  },
-  {
-    "objectID": "c/1a.html#use-of-generative-ai-1",
-    "href": "c/1a.html#use-of-generative-ai-1",
-    "title": "Welcome!",
-    "section": "Use of Generative AI",
-    "text": "Use of Generative AI\nThe use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini."
-  },
-  {
-    "objectID": "c/1a.html#educational-mislearning",
-    "href": "c/1a.html#educational-mislearning",
-    "title": "Welcome!",
-    "section": "Educational Mislearning",
-    "text": "Educational Mislearning\nThe purpose of this class, and college, is for you to learn about critical thinking skills and perseverance. Using AI will only teach you how to get an answer, which may or may not be correct.\n\nYou will not develop the skills needed to problem solve a challenge. Additionally, developing grit is essential to become successful in college and life. There is no easy way out and AI is an illusion to your success in life.\n\n\nTo learn something, it requires hours of work! If not years!"
-  },
-  {
-    "objectID": "c/1a.html#stolen-workmonday-have-their-work-to-be-used-this-way.",
-    "href": "c/1a.html#stolen-workmonday-have-their-work-to-be-used-this-way.",
-    "title": "Welcome!",
-    "section": "Stolen WorkMonday have their work to be used this way.",
-    "text": "Stolen WorkMonday have their work to be used this way.\n\nAdditionally, all these individuals are not receiving any royalties for the work to be used in creating generative AI models.\n\n\nInside Higher Ed and The New Yorker highlight individual’s concern of their work being used to train AI models."
-  },
-  {
-    "objectID": "c/1a.html#privacy-concerns",
-    "href": "c/1a.html#privacy-concerns",
-    "title": "Welcome!",
-    "section": "Privacy Concerns",
-    "text": "Privacy Concerns\nThe use of generative AI raises concerns of what data is being harvested from us, possibly without informed consent.\n\nWhen you used any large language models, you do not know what information is being harvested from you.\n\n\nDo you want to upload your thoughts and ideas to a company that can monetize, and possibly exploit.\n\n\nDoes your Professors consent with you uploading their assignments to large language models.\n\n\nStanford provided a report highlighting the risks of our personal data use in large language models."
-  },
-  {
-    "objectID": "c/1a.html#math-201-consent",
-    "href": "c/1a.html#math-201-consent",
-    "title": "Welcome!",
-    "section": "Math 201 Consent",
-    "text": "Math 201 Consent\n\nDr. Isaac Quintanilla Salinas consents in you sharing course material to your friends and family for learning purposes. Use the material to educate and uplift your community.\n\n\nDr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for DASS-approved services."
-  },
-  {
-    "objectID": "c/1a.html#environmental-impact",
-    "href": "c/1a.html#environmental-impact",
-    "title": "Welcome!",
-    "section": "Environmental Impact",
-    "text": "Environmental Impact\nIn order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model.\n\nThe LA Times reports the potential impact that running AI models in California.\n\n\nAdditionally, Time reports that a ChatGPT query uses ten times more energy than a Google search query, and global AI demands can consume of 1 trillion gallons of water by 2027.\n\n\nThere are also environmental justice questions about where these data centers are constructed."
-  },
-  {
-    "objectID": "c/1a.html#worker-exploitation",
-    "href": "c/1a.html#worker-exploitation",
-    "title": "Welcome!",
-    "section": "Worker Exploitation",
-    "text": "Worker Exploitation\nThe Washington Post and Time (Article 1 and Article 2) reported that AI companies utilize “digital sweatshops” to classify data points for model training.\n\nThere is a human cost from the Global South, both financially and mentally, to develop the AI models for users in the United States and Europe.\n\n\nWe must be conscious consumers and demand more from these companies to provide safe working conditions and livable wages."
-  },
-  {
-    "objectID": "c/1a.html#how-will-the-profesor-enforce-the-policy",
-    "href": "c/1a.html#how-will-the-profesor-enforce-the-policy",
-    "title": "Welcome!",
-    "section": "How will the Profesor enforce the policy?",
-    "text": "How will the Profesor enforce the policy?\n\nI am not! Unless it is extremely obvious, it is extremely difficult to identify AI use.\n\n\nCell has an article indicating that the use of GPT detectors harm non-native English speakers."
-  },
-  {
-    "objectID": "c/1a.html#is-using-ai-bad",
-    "href": "c/1a.html#is-using-ai-bad",
-    "title": "Welcome!",
-    "section": "Is Using AI Bad?",
-    "text": "Is Using AI Bad?\n\nNO\n\n\nWhat we should do is demand companies to develop these tools in an ethical manner!"
-  },
-  {
-    "objectID": "c/1a.html#intro-form",
-    "href": "c/1a.html#intro-form",
-    "title": "Welcome!",
-    "section": "Intro Form",
-    "text": "Intro Form\nhttps://forms.gle/JWaUdgKB6qui98yz5"
-  },
-  {
-    "objectID": "c/1a.html#survey",
-    "href": "c/1a.html#survey",
-    "title": "Welcome!",
-    "section": "Survey",
-    "text": "Survey\nhttps://forms.gle/BCMDgB3pDHJ1MmSYA"
-  },
-  {
-    "objectID": "c/1a.html#extra-credit-1",
-    "href": "c/1a.html#extra-credit-1",
-    "title": "Welcome!",
-    "section": "Extra Credit 1",
-    "text": "Extra Credit 1"
-  },
-  {
-    "objectID": "c/1a.html#extra-credit-2",
-    "href": "c/1a.html#extra-credit-2",
-    "title": "Welcome!",
-    "section": "Extra Credit 2",
-    "text": "Extra Credit 2"
-  },
-  {
-    "objectID": "c/1a.html#extra-credit-3",
-    "href": "c/1a.html#extra-credit-3",
-    "title": "Welcome!",
-    "section": "Extra Credit 3",
-    "text": "Extra Credit 3"
-  },
-  {
-    "objectID": "c/1a.html#extra-credit-4",
-    "href": "c/1a.html#extra-credit-4",
-    "title": "Welcome!",
-    "section": "Extra Credit 4",
-    "text": "Extra Credit 4"
-  },
-  {
-    "objectID": "c/1a.html#class-cancelled",
-    "href": "c/1a.html#class-cancelled",
-    "title": "Welcome!",
-    "section": "Class Cancelled",
-    "text": "Class Cancelled\n\nMonday 1/27/25\nMonday 2/3/25"
-  },
-  {
-    "objectID": "c/15b.html#traditional-statistics",
-    "href": "c/15b.html#traditional-statistics",
-    "title": "Installing R and Rstudio",
-    "section": "Traditional Statistics",
-    "text": "Traditional Statistics\nTraditional Statistics methods can conducted using either linear or logistic regression.\nVisit Here for more information."
-  },
-  {
-    "objectID": "c/15b.html#what-is-statistics",
-    "href": "c/15b.html#what-is-statistics",
-    "title": "Installing R and Rstudio",
-    "section": "What is Statistics?",
-    "text": "What is Statistics?\nIt is the study of variation and randomness!"
-  },
-  {
-    "objectID": "c/15b.html#whats-the-goal-of-statistics",
-    "href": "c/15b.html#whats-the-goal-of-statistics",
-    "title": "Installing R and Rstudio",
-    "section": "What’s the goal of Statistics?",
-    "text": "What’s the goal of Statistics?\n\nINFERENCE\n\n\nUse our sample data to understand the larger population.\n\n\nThe data will tell us how the population generally behaves.\n\n\nThe data will guide us in the differences in units.\n\n\nData will tell us if there is a signal or just noise."
-  },
-  {
-    "objectID": "c/15b.html#final-thoughts",
-    "href": "c/15b.html#final-thoughts",
-    "title": "Installing R and Rstudio",
-    "section": "Final Thoughts",
-    "text": "Final Thoughts\n\nWhen conducting a study, literature review and study design are as equally important as statistics.\n\n\nIf you don’t see variability in the data, something is wrong.\n\n\nFocus on consistency in the methodology, not consistency in data.\n\n\nUnderstand that you can be wrong, and that is okay.\n\n\nDon’t let data influence the methodology during a study/experiment."
-  },
-  {
-    "objectID": "c/15b.html#statistics-mantra",
-    "href": "c/15b.html#statistics-mantra",
-    "title": "Installing R and Rstudio",
-    "section": "Statistics Mantra",
-    "text": "Statistics Mantra\n\n\n\n\n\n\n\n\nAll models are wrong,\nsome are useful!"
-  },
-  {
-    "objectID": "c/15b.html#final-survey-1",
-    "href": "c/15b.html#final-survey-1",
-    "title": "Installing R and Rstudio",
-    "section": "Final Survey",
-    "text": "Final Survey\nSurvery"
-  },
-  {
-    "objectID": "c/15b.html#installing-r",
-    "href": "c/15b.html#installing-r",
-    "title": "Installing R and Rstudio",
-    "section": "Installing R",
-    "text": "Installing R\nhttps://cloud.r-project.org/"
-  },
-  {
-    "objectID": "c/15b.html#installing-rstudio",
-    "href": "c/15b.html#installing-rstudio",
-    "title": "Installing R and Rstudio",
-    "section": "Installing RStudio",
-    "text": "Installing RStudio\nhttps://posit.co/download/rstudio-desktop/"
-  },
-  {
-    "objectID": "c/15b.html#installing-rtools-windows",
-    "href": "c/15b.html#installing-rtools-windows",
-    "title": "Installing R and Rstudio",
-    "section": "Installing RTools (Windows)",
-    "text": "Installing RTools (Windows)\nhttps://cran.r-project.org/bin/windows/Rtools/"
-  },
-  {
-    "objectID": "c/15b.html#tidyverse",
-    "href": "c/15b.html#tidyverse",
-    "title": "Installing R and Rstudio",
-    "section": "Tidyverse",
-    "text": "Tidyverse\n\ninstall.packages(\"tidyverse\")"
-  },
-  {
-    "objectID": "c/15b.html#csucistats",
-    "href": "c/15b.html#csucistats",
-    "title": "Installing R and Rstudio",
-    "section": "csucistats",
-    "text": "csucistats\n\ninstall.packages('csucistats', \n                 repos = c('https://inqs909.r-universe.dev', \n                           'https://cloud.r-project.org'))"
-  },
-  {
-    "objectID": "c/15b.html#other-packages",
-    "href": "c/15b.html#other-packages",
-    "title": "Installing R and Rstudio",
-    "section": "Other Packages",
-    "text": "Other Packages\n\ninstall.packages(c(\"ggthemes\", \"statmod\", \"car\", \"ggpubr\", \"lmtest\", \"rms\", \"palmerpenguins\"))\ncsucistats::install_plots()\ncsucistats::install_themes()"
-  },
-  {
-    "objectID": "c/15b.html#load-packages",
-    "href": "c/15b.html#load-packages",
-    "title": "Installing R and Rstudio",
-    "section": "Load Packages",
-    "text": "Load Packages\n\nlibrary(tidyverse)\nlibrary(csucistats)\nlibrary(ggthemes)\nlibrary(waffle)\nlibrary(ggmosaic)\nlibrary(ggtricks)\nlibrary(ggtext)\nlibrary(ggpubr)\nlibrary(ThemePark)\nlibrary(car)\nlibrary(lmtest)\nlibrary(rms)\nlibrary(palmerpenguins)"
-  },
-  {
-    "objectID": "c/15b.html#rstudio-layout-1",
-    "href": "c/15b.html#rstudio-layout-1",
-    "title": "Installing R and Rstudio",
-    "section": "RStudio Layout",
-    "text": "RStudio Layout\n\nScripts\nConsole\nEnvironment\nFiles\nEverything else"
-  },
-  {
-    "objectID": "c/15b.html#downloading-data-data",
-    "href": "c/15b.html#downloading-data-data",
-    "title": "Installing R and Rstudio",
-    "section": "Downloading Data Data",
-    "text": "Downloading Data Data\n\nu1 &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.csv\"\nu2 &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.xlsx\"\n\ndownload.file(u1,\n              file.path(getwd(), basename(u1)))\ndownload.file(u2,\n              file.path(getwd(), basename(u2)))"
-  },
-  {
-    "objectID": "c/15b.html#loading-data-1",
-    "href": "c/15b.html#loading-data-1",
-    "title": "Installing R and Rstudio",
-    "section": "Loading Data",
-    "text": "Loading Data"
-  },
-  {
-    "objectID": "ec.html",
-    "href": "ec.html",
-    "title": "Extra Credit",
-    "section": "",
-    "text": "Extra Credit is designed to expand on different topics that related to Probability and Statistics, but are not necessarily required for the course. Additionally, these opportunities provide students relief when unexpected situations occur during the semester. While it is not required, I encourage everyone to attempt each opportunity.\nBelow is more information on each assignment.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 1\n\n\n\n\n\nInstructions for extra credit one.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 2\n\n\n\n\n\nInstructions for extra credit two.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 3\n\n\n\n\n\nInstructions for extra credit three.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 4\n\n\n\n\n\nInstructions for extra credit four.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "ec/ec_2.html",
-    "href": "ec/ec_2.html",
-    "title": "Extra Credit 2",
-    "section": "",
-    "text": "Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. All books should be available through the Broome Library.\nBooks:\n\nMake it Stick: The Science of Successful Learning\n\nPeter Brown\n\nTeach Yourself How to Learn: Strategies you can use to ace any course\n\nSaundra McGuire\n\nLimitless Mind\n\nJo Boaler\n\n\nReport guidelines\n\n4-5 Pages\nMust include a title page\nDouble Spaced\n12 point font\nProofread your work\nSubmit a pdf of your work to Canvas\nDue 5/9/2025\n\nWorth 3 final grade percentage points."
-  },
-  {
-    "objectID": "ec/ec_4.html",
-    "href": "ec/ec_4.html",
-    "title": "Extra Credit 4",
-    "section": "",
-    "text": "Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. Some of these books are available through the Broome Library.\nBooks:\n\nThe Book of Why\n\nJudea Pearl\n\nAlgorithms of Oppression\n\nSafiya Umoja Noble\n\nData Feminism\n\nCatherine D’Ignazio and Lauren Klein\n\nWeapons of Math Destruction\n\nCathy O’Niel\n\nInvisible women : data bias in a world designed for men\n\nCaroline Criado Perez\n\nFactfulness: Ten Reasons We’re Wrong About the World… and Why Things are Better Than You Think\n\nHans Rosling\n\nArtificial Unintelligence: How Computers Misunderstand the World\n\nMerideth Broussard\n\nTechnically Wrong: Sexist Apps, Biased Algorithms, and Other Threats of Toxic Tech\n\nSara Wachter-Boettcher\n\nOR ANY Book Approved By Me (Deadline for Approval by March 28, 2025)\n\nReport guidelines\n\n4-5 Pages\nMust include a title page\nDouble Spaced\n12 point font\nProofread your work\nSubmit a pdf of your work to Canvas\nDue 5/9/2025\n\nWorth 3 final grade percentage points."
-  },
-  {
-    "objectID": "lectures.html",
-    "href": "lectures.html",
-    "title": "Lectures",
-    "section": "",
-    "text": "Categorical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for categorical data. \n\n\n\n\n\nJan 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nData Generating Process\n\n\n\n\n\nProvide a Brief Introduction of Data, Study Design, and the Data Generating Process. \n\n\n\n\n\nJan 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Functions\n\n\n\n\n\n\n\n\n\n\n\nFeb 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference\n\n\n\n\n\nBegins the discussion on Inference. \n\n\n\n\n\nApr 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nApr 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nApr 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Logistic Regression\n\n\n\n\n\nBegins the discussion on inference for logistic and Poisson regression. \n\n\n\n\n\nApr 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Logistic and Poisson Regression\n\n\n\n\n\nBegins the discussion on inference for logistic and Poisson regression. \n\n\n\n\n\nApr 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMultivariable Linear Regression\n\n\n\n\n\nContinues the discussion with multi linear regression. \n\n\n\n\n\nMar 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nNumerical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for numerical data. \n\n\n\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSampling Distribution\n\n\n\n\n\n\n\n\n\n\n\nApr 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSimple Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nFeb 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistical Inference\n\n\n\n\n\nStatistical Inference \n\n\n\n\n\nApr 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics\n\n\nA Math? A Science? An Art? Or Something Else?\n\n\n\n\n\n\n\n\nIsaac Quintanilla Salinas\n\n\n\n\n\n\nNo matching items"
+    "objectID": "lectures/12.html#example-3",
+    "href": "lectures/12.html#example-3",
+    "title": "Inference with Logistic Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ number + size + recur, bladder1, family = binomial())\nm2 &lt;- glm(death ~ recur, bladder1, family = binomial())\nanova(m2, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ recur\n#&gt; Model 2: death ~ number + size + recur\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)\n#&gt; 1       292     168.72                     \n#&gt; 2       290     166.43  2   2.2883   0.3185"
   },
   {
     "objectID": "lectures/10.html#what-is-statistical-inference",
@@ -2856,417 +2303,1138 @@
     "text": "Bank Note Classification\nThe Bank Note data set contains information about bank note authentication based on images. We are interested in seeing if class (outcome variable; real or fake) is associated by image skewness (predictor), adjusting for variance, and entropy.\n\n\nCode\nurl &lt;- \"https://archive.ics.uci.edu/ml/machine-learning-databases/00267/data_banknote_authentication.txt\"\nbank &lt;- read.csv(url, header = FALSE)\n\ncolnames(bank) &lt;- c(\"variance\", \"skewness\", \"curtosis\", \"entropy\", \"class\")\nbank$class &lt;- factor(bank$class, levels = c(0, 1), labels = c(\"Genuine\", \"Forged\"))"
   },
   {
-    "objectID": "lectures/12.html#motivating-example-1",
-    "href": "lectures/12.html#motivating-example-1",
-    "title": "Inference with Logistic Regression",
-    "section": "Motivating Example",
-    "text": "Motivating Example\n\n\nCode\nbladder1 |&gt; ggplot(aes(number, color = death2)) +\n  geom_boxplot()"
+    "objectID": "lectures.html",
+    "href": "lectures.html",
+    "title": "Lectures",
+    "section": "",
+    "text": "Categorical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for categorical data. \n\n\n\n\n\nJan 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nData Generating Process\n\n\n\n\n\nProvide a Brief Introduction of Data, Study Design, and the Data Generating Process. \n\n\n\n\n\nJan 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDistribution Functions\n\n\n\n\n\n\n\n\n\n\n\nFeb 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference\n\n\n\n\n\nBegins the discussion on Inference. \n\n\n\n\n\nApr 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nApr 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nApr 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Logistic Regression\n\n\n\n\n\nBegins the discussion on inference for logistic and Poisson regression. \n\n\n\n\n\nApr 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInference with Logistic and Poisson Regression\n\n\n\n\n\nBegins the discussion on inference for logistic and Poisson regression. \n\n\n\n\n\nApr 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModel Inference\n\n\n\n\n\nMake the connection between traditional statisitcal inference an regression inference. \n\n\n\n\n\nMay 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMultivariable Linear Regression\n\n\n\n\n\nContinues the discussion with multi linear regression. \n\n\n\n\n\nMar 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nNumerical Data\n\n\n\n\n\nProvides an overview descriptive statistics and data visualization techniques for numerical data. \n\n\n\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSampling Distribution\n\n\n\n\n\n\n\n\n\n\n\nApr 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSimple Linear Regression\n\n\n\n\n\nBegins the discussion for linear regression. \n\n\n\n\n\nFeb 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistical Inference\n\n\n\n\n\nStatistical Inference \n\n\n\n\n\nApr 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics\n\n\nA Math? A Science? An Art? Or Something Else?\n\n\n\n\n\n\n\n\nIsaac Quintanilla Salinas\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "lectures/12.html#hypothesis",
-    "href": "lectures/12.html#hypothesis",
-    "title": "Inference with Logistic Regression",
-    "section": "Hypothesis",
-    "text": "Hypothesis\n\n\n\\[H_0: \\beta = \\theta\\]\n\n\\[H_0: \\beta \\ne \\theta\\]"
+    "objectID": "ec/ec_4.html",
+    "href": "ec/ec_4.html",
+    "title": "Extra Credit 4",
+    "section": "",
+    "text": "Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. Some of these books are available through the Broome Library.\nBooks:\n\nThe Book of Why\n\nJudea Pearl\n\nAlgorithms of Oppression\n\nSafiya Umoja Noble\n\nData Feminism\n\nCatherine D’Ignazio and Lauren Klein\n\nWeapons of Math Destruction\n\nCathy O’Niel\n\nInvisible women : data bias in a world designed for men\n\nCaroline Criado Perez\n\nFactfulness: Ten Reasons We’re Wrong About the World… and Why Things are Better Than You Think\n\nHans Rosling\n\nArtificial Unintelligence: How Computers Misunderstand the World\n\nMerideth Broussard\n\nTechnically Wrong: Sexist Apps, Biased Algorithms, and Other Threats of Toxic Tech\n\nSara Wachter-Boettcher\n\nOR ANY Book Approved By Me (Deadline for Approval by March 28, 2025)\n\nReport guidelines\n\n4-5 Pages\nMust include a title page\nDouble Spaced\n12 point font\nProofread your work\nSubmit a pdf of your work to Canvas\nDue 5/9/2025\n\nWorth 3 final grade percentage points."
   },
   {
-    "objectID": "lectures/12.html#testing-beta_j",
-    "href": "lectures/12.html#testing-beta_j",
-    "title": "Inference with Logistic Regression",
-    "section": "Testing \\(\\beta_j\\)",
-    "text": "Testing \\(\\beta_j\\)\n\\[\n\\frac{\\hat\\beta_j - \\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim N(0,1)\n\\]"
+    "objectID": "ec/ec_2.html",
+    "href": "ec/ec_2.html",
+    "title": "Extra Credit 2",
+    "section": "",
+    "text": "Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. All books should be available through the Broome Library.\nBooks:\n\nMake it Stick: The Science of Successful Learning\n\nPeter Brown\n\nTeach Yourself How to Learn: Strategies you can use to ace any course\n\nSaundra McGuire\n\nLimitless Mind\n\nJo Boaler\n\n\nReport guidelines\n\n4-5 Pages\nMust include a title page\nDouble Spaced\n12 point font\nProofread your work\nSubmit a pdf of your work to Canvas\nDue 5/9/2025\n\nWorth 3 final grade percentage points."
   },
   {
-    "objectID": "lectures/12.html#confidence-intervals",
-    "href": "lectures/12.html#confidence-intervals",
-    "title": "Inference with Logistic Regression",
-    "section": "Confidence Intervals",
-    "text": "Confidence Intervals\n\\[\nPE \\pm CV \\times SE\n\\]\n\nPE: Point Estimate\nCV: Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\nSE: Standard Error"
+    "objectID": "ec.html",
+    "href": "ec.html",
+    "title": "Extra Credit",
+    "section": "",
+    "text": "Extra Credit is designed to expand on different topics that related to Probability and Statistics, but are not necessarily required for the course. Additionally, these opportunities provide students relief when unexpected situations occur during the semester. While it is not required, I encourage everyone to attempt each opportunity.\nBelow is more information on each assignment.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 1\n\n\n\n\n\nInstructions for extra credit one.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 2\n\n\n\n\n\nInstructions for extra credit two.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 3\n\n\n\n\n\nInstructions for extra credit three.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nExtra Credit 4\n\n\n\n\n\nInstructions for extra credit four.\n\n\n\n\n\nJan 5, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "lectures/12.html#conducting-ht-of-beta_j",
-    "href": "lectures/12.html#conducting-ht-of-beta_j",
-    "title": "Inference with Logistic Regression",
-    "section": "Conducting HT of \\(\\beta_j\\)",
-    "text": "Conducting HT of \\(\\beta_j\\)\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial())\nsummary(xlm)"
+    "objectID": "c/15b.html#traditional-statistics",
+    "href": "c/15b.html#traditional-statistics",
+    "title": "Installing R and Rstudio",
+    "section": "Traditional Statistics",
+    "text": "Traditional Statistics\nTraditional Statistics methods can conducted using either linear or logistic regression.\nVisit Here for more information."
   },
   {
-    "objectID": "lectures/12.html#example",
-    "href": "lectures/12.html#example",
-    "title": "Inference with Logistic Regression",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ recur + number + size, bladder1, family = binomial())\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; glm(formula = death ~ recur + number + size, family = binomial(), \n#&gt;     data = bladder1)\n#&gt; \n#&gt; Coefficients:\n#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    \n#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  \n#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***\n#&gt; number       0.0008451  0.1124503   0.008 0.994004    \n#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    \n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; (Dispersion parameter for binomial family taken to be 1)\n#&gt; \n#&gt;     Null deviance: 189.38  on 293  degrees of freedom\n#&gt; Residual deviance: 166.43  on 290  degrees of freedom\n#&gt; AIC: 174.43\n#&gt; \n#&gt; Number of Fisher Scoring iterations: 6"
+    "objectID": "c/15b.html#what-is-statistics",
+    "href": "c/15b.html#what-is-statistics",
+    "title": "Installing R and Rstudio",
+    "section": "What is Statistics?",
+    "text": "What is Statistics?\nIt is the study of variation and randomness!"
   },
   {
-    "objectID": "lectures/12.html#confidence-interval",
-    "href": "lectures/12.html#confidence-interval",
-    "title": "Inference with Logistic Regression",
-    "section": "Confidence Interval",
-    "text": "Confidence Interval\n\n\nCode\nconfint(xlm, level = LEVEL)"
+    "objectID": "c/15b.html#whats-the-goal-of-statistics",
+    "href": "c/15b.html#whats-the-goal-of-statistics",
+    "title": "Installing R and Rstudio",
+    "section": "What’s the goal of Statistics?",
+    "text": "What’s the goal of Statistics?\n\nINFERENCE\n\n\nUse our sample data to understand the larger population.\n\n\nThe data will tell us how the population generally behaves.\n\n\nThe data will guide us in the differences in units.\n\n\nData will tell us if there is a signal or just noise."
   },
   {
-    "objectID": "lectures/12.html#example-1",
-    "href": "lectures/12.html#example-1",
-    "title": "Inference with Logistic Regression",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nconfint(m1, level = 0.95)\n\n\n#&gt;                  2.5 %      97.5 %\n#&gt; (Intercept) -1.7353779  0.02529523\n#&gt; recur       -0.6217831 -0.20078281\n#&gt; number      -0.2421738  0.20731479\n#&gt; size        -0.5880581  0.06061498"
+    "objectID": "c/15b.html#final-thoughts",
+    "href": "c/15b.html#final-thoughts",
+    "title": "Installing R and Rstudio",
+    "section": "Final Thoughts",
+    "text": "Final Thoughts\n\nWhen conducting a study, literature review and study design are as equally important as statistics.\n\n\nIf you don’t see variability in the data, something is wrong.\n\n\nFocus on consistency in the methodology, not consistency in data.\n\n\nUnderstand that you can be wrong, and that is okay.\n\n\nDon’t let data influence the methodology during a study/experiment."
   },
   {
-    "objectID": "lectures/12.html#confidence-interval-for-odds-ratio",
-    "href": "lectures/12.html#confidence-interval-for-odds-ratio",
-    "title": "Inference with Logistic Regression",
-    "section": "Confidence Interval for Odds Ratio",
-    "text": "Confidence Interval for Odds Ratio\n\n\nCode\nexp(confint(m1, level = 0.95))\n\n\n#&gt;                 2.5 %    97.5 %\n#&gt; (Intercept) 0.1763335 1.0256179\n#&gt; recur       0.5369861 0.8180901\n#&gt; number      0.7849197 1.2303698\n#&gt; size        0.5554048 1.0624898"
+    "objectID": "c/15b.html#statistics-mantra",
+    "href": "c/15b.html#statistics-mantra",
+    "title": "Installing R and Rstudio",
+    "section": "Statistics Mantra",
+    "text": "Statistics Mantra\n\n\n\n\n\n\n\n\nAll models are wrong,\nsome are useful!"
   },
   {
-    "objectID": "lectures/12.html#model-inference",
-    "href": "lectures/12.html#model-inference",
-    "title": "Inference with Logistic Regression",
-    "section": "Model inference",
-    "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(g(\\hat Y)=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
+    "objectID": "c/15b.html#final-survey-1",
+    "href": "c/15b.html#final-survey-1",
+    "title": "Installing R and Rstudio",
+    "section": "Final Survey",
+    "text": "Final Survey\nSurvery"
   },
   {
-    "objectID": "lectures/12.html#model-inference-1",
-    "href": "lectures/12.html#model-inference-1",
-    "title": "Inference with Logistic Regression",
-    "section": "Model Inference",
-    "text": "Model Inference\nGiven 2 models:\n\\[\ng(\\hat Y) = \\hat\\beta_0 + \\hat\\beta_1 X_1 + \\hat\\beta_2 X_2 + \\cdots + \\hat\\beta_p X_p\n\\]\nor\n\\[\ng(\\hat Y) = \\bar y\n\\]\n\nIs the model with predictors do a better job than using the average?"
+    "objectID": "c/15b.html#installing-r",
+    "href": "c/15b.html#installing-r",
+    "title": "Installing R and Rstudio",
+    "section": "Installing R",
+    "text": "Installing R\nhttps://cloud.r-project.org/"
   },
   {
-    "objectID": "lectures/12.html#likelihood-ratio-test",
-    "href": "lectures/12.html#likelihood-ratio-test",
-    "title": "Inference with Logistic Regression",
-    "section": "Likelihood Ratio Test",
-    "text": "Likelihood Ratio Test\nThe Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model.\nIt conducts a hypothesis tests to see if models are significantly different from each other."
+    "objectID": "c/15b.html#installing-rstudio",
+    "href": "c/15b.html#installing-rstudio",
+    "title": "Installing R and Rstudio",
+    "section": "Installing RStudio",
+    "text": "Installing RStudio\nhttps://posit.co/download/rstudio-desktop/"
   },
   {
-    "objectID": "lectures/12.html#conducting-an-lrt-in-r",
-    "href": "lectures/12.html#conducting-an-lrt-in-r",
-    "title": "Inference with Logistic Regression",
-    "section": "Conducting an LRT in R",
-    "text": "Conducting an LRT in R\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial)\nxlm0 &lt;- glm(Y ~ 1, data = DATA, family = binomial)\nanova(xlm0, xlm, test = \"LRT\")"
+    "objectID": "c/15b.html#installing-rtools-windows",
+    "href": "c/15b.html#installing-rtools-windows",
+    "title": "Installing R and Rstudio",
+    "section": "Installing RTools (Windows)",
+    "text": "Installing RTools (Windows)\nhttps://cran.r-project.org/bin/windows/Rtools/"
   },
   {
-    "objectID": "lectures/12.html#example-2",
-    "href": "lectures/12.html#example-2",
-    "title": "Inference with Logistic Regression",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nm0 &lt;- update(m1, formula. = ~ 1)\nanova(m0, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ 1\n#&gt; Model 2: death ~ recur + number + size\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)    \n#&gt; 1       293     189.38                         \n#&gt; 2       290     166.43  3   22.953 4.13e-05 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+    "objectID": "c/15b.html#tidyverse",
+    "href": "c/15b.html#tidyverse",
+    "title": "Installing R and Rstudio",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\ninstall.packages(\"tidyverse\")"
   },
   {
-    "objectID": "lectures/12.html#model-inference-2",
-    "href": "lectures/12.html#model-inference-2",
-    "title": "Inference with Logistic Regression",
-    "section": "Model Inference",
-    "text": "Model Inference\nModel inference can be extended to compare models that have different number of predictors."
+    "objectID": "c/15b.html#csucistats",
+    "href": "c/15b.html#csucistats",
+    "title": "Installing R and Rstudio",
+    "section": "csucistats",
+    "text": "csucistats\n\ninstall.packages('csucistats', \n                 repos = c('https://inqs909.r-universe.dev', \n                           'https://cloud.r-project.org'))"
   },
   {
-    "objectID": "lectures/12.html#model-inference-3",
-    "href": "lectures/12.html#model-inference-3",
-    "title": "Inference with Logistic Regression",
-    "section": "Model Inference",
-    "text": "Model Inference\nGiven:\n\\[\nM1:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
+    "objectID": "c/15b.html#other-packages",
+    "href": "c/15b.html#other-packages",
+    "title": "Installing R and Rstudio",
+    "section": "Other Packages",
+    "text": "Other Packages\n\ninstall.packages(c(\"ggthemes\", \"statmod\", \"car\", \"ggpubr\", \"lmtest\", \"rms\", \"palmerpenguins\"))\ncsucistats::install_plots()\ncsucistats::install_themes()"
   },
   {
-    "objectID": "lectures/12.html#model-inference-4",
-    "href": "lectures/12.html#model-inference-4",
-    "title": "Inference with Logistic Regression",
-    "section": "Model Inference",
-    "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
+    "objectID": "c/15b.html#load-packages",
+    "href": "c/15b.html#load-packages",
+    "title": "Installing R and Rstudio",
+    "section": "Load Packages",
+    "text": "Load Packages\n\nlibrary(tidyverse)\nlibrary(csucistats)\nlibrary(ggthemes)\nlibrary(waffle)\nlibrary(ggmosaic)\nlibrary(ggtricks)\nlibrary(ggtext)\nlibrary(ggpubr)\nlibrary(ThemePark)\nlibrary(car)\nlibrary(lmtest)\nlibrary(rms)\nlibrary(palmerpenguins)"
   },
   {
-    "objectID": "lectures/12.html#likelihood-ratio-test-in-r",
-    "href": "lectures/12.html#likelihood-ratio-test-in-r",
-    "title": "Inference with Logistic Regression",
-    "section": "Likelihood Ratio Test in R",
-    "text": "Likelihood Ratio Test in R\n\n\nCode\nfull &lt;- glm(Y  ~  X1 + X2 + X3 + X4, DATA, family = binomial())\nred &lt;- glm(Y ~ X1 + X2, DATA, family = binomial())\nanova(red, full, test = \"LRT\")"
+    "objectID": "c/15b.html#rstudio-layout-1",
+    "href": "c/15b.html#rstudio-layout-1",
+    "title": "Installing R and Rstudio",
+    "section": "RStudio Layout",
+    "text": "RStudio Layout\n\nScripts\nConsole\nEnvironment\nFiles\nEverything else"
   },
   {
-    "objectID": "lectures/12.html#example-3",
-    "href": "lectures/12.html#example-3",
-    "title": "Inference with Logistic Regression",
-    "section": "Example",
-    "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ number + size + recur, bladder1, family = binomial())\nm2 &lt;- glm(death ~ recur, bladder1, family = binomial())\nanova(m2, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ recur\n#&gt; Model 2: death ~ number + size + recur\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)\n#&gt; 1       292     168.72                     \n#&gt; 2       290     166.43  2   2.2883   0.3185"
+    "objectID": "c/15b.html#downloading-data-data",
+    "href": "c/15b.html#downloading-data-data",
+    "title": "Installing R and Rstudio",
+    "section": "Downloading Data Data",
+    "text": "Downloading Data Data\n\nu1 &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.csv\"\nu2 &lt;- \"https://www.inqs.info/p/plotathon/owenWilsonWows.xlsx\"\n\ndownload.file(u1,\n              file.path(getwd(), basename(u1)))\ndownload.file(u2,\n              file.path(getwd(), basename(u2)))"
   },
   {
-    "objectID": "lectures/14.html#motivating-example-1",
-    "href": "lectures/14.html#motivating-example-1",
+    "objectID": "c/15b.html#loading-data-1",
+    "href": "c/15b.html#loading-data-1",
+    "title": "Installing R and Rstudio",
+    "section": "Loading Data",
+    "text": "Loading Data"
+  },
+  {
+    "objectID": "c/1a.html#slides",
+    "href": "c/1a.html#slides",
+    "title": "Welcome!",
+    "section": "Slides",
+    "text": "Slides\nm201.inqs.info/c/1a"
+  },
+  {
+    "objectID": "c/1a.html#introductions-1",
+    "href": "c/1a.html#introductions-1",
+    "title": "Welcome!",
+    "section": "Introductions",
+    "text": "Introductions\n\nSan Bernardino, CA\nCSU Monterey Bay\n\nBS Biology\n\nSan Diego State University\n\nMaster’s in Public Health\n\nUC Riverside\n\nPhD in Applied Statistics"
+  },
+  {
+    "objectID": "c/1a.html#introductions-2",
+    "href": "c/1a.html#introductions-2",
+    "title": "Welcome!",
+    "section": "Introductions",
+    "text": "Introductions\n\n\nName\nYear\nMajor\nFun Fact\nCareer Goal"
+  },
+  {
+    "objectID": "c/1a.html#epe---connor-stevenson",
+    "href": "c/1a.html#epe---connor-stevenson",
+    "title": "Welcome!",
+    "section": "EPE - Connor Stevenson",
+    "text": "EPE - Connor Stevenson\n\n\n\n\n\n3rd Year\nMath/Computer Science Major"
+  },
+  {
+    "objectID": "c/1a.html#early-succes-module-esm",
+    "href": "c/1a.html#early-succes-module-esm",
+    "title": "Welcome!",
+    "section": "Early Succes Module (ESM)",
+    "text": "Early Succes Module (ESM)"
+  },
+  {
+    "objectID": "c/1a.html#assignments",
+    "href": "c/1a.html#assignments",
+    "title": "Welcome!",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\nSelfie at profesor’s door and Introduction\nSelfie at the LRC\nLearner Info Survey\nEvidence of a Study Group\n\n\n\nBloom’s Taxonomy\nUsing the Study Cycle Efficiently\nSelfie at favorite place\nSelfie with support staff\nThe Feynman Technique"
+  },
+  {
+    "objectID": "c/1a.html#class-setup-1",
+    "href": "c/1a.html#class-setup-1",
+    "title": "Welcome!",
+    "section": "Class Setup",
+    "text": "Class Setup\n\nParticipation\nReading Assignments\nNotebook Assignments\nVideo Assignments\nHomework Assignments\nExams\nExtra Credit"
+  },
+  {
+    "objectID": "c/1a.html#study-expectations",
+    "href": "c/1a.html#study-expectations",
+    "title": "Welcome!",
+    "section": "Study Expectations",
+    "text": "Study Expectations\nFor every 1 unit of class you take, you are expected to spend ~3 hours outside of class for the course."
+  },
+  {
+    "objectID": "c/1a.html#syllabus",
+    "href": "c/1a.html#syllabus",
+    "title": "Welcome!",
+    "section": "Syllabus",
+    "text": "Syllabus\nm201.inqs.info/syllabus"
+  },
+  {
+    "objectID": "c/1a.html#r-programming",
+    "href": "c/1a.html#r-programming",
+    "title": "Welcome!",
+    "section": "R Programming",
+    "text": "R Programming\nThis class you will use R programming to conduct data analysis.\nR is a powerful tool that allows you to program complex tasks.\nLearning R is difficult, but it is the best teacher to teach you how to overcome challenges. Don’t give up when it gets hard and seek out help when needed."
+  },
+  {
+    "objectID": "c/1a.html#when-do-you-use-statistics",
+    "href": "c/1a.html#when-do-you-use-statistics",
+    "title": "Welcome!",
+    "section": "When do you use statistics?",
+    "text": "When do you use statistics?"
+  },
+  {
+    "objectID": "c/1a.html#what-is-the-difference-between-math-and-stats",
+    "href": "c/1a.html#what-is-the-difference-between-math-and-stats",
+    "title": "Welcome!",
+    "section": "What is the difference between math and stats?",
+    "text": "What is the difference between math and stats?"
+  },
+  {
+    "objectID": "c/1a.html#use-of-generative-ai-1",
+    "href": "c/1a.html#use-of-generative-ai-1",
+    "title": "Welcome!",
+    "section": "Use of Generative AI",
+    "text": "Use of Generative AI\nThe use of generative artificial intelligence (AI) will be prohibited in class. This includes, but not limited to, ChatGPT, Meta AI, and Google Gemini."
+  },
+  {
+    "objectID": "c/1a.html#educational-mislearning",
+    "href": "c/1a.html#educational-mislearning",
+    "title": "Welcome!",
+    "section": "Educational Mislearning",
+    "text": "Educational Mislearning\nThe purpose of this class, and college, is for you to learn about critical thinking skills and perseverance. Using AI will only teach you how to get an answer, which may or may not be correct.\n\nYou will not develop the skills needed to problem solve a challenge. Additionally, developing grit is essential to become successful in college and life. There is no easy way out and AI is an illusion to your success in life.\n\n\nTo learn something, it requires hours of work! If not years!"
+  },
+  {
+    "objectID": "c/1a.html#stolen-workmonday-have-their-work-to-be-used-this-way.",
+    "href": "c/1a.html#stolen-workmonday-have-their-work-to-be-used-this-way.",
+    "title": "Welcome!",
+    "section": "Stolen WorkMonday have their work to be used this way.",
+    "text": "Stolen WorkMonday have their work to be used this way.\n\nAdditionally, all these individuals are not receiving any royalties for the work to be used in creating generative AI models.\n\n\nInside Higher Ed and The New Yorker highlight individual’s concern of their work being used to train AI models."
+  },
+  {
+    "objectID": "c/1a.html#privacy-concerns",
+    "href": "c/1a.html#privacy-concerns",
+    "title": "Welcome!",
+    "section": "Privacy Concerns",
+    "text": "Privacy Concerns\nThe use of generative AI raises concerns of what data is being harvested from us, possibly without informed consent.\n\nWhen you used any large language models, you do not know what information is being harvested from you.\n\n\nDo you want to upload your thoughts and ideas to a company that can monetize, and possibly exploit.\n\n\nDoes your Professors consent with you uploading their assignments to large language models.\n\n\nStanford provided a report highlighting the risks of our personal data use in large language models."
+  },
+  {
+    "objectID": "c/1a.html#math-201-consent",
+    "href": "c/1a.html#math-201-consent",
+    "title": "Welcome!",
+    "section": "Math 201 Consent",
+    "text": "Math 201 Consent\n\nDr. Isaac Quintanilla Salinas consents in you sharing course material to your friends and family for learning purposes. Use the material to educate and uplift your community.\n\n\nDr. Isaac Quintanilla Salinas does not consent in you sharing course material to companies/corporations. Additionally, I do not consent in the use of course material for academic dishonesty. Exceptions are allowed for DASS-approved services."
+  },
+  {
+    "objectID": "c/1a.html#environmental-impact",
+    "href": "c/1a.html#environmental-impact",
+    "title": "Welcome!",
+    "section": "Environmental Impact",
+    "text": "Environmental Impact\nIn order to run these large language models, companies need to use a large amounts of energy. This is because large servers are needed to both train and execute a model.\n\nThe LA Times reports the potential impact that running AI models in California.\n\n\nAdditionally, Time reports that a ChatGPT query uses ten times more energy than a Google search query, and global AI demands can consume of 1 trillion gallons of water by 2027.\n\n\nThere are also environmental justice questions about where these data centers are constructed."
+  },
+  {
+    "objectID": "c/1a.html#worker-exploitation",
+    "href": "c/1a.html#worker-exploitation",
+    "title": "Welcome!",
+    "section": "Worker Exploitation",
+    "text": "Worker Exploitation\nThe Washington Post and Time (Article 1 and Article 2) reported that AI companies utilize “digital sweatshops” to classify data points for model training.\n\nThere is a human cost from the Global South, both financially and mentally, to develop the AI models for users in the United States and Europe.\n\n\nWe must be conscious consumers and demand more from these companies to provide safe working conditions and livable wages."
+  },
+  {
+    "objectID": "c/1a.html#how-will-the-profesor-enforce-the-policy",
+    "href": "c/1a.html#how-will-the-profesor-enforce-the-policy",
+    "title": "Welcome!",
+    "section": "How will the Profesor enforce the policy?",
+    "text": "How will the Profesor enforce the policy?\n\nI am not! Unless it is extremely obvious, it is extremely difficult to identify AI use.\n\n\nCell has an article indicating that the use of GPT detectors harm non-native English speakers."
+  },
+  {
+    "objectID": "c/1a.html#is-using-ai-bad",
+    "href": "c/1a.html#is-using-ai-bad",
+    "title": "Welcome!",
+    "section": "Is Using AI Bad?",
+    "text": "Is Using AI Bad?\n\nNO\n\n\nWhat we should do is demand companies to develop these tools in an ethical manner!"
+  },
+  {
+    "objectID": "c/1a.html#intro-form",
+    "href": "c/1a.html#intro-form",
+    "title": "Welcome!",
+    "section": "Intro Form",
+    "text": "Intro Form\nhttps://forms.gle/JWaUdgKB6qui98yz5"
+  },
+  {
+    "objectID": "c/1a.html#survey",
+    "href": "c/1a.html#survey",
+    "title": "Welcome!",
+    "section": "Survey",
+    "text": "Survey\nhttps://forms.gle/BCMDgB3pDHJ1MmSYA"
+  },
+  {
+    "objectID": "c/1a.html#extra-credit-1",
+    "href": "c/1a.html#extra-credit-1",
+    "title": "Welcome!",
+    "section": "Extra Credit 1",
+    "text": "Extra Credit 1"
+  },
+  {
+    "objectID": "c/1a.html#extra-credit-2",
+    "href": "c/1a.html#extra-credit-2",
+    "title": "Welcome!",
+    "section": "Extra Credit 2",
+    "text": "Extra Credit 2"
+  },
+  {
+    "objectID": "c/1a.html#extra-credit-3",
+    "href": "c/1a.html#extra-credit-3",
+    "title": "Welcome!",
+    "section": "Extra Credit 3",
+    "text": "Extra Credit 3"
+  },
+  {
+    "objectID": "c/1a.html#extra-credit-4",
+    "href": "c/1a.html#extra-credit-4",
+    "title": "Welcome!",
+    "section": "Extra Credit 4",
+    "text": "Extra Credit 4"
+  },
+  {
+    "objectID": "c/1a.html#class-cancelled",
+    "href": "c/1a.html#class-cancelled",
+    "title": "Welcome!",
+    "section": "Class Cancelled",
+    "text": "Class Cancelled\n\nMonday 1/27/25\nMonday 2/3/25"
+  },
+  {
+    "objectID": "ec/ec_1.html",
+    "href": "ec/ec_1.html",
+    "title": "Extra Credit 1",
+    "section": "",
+    "text": "Complete One of the Following Assignments\nDue 2/14/2024\nWorth 1 final grade percentage points.\n\nVisit a Lunch and/or Research Talk\nCandidates will be visiting the campus for the Data Science Position. It is important for the hiring committee to get student feedback for each candidate. There will be 3 candidates visiting campus, where they will interact with students community time, during lunch, and their research talk. This means there is a total of 9 opportunities to visit a candidate.\nTo obtain credit, you must visit one cancdidate during their lunch or research talk, and provide feedback and sign in.\n\n\n\n\n\n\n\n\n\n\nCandidate\nDay\nCommunity Time\nLunch\nResearch\n\n\n\n\n1\nMonday (1/27)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe; 10 Students Max)\n2-3 PM (Broome 1710)\n\n\n2\nMonday (2/3)\n9:30-10 AM (BTE 2810)\n12:10-1:15 PM (Island’s Cafe)\n2-3 PM (BT 1642)\n\n\n3\nTuesday (2/4)\n9:30-10 & 11-11:20 (BTE 2810)\n11:30-12:15 PM (Island’s Cafe)\n1-2 PM (BT 1462)\n\n\n\nNote: you can attend more than one meeting.\n\n\nWrite a Wellness Plan\nWrite a welness plan to ensure you will maintain your overall well being.\nReport guidelines\n\n1-2 Pages\nDouble Spaced\n12 point font"
+  },
+  {
+    "objectID": "ec/ec_3.html",
+    "href": "ec/ec_3.html",
+    "title": "Extra Credit 3",
+    "section": "",
+    "text": "Provide a summary of one book below, an write a brief analysis in supporting or opposing the book, and connect key elements of the book to your every day life. The majority of these books are available through the Broome Library.\nBooks:\n\nHappiness: A Guide to Developing Life’s\n\nMatthieu Ricard\n\nGrit: The Power of Passion and Perserverance\n\nAngela Duckworth\n\nMindset: The New Psychology of Success\n\nCarol Dweck\n\n\nReport guidelines\n\n4-5 Pages\nMust include a title page\nDouble Spaced\n12 point font\nProofread your work\nSubmit a pdf of your work to Canvas\nDue 5/9/2025\n\nWorth 3 final grade percentage points."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Elementary Statistics!",
+    "section": "",
+    "text": "Brief Introduction\n\n\n\n\n\nWelcome to the course! This is the home page of the course where I will provide a recap on what was covered in the week. Here I will post any documents or videos for your reference. If you have any questions, please email me at isaac.qs@csuci.edu."
+  },
+  {
+    "objectID": "lectures/1.html#statistical-warning",
+    "href": "lectures/1.html#statistical-warning",
+    "title": "Statistics",
+    "section": "Statistical Warning",
+    "text": "Statistical Warning"
+  },
+  {
+    "objectID": "lectures/1.html#statistics-1",
+    "href": "lectures/1.html#statistics-1",
+    "title": "Statistics",
+    "section": "Statistics",
+    "text": "Statistics\n\n\n\n\n\n\n\n\n\n\nWith an increasing use of data to make decisions, Statistics has been essential for processing large amounts of data to byte-size information\nStatistics is also known as\n\nData Science\nMachine Learning\nArtificial Intelligence\n\nSo for today, we’re asking: what is Statistics?"
+  },
+  {
+    "objectID": "lectures/1.html#what-does-google-say",
+    "href": "lectures/1.html#what-does-google-say",
+    "title": "Statistics",
+    "section": "What does Google say?",
+    "text": "What does Google say?\n\n\nUC Irvine\nStatistics is the science concerned with developing and studying methods for collecting, analyzing, interpreting and presenting empirical data.\n\nWikipedia\nStatistics is a mathematical body of science that pertains to the collection, analysis, interpretation or explanation, and presentation of data, or as a branch of mathematics."
+  },
+  {
+    "objectID": "lectures/1.html#what-does-ai-say",
+    "href": "lectures/1.html#what-does-ai-say",
+    "title": "Statistics",
+    "section": "What does AI say?",
+    "text": "What does AI say?\n\n\nChatGPT\nStatistics is a branch of mathematics and a field of study that deals with the collection, analysis, interpretation, presentation, and organization of data.\n\nGoogle Gemini\nStatistics is the science of collecting, analyzing, interpreting, and presenting data."
+  },
+  {
+    "objectID": "lectures/1.html#what-do-researchers-say",
+    "href": "lectures/1.html#what-do-researchers-say",
+    "title": "Statistics",
+    "section": "What do researchers say?",
+    "text": "What do researchers say?\n\nAnthropologistMicrobiologistSociologistPolitical ScientistEcologistMathematician\n\n\nObjectively interpreting data to make meaningful inferences about our predictions.\n\n\nWhatever the statistician says.\n\n\nGathering the narratives of individuals, groups, or society and telling a story about their past, present, or future. The numbers paint a picture worth many words.\n\n\nUsing numbers to try to explain behaviors and/or patterns in our world.\n\n\nStatistics is the way to make sense of the natural world by taking data we collect to identify patterns between variables, and applying statistical theory to make sure we are taking the right approach to data collection and analysis. Also, assess patterns to see if they are reproducible and provide a logical explanation that makes biological sense.\n\n\nStatistics is the study of data, patterns, and trends."
+  },
+  {
+    "objectID": "lectures/1.html#what-is-it",
+    "href": "lectures/1.html#what-is-it",
+    "title": "Statistics",
+    "section": "What is it?",
+    "text": "What is it?\n\n\nMath\n\n\n\n\n\n\nScience"
+  },
+  {
+    "objectID": "lectures/1.html#what-does-a-statistician-say",
+    "href": "lectures/1.html#what-does-a-statistician-say",
+    "title": "Statistics",
+    "section": "What does a Statistician say?",
+    "text": "What does a Statistician say?\nIt is the study of variation and randomness!\n\nUsing mathematics, we model randomness to characterizes commonality and variation!\n\n\nUsing science, we systematically refine models to better fit randomness in data!\n\n\nUsing art, when it all eventually fails!"
+  },
+  {
+    "objectID": "lectures/1.html#when-it-fails",
+    "href": "lectures/1.html#when-it-fails",
+    "title": "Statistics",
+    "section": "When it fails?!?!",
+    "text": "When it fails?!?!"
+  },
+  {
+    "objectID": "lectures/1.html#statistics-mantra---george-box",
+    "href": "lectures/1.html#statistics-mantra---george-box",
+    "title": "Statistics",
+    "section": "Statistics Mantra - George Box",
+    "text": "Statistics Mantra - George Box\n\n\n\n\n\n\n\n\nAll models are wrong,\nsome are useful!"
+  },
+  {
+    "objectID": "lectures/1.html#what-is-the-formal-definition-of-statistics",
+    "href": "lectures/1.html#what-is-the-formal-definition-of-statistics",
+    "title": "Statistics",
+    "section": "What is the formal definition of Statistics?",
+    "text": "What is the formal definition of Statistics?\nStatistics is both the development of mathematical models to be used in real-world data and the analysis of data using existing models."
+  },
+  {
+    "objectID": "lectures/1.html#probability-models",
+    "href": "lectures/1.html#probability-models",
+    "title": "Statistics",
+    "section": "Probability Models",
+    "text": "Probability Models\n\n\n\n\n\n\n\n\n\nModel observations that follow a new data generating process\nUnderstand its properties\nDevelop new probability distributions\nKnown as Probability Theory\nResearcher is a Probabilist or Mathematical Statistician"
+  },
+  {
+    "objectID": "lectures/1.html#data-analysis",
+    "href": "lectures/1.html#data-analysis",
+    "title": "Statistics",
+    "section": "Data Analysis",
+    "text": "Data Analysis\n\n\n\nModel data with a known probability model\nAccount for sources of variation and bias\nAccount for violations of independence and randomness\nKnown as Statistician or Data Scientist"
+  },
+  {
+    "objectID": "lectures/1.html#whats-the-goal-of-a-statistician",
+    "href": "lectures/1.html#whats-the-goal-of-a-statistician",
+    "title": "Statistics",
+    "section": "What’s the goal of a Statistician?",
+    "text": "What’s the goal of a Statistician?\n\nINFERENCE\n\n\nUse our sample data to understand the larger population.\n\n\nThe data will tell us how the population generally behaves.\n\n\nThe data will guide us in the differences in units.\n\n\nData will tell us if there is a signal or just noise."
+  },
+  {
+    "objectID": "lectures/1.html#word-cloud",
+    "href": "lectures/1.html#word-cloud",
+    "title": "Statistics",
+    "section": "Word Cloud",
+    "text": "Word Cloud"
+  },
+  {
+    "objectID": "lectures/1.html#conducting-inference",
+    "href": "lectures/1.html#conducting-inference",
+    "title": "Statistics",
+    "section": "Conducting Inference",
+    "text": "Conducting Inference"
+  },
+  {
+    "objectID": "lectures/1.html#are-we-seeing-something-or-is-it-just-noise",
+    "href": "lectures/1.html#are-we-seeing-something-or-is-it-just-noise",
+    "title": "Statistics",
+    "section": "Are we seeing something or is it just noise???",
+    "text": "Are we seeing something or is it just noise???\nAre we seeing something different from what was expected? Or is it due to random chance?"
+  },
+  {
+    "objectID": "lectures/1.html#hypothesis-testing",
+    "href": "lectures/1.html#hypothesis-testing",
+    "title": "Statistics",
+    "section": "Hypothesis Testing",
+    "text": "Hypothesis Testing\n\n\nSet up the Null and Alternative Hypothesis\nConstruct a test statistic based on the null hypothesis\nConstruct a distribution of the test statistic based on probability theory\nCompute the probability of observing the test statistic\nMake a decision based on the probability"
+  },
+  {
+    "objectID": "lectures/1.html#what-if-we-cannot-construct-the-distribution",
+    "href": "lectures/1.html#what-if-we-cannot-construct-the-distribution",
+    "title": "Statistics",
+    "section": "What if we cannot construct the distribution?!?!",
+    "text": "What if we cannot construct the distribution?!?!\n\n\n\n\n\n\n\n\n\n\n\nWe bring out the Monte Carlo methods!"
+  },
+  {
+    "objectID": "lectures/1.html#monte-carlo-methods",
+    "href": "lectures/1.html#monte-carlo-methods",
+    "title": "Statistics",
+    "section": "Monte Carlo Methods",
+    "text": "Monte Carlo Methods\n\nMonte Carlo Methods are used to construct a distribution function of an obscure test statistic\nWe simulate a large number of data sets based on the null hypothesis\nWe construct a test statistic for each fake data set and the real one\nWe count how many data sets produce a test statistic that is more extreme than the real test statistic\n\\(p=\\#\\ of\\ extreme\\ data\\ sets\\ /\\ all\\ data\\ sets\\)"
+  },
+  {
+    "objectID": "lectures/1.html#overview-of-research",
+    "href": "lectures/1.html#overview-of-research",
+    "title": "Statistics",
+    "section": "Overview of Research",
+    "text": "Overview of Research\n\n\nAsk a question about a population\nCollect data from a sample\nConstruct and test a hypothesis\nDraw conclusion about the population\nRefine your question and methodology"
+  },
+  {
+    "objectID": "lectures/1.html#so-what-is-statistics",
+    "href": "lectures/1.html#so-what-is-statistics",
+    "title": "Statistics",
+    "section": "So, what is Statistics?",
+    "text": "So, what is Statistics?\n\n\n\n\n\n\nFor you, I’ll be anything"
+  },
+  {
+    "objectID": "lectures/1.html#whats-statistics-without-a-little",
+    "href": "lectures/1.html#whats-statistics-without-a-little",
+    "title": "Statistics",
+    "section": "What’s Statistics without a little …",
+    "text": "What’s Statistics without a little …"
+  },
+  {
+    "objectID": "lectures/1.html#train-of-thoughts",
+    "href": "lectures/1.html#train-of-thoughts",
+    "title": "Statistics",
+    "section": "Train of Thoughts",
+    "text": "Train of Thoughts\n\nThere are two train of thoughts on how to interpret estimates and probability.\n\n\nOne approach is the Frequentist approach.\n\n\nThe other approach is the Bayesian approach.\n\n\nBoth sides hate each other."
+  },
+  {
+    "objectID": "lectures/1.html#frequentists",
+    "href": "lectures/1.html#frequentists",
+    "title": "Statistics",
+    "section": "Frequentists",
+    "text": "Frequentists"
+  },
+  {
+    "objectID": "lectures/1.html#frequentists-1",
+    "href": "lectures/1.html#frequentists-1",
+    "title": "Statistics",
+    "section": "Frequentists",
+    "text": "Frequentists\nA frequentist, in the context of statistics, is an individual who adheres to the frequentist interpretation of probability and statistical inference.\n\nMeaning probability is obtained by the repetition of multiple experiments."
+  },
+  {
+    "objectID": "lectures/1.html#bayesians",
+    "href": "lectures/1.html#bayesians",
+    "title": "Statistics",
+    "section": "Bayesians",
+    "text": "Bayesians"
+  },
+  {
+    "objectID": "lectures/1.html#bayesians-1",
+    "href": "lectures/1.html#bayesians-1",
+    "title": "Statistics",
+    "section": "Bayesians",
+    "text": "Bayesians\nA Bayesians, in the context of statistics, is an individual who adheres to the Bayesian interpretation of probability and statistical inference.\n\nProbability is obtained by likelihood of an event to occur, given data and prior knowledge."
+  },
+  {
+    "objectID": "lectures/1.html#what-am-i-and-people-that-have-lives",
+    "href": "lectures/1.html#what-am-i-and-people-that-have-lives",
+    "title": "Statistics",
+    "section": "What am I (and people that have lives)?",
+    "text": "What am I (and people that have lives)?\n\n\nWhatever gets the job done!"
+  },
+  {
+    "objectID": "lectures/1.html#there-is-more-much-more-but-i-will-say-this-in-my-statistical-journey",
+    "href": "lectures/1.html#there-is-more-much-more-but-i-will-say-this-in-my-statistical-journey",
+    "title": "Statistics",
+    "section": "There is more, much more, but I will say this, in my statistical journey",
+    "text": "There is more, much more, but I will say this, in my statistical journey"
+  },
+  {
+    "objectID": "lectures/11.html#motivating-example-1",
+    "href": "lectures/11.html#motivating-example-1",
     "title": "Inference with Linear Regression",
     "section": "Motivating Example",
     "text": "Motivating Example\n\n\nCode\np1 &lt;- penguins |&gt; ggplot(aes(x=species, y = body_mass_g)) +\n  geom_jitter() + \n  geom_boxplot() + \n  labs(x = \"Species\", y = \"Body Mass\")\n  \np2 &lt;- penguins |&gt; ggplot(aes(x=flipper_length_mm, y = body_mass_g)) +\n  geom_point() + \n  labs(x = \"Flipper Length\", y = \"Body Mass\")  \n\np1 + p2"
   },
   {
-    "objectID": "lectures/14.html#mathematical-models-1",
-    "href": "lectures/14.html#mathematical-models-1",
+    "objectID": "lectures/11.html#mathematical-models-1",
+    "href": "lectures/11.html#mathematical-models-1",
     "title": "Inference with Linear Regression",
     "section": "Mathematical Models",
     "text": "Mathematical Models"
   },
   {
-    "objectID": "lectures/14.html#standard-normal-distribution",
-    "href": "lectures/14.html#standard-normal-distribution",
+    "objectID": "lectures/11.html#standard-normal-distribution",
+    "href": "lectures/11.html#standard-normal-distribution",
     "title": "Inference with Linear Regression",
     "section": "Standard Normal Distribution",
     "text": "Standard Normal Distribution\n\n\n\\[\n{\\frac{1}{\\sqrt{2 \\pi}}} e^{-\\frac{1}{2}x^2}\n\\]\n\n\n\nCode\ndata.frame(x = seq(-5,5, length.out = 100), \n           y1 = dt(seq(-5,5, length.out = 100), 1),\n           y2 = dt(seq(-5,5, length.out = 100), 10),\n           y3 = dt(seq(-5,5, length.out = 100), 30),\n           y4 = dt(seq(-5,5, length.out = 100), 100),\n           y5 = dnorm((seq(-5,5, length.out = 100)))) |&gt; \n  ggplot() +\n  # geom_line(aes(x, y1, color = \"1\")) +\n  # geom_line(aes(x, y2, color = \"10\")) +\n  # geom_line(aes(x, y3, color = \"30\")) +\n  # geom_line(aes(x, y4, color = \"100\")) +\n  geom_line(aes(x, y5)) +\n  ylab(\"y\")"
   },
   {
-    "objectID": "lectures/14.html#t-distribution",
-    "href": "lectures/14.html#t-distribution",
+    "objectID": "lectures/11.html#t-distribution",
+    "href": "lectures/11.html#t-distribution",
     "title": "Inference with Linear Regression",
     "section": "t Distribution",
     "text": "t Distribution\n\n\n\\[\n\\frac{\\Gamma \\left(\\frac{v+1}{2}\\right)}{\\sqrt{\\pi v}\\Gamma\\left(\\frac{v}{2}\\right)} \\left(1 + \\frac{x^2}{v}\\right)^{-\\frac{v+1}{2}}\n\\]\n\n\n\nCode\ndata.frame(x = seq(-5,5, length.out = 100), \n           y1 = dt(seq(-5,5, length.out = 100), 1),\n           y2 = dt(seq(-5,5, length.out = 100), 10),\n           y3 = dt(seq(-5,5, length.out = 100), 30),\n           y4 = dt(seq(-5,5, length.out = 100), 100),\n           y5 = dnorm((seq(-5,5, length.out = 100)))) |&gt; \n  ggplot() +\n  geom_line(aes(x, y1, color = \"1\")) +\n  geom_line(aes(x, y2, color = \"10\")) +\n  geom_line(aes(x, y3, color = \"30\")) +\n  geom_line(aes(x, y4, color = \"100\")) +\n  geom_line(aes(x, y5, color = \"Normal\")) +\n  ylab(\"y\")"
   },
   {
-    "objectID": "lectures/14.html#hypothesis",
-    "href": "lectures/14.html#hypothesis",
+    "objectID": "lectures/11.html#hypothesis",
+    "href": "lectures/11.html#hypothesis",
     "title": "Inference with Linear Regression",
     "section": "Hypothesis",
     "text": "Hypothesis\n\n\n\\[H_0: \\beta = \\theta\\]\n\n\\[H_0: \\beta \\ne \\theta\\]"
   },
   {
-    "objectID": "lectures/14.html#testing-beta_j",
-    "href": "lectures/14.html#testing-beta_j",
+    "objectID": "lectures/11.html#testing-beta_j",
+    "href": "lectures/11.html#testing-beta_j",
     "title": "Inference with Linear Regression",
     "section": "Testing \\(\\beta_j\\)",
     "text": "Testing \\(\\beta_j\\)\n\\[\nT = \\frac{\\hat\\beta_j-\\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim t_{n-p^\\prime}\n\\]\n\n\\(n\\): sample size\n\\(p^\\prime\\): number of \\(\\beta\\)s"
   },
   {
-    "objectID": "lectures/14.html#p-value",
-    "href": "lectures/14.html#p-value",
+    "objectID": "lectures/11.html#p-value",
+    "href": "lectures/11.html#p-value",
     "title": "Inference with Linear Regression",
     "section": "P-Value",
     "text": "P-Value\n\n\n\nAlternative Hypothesis\np-value\n\n\n\n\n\\(\\beta&gt;\\theta\\)\n\\(P(\\hat\\beta &gt;T)=p\\)\n\n\n\\(\\beta&lt;\\theta\\)\n\\(P(\\hat\\beta &lt; T)=p\\)\n\n\n\\(\\beta\\ne\\theta\\)\n\\(2\\times P(\\hat\\beta &gt;|T|)=p\\)"
   },
   {
-    "objectID": "lectures/14.html#confidence-intervals",
-    "href": "lectures/14.html#confidence-intervals",
+    "objectID": "lectures/11.html#confidence-intervals",
+    "href": "lectures/11.html#confidence-intervals",
     "title": "Inference with Linear Regression",
     "section": "Confidence Intervals",
     "text": "Confidence Intervals\n\\[\n\\hat \\beta_j \\pm CV \\times se(\\hat\\beta_j)\n\\]\n\n\\(CV\\): Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\n\\(se\\): Standard Error Function"
   },
   {
-    "objectID": "lectures/14.html#conducting-ht-of-beta_j",
-    "href": "lectures/14.html#conducting-ht-of-beta_j",
+    "objectID": "lectures/11.html#conducting-ht-of-beta_j",
+    "href": "lectures/11.html#conducting-ht-of-beta_j",
     "title": "Inference with Linear Regression",
     "section": "Conducting HT of \\(\\beta_j\\)",
     "text": "Conducting HT of \\(\\beta_j\\)\n\n\nCode\nxlm &lt;- lm(Y ~ X, data = DATA)\nsummary(xlm)"
   },
   {
-    "objectID": "lectures/14.html#example",
-    "href": "lectures/14.html#example",
+    "objectID": "lectures/11.html#example",
+    "href": "lectures/11.html#example",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nm1 &lt;- lm(body_mass_g ~ species + flipper_length_mm, penguins)\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)\n#&gt; \n#&gt; Residuals:\n#&gt;    Min     1Q Median     3Q    Max \n#&gt; -898.8 -252.0  -24.8  229.8 1191.6 \n#&gt; \n#&gt; Coefficients:\n#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept)       -4013.18     586.25  -6.846 3.74e-11 ***\n#&gt; speciesChinstrap   -205.38      57.57  -3.568 0.000414 ***\n#&gt; speciesGentoo       284.52      95.43   2.981 0.003083 ** \n#&gt; flipper_length_mm    40.61       3.08  13.186  &lt; 2e-16 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 373.3 on 329 degrees of freedom\n#&gt; Multiple R-squared:  0.787,  Adjusted R-squared:  0.7851 \n#&gt; F-statistic: 405.3 on 3 and 329 DF,  p-value: &lt; 2.2e-16"
   },
   {
-    "objectID": "lectures/14.html#confidence-interval",
-    "href": "lectures/14.html#confidence-interval",
+    "objectID": "lectures/11.html#confidence-interval",
+    "href": "lectures/11.html#confidence-interval",
     "title": "Inference with Linear Regression",
     "section": "Confidence Interval",
     "text": "Confidence Interval\n\n\nCode\nconfint(xlm, level = LEVEL)"
   },
   {
-    "objectID": "lectures/14.html#example-1",
-    "href": "lectures/14.html#example-1",
+    "objectID": "lectures/11.html#example-1",
+    "href": "lectures/11.html#example-1",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nconfint(m1, level = 0.90)\n\n\n#&gt;                           5 %        95 %\n#&gt; (Intercept)       -4980.19064 -3046.16714\n#&gt; speciesChinstrap   -300.33123  -110.41973\n#&gt; speciesGentoo       127.11143   441.93578\n#&gt; flipper_length_mm    35.52645    45.68588"
   },
   {
-    "objectID": "lectures/14.html#model-inference",
-    "href": "lectures/14.html#model-inference",
+    "objectID": "lectures/11.html#model-inference",
+    "href": "lectures/11.html#model-inference",
     "title": "Inference with Linear Regression",
     "section": "Model inference",
     "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(\\hat Y=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
   },
   {
-    "objectID": "lectures/14.html#model-inference-1",
-    "href": "lectures/14.html#model-inference-1",
+    "objectID": "lectures/11.html#model-inference-1",
+    "href": "lectures/11.html#model-inference-1",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nGiven 2 models:\n\\[\n\\hat Y = \\hat\\beta_0 + \\hat\\beta_1 X_1 + \\hat\\beta_2 X_2 + \\cdots + \\hat\\beta_p X_p\n\\]\nor\n\\[\n\\hat Y = \\bar y\n\\]\n\nIs the model with predictors do a better job than using the average?"
   },
   {
-    "objectID": "lectures/14.html#anova",
-    "href": "lectures/14.html#anova",
+    "objectID": "lectures/11.html#anova",
+    "href": "lectures/11.html#anova",
     "title": "Inference with Linear Regression",
     "section": "ANOVA",
     "text": "ANOVA"
   },
   {
-    "objectID": "lectures/14.html#anova-table",
-    "href": "lectures/14.html#anova-table",
+    "objectID": "lectures/11.html#anova-table",
+    "href": "lectures/11.html#anova-table",
     "title": "Inference with Linear Regression",
     "section": "ANOVA Table",
     "text": "ANOVA Table\n\n\n\n\n\n\n\n\n\n\nSource\nDF\nSS\nMS\nF\n\n\n\n\nModel\n\\(DFR=k-1\\)\n\\(SSR\\)\n\\(MSR=\\frac{SSM}{DFR}\\)\n\\(\\hat F=\\frac{MSR}{MSE}\\)\n\n\nError\n\\(DFE=n-k\\)\n\\(SSE\\)\n\\(MSE=\\frac{SSE}{DFE}\\)\n\n\n\nTotal\n\\(TDF=n-1\\)\n\\(TSS=SSR+SSE\\)\n\n\n\n\n\n\\[\n\\hat F \\sim F(DFR, DFE)\n\\]"
   },
   {
-    "objectID": "lectures/14.html#conducting-an-anova-in-r",
-    "href": "lectures/14.html#conducting-an-anova-in-r",
+    "objectID": "lectures/11.html#conducting-an-anova-in-r",
+    "href": "lectures/11.html#conducting-an-anova-in-r",
     "title": "Inference with Linear Regression",
     "section": "Conducting an ANOVA in R",
     "text": "Conducting an ANOVA in R\n\n\nCode\nxlm &lt;- lm(Y ~ X, data = DATA)\nsummary(xlm)"
   },
   {
-    "objectID": "lectures/14.html#example-2",
-    "href": "lectures/14.html#example-2",
+    "objectID": "lectures/11.html#example-2",
+    "href": "lectures/11.html#example-2",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; lm(formula = body_mass_g ~ species + flipper_length_mm, data = penguins)\n#&gt; \n#&gt; Residuals:\n#&gt;    Min     1Q Median     3Q    Max \n#&gt; -898.8 -252.0  -24.8  229.8 1191.6 \n#&gt; \n#&gt; Coefficients:\n#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    \n#&gt; (Intercept)       -4013.18     586.25  -6.846 3.74e-11 ***\n#&gt; speciesChinstrap   -205.38      57.57  -3.568 0.000414 ***\n#&gt; speciesGentoo       284.52      95.43   2.981 0.003083 ** \n#&gt; flipper_length_mm    40.61       3.08  13.186  &lt; 2e-16 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; Residual standard error: 373.3 on 329 degrees of freedom\n#&gt; Multiple R-squared:  0.787,  Adjusted R-squared:  0.7851 \n#&gt; F-statistic: 405.3 on 3 and 329 DF,  p-value: &lt; 2.2e-16"
   },
   {
-    "objectID": "lectures/14.html#model-inference-2",
-    "href": "lectures/14.html#model-inference-2",
+    "objectID": "lectures/11.html#model-inference-2",
+    "href": "lectures/11.html#model-inference-2",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nModel inference can be extended to compare models that have different number of predictors."
   },
   {
-    "objectID": "lectures/14.html#model-inference-3",
-    "href": "lectures/14.html#model-inference-3",
+    "objectID": "lectures/11.html#model-inference-3",
+    "href": "lectures/11.html#model-inference-3",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nGiven:\n\\[\nM1:\\ \\hat y = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ \\hat y = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
   },
   {
-    "objectID": "lectures/14.html#model-inference-4",
-    "href": "lectures/14.html#model-inference-4",
+    "objectID": "lectures/11.html#model-inference-4",
+    "href": "lectures/11.html#model-inference-4",
     "title": "Inference with Linear Regression",
     "section": "Model Inference",
     "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
   },
   {
-    "objectID": "lectures/14.html#test-statistic",
-    "href": "lectures/14.html#test-statistic",
+    "objectID": "lectures/11.html#test-statistic",
+    "href": "lectures/11.html#test-statistic",
     "title": "Inference with Linear Regression",
     "section": "Test Statistic",
     "text": "Test Statistic\n\\[\n\\hat F = \\frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}\n\\]\n\\[\n\\hat F \\sim F[DFE(RED) - DFE(FULL), DFE(FULL)]\n\\]"
   },
   {
-    "objectID": "lectures/14.html#anova-in-r",
-    "href": "lectures/14.html#anova-in-r",
+    "objectID": "lectures/11.html#anova-in-r",
+    "href": "lectures/11.html#anova-in-r",
     "title": "Inference with Linear Regression",
     "section": "ANOVA in R",
     "text": "ANOVA in R\n\n\nCode\nfull &lt;- lm(Y  ~  X1 + X2 + X3 + X4)\nred &lt;- lm(Y ~ X1 + X2)\nanova(red, full)"
   },
   {
-    "objectID": "lectures/14.html#example-3",
-    "href": "lectures/14.html#example-3",
+    "objectID": "lectures/11.html#example-3",
+    "href": "lectures/11.html#example-3",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nm1 &lt;- lm(body_mass_g ~ species + island + flipper_length_mm, penguins)\nm2 &lt;- lm(body_mass_g ~ island + flipper_length_mm, penguins)\nanova(m2, m1)\n\n\n#&gt; Analysis of Variance Table\n#&gt; \n#&gt; Model 1: body_mass_g ~ island + flipper_length_mm\n#&gt; Model 2: body_mass_g ~ species + island + flipper_length_mm\n#&gt;   Res.Df      RSS Df Sum of Sq      F    Pr(&gt;F)    \n#&gt; 1    329 47774435                                  \n#&gt; 2    327 45552857  2   2221579 7.9738 0.0004157 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
-    "objectID": "lectures/14.html#model-assumptions-1",
-    "href": "lectures/14.html#model-assumptions-1",
+    "objectID": "lectures/11.html#model-assumptions-1",
+    "href": "lectures/11.html#model-assumptions-1",
     "title": "Inference with Linear Regression",
     "section": "Model Assumptions",
     "text": "Model Assumptions\nWhen we are conducting inference linear regression, we will have to check the following conditions:\n\nLinearity\nIndependence\nNormality\nEqual Variances\nMulticollinearity (for MLR)"
   },
   {
-    "objectID": "lectures/14.html#linearity",
-    "href": "lectures/14.html#linearity",
+    "objectID": "lectures/11.html#linearity",
+    "href": "lectures/11.html#linearity",
     "title": "Inference with Linear Regression",
     "section": "Linearity",
     "text": "Linearity\nProbably considered the most important assumption, but there must be a linear relationship between both the outcome variable (y) and a set of predictors (\\(x_1\\), \\(x_2\\), …)."
   },
   {
-    "objectID": "lectures/14.html#independence",
-    "href": "lectures/14.html#independence",
+    "objectID": "lectures/11.html#independence",
+    "href": "lectures/11.html#independence",
     "title": "Inference with Linear Regression",
     "section": "Independence",
     "text": "Independence\nThe data points must not influence each other."
   },
   {
-    "objectID": "lectures/14.html#normality",
-    "href": "lectures/14.html#normality",
+    "objectID": "lectures/11.html#normality",
+    "href": "lectures/11.html#normality",
     "title": "Inference with Linear Regression",
     "section": "Normality",
     "text": "Normality\nThe model errors (also known as residuals) must follow a normal distribution."
   },
   {
-    "objectID": "lectures/14.html#equal-variances",
-    "href": "lectures/14.html#equal-variances",
+    "objectID": "lectures/11.html#equal-variances",
+    "href": "lectures/11.html#equal-variances",
     "title": "Inference with Linear Regression",
     "section": "Equal Variances",
     "text": "Equal Variances\nThe variability of the data points must be the same for all predictor values."
   },
   {
-    "objectID": "lectures/14.html#residuals",
-    "href": "lectures/14.html#residuals",
+    "objectID": "lectures/11.html#residuals",
+    "href": "lectures/11.html#residuals",
     "title": "Inference with Linear Regression",
     "section": "Residuals",
     "text": "Residuals\nResiduals are the errors between the observed value and the estimated model. Common residuals include\n\nRaw Residual\nStandardized Residual\nJackknife (studentized) Residuals"
   },
   {
-    "objectID": "lectures/14.html#influential-measurements",
-    "href": "lectures/14.html#influential-measurements",
+    "objectID": "lectures/11.html#influential-measurements",
+    "href": "lectures/11.html#influential-measurements",
     "title": "Inference with Linear Regression",
     "section": "Influential Measurements",
     "text": "Influential Measurements\nInfluential measures are statistics that determine how much a data point affects the model. Common influential measures are\n\nLeverages\nCook’s Distance"
   },
   {
-    "objectID": "lectures/14.html#raw-residuals",
-    "href": "lectures/14.html#raw-residuals",
+    "objectID": "lectures/11.html#raw-residuals",
+    "href": "lectures/11.html#raw-residuals",
     "title": "Inference with Linear Regression",
     "section": "Raw Residuals",
     "text": "Raw Residuals\n\\[\n\\hat r_i = y_i - \\hat y_i\n\\]"
   },
   {
-    "objectID": "lectures/14.html#residual-analysis",
-    "href": "lectures/14.html#residual-analysis",
+    "objectID": "lectures/11.html#residual-analysis",
+    "href": "lectures/11.html#residual-analysis",
     "title": "Inference with Linear Regression",
     "section": "Residual Analysis",
     "text": "Residual Analysis\nA residual analysis is used to test the assumptions of linear regression."
   },
   {
-    "objectID": "lectures/14.html#qq-plot",
-    "href": "lectures/14.html#qq-plot",
+    "objectID": "lectures/11.html#qq-plot",
+    "href": "lectures/11.html#qq-plot",
     "title": "Inference with Linear Regression",
     "section": "QQ Plot",
     "text": "QQ Plot\nA qq (quantile-quantile) plot will plot the estimated quantiles of the residuals against the theoretical quantiles from a normal distribution function. If the points from the qq-plot lie on the \\(y=x\\) line, it is said that the residuals follow a normal distribution."
   },
   {
-    "objectID": "lectures/14.html#residual-vs-fitted-plot",
-    "href": "lectures/14.html#residual-vs-fitted-plot",
+    "objectID": "lectures/11.html#residual-vs-fitted-plot",
+    "href": "lectures/11.html#residual-vs-fitted-plot",
     "title": "Inference with Linear Regression",
     "section": "Residual vs Fitted Plot",
     "text": "Residual vs Fitted Plot\nThis plot allows you to assess the linearity, constant variance, and identify potential outliers. Create a scatter plot between the fitted values (x-axis) and the raw/standardized residuals (y-axis)."
   },
   {
-    "objectID": "lectures/14.html#variance-inflation-factor",
-    "href": "lectures/14.html#variance-inflation-factor",
+    "objectID": "lectures/11.html#variance-inflation-factor",
+    "href": "lectures/11.html#variance-inflation-factor",
     "title": "Inference with Linear Regression",
     "section": "Variance Inflation Factor",
     "text": "Variance Inflation Factor\nThe variance inflation factor is a measurement on how much variables are collinear with each other. A value greater than 10 is a cause for concern and action should be taken."
   },
   {
-    "objectID": "lectures/14.html#residual-analysis-in-r",
-    "href": "lectures/14.html#residual-analysis-in-r",
+    "objectID": "lectures/11.html#residual-analysis-in-r",
+    "href": "lectures/11.html#residual-analysis-in-r",
     "title": "Inference with Linear Regression",
     "section": "Residual Analysis in R",
     "text": "Residual Analysis in R\nUse the resid_df function to obtain the residuals of a model.\n\n\nCode\nrdf &lt;- resid_df(LM_OBJECT)"
   },
   {
-    "objectID": "lectures/14.html#residual-vs-fitted-plot-1",
-    "href": "lectures/14.html#residual-vs-fitted-plot-1",
+    "objectID": "lectures/11.html#residual-vs-fitted-plot-1",
+    "href": "lectures/11.html#residual-vs-fitted-plot-1",
     "title": "Inference with Linear Regression",
     "section": "Residual vs Fitted Plot",
     "text": "Residual vs Fitted Plot\n\n\nCode\nggplot(RDF, aes(fitted, resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0, col = \"red\")"
   },
   {
-    "objectID": "lectures/14.html#qq-plot-1",
-    "href": "lectures/14.html#qq-plot-1",
+    "objectID": "lectures/11.html#qq-plot-1",
+    "href": "lectures/11.html#qq-plot-1",
     "title": "Inference with Linear Regression",
     "section": "QQ Plot",
     "text": "QQ Plot\n\n\nCode\nggplot(RDF, aes(sample = resid)) + \n  stat_qq() +\n  stat_qq_line()"
   },
   {
-    "objectID": "lectures/14.html#example-4",
-    "href": "lectures/14.html#example-4",
+    "objectID": "lectures/11.html#example-4",
+    "href": "lectures/11.html#example-4",
     "title": "Inference with Linear Regression",
     "section": "Example",
     "text": "Example\n\n\nCode\nxlm &lt;- lm(body_mass_g ~   island + species + flipper_length_mm,\n          penguins)\ndfxlm &lt;- resid_df(xlm)\n\nggplot(dfxlm, aes(fitted, resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0, col = \"red\")\n\nggplot(dfxlm, aes(sample = resid)) + \n  stat_qq() +\n  stat_qq_line()"
+  },
+  {
+    "objectID": "lectures/13.html#motivation-1",
+    "href": "lectures/13.html#motivation-1",
+    "title": "Inference",
+    "section": "Motivation",
+    "text": "Motivation\nThe ncbirths data set provides information on whether different predictors. The outcome of interest will be premie (“full term” or “premie”)."
+  },
+  {
+    "objectID": "lectures/13.html#motivation-1-1",
+    "href": "lectures/13.html#motivation-1-1",
+    "title": "Inference",
+    "section": "Motivation 1",
+    "text": "Motivation 1\nModel the relationship between the outcome premie and habit (“smoker” and “nonsmoker”)."
+  },
+  {
+    "objectID": "lectures/13.html#motivation-2",
+    "href": "lectures/13.html#motivation-2",
+    "title": "Inference",
+    "section": "Motivation 2",
+    "text": "Motivation 2\nModel the relationship between the outcome premie and visits (“smoker” and “nonsmoker”)."
+  },
+  {
+    "objectID": "lectures/13.html#logistic-model-1",
+    "href": "lectures/13.html#logistic-model-1",
+    "title": "Inference",
+    "section": "Logistic Model 1",
+    "text": "Logistic Model 1\nUse a logistic regression to model the outcome premie and habit.\n\n\nCode\nglm(premie ~ habit, data = ncbirths, family = binomial())"
+  },
+  {
+    "objectID": "lectures/13.html#odds-ratio-1",
+    "href": "lectures/13.html#odds-ratio-1",
+    "title": "Inference",
+    "section": "Odds Ratio 1",
+    "text": "Odds Ratio 1\n\n\nCode\nb(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))"
+  },
+  {
+    "objectID": "lectures/13.html#odds-ratio-1-1",
+    "href": "lectures/13.html#odds-ratio-1-1",
+    "title": "Inference",
+    "section": "Odds Ratio 1",
+    "text": "Odds Ratio 1\n\n\nCode\nb(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)\n\n\n#&gt; [1] -0.01344105\n\n\nCode\nexp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))\n\n\n#&gt; [1] 0.9866489\n\n\nThe odds of a mother who smokes having a premature infant is 0.98 times lower than the odds of a mother who does not smoke."
+  },
+  {
+    "objectID": "lectures/13.html#logistic-model-2",
+    "href": "lectures/13.html#logistic-model-2",
+    "title": "Inference",
+    "section": "Logistic Model 2",
+    "text": "Logistic Model 2\nUse a logistic regression to model the outcome premie and visits.\n\n\nCode\nglm(premie ~ visits, data = ncbirths, family = binomial())"
+  },
+  {
+    "objectID": "lectures/13.html#odds-ratio-2",
+    "href": "lectures/13.html#odds-ratio-2",
+    "title": "Inference",
+    "section": "Odds Ratio 2",
+    "text": "Odds Ratio 2\n\n\nCode\nb(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))"
+  },
+  {
+    "objectID": "lectures/13.html#odds-ratio-2-1",
+    "href": "lectures/13.html#odds-ratio-2-1",
+    "title": "Inference",
+    "section": "Odds Ratio 2",
+    "text": "Odds Ratio 2\n\n\nCode\nb(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)\n\n\n#&gt; [1] -0.1063097\n\n\nCode\nexp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))\n\n\n#&gt; [1] 0.8991461\n\n\nAs the number of hospital visits increases by 1, the odds of having a premature infant decreases by a factor 0.89."
+  },
+  {
+    "objectID": "lectures/13.html#real-or-random",
+    "href": "lectures/13.html#real-or-random",
+    "title": "Inference",
+    "section": "Real or Random",
+    "text": "Real or Random\n\nDoes smoking have a protective effect on having a premature infant?\n\n\nDoes the number of hospital visits have a protective effect?\n\n\nWhat is real and what is random?"
+  },
+  {
+    "objectID": "lectures/13.html#hypothesis-tests",
+    "href": "lectures/13.html#hypothesis-tests",
+    "title": "Inference",
+    "section": "Hypothesis Tests",
+    "text": "Hypothesis Tests\nHypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the Null and Alternative Hypothesis."
+  },
+  {
+    "objectID": "lectures/13.html#null-hypothesis-h_0",
+    "href": "lectures/13.html#null-hypothesis-h_0",
+    "title": "Inference",
+    "section": "Null Hypothesis \\(H_0\\)",
+    "text": "Null Hypothesis \\(H_0\\)\nThe null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value."
+  },
+  {
+    "objectID": "lectures/13.html#alternative-hypothesis-h_a",
+    "href": "lectures/13.html#alternative-hypothesis-h_a",
+    "title": "Inference",
+    "section": "Alternative Hypothesis \\(H_a\\)",
+    "text": "Alternative Hypothesis \\(H_a\\)\nThe alternative hypothesis contradicts the null hypothesis."
+  },
+  {
+    "objectID": "lectures/13.html#example-of-null-and-alternative-hypothesis",
+    "href": "lectures/13.html#example-of-null-and-alternative-hypothesis",
+    "title": "Inference",
+    "section": "Example of Null and Alternative Hypothesis",
+    "text": "Example of Null and Alternative Hypothesis\nWe want to see if \\(\\beta\\) is different from \\(\\beta^*\\)\n\n\n\nNull Hypothesis\nAlternative Hypothesis\n\n\n\n\n\\(H_0: \\beta=\\beta^*\\)\n\\(H_a: \\beta\\ne\\beta^*\\)\n\n\n\\(H_0: \\beta\\le\\beta^*\\)\n\\(H_a: \\beta&gt;\\beta^*\\)\n\n\n\\(H_0: \\beta\\ge\\beta^*\\)\n\\(H_0: \\beta&lt;\\beta^*\\)"
+  },
+  {
+    "objectID": "lectures/13.html#one-side-vs-two-side-hypothesis-tests",
+    "href": "lectures/13.html#one-side-vs-two-side-hypothesis-tests",
+    "title": "Inference",
+    "section": "One-Side vs Two-Side Hypothesis Tests",
+    "text": "One-Side vs Two-Side Hypothesis Tests\nNotice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (\\(H_a:\\beta\\ne\\beta^*\\)) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.\n\n\n\nNull Hypothesis\nAlternative Hypothesis\nSide\n\n\n\n\n\\(H_0: \\beta=\\beta^*\\)\n\\(H_a: \\beta\\ne\\beta^*\\)\n2-Sided\n\n\n\\(H_0: \\beta\\le\\beta^*\\)\n\\(H_a: \\beta&gt;\\beta^*\\)\n1-Sided\n\n\n\\(H_0: \\beta\\ge\\beta^*\\)\n\\(H_0: \\beta&lt;\\beta^*\\)\n1-Sided"
+  },
+  {
+    "objectID": "lectures/13.html#decision-making",
+    "href": "lectures/13.html#decision-making",
+    "title": "Inference",
+    "section": "Decision Making",
+    "text": "Decision Making\nHypothesis Testing will force you to make a decision: Reject \\(H_0\\) OR Fail to Reject \\(H_0\\)\n\nReject \\(H_0\\): The effect seen is not due to random chance, there is a process making contributing to the effect.\n\n\nFail to Reject \\(H_0\\): The effect seen is due to random chance. Random sampling is the reason why an effect is displayed, not an underlying process."
+  },
+  {
+    "objectID": "lectures/13.html#decision-making-p-value",
+    "href": "lectures/13.html#decision-making-p-value",
+    "title": "Inference",
+    "section": "Decision Making: P-Value",
+    "text": "Decision Making: P-Value\nThe p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true.\n\nIf \\(p &lt; \\alpha\\), then you reject \\(H_0\\); otherwise, you will fail to reject \\(H_0\\)."
+  },
+  {
+    "objectID": "lectures/13.html#decision-making-confidence-interval-approach",
+    "href": "lectures/13.html#decision-making-confidence-interval-approach",
+    "title": "Inference",
+    "section": "Decision Making: Confidence Interval Approach",
+    "text": "Decision Making: Confidence Interval Approach\nThe confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is \\(\\beta\\ne\\beta^*\\). The bootstrapping approach will result in a lower and upper bound denoted as: \\((LB, UB)\\).\n\nIf \\(\\beta^*\\) is in \\((LB, UB)\\), then you fail to reject \\(H_0\\). If \\(\\beta^*\\) is not in \\((LB,UB)\\), then you reject \\(H_0\\)."
+  },
+  {
+    "objectID": "lectures/13.html#significance-level-alpha",
+    "href": "lectures/13.html#significance-level-alpha",
+    "title": "Inference",
+    "section": "Significance Level \\(\\alpha\\)",
+    "text": "Significance Level \\(\\alpha\\)\nThe significance level \\(\\alpha\\) is the probability you will reject the null hypothesis given that it was true.\n\nIn other words, \\(\\alpha\\) is the error rate that a research controls.\n\n\nTypically, we want this error rate to be small (\\(\\alpha = 0.05\\))."
+  },
+  {
+    "objectID": "lectures/13.html#hypothesis-test-process",
+    "href": "lectures/13.html#hypothesis-test-process",
+    "title": "Inference",
+    "section": "Hypothesis Test Process",
+    "text": "Hypothesis Test Process\n\n\nSet up the Null and Alternative Hypothesis.\n\n\\(H_0: \\beta = 0\\) and \\(H_a: \\beta \\ne 0\\)\n\nCompute p-value or confidence interval\nMake a decision\nInterpret the results"
+  },
+  {
+    "objectID": "lectures/13.html#example",
+    "href": "lectures/13.html#example",
+    "title": "Inference",
+    "section": "Example",
+    "text": "Example\nUse a logistic regression to model the outcome premie and habit.\n\n\nCode\nglm(premie ~ habit, data = ncbirths, family = binomial())\nb(glm(premie ~ habit, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ habit, data = ncbirths, family = binomial()), 1))"
+  },
+  {
+    "objectID": "lectures/13.html#example-3",
+    "href": "lectures/13.html#example-3",
+    "title": "Inference",
+    "section": "Example",
+    "text": "Example"
+  },
+  {
+    "objectID": "lectures/13.html#logistic-model-2-1",
+    "href": "lectures/13.html#logistic-model-2-1",
+    "title": "Inference",
+    "section": "Logistic Model 2",
+    "text": "Logistic Model 2\n\n\nCode\nglm(premie ~ visits, data = ncbirths, family = binomial())\n\nb(glm(premie ~ visits, data = ncbirths, family = binomial()), 1)\nexp(b(glm(premie ~ visits, data = ncbirths, family = binomial()), 1))"
+  },
+  {
+    "objectID": "lectures/15.html#motivating-example-1",
+    "href": "lectures/15.html#motivating-example-1",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Motivating Example",
+    "text": "Motivating Example\n\n\nCode\nbladder1 |&gt; ggplot(aes(number, color = death2)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/15.html#hypothesis",
+    "href": "lectures/15.html#hypothesis",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Hypothesis",
+    "text": "Hypothesis\n\n\n\\[H_0: \\beta = \\theta\\]\n\n\\[H_0: \\beta \\ne \\theta\\]"
+  },
+  {
+    "objectID": "lectures/15.html#testing-beta_j",
+    "href": "lectures/15.html#testing-beta_j",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Testing \\(\\beta_j\\)",
+    "text": "Testing \\(\\beta_j\\)\n\\[\n\\frac{\\hat\\beta_j - \\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim N(0,1)\n\\]"
+  },
+  {
+    "objectID": "lectures/15.html#confidence-intervals",
+    "href": "lectures/15.html#confidence-intervals",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Confidence Intervals",
+    "text": "Confidence Intervals\n\\[\nPE \\pm CV \\times SE\n\\]\n\nPE: Point Estimate\nCV: Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\nSE: Standard Error"
+  },
+  {
+    "objectID": "lectures/15.html#conducting-ht-of-beta_j",
+    "href": "lectures/15.html#conducting-ht-of-beta_j",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Conducting HT of \\(\\beta_j\\)",
+    "text": "Conducting HT of \\(\\beta_j\\)\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial())\nsummary(xlm)"
+  },
+  {
+    "objectID": "lectures/15.html#example",
+    "href": "lectures/15.html#example",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ recur + number + size, bladder1, family = binomial())\nsummary(m1)\n\n\n#&gt; \n#&gt; Call:\n#&gt; glm(formula = death ~ recur + number + size, family = binomial(), \n#&gt;     data = bladder1)\n#&gt; \n#&gt; Coefficients:\n#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    \n#&gt; (Intercept) -0.8525259  0.4462559  -1.910 0.056082 .  \n#&gt; recur       -0.3897480  0.1062848  -3.667 0.000245 ***\n#&gt; number       0.0008451  0.1124503   0.008 0.994004    \n#&gt; size        -0.2240419  0.1626749  -1.377 0.168439    \n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n#&gt; \n#&gt; (Dispersion parameter for binomial family taken to be 1)\n#&gt; \n#&gt;     Null deviance: 189.38  on 293  degrees of freedom\n#&gt; Residual deviance: 166.43  on 290  degrees of freedom\n#&gt; AIC: 174.43\n#&gt; \n#&gt; Number of Fisher Scoring iterations: 6"
+  },
+  {
+    "objectID": "lectures/15.html#confidence-interval",
+    "href": "lectures/15.html#confidence-interval",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Confidence Interval",
+    "text": "Confidence Interval\n\n\nCode\nconfint(xlm, level = LEVEL)"
+  },
+  {
+    "objectID": "lectures/15.html#example-1",
+    "href": "lectures/15.html#example-1",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nconfint(m1, level = 0.95)\n\n\n#&gt;                  2.5 %      97.5 %\n#&gt; (Intercept) -1.7353779  0.02529523\n#&gt; recur       -0.6217831 -0.20078281\n#&gt; number      -0.2421738  0.20731479\n#&gt; size        -0.5880581  0.06061498"
+  },
+  {
+    "objectID": "lectures/15.html#confidence-interval-for-odds-ratio",
+    "href": "lectures/15.html#confidence-interval-for-odds-ratio",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Confidence Interval for Odds Ratio",
+    "text": "Confidence Interval for Odds Ratio\n\n\nCode\nexp(confint(m1, level = 0.95))\n\n\n#&gt;                 2.5 %    97.5 %\n#&gt; (Intercept) 0.1763335 1.0256179\n#&gt; recur       0.5369861 0.8180901\n#&gt; number      0.7849197 1.2303698\n#&gt; size        0.5554048 1.0624898"
+  },
+  {
+    "objectID": "lectures/15.html#model-inference",
+    "href": "lectures/15.html#model-inference",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Model inference",
+    "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(g(\\hat Y)=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
+  },
+  {
+    "objectID": "lectures/15.html#model-inference-1",
+    "href": "lectures/15.html#model-inference-1",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nGiven 2 models:\n\\[\ng(\\hat Y) = \\hat\\beta_0 + \\hat\\beta_1 X_1 + \\hat\\beta_2 X_2 + \\cdots + \\hat\\beta_p X_p\n\\]\nor\n\\[\ng(\\hat Y) = \\bar y\n\\]\n\nIs the model with predictors do a better job than using the average?"
+  },
+  {
+    "objectID": "lectures/15.html#likelihood-ratio-test",
+    "href": "lectures/15.html#likelihood-ratio-test",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Likelihood Ratio Test",
+    "text": "Likelihood Ratio Test\nThe Likelihood Ratio Test is a test to determine whether the likelihood of observing the outcome is significantly bigger in a larger, more complicated model, than a simpler model.\nIt conducts a hypothesis tests to see if models are significantly different from each other."
+  },
+  {
+    "objectID": "lectures/15.html#conducting-an-lrt-in-r",
+    "href": "lectures/15.html#conducting-an-lrt-in-r",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Conducting an LRT in R",
+    "text": "Conducting an LRT in R\n\n\nCode\nxlm &lt;- glm(Y ~ X, data = DATA, family = binomial)\nxlm0 &lt;- glm(Y ~ 1, data = DATA, family = binomial)\nanova(xlm0, xlm, test = \"LRT\")"
+  },
+  {
+    "objectID": "lectures/15.html#example-2",
+    "href": "lectures/15.html#example-2",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nm0 &lt;- update(m1, formula. = ~ 1)\nanova(m0, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ 1\n#&gt; Model 2: death ~ recur + number + size\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)    \n#&gt; 1       293     189.38                         \n#&gt; 2       290     166.43  3   22.953 4.13e-05 ***\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "lectures/15.html#model-inference-2",
+    "href": "lectures/15.html#model-inference-2",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nModel inference can be extended to compare models that have different number of predictors."
+  },
+  {
+    "objectID": "lectures/15.html#model-inference-3",
+    "href": "lectures/15.html#model-inference-3",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nGiven:\n\\[\nM1:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ g(\\hat y) = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
+  },
+  {
+    "objectID": "lectures/15.html#model-inference-4",
+    "href": "lectures/15.html#model-inference-4",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Model Inference",
+    "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
+  },
+  {
+    "objectID": "lectures/15.html#likelihood-ratio-test-in-r",
+    "href": "lectures/15.html#likelihood-ratio-test-in-r",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Likelihood Ratio Test in R",
+    "text": "Likelihood Ratio Test in R\n\n\nCode\nfull &lt;- glm(Y  ~  X1 + X2 + X3 + X4, DATA, family = binomial())\nred &lt;- glm(Y ~ X1 + X2, DATA, family = binomial())\nanova(red, full, test = \"LRT\")"
+  },
+  {
+    "objectID": "lectures/15.html#example-3",
+    "href": "lectures/15.html#example-3",
+    "title": "Inference with Logistic and Poisson Regression",
+    "section": "Example",
+    "text": "Example\n\n\nCode\nm1 &lt;- glm(death ~ number + size + recur, bladder1, family = binomial())\nm2 &lt;- glm(death ~ recur, bladder1, family = binomial())\nanova(m2, m1, test = \"LRT\")\n\n\n#&gt; Analysis of Deviance Table\n#&gt; \n#&gt; Model 1: death ~ recur\n#&gt; Model 2: death ~ number + size + recur\n#&gt;   Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)\n#&gt; 1       292     168.72                     \n#&gt; 2       290     166.43  2   2.2883   0.3185"
   },
   {
     "objectID": "lectures/2.html#observations",
