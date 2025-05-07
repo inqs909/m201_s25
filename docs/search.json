@@ -3437,6 +3437,13 @@
     "text": "Example\n\n\nCode\nxlm &lt;- lm(body_mass_g ~   island + species + flipper_length_mm,\n          penguins)\ndfxlm &lt;- resid_df(xlm)\n\nggplot(dfxlm, aes(fitted, resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0, col = \"red\")\n\nggplot(dfxlm, aes(sample = resid)) + \n  stat_qq() +\n  stat_qq_line()"
   },
   {
+    "objectID": "lectures/15b.html#announcements",
+    "href": "lectures/15b.html#announcements",
+    "title": "Installing R and Rstudio",
+    "section": "Announcements",
+    "text": "Announcements\n\nFill Out Course Evaluations\nThird Exam Next Week\n\n12 PM Class (Sec 01): Monday Math 12 10:30 AM to 12:30 PM\n1:30 PM Class (Sec 02): Wednesday May 14 1-3 PM"
+  },
+  {
     "objectID": "lectures/15b.html#traditional-statistics",
     "href": "lectures/15b.html#traditional-statistics",
     "title": "Installing R and Rstudio",
