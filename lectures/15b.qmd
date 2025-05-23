@@ -49,8 +49,10 @@ Visit [Here](https://lindeloev.github.io/tests-as-linear/) for more information.
 
 ## What is Statistics? 
 
-It is the study of variation and randomness!
 
+::: fragment
+It is the study of variation and randomness!
+:::
 
 ## What's the goal of Statistics?
 
